@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-//using System.Security.Cryptography.Xml;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using WinSCP;
-using static System.Collections.Specialized.BitVector32;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace copiaProgramas
 {
@@ -19,6 +12,7 @@ namespace copiaProgramas
         Programas programa = new Programas();
 
 
+        //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
         private Dictionary<System.Windows.Forms.CheckBox, string> checkBoxVariables = new Dictionary<System.Windows.Forms.CheckBox, string>();
 
 
@@ -29,6 +23,28 @@ namespace copiaProgramas
             //Suscribe al evento cuando se selecciona una pestaña del tabControl
             tabControl1.SelectedIndexChanged += TabControl1_SelectedIndexChanged;
 
+            //En este metodo se agregan al diccionario "checkBoxVariables" todos los programas con sus checkbox correspondientes.
+            vincularChecboxVariables();
+
+            // Suscribir al evento CheckedChanged para todos los CheckBoxes
+            foreach (var elemento in checkBoxVariables)
+            {
+                elemento.Key.CheckedChanged += CheckBox_CheckedChanged;
+            }
+
+            //Lee el fichero de configuracion para cargar las variables
+            variable.CargarConfiguracion();
+
+            //Rellena los textBox con los valores cargados en las variables desde el fichero de configuracion
+            cb_destino.SelectedIndex = 0;
+            LimpiaCbxPi();
+        }
+
+
+        #region Utilidades
+
+        private void vincularChecboxVariables()
+        {
             //Agrega al diccionario de checkbox los nombres de las variables a vincular
             //Programas PI
             checkBoxVariables.Add(cbx_ipcont08, "ipcont08");
@@ -73,26 +89,11 @@ namespace copiaProgramas
             checkBoxVariables.Add(cbx_enompat, "enompat");
             checkBoxVariables.Add(cbx_dscepsa, "dscepsa");
             checkBoxVariables.Add(cbx_dsgal, "dsgal");
-
-
-
-            // Suscribir al evento CheckedChanged para todos los CheckBoxes
-            foreach (var elemento in checkBoxVariables)
-            {
-                elemento.Key.CheckedChanged += CheckBox_CheckedChanged;
-            }
-
-            //Lee el fichero de configuracion para cargar las variables
-            variable.CargarConfiguracion();
-
-            //Rellena los textBox con los valores cargados en las variables desde el fichero de configuracion
-            //lbl_destino.Text = variable.destino;
-            cb_destino.SelectedIndex = 0;
-            LimpiaCbxPi();
         }
 
         private void LimpiaCbxPi()
         {
+            //Quita las marcas de los controlBox
             foreach (Control control in panel1.Controls)
             {
                 if (control is System.Windows.Forms.CheckBox cbx)
@@ -307,101 +308,12 @@ namespace copiaProgramas
             }
         }
 
-
-        private void LanzaCopia(string fichero)
+        private void ActualizarProgreso(string resultado)
         {
-            string origen = variable.rutaPi + fichero;
-            string nombreFichero = Path.GetFileName(fichero); //Obtiene el nombre del programa
-            string destino = variable.destino + nombreFichero; //Forma la ruta completa del programa
-            try
+            //Este metodo escribe en el textBox el progreso de la copia
+            if (InvokeRequired) // Se asegura que esta en el mismo hilo de ejecucion
             {
-                //Controla para hacer la copia local
-                if (variable.destino == variable.destinoLocal)
-                {
-                    try
-                    {
-                        ActualizarProgreso(Environment.NewLine + $"Copiando archivo {nombreFichero}");
-                        File.Copy(origen, destino, true);
-                        ActualizarProgreso($"Archivo copiado: {nombreFichero}");
-                    }
-                    catch (Exception ex)
-                    {
-                        ActualizarProgreso(Environment.NewLine + $"No se ha podido copiar el fichero {nombreFichero}" + Environment.NewLine + ex.Message);
-                    }
-                }
-                else
-                {
-                    ActualizarProgreso(Environment.NewLine + $"Copiando archivo {nombreFichero}");
-                    // Configuración de opciones de sesión para la copia al geco72
-                    SessionOptions sessionOptions = new SessionOptions
-                    {
-                        Protocol = Protocol.Sftp,
-                        HostName = "172.31.5.149",
-                        UserName = "centos",
-                        SshHostKeyFingerprint = "ssh-ed25519 255 ypCFfhJskB3YSCzQzF5iHV0eaWxlBIvMeM5kRl4N46o=",
-                        SshPrivateKeyPath = @"C:\Oficina_ds\Diagram\Accesos portatil\conexiones VPN\Credenciales SSH\aws_diagram_irlanda.ppk",
-                    };
-                    sessionOptions.AddRawSettings("AgentFwd", "1");
-
-
-                    using (Session session = new Session())
-                    {
-                        ////Permite hacer un log del resultado. La dejo comentada por si hace falta
-                        //string logFile = @"c:\carlos\winscp.log";
-                        //if (!File.Exists(logFile))
-                        //{
-                        //    File.Create(logFile).Close();
-                        //}
-                        //else
-                        //{
-                        //    File.Delete(logFile);
-                        //    File.Create(logFile).Close();
-                        //}
-                        //session.SessionLogPath = logFile;
-
-                        // Conexión
-                        session.Open(sessionOptions);
-
-                        TransferOptions transferOptions = new TransferOptions();
-                        transferOptions.TransferMode = TransferMode.Binary;
-
-                        TransferOperationResult transferResult = session.PutFiles(origen, variable.destino, false, transferOptions);
-                        transferResult.Check();
-
-                        // Muestra información sobre la transferencia al finalizar
-                        foreach (TransferEventArgs transfer in transferResult.Transfers)
-                        {
-                            ActualizarProgreso($"Archivo copiado: {nombreFichero}");
-                        }
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                ActualizarProgreso(Environment.NewLine + $"Error al copiar el fichero {fichero}" + Environment.NewLine + ex.Message);
-            }
-        }
-
-        private void ActualizarProgreso(string mensaje)
-        {
-            if (txtProgresoCopia.InvokeRequired)
-            {
-                txtProgresoCopia.Invoke(new Action(() => ActualizarProgreso(mensaje)));
-            }
-            else
-            {
-                txtProgresoCopia.AppendText(mensaje + Environment.NewLine);
-            }
-        }
-
-        private void ResultadoCopia(string resultado)
-        {
-            //Este metodo se supone que escribe en el textBox el progreso de la copia, pero hay que probarlo
-            // Asegúrate de que este método se ejecute en el hilo de la interfaz de usuario (UI)
-            if (InvokeRequired)
-            {
-                Invoke(new Action<string>(ResultadoCopia), resultado);
+                Invoke(new Action<string>(ActualizarProgreso), resultado);
             }
             else
             {
@@ -410,7 +322,137 @@ namespace copiaProgramas
             }
         }
 
+        private int LanzaCopia(bool programa, string fichero, string titulo)
+        {
+            int resultado = 0;//Resultado de la copia
+            if (programa) //Si esta marcado el programa pasado se lanza la copia
+            {
+                string origen = variable.rutaPi + fichero;
+                string nombreFichero = Path.GetFileName(fichero); //Obtiene el nombre del programa
+                string destino = variable.destino + nombreFichero; //Forma la ruta completa del programa
+
+                //Controla para hacer la copia local
+                if (variable.destino == variable.destinoLocal)
+                {
+                    try
+                    {
+                        ActualizarProgreso(Environment.NewLine + $"Copiando el programa {titulo} ");
+                        File.Copy(origen, destino, true);
+                        ActualizarProgreso($"Programa {titulo} copiado correctamente.");
+                        resultado = 1;
+                    }
+
+                    catch (Exception ex)
+                    {
+                        ActualizarProgreso(Environment.NewLine + $"No se ha podido copiar el programa {titulo}" + Environment.NewLine + ex.Message);
+                    }
+                }
+                else
+                {
+                    //Si la copia en al geco72
+                    try
+                    {
+                        ActualizarProgreso(Environment.NewLine + $"Copiando el programa {titulo}");
+
+                        // Configuración de opciones de sesión para la copia al geco72
+                        SessionOptions sessionOptions = new SessionOptions
+                        {
+                            Protocol = Protocol.Sftp,
+                            HostName = "172.31.5.149",
+                            UserName = "centos",
+                            SshHostKeyFingerprint = "ssh-ed25519 255 ypCFfhJskB3YSCzQzF5iHV0eaWxlBIvMeM5kRl4N46o=",
+                            SshPrivateKeyPath = @"C:\Oficina_ds\Diagram\Accesos portatil\conexiones VPN\Credenciales SSH\aws_diagram_irlanda.ppk",
+                        };
+                        sessionOptions.AddRawSettings("AgentFwd", "1");
+
+                        using (Session session = new Session())
+                        {
+                            ////Permite hacer un log del resultado. La dejo comentada por si hace falta
+                            //string logFile = @"c:\carlos\winscp.log";
+                            //if (!File.Exists(logFile))
+                            //{
+                            //    File.Create(logFile).Close();
+                            //}
+                            //else
+                            //{
+                            //    File.Delete(logFile);
+                            //    File.Create(logFile).Close();
+                            //}
+                            //session.SessionLogPath = logFile;
+
+                            // Conexión
+                            session.Open(sessionOptions);
+
+                            TransferOptions transferOptions = new TransferOptions();
+                            transferOptions.TransferMode = TransferMode.Binary;
+
+                            TransferOperationResult transferResult = session.PutFiles(origen, variable.destino, false, transferOptions);
+                            transferResult.Check();
+
+                            // Muestra información sobre la transferencia al finalizar
+                            foreach (TransferEventArgs transfer in transferResult.Transfers)
+                            {
+                                ActualizarProgreso($"Programa {titulo} copiado correctamente.");
+                            }
+                        }
+                        resultado = 1;
+                    }
+                    catch (Exception ex)
+                    {
+                        ActualizarProgreso(Environment.NewLine + $"No se ha podido copiar el programa {titulo}" + Environment.NewLine + ex.Message);
+                    }
+                }
+            }
+            return resultado;
+        }
+
+        private void cb_destino_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Metodo para asignar las rutas destino de la copia segun el valor seleccionado en el comboBox
+            int indice = cb_destino.SelectedIndex;
+
+            switch (indice)
+            {
+                case 0:
+                    variable.destino = variable.destinoPi;
+                    break;
+
+                case 1:
+                    variable.destino = variable.destinonoPi;
+                    break;
+
+                case 2:
+                    variable.destino = variable.destinoLocal;
+                    break;
+
+                case 3:
+                    variable.destino = variable.destinoPasesPi;
+                    break;
+
+                case 4:
+                    variable.destino = variable.destinoPasesnoPi;
+                    break;
+            }
+        }
+
+        private void btn_limpiar_Click(object sender, EventArgs e)
+        {
+            //Metodo para desmarcar todos los checkBox y limpiar el textoBox del resultado de la copia
+            txtProgresoCopia.Text = string.Empty;
+            foreach (Control control in panel1.Controls)
+            {
+                if (control is System.Windows.Forms.CheckBox cbx)
+                {
+                    cbx.Checked = false;
+                }
+            }
+        }
+
+        #endregion
+
+
         #region Mouse Hover
+        //Metodos para cuando el raton se posiciona dentro de los iconos
         private void btnRutaPi_MouseHover(object sender, EventArgs e)
         {
             if (txtRutaPi.Enabled == false)
@@ -522,6 +564,8 @@ namespace copiaProgramas
         #endregion
 
         #region Mouse Leave
+        //Metodos para cuando el raton sale de los iconos
+
         private void btnRutaPi_MouseLeave(object sender, EventArgs e)
         {
             if (txtRutaPi.Enabled == false)
@@ -633,11 +677,13 @@ namespace copiaProgramas
         #endregion
 
         #region MouseClick
+        //Metodos para cuando se hace clic en los iconos
 
         private void btnCopiar_Click(object sender, EventArgs e)
         {
-            int controlCbx = 0;
-            int controlDbxnoPI = 0;
+            int resultado = 0; //Control para si se ha hecho alguna copia correctamente
+            int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
+            int controlDbxnoPI = 0; //Controla si hay checkBox de noPI marcados para controlar que no se copien a la carpeta de PI
             foreach (Control control in panel1.Controls)
             {
                 if (control is System.Windows.Forms.CheckBox cbx && cbx.Checked)
@@ -664,65 +710,62 @@ namespace copiaProgramas
                 {
                     //Lanza el proceso de copia segun los checkBox marcados en los programas
                     //Programas PI
-                    AsignaProgramasCopia(programa.ipcont08, programa.ipcont08Ruta);
-                    AsignaProgramasCopia(programa.siibase, programa.siibaseRuta);
-                    AsignaProgramasCopia(programa.v000adc, programa.v000adcRuta);
-                    AsignaProgramasCopia(programa.n43base, programa.n43baseRuta);
-                    AsignaProgramasCopia(programa.contalap, programa.contalapRuta);
-                    AsignaProgramasCopia(programa.ipmodelo, programa.ipmodeloRuta);
-                    AsignaProgramasCopia(programa.iprent23, programa.iprent23Ruta);
-                    AsignaProgramasCopia(programa.iprent22, programa.iprent22Ruta);
-                    AsignaProgramasCopia(programa.iprent21, programa.iprent21Ruta);
-                    AsignaProgramasCopia(programa.ipconts2, programa.ipconts2Ruta);
-                    AsignaProgramasCopia(programa.ipabogax, programa.ipabogaxRuta);
-                    AsignaProgramasCopia(programa.ipabogad, programa.ipabogadRuta);
-                    AsignaProgramasCopia(programa.ipabopar, programa.ipaboparRuta);
-                    AsignaProgramasCopia(programa.dscomer9, programa.dscomer9Ruta);
-                    AsignaProgramasCopia(programa.dscarter, programa.dscarterRuta);
-                    AsignaProgramasCopia(programa.dsarchi, programa.dsarchiRuta);
-                    AsignaProgramasCopia(programa.notibase, programa.notibaseRuta);
-                    AsignaProgramasCopia(programa.certbase, programa.certbaseRuta);
-                    AsignaProgramasCopia(programa.dsesign, programa.dsesignRuta);
-                    AsignaProgramasCopia(programa.dsedespa, programa.dsedespaRuta);
-                    AsignaProgramasCopia(programa.ipintegr, programa.ipintegrRuta);
-                    AsignaProgramasCopia(programa.ipbasica, programa.ipbasicaRuta);
-                    AsignaProgramasCopia(programa.ippatron, programa.ippatronRuta);
-                    AsignaProgramasCopia(programa.gasbase, programa.gasbaseRuta);
-                    AsignaProgramasCopia(programa.dscepsax, programa.dscepsaxRuta);
-                    AsignaProgramasCopia(programa.dsgalx, programa.dsgalxRuta);
-                    AsignaProgramasCopia(programa.iplabor2, programa.iplabor2Ruta);
+                    resultado += LanzaCopia(programa.ipcont08, programa.ipcont08Ruta, "ipcont08");
+                    resultado += LanzaCopia(programa.siibase, programa.siibaseRuta, "siibase");
+                    resultado += LanzaCopia(programa.v000adc, programa.v000adcRuta, "000adc");
+                    resultado += LanzaCopia(programa.n43base, programa.n43baseRuta, "n43base");
+                    resultado += LanzaCopia(programa.contalap, programa.contalapRuta, "contalap");
+                    resultado += LanzaCopia(programa.ipmodelo, programa.ipmodeloRuta, "ipmodelo");
+                    resultado += LanzaCopia(programa.iprent23, programa.iprent23Ruta, "iprent23");
+                    resultado += LanzaCopia(programa.iprent22, programa.iprent22Ruta, "iprent22");
+                    resultado += LanzaCopia(programa.iprent21, programa.iprent21Ruta, "iprent21");
+                    resultado += LanzaCopia(programa.ipconts2, programa.ipconts2Ruta, "ipconts2");
+                    resultado += LanzaCopia(programa.ipabogax, programa.ipabogaxRuta, "ipabogax");
+                    resultado += LanzaCopia(programa.ipabogad, programa.ipabogadRuta, "ipabogad");
+                    resultado += LanzaCopia(programa.ipabopar, programa.ipaboparRuta, "ipabopar");
+                    resultado += LanzaCopia(programa.dscomer9, programa.dscomer9Ruta, "dscomer9");
+                    resultado += LanzaCopia(programa.dscarter, programa.dscarterRuta, "dscarter");
+                    resultado += LanzaCopia(programa.dsarchi, programa.dsarchiRuta, "dsarchi");
+                    resultado += LanzaCopia(programa.notibase, programa.notibaseRuta, "notibase");
+                    resultado += LanzaCopia(programa.certbase, programa.certbaseRuta, "certbase");
+                    resultado += LanzaCopia(programa.dsesign, programa.dsesignRuta, "dsesign");
+                    resultado += LanzaCopia(programa.dsedespa, programa.dsedespaRuta, "dsedespa");
+                    resultado += LanzaCopia(programa.ipintegr, programa.ipintegrRuta, "ipintegr");
+                    resultado += LanzaCopia(programa.ipbasica, programa.ipbasicaRuta, "ipbasica");
+                    resultado += LanzaCopia(programa.ippatron, programa.ippatronRuta, "ippatron");
+                    resultado += LanzaCopia(programa.gasbase, programa.gasbaseRuta, "gasbase");
+                    resultado += LanzaCopia(programa.dscepsax, programa.dscepsaxRuta, "dscepsax");
+                    resultado += LanzaCopia(programa.dsgalx, programa.dsgalxRuta, "dsgalx");
+                    resultado += LanzaCopia(programa.iplabor2, programa.iplabor2Ruta, "iplabor2");
 
                     //Programas noPI
-                    AsignaProgramasCopia(programa.star308, programa.star308Ruta);
-                    AsignaProgramasCopia(programa.starpat, programa.starpatRuta);
-                    AsignaProgramasCopia(programa.ereo, programa.ereoRuta);
-                    AsignaProgramasCopia(programa.esocieda, programa.esociedaRuta);
-                    AsignaProgramasCopia(programa.efacges, programa.efacgesRuta);
-                    AsignaProgramasCopia(programa.eintegra, programa.eintegraRuta);
-                    AsignaProgramasCopia(programa.ereopat, programa.ereopatRuta);
-                    AsignaProgramasCopia(programa.enom1, programa.enom1Ruta);
-                    AsignaProgramasCopia(programa.enom2, programa.enom2Ruta);
-                    AsignaProgramasCopia(programa.ered, programa.eredRuta);
-                    AsignaProgramasCopia(programa.enompat, programa.enompatRuta);
-                    AsignaProgramasCopia(programa.dscepsa, programa.dscepsaRuta);
-                    AsignaProgramasCopia(programa.dsgal, programa.dsgalRuta);
+                    resultado += LanzaCopia(programa.star308, programa.star308Ruta, "star308");
+                    resultado += LanzaCopia(programa.starpat, programa.starpatRuta, "starpat");
+                    resultado += LanzaCopia(programa.ereo, programa.ereoRuta, "ereo");
+                    resultado += LanzaCopia(programa.esocieda, programa.esociedaRuta, "esocieda");
+                    resultado += LanzaCopia(programa.efacges, programa.efacgesRuta, "efacges");
+                    resultado += LanzaCopia(programa.eintegra, programa.eintegraRuta, "eintegra");
+                    resultado += LanzaCopia(programa.ereopat, programa.ereopatRuta, "ereopat");
+                    resultado += LanzaCopia(programa.enom1, programa.enom1Ruta, "enom1");
+                    resultado += LanzaCopia(programa.enom2, programa.enom2Ruta, "enom2");
+                    resultado += LanzaCopia(programa.ered, programa.eredRuta, "ered");
+                    resultado += LanzaCopia(programa.enompat, programa.enompatRuta, "enompat");
+                    resultado += LanzaCopia(programa.dscepsa, programa.dscepsaRuta, "dscepsa");
+                    resultado += LanzaCopia(programa.dsgal, programa.dsgalRuta, "dsgal");
 
-                    MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (resultado > 0)
+                    {
+                        MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se han podido copiar los ficheros", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
                     MessageBox.Show("No ha seleccionado ningun programa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-
-        }
-
-        private void AsignaProgramasCopia(bool programa, string nombrePrograma)
-        {
-            //Si el checkbox del programa pasado esta marcado, se lanza la copia del programa
-            if (programa)
-            {
-                LanzaCopia(nombrePrograma);
             }
         }
 
@@ -889,6 +932,7 @@ namespace copiaProgramas
 
         private void gestionBotones(bool estado, string nombreBoton)
         {
+            //Metodo para cambiar los iconos del resto de los botones cuando se pulsa alguno
             foreach (Control control in tabControl1.TabPages["tabConfiguracion"].Controls)
             {
                 if (control is Button btn)
@@ -906,7 +950,6 @@ namespace copiaProgramas
                             {
                                 btn.BackgroundImage = global::copiaProgramas.Properties.Resources.editar_noActivo;
                             }
-
                         }
                     }
                     else
@@ -922,8 +965,6 @@ namespace copiaProgramas
                             {
                                 btn.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
                             }
-
-
                         }
                     }
                 }
@@ -932,47 +973,5 @@ namespace copiaProgramas
 
         #endregion
 
-
-        private void cb_destino_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int indice = cb_destino.SelectedIndex;
-
-            switch (indice)
-            {
-                case 0:
-                    variable.destino = variable.destinoPi;
-                    break;
-
-                case 1:
-                    variable.destino = variable.destinonoPi;
-                    break;
-
-                case 2:
-                    variable.destino = variable.destinoLocal;
-                    break;
-
-                case 3:
-                    variable.destino = variable.destinoPasesPi;
-                    break;
-
-                case 4:
-                    variable.destino = variable.destinoPasesnoPi;
-                    break;
-
-
-            }
-        }
-
-        private void btn_limpiar_Click(object sender, EventArgs e)
-        {
-            txtProgresoCopia.Text = string.Empty;
-            foreach (Control control in panel1.Controls)
-            {
-                if (control is System.Windows.Forms.CheckBox cbx)
-                {
-                    cbx.Checked = false;
-                }
-            }
-        }
     }
 }

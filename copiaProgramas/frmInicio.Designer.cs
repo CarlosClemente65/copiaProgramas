@@ -175,10 +175,10 @@
             this.tabConfiguracion.Controls.Add(this.btnRutaGestion);
             this.tabConfiguracion.Controls.Add(this.btnRutanoPi);
             this.tabConfiguracion.Controls.Add(this.btnRutaPi);
-            this.tabConfiguracion.Location = new System.Drawing.Point(4, 26);
+            this.tabConfiguracion.Location = new System.Drawing.Point(4, 34);
             this.tabConfiguracion.Name = "tabConfiguracion";
             this.tabConfiguracion.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConfiguracion.Size = new System.Drawing.Size(782, 610);
+            this.tabConfiguracion.Size = new System.Drawing.Size(766, 563);
             this.tabConfiguracion.TabIndex = 5;
             this.tabConfiguracion.Text = "Configuracion";
             // 
@@ -851,6 +851,7 @@
             this.cbx_dscepsa.Name = "cbx_dscepsa";
             this.cbx_dscepsa.Size = new System.Drawing.Size(78, 18);
             this.cbx_dscepsa.TabIndex = 62;
+            this.cbx_dscepsa.Tag = "noPI";
             this.cbx_dscepsa.Text = "dscepsa";
             this.cbx_dscepsa.UseVisualStyleBackColor = true;
             // 
@@ -861,6 +862,7 @@
             this.cbx_dsgal.Name = "cbx_dsgal";
             this.cbx_dsgal.Size = new System.Drawing.Size(60, 18);
             this.cbx_dsgal.TabIndex = 63;
+            this.cbx_dsgal.Tag = "noPI";
             this.cbx_dsgal.Text = "dsgal";
             this.cbx_dsgal.UseVisualStyleBackColor = true;
             // 
@@ -891,6 +893,7 @@
             this.cbx_eintegra.Name = "cbx_eintegra";
             this.cbx_eintegra.Size = new System.Drawing.Size(79, 18);
             this.cbx_eintegra.TabIndex = 56;
+            this.cbx_eintegra.Tag = "noPI";
             this.cbx_eintegra.Text = "eintegra";
             this.cbx_eintegra.UseVisualStyleBackColor = true;
             // 
@@ -912,6 +915,7 @@
             this.cbx_efacges.Name = "cbx_efacges";
             this.cbx_efacges.Size = new System.Drawing.Size(75, 18);
             this.cbx_efacges.TabIndex = 59;
+            this.cbx_efacges.Tag = "noPI";
             this.cbx_efacges.Text = "efacges";
             this.cbx_efacges.UseVisualStyleBackColor = true;
             // 
@@ -922,6 +926,7 @@
             this.cbx_ereopat.Name = "cbx_ereopat";
             this.cbx_ereopat.Size = new System.Drawing.Size(76, 18);
             this.cbx_ereopat.TabIndex = 57;
+            this.cbx_ereopat.Tag = "noPI";
             this.cbx_ereopat.Text = "ereopat";
             this.cbx_ereopat.UseVisualStyleBackColor = true;
             // 
@@ -943,6 +948,7 @@
             this.cbx_ereo.Name = "cbx_ereo";
             this.cbx_ereo.Size = new System.Drawing.Size(55, 18);
             this.cbx_ereo.TabIndex = 49;
+            this.cbx_ereo.Tag = "noPI";
             this.cbx_ereo.Text = "ereo";
             this.cbx_ereo.UseVisualStyleBackColor = true;
             // 
@@ -953,6 +959,7 @@
             this.cbx_esocieda.Name = "cbx_esocieda";
             this.cbx_esocieda.Size = new System.Drawing.Size(82, 18);
             this.cbx_esocieda.TabIndex = 50;
+            this.cbx_esocieda.Tag = "noPI";
             this.cbx_esocieda.Text = "esocieda";
             this.cbx_esocieda.UseVisualStyleBackColor = true;
             // 
@@ -974,6 +981,7 @@
             this.cbx_ered.Name = "cbx_ered";
             this.cbx_ered.Size = new System.Drawing.Size(55, 18);
             this.cbx_ered.TabIndex = 47;
+            this.cbx_ered.Tag = "noPI";
             this.cbx_ered.Text = "ered";
             this.cbx_ered.UseVisualStyleBackColor = true;
             // 
@@ -1024,6 +1032,7 @@
             this.cbx_enompat.Name = "cbx_enompat";
             this.cbx_enompat.Size = new System.Drawing.Size(82, 18);
             this.cbx_enompat.TabIndex = 38;
+            this.cbx_enompat.Tag = "noPI";
             this.cbx_enompat.Text = "enompat";
             this.cbx_enompat.UseVisualStyleBackColor = true;
             // 
@@ -1034,6 +1043,7 @@
             this.cbx_enom2.Name = "cbx_enom2";
             this.cbx_enom2.Size = new System.Drawing.Size(69, 18);
             this.cbx_enom2.TabIndex = 37;
+            this.cbx_enom2.Tag = "noPI";
             this.cbx_enom2.Text = "enom2";
             this.cbx_enom2.UseVisualStyleBackColor = true;
             // 
@@ -1044,6 +1054,7 @@
             this.cbx_enom1.Name = "cbx_enom1";
             this.cbx_enom1.Size = new System.Drawing.Size(69, 18);
             this.cbx_enom1.TabIndex = 36;
+            this.cbx_enom1.Tag = "noPI";
             this.cbx_enom1.Text = "enom1";
             this.cbx_enom1.UseVisualStyleBackColor = true;
             // 
