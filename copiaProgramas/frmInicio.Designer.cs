@@ -70,37 +70,20 @@
             this.txtProgresoCopia = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.cbx_dscepsa = new System.Windows.Forms.CheckBox();
-            this.cbx_dsgal = new System.Windows.Forms.CheckBox();
             this.cbx_dscarter = new System.Windows.Forms.CheckBox();
             this.cbx_dscomer9 = new System.Windows.Forms.CheckBox();
-            this.cbx_eintegra = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.cbx_efacges = new System.Windows.Forms.CheckBox();
-            this.cbx_ereopat = new System.Windows.Forms.CheckBox();
-            this.cbx_starpat = new System.Windows.Forms.CheckBox();
-            this.cbx_ereo = new System.Windows.Forms.CheckBox();
-            this.cbx_esocieda = new System.Windows.Forms.CheckBox();
-            this.cbx_star308 = new System.Windows.Forms.CheckBox();
-            this.cbx_ered = new System.Windows.Forms.CheckBox();
             this.cbx_gasbase = new System.Windows.Forms.CheckBox();
             this.cbx_dsgalx = new System.Windows.Forms.CheckBox();
             this.cbx_dscepsax = new System.Windows.Forms.CheckBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.cbx_enompat = new System.Windows.Forms.CheckBox();
-            this.cbx_enom2 = new System.Windows.Forms.CheckBox();
-            this.cbx_enom1 = new System.Windows.Forms.CheckBox();
             this.cbx_iplabor2 = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -129,12 +112,61 @@
             this.cbx_ipmodelo = new System.Windows.Forms.CheckBox();
             this.cbx_desdespa = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabProgramasnoPI = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.cbx_dscepsa = new System.Windows.Forms.CheckBox();
+            this.cbx_dsgal = new System.Windows.Forms.CheckBox();
+            this.cbx_ered = new System.Windows.Forms.CheckBox();
+            this.cbx_enompat = new System.Windows.Forms.CheckBox();
+            this.cbx_enom2 = new System.Windows.Forms.CheckBox();
+            this.cbx_enom1 = new System.Windows.Forms.CheckBox();
+            this.cbx_eintegra = new System.Windows.Forms.CheckBox();
+            this.cbx_ereopat = new System.Windows.Forms.CheckBox();
+            this.cbx_efacges = new System.Windows.Forms.CheckBox();
+            this.cbx_ereo = new System.Windows.Forms.CheckBox();
+            this.cbx_esocieda = new System.Windows.Forms.CheckBox();
+            this.cbx_starpat = new System.Windows.Forms.CheckBox();
+            this.cbx_star308 = new System.Windows.Forms.CheckBox();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel20 = new System.Windows.Forms.Panel();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.panel19 = new System.Windows.Forms.Panel();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.label22 = new System.Windows.Forms.Label();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabConfiguracion.SuspendLayout();
             this.tabProgramasPi.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabProgramasnoPI.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel18.SuspendLayout();
+            this.panel15.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList1
@@ -556,19 +588,20 @@
             this.tabProgramasPi.BackColor = System.Drawing.Color.SeaGreen;
             this.tabProgramasPi.Controls.Add(this.groupBox1);
             this.tabProgramasPi.Location = new System.Drawing.Point(4, 34);
-            this.tabProgramasPi.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabProgramasPi.Name = "tabProgramasPi";
             this.tabProgramasPi.Padding = new System.Windows.Forms.Padding(10);
-            this.tabProgramasPi.Size = new System.Drawing.Size(766, 563);
+            this.tabProgramasPi.Size = new System.Drawing.Size(666, 353);
             this.tabProgramasPi.TabIndex = 1;
             this.tabProgramasPi.Text = "Programas PI";
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.SeaGreen;
+            this.groupBox1.Controls.Add(this.btn_limpiar);
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.txtProgresoCopia);
             this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.btnCopiar);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
@@ -576,27 +609,25 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(746, 543);
+            this.groupBox1.Size = new System.Drawing.Size(646, 333);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Programas";
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.btn_limpiar);
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.cb_destino);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.btnCopiar);
-            this.panel2.Location = new System.Drawing.Point(8, 276);
+            this.panel2.Location = new System.Drawing.Point(354, 23);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.panel2.Size = new System.Drawing.Size(730, 35);
+            this.panel2.Size = new System.Drawing.Size(284, 38);
             this.panel2.TabIndex = 22;
             // 
             // btn_limpiar
             // 
+            this.btn_limpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_limpiar.AutoSize = true;
             this.btn_limpiar.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btn_limpiar.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
@@ -605,7 +636,7 @@
             this.btn_limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_limpiar.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_limpiar.ForeColor = System.Drawing.Color.Black;
-            this.btn_limpiar.Location = new System.Drawing.Point(625, 3);
+            this.btn_limpiar.Location = new System.Drawing.Point(354, 291);
             this.btn_limpiar.Margin = new System.Windows.Forms.Padding(1);
             this.btn_limpiar.Name = "btn_limpiar";
             this.btn_limpiar.Size = new System.Drawing.Size(99, 28);
@@ -626,7 +657,7 @@
             "Carpeta pasesnoPI"});
             this.cb_destino.Location = new System.Drawing.Point(105, 7);
             this.cb_destino.Name = "cb_destino";
-            this.cb_destino.Size = new System.Drawing.Size(329, 22);
+            this.cb_destino.Size = new System.Drawing.Size(171, 22);
             this.cb_destino.TabIndex = 25;
             this.cb_destino.SelectedIndexChanged += new System.EventHandler(this.cb_destino_SelectedIndexChanged);
             // 
@@ -643,6 +674,7 @@
             // 
             // btnCopiar
             // 
+            this.btnCopiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCopiar.AutoSize = true;
             this.btnCopiar.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnCopiar.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
@@ -651,7 +683,7 @@
             this.btnCopiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCopiar.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCopiar.ForeColor = System.Drawing.Color.Black;
-            this.btnCopiar.Location = new System.Drawing.Point(444, 3);
+            this.btnCopiar.Location = new System.Drawing.Point(546, 290);
             this.btnCopiar.Margin = new System.Windows.Forms.Padding(1);
             this.btnCopiar.Name = "btnCopiar";
             this.btnCopiar.Size = new System.Drawing.Size(92, 28);
@@ -662,21 +694,20 @@
             // 
             // txtProgresoCopia
             // 
-            this.txtProgresoCopia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtProgresoCopia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtProgresoCopia.BackColor = System.Drawing.SystemColors.Control;
-            this.txtProgresoCopia.Location = new System.Drawing.Point(8, 333);
+            this.txtProgresoCopia.Location = new System.Drawing.Point(354, 83);
             this.txtProgresoCopia.Multiline = true;
             this.txtProgresoCopia.Name = "txtProgresoCopia";
             this.txtProgresoCopia.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtProgresoCopia.Size = new System.Drawing.Size(731, 205);
+            this.txtProgresoCopia.Size = new System.Drawing.Size(284, 204);
             this.txtProgresoCopia.TabIndex = 1;
             // 
             // label11
             // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(3, 314);
+            this.label11.Location = new System.Drawing.Point(351, 64);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(109, 16);
             this.label11.TabIndex = 2;
@@ -685,40 +716,23 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(183)))), ((int)(((byte)(150)))));
             this.panel1.Controls.Add(this.panel11);
+            this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.panel10);
             this.panel1.Controls.Add(this.panel9);
             this.panel1.Controls.Add(this.panel8);
             this.panel1.Controls.Add(this.panel7);
-            this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.label19);
-            this.panel1.Controls.Add(this.label20);
-            this.panel1.Controls.Add(this.cbx_dscepsa);
-            this.panel1.Controls.Add(this.cbx_dsgal);
             this.panel1.Controls.Add(this.cbx_dscarter);
             this.panel1.Controls.Add(this.cbx_dscomer9);
-            this.panel1.Controls.Add(this.cbx_eintegra);
             this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.cbx_efacges);
-            this.panel1.Controls.Add(this.cbx_ereopat);
-            this.panel1.Controls.Add(this.cbx_starpat);
-            this.panel1.Controls.Add(this.cbx_ereo);
-            this.panel1.Controls.Add(this.cbx_esocieda);
-            this.panel1.Controls.Add(this.cbx_star308);
-            this.panel1.Controls.Add(this.cbx_ered);
             this.panel1.Controls.Add(this.cbx_gasbase);
             this.panel1.Controls.Add(this.cbx_dsgalx);
             this.panel1.Controls.Add(this.cbx_dscepsax);
             this.panel1.Controls.Add(this.label18);
-            this.panel1.Controls.Add(this.cbx_enompat);
-            this.panel1.Controls.Add(this.cbx_enom2);
-            this.panel1.Controls.Add(this.cbx_enom1);
             this.panel1.Controls.Add(this.cbx_iplabor2);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.label16);
@@ -751,23 +765,15 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(731, 247);
+            this.panel1.Size = new System.Drawing.Size(330, 299);
             this.panel1.TabIndex = 23;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.SeaGreen;
-            this.panel11.Location = new System.Drawing.Point(48, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1, 250);
-            this.panel11.TabIndex = 73;
             // 
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.SeaGreen;
-            this.panel10.Location = new System.Drawing.Point(0, 20);
+            this.panel10.Location = new System.Drawing.Point(0, 25);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(730, 1);
+            this.panel10.Size = new System.Drawing.Size(350, 1);
             this.panel10.TabIndex = 72;
             // 
             // panel9
@@ -794,82 +800,34 @@
             this.panel7.Size = new System.Drawing.Size(1, 250);
             this.panel7.TabIndex = 69;
             // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.SeaGreen;
-            this.panel6.Location = new System.Drawing.Point(335, -2);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1, 250);
-            this.panel6.TabIndex = 68;
-            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.SeaGreen;
-            this.panel5.Location = new System.Drawing.Point(235, 0);
+            this.panel5.Location = new System.Drawing.Point(220, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1, 250);
+            this.panel5.Size = new System.Drawing.Size(1, 320);
             this.panel5.TabIndex = 67;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.SeaGreen;
-            this.panel4.Location = new System.Drawing.Point(140, 0);
+            this.panel4.Location = new System.Drawing.Point(110, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1, 250);
+            this.panel4.Size = new System.Drawing.Size(1, 320);
             this.panel4.TabIndex = 66;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.SeaGreen;
-            this.panel3.Location = new System.Drawing.Point(0, 143);
+            this.panel3.Location = new System.Drawing.Point(0, 170);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(730, 1);
+            this.panel3.Size = new System.Drawing.Size(220, 1);
             this.panel3.TabIndex = 65;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(5, 153);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(41, 14);
-            this.label19.TabIndex = 64;
-            this.label19.Text = "No PI";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(11, 25);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(20, 14);
-            this.label20.TabIndex = 27;
-            this.label20.Text = "PI";
-            // 
-            // cbx_dscepsa
-            // 
-            this.cbx_dscepsa.AutoSize = true;
-            this.cbx_dscepsa.Location = new System.Drawing.Point(543, 151);
-            this.cbx_dscepsa.Name = "cbx_dscepsa";
-            this.cbx_dscepsa.Size = new System.Drawing.Size(78, 18);
-            this.cbx_dscepsa.TabIndex = 62;
-            this.cbx_dscepsa.Tag = "noPI";
-            this.cbx_dscepsa.Text = "dscepsa";
-            this.cbx_dscepsa.UseVisualStyleBackColor = true;
-            // 
-            // cbx_dsgal
-            // 
-            this.cbx_dsgal.AutoSize = true;
-            this.cbx_dsgal.Location = new System.Drawing.Point(543, 173);
-            this.cbx_dsgal.Name = "cbx_dsgal";
-            this.cbx_dsgal.Size = new System.Drawing.Size(60, 18);
-            this.cbx_dsgal.TabIndex = 63;
-            this.cbx_dsgal.Tag = "noPI";
-            this.cbx_dsgal.Text = "dsgal";
-            this.cbx_dsgal.UseVisualStyleBackColor = true;
             // 
             // cbx_dscarter
             // 
             this.cbx_dscarter.AutoSize = true;
-            this.cbx_dscarter.Location = new System.Drawing.Point(244, 116);
+            this.cbx_dscarter.Location = new System.Drawing.Point(119, 129);
             this.cbx_dscarter.Name = "cbx_dscarter";
             this.cbx_dscarter.Size = new System.Drawing.Size(78, 18);
             this.cbx_dscarter.TabIndex = 61;
@@ -879,116 +837,28 @@
             // cbx_dscomer9
             // 
             this.cbx_dscomer9.AutoSize = true;
-            this.cbx_dscomer9.Location = new System.Drawing.Point(244, 92);
+            this.cbx_dscomer9.Location = new System.Drawing.Point(119, 105);
             this.cbx_dscomer9.Name = "cbx_dscomer9";
             this.cbx_dscomer9.Size = new System.Drawing.Size(87, 18);
             this.cbx_dscomer9.TabIndex = 60;
             this.cbx_dscomer9.Text = "dscomer9";
             this.cbx_dscomer9.UseVisualStyleBackColor = true;
             // 
-            // cbx_eintegra
-            // 
-            this.cbx_eintegra.AutoSize = true;
-            this.cbx_eintegra.Location = new System.Drawing.Point(453, 151);
-            this.cbx_eintegra.Name = "cbx_eintegra";
-            this.cbx_eintegra.Size = new System.Drawing.Size(79, 18);
-            this.cbx_eintegra.TabIndex = 56;
-            this.cbx_eintegra.Tag = "noPI";
-            this.cbx_eintegra.Text = "eintegra";
-            this.cbx_eintegra.UseVisualStyleBackColor = true;
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(51, 5);
+            this.label12.Location = new System.Drawing.Point(15, 9);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(86, 14);
             this.label12.TabIndex = 22;
             this.label12.Text = "Contabilidad";
             // 
-            // cbx_efacges
-            // 
-            this.cbx_efacges.AutoSize = true;
-            this.cbx_efacges.Location = new System.Drawing.Point(244, 151);
-            this.cbx_efacges.Name = "cbx_efacges";
-            this.cbx_efacges.Size = new System.Drawing.Size(75, 18);
-            this.cbx_efacges.TabIndex = 59;
-            this.cbx_efacges.Tag = "noPI";
-            this.cbx_efacges.Text = "efacges";
-            this.cbx_efacges.UseVisualStyleBackColor = true;
-            // 
-            // cbx_ereopat
-            // 
-            this.cbx_ereopat.AutoSize = true;
-            this.cbx_ereopat.Location = new System.Drawing.Point(453, 175);
-            this.cbx_ereopat.Name = "cbx_ereopat";
-            this.cbx_ereopat.Size = new System.Drawing.Size(76, 18);
-            this.cbx_ereopat.TabIndex = 57;
-            this.cbx_ereopat.Tag = "noPI";
-            this.cbx_ereopat.Text = "ereopat";
-            this.cbx_ereopat.UseVisualStyleBackColor = true;
-            // 
-            // cbx_starpat
-            // 
-            this.cbx_starpat.AutoSize = true;
-            this.cbx_starpat.Location = new System.Drawing.Point(54, 175);
-            this.cbx_starpat.Name = "cbx_starpat";
-            this.cbx_starpat.Size = new System.Drawing.Size(72, 18);
-            this.cbx_starpat.TabIndex = 58;
-            this.cbx_starpat.Tag = "noPI";
-            this.cbx_starpat.Text = "starpat";
-            this.cbx_starpat.UseVisualStyleBackColor = true;
-            // 
-            // cbx_ereo
-            // 
-            this.cbx_ereo.AutoSize = true;
-            this.cbx_ereo.Location = new System.Drawing.Point(149, 151);
-            this.cbx_ereo.Name = "cbx_ereo";
-            this.cbx_ereo.Size = new System.Drawing.Size(55, 18);
-            this.cbx_ereo.TabIndex = 49;
-            this.cbx_ereo.Tag = "noPI";
-            this.cbx_ereo.Text = "ereo";
-            this.cbx_ereo.UseVisualStyleBackColor = true;
-            // 
-            // cbx_esocieda
-            // 
-            this.cbx_esocieda.AutoSize = true;
-            this.cbx_esocieda.Location = new System.Drawing.Point(149, 173);
-            this.cbx_esocieda.Name = "cbx_esocieda";
-            this.cbx_esocieda.Size = new System.Drawing.Size(82, 18);
-            this.cbx_esocieda.TabIndex = 50;
-            this.cbx_esocieda.Tag = "noPI";
-            this.cbx_esocieda.Text = "esocieda";
-            this.cbx_esocieda.UseVisualStyleBackColor = true;
-            // 
-            // cbx_star308
-            // 
-            this.cbx_star308.AutoSize = true;
-            this.cbx_star308.Location = new System.Drawing.Point(54, 151);
-            this.cbx_star308.Name = "cbx_star308";
-            this.cbx_star308.Size = new System.Drawing.Size(75, 18);
-            this.cbx_star308.TabIndex = 48;
-            this.cbx_star308.Tag = "noPI";
-            this.cbx_star308.Text = "star308";
-            this.cbx_star308.UseVisualStyleBackColor = true;
-            // 
-            // cbx_ered
-            // 
-            this.cbx_ered.AutoSize = true;
-            this.cbx_ered.Location = new System.Drawing.Point(635, 195);
-            this.cbx_ered.Name = "cbx_ered";
-            this.cbx_ered.Size = new System.Drawing.Size(55, 18);
-            this.cbx_ered.TabIndex = 47;
-            this.cbx_ered.Tag = "noPI";
-            this.cbx_ered.Text = "ered";
-            this.cbx_ered.UseVisualStyleBackColor = true;
-            // 
             // cbx_gasbase
             // 
             this.cbx_gasbase.AutoSize = true;
-            this.cbx_gasbase.Location = new System.Drawing.Point(543, 23);
+            this.cbx_gasbase.Location = new System.Drawing.Point(229, 152);
             this.cbx_gasbase.Name = "cbx_gasbase";
             this.cbx_gasbase.Size = new System.Drawing.Size(80, 18);
             this.cbx_gasbase.TabIndex = 42;
@@ -998,7 +868,7 @@
             // cbx_dsgalx
             // 
             this.cbx_dsgalx.AutoSize = true;
-            this.cbx_dsgalx.Location = new System.Drawing.Point(543, 68);
+            this.cbx_dsgalx.Location = new System.Drawing.Point(229, 200);
             this.cbx_dsgalx.Name = "cbx_dsgalx";
             this.cbx_dsgalx.Size = new System.Drawing.Size(67, 18);
             this.cbx_dsgalx.TabIndex = 46;
@@ -1008,7 +878,7 @@
             // cbx_dscepsax
             // 
             this.cbx_dscepsax.AutoSize = true;
-            this.cbx_dscepsax.Location = new System.Drawing.Point(543, 44);
+            this.cbx_dscepsax.Location = new System.Drawing.Point(229, 176);
             this.cbx_dscepsax.Name = "cbx_dscepsax";
             this.cbx_dscepsax.Size = new System.Drawing.Size(85, 18);
             this.cbx_dscepsax.TabIndex = 45;
@@ -1019,49 +889,16 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(551, 5);
+            this.label18.Location = new System.Drawing.Point(229, 129);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(65, 14);
             this.label18.TabIndex = 41;
             this.label18.Text = "Gasoleos";
             // 
-            // cbx_enompat
-            // 
-            this.cbx_enompat.AutoSize = true;
-            this.cbx_enompat.Location = new System.Drawing.Point(635, 219);
-            this.cbx_enompat.Name = "cbx_enompat";
-            this.cbx_enompat.Size = new System.Drawing.Size(82, 18);
-            this.cbx_enompat.TabIndex = 38;
-            this.cbx_enompat.Tag = "noPI";
-            this.cbx_enompat.Text = "enompat";
-            this.cbx_enompat.UseVisualStyleBackColor = true;
-            // 
-            // cbx_enom2
-            // 
-            this.cbx_enom2.AutoSize = true;
-            this.cbx_enom2.Location = new System.Drawing.Point(635, 171);
-            this.cbx_enom2.Name = "cbx_enom2";
-            this.cbx_enom2.Size = new System.Drawing.Size(69, 18);
-            this.cbx_enom2.TabIndex = 37;
-            this.cbx_enom2.Tag = "noPI";
-            this.cbx_enom2.Text = "enom2";
-            this.cbx_enom2.UseVisualStyleBackColor = true;
-            // 
-            // cbx_enom1
-            // 
-            this.cbx_enom1.AutoSize = true;
-            this.cbx_enom1.Location = new System.Drawing.Point(635, 149);
-            this.cbx_enom1.Name = "cbx_enom1";
-            this.cbx_enom1.Size = new System.Drawing.Size(69, 18);
-            this.cbx_enom1.TabIndex = 36;
-            this.cbx_enom1.Tag = "noPI";
-            this.cbx_enom1.Text = "enom1";
-            this.cbx_enom1.UseVisualStyleBackColor = true;
-            // 
             // cbx_iplabor2
             // 
             this.cbx_iplabor2.AutoSize = true;
-            this.cbx_iplabor2.Location = new System.Drawing.Point(635, 23);
+            this.cbx_iplabor2.Location = new System.Drawing.Point(229, 273);
             this.cbx_iplabor2.Name = "cbx_iplabor2";
             this.cbx_iplabor2.Size = new System.Drawing.Size(77, 18);
             this.cbx_iplabor2.TabIndex = 35;
@@ -1072,7 +909,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(646, 5);
+            this.label17.Location = new System.Drawing.Point(229, 248);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(54, 14);
             this.label17.TabIndex = 34;
@@ -1082,7 +919,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(458, 5);
+            this.label16.Location = new System.Drawing.Point(229, 9);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(64, 14);
             this.label16.TabIndex = 26;
@@ -1092,7 +929,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(247, 5);
+            this.label15.Location = new System.Drawing.Point(119, 9);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(78, 14);
             this.label15.TabIndex = 25;
@@ -1102,7 +939,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(346, 5);
+            this.label14.Location = new System.Drawing.Point(119, 155);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(96, 14);
             this.label14.TabIndex = 24;
@@ -1112,7 +949,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(161, 5);
+            this.label13.Location = new System.Drawing.Point(15, 155);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(59, 14);
             this.label13.TabIndex = 23;
@@ -1121,7 +958,7 @@
             // cbx_siibase
             // 
             this.cbx_siibase.AutoSize = true;
-            this.cbx_siibase.Location = new System.Drawing.Point(54, 44);
+            this.cbx_siibase.Location = new System.Drawing.Point(17, 57);
             this.cbx_siibase.Name = "cbx_siibase";
             this.cbx_siibase.Size = new System.Drawing.Size(70, 18);
             this.cbx_siibase.TabIndex = 18;
@@ -1131,7 +968,7 @@
             // cbx_ipcont08
             // 
             this.cbx_ipcont08.AutoSize = true;
-            this.cbx_ipcont08.Location = new System.Drawing.Point(54, 23);
+            this.cbx_ipcont08.Location = new System.Drawing.Point(17, 33);
             this.cbx_ipcont08.Name = "cbx_ipcont08";
             this.cbx_ipcont08.Size = new System.Drawing.Size(80, 18);
             this.cbx_ipcont08.TabIndex = 0;
@@ -1141,7 +978,7 @@
             // cbx_ipabopar
             // 
             this.cbx_ipabopar.AutoSize = true;
-            this.cbx_ipabopar.Location = new System.Drawing.Point(244, 68);
+            this.cbx_ipabopar.Location = new System.Drawing.Point(119, 81);
             this.cbx_ipabopar.Name = "cbx_ipabopar";
             this.cbx_ipabopar.Size = new System.Drawing.Size(82, 18);
             this.cbx_ipabopar.TabIndex = 20;
@@ -1151,7 +988,7 @@
             // cbx_iprent23
             // 
             this.cbx_iprent23.AutoSize = true;
-            this.cbx_iprent23.Location = new System.Drawing.Point(149, 44);
+            this.cbx_iprent23.Location = new System.Drawing.Point(15, 199);
             this.cbx_iprent23.Name = "cbx_iprent23";
             this.cbx_iprent23.Size = new System.Drawing.Size(79, 18);
             this.cbx_iprent23.TabIndex = 21;
@@ -1161,7 +998,7 @@
             // cbx_n43base
             // 
             this.cbx_n43base.AutoSize = true;
-            this.cbx_n43base.Location = new System.Drawing.Point(54, 92);
+            this.cbx_n43base.Location = new System.Drawing.Point(17, 105);
             this.cbx_n43base.Name = "cbx_n43base";
             this.cbx_n43base.Size = new System.Drawing.Size(81, 18);
             this.cbx_n43base.TabIndex = 19;
@@ -1171,7 +1008,7 @@
             // cbx_ipbasica
             // 
             this.cbx_ipbasica.AutoSize = true;
-            this.cbx_ipbasica.Location = new System.Drawing.Point(453, 44);
+            this.cbx_ipbasica.Location = new System.Drawing.Point(229, 57);
             this.cbx_ipbasica.Name = "cbx_ipbasica";
             this.cbx_ipbasica.Size = new System.Drawing.Size(77, 18);
             this.cbx_ipbasica.TabIndex = 1;
@@ -1181,7 +1018,7 @@
             // cbx_dsesign
             // 
             this.cbx_dsesign.AutoSize = true;
-            this.cbx_dsesign.Location = new System.Drawing.Point(346, 92);
+            this.cbx_dsesign.Location = new System.Drawing.Point(119, 247);
             this.cbx_dsesign.Name = "cbx_dsesign";
             this.cbx_dsesign.Size = new System.Drawing.Size(75, 18);
             this.cbx_dsesign.TabIndex = 14;
@@ -1191,7 +1028,7 @@
             // cbx_iprent21
             // 
             this.cbx_iprent21.AutoSize = true;
-            this.cbx_iprent21.Location = new System.Drawing.Point(149, 92);
+            this.cbx_iprent21.Location = new System.Drawing.Point(15, 247);
             this.cbx_iprent21.Name = "cbx_iprent21";
             this.cbx_iprent21.Size = new System.Drawing.Size(79, 18);
             this.cbx_iprent21.TabIndex = 5;
@@ -1201,7 +1038,7 @@
             // cbx_ipabogad
             // 
             this.cbx_ipabogad.AutoSize = true;
-            this.cbx_ipabogad.Location = new System.Drawing.Point(244, 44);
+            this.cbx_ipabogad.Location = new System.Drawing.Point(119, 57);
             this.cbx_ipabogad.Name = "cbx_ipabogad";
             this.cbx_ipabogad.Size = new System.Drawing.Size(85, 18);
             this.cbx_ipabogad.TabIndex = 13;
@@ -1211,7 +1048,7 @@
             // cbx_iprent22
             // 
             this.cbx_iprent22.AutoSize = true;
-            this.cbx_iprent22.Location = new System.Drawing.Point(149, 68);
+            this.cbx_iprent22.Location = new System.Drawing.Point(15, 223);
             this.cbx_iprent22.Name = "cbx_iprent22";
             this.cbx_iprent22.Size = new System.Drawing.Size(79, 18);
             this.cbx_iprent22.TabIndex = 6;
@@ -1221,7 +1058,7 @@
             // cbx_000adc
             // 
             this.cbx_000adc.AutoSize = true;
-            this.cbx_000adc.Location = new System.Drawing.Point(54, 68);
+            this.cbx_000adc.Location = new System.Drawing.Point(17, 81);
             this.cbx_000adc.Name = "cbx_000adc";
             this.cbx_000adc.Size = new System.Drawing.Size(72, 18);
             this.cbx_000adc.TabIndex = 12;
@@ -1231,7 +1068,7 @@
             // cbx_ipabogax
             // 
             this.cbx_ipabogax.AutoSize = true;
-            this.cbx_ipabogax.Location = new System.Drawing.Point(244, 23);
+            this.cbx_ipabogax.Location = new System.Drawing.Point(119, 33);
             this.cbx_ipabogax.Name = "cbx_ipabogax";
             this.cbx_ipabogax.Size = new System.Drawing.Size(84, 18);
             this.cbx_ipabogax.TabIndex = 7;
@@ -1241,7 +1078,7 @@
             // cbx_dsarchi
             // 
             this.cbx_dsarchi.AutoSize = true;
-            this.cbx_dsarchi.Location = new System.Drawing.Point(346, 23);
+            this.cbx_dsarchi.Location = new System.Drawing.Point(119, 175);
             this.cbx_dsarchi.Name = "cbx_dsarchi";
             this.cbx_dsarchi.Size = new System.Drawing.Size(71, 18);
             this.cbx_dsarchi.TabIndex = 9;
@@ -1251,7 +1088,7 @@
             // cbx_ipconts2
             // 
             this.cbx_ipconts2.AutoSize = true;
-            this.cbx_ipconts2.Location = new System.Drawing.Point(149, 116);
+            this.cbx_ipconts2.Location = new System.Drawing.Point(15, 271);
             this.cbx_ipconts2.Name = "cbx_ipconts2";
             this.cbx_ipconts2.Size = new System.Drawing.Size(79, 18);
             this.cbx_ipconts2.TabIndex = 8;
@@ -1261,7 +1098,7 @@
             // cbx_certbase
             // 
             this.cbx_certbase.AutoSize = true;
-            this.cbx_certbase.Location = new System.Drawing.Point(346, 68);
+            this.cbx_certbase.Location = new System.Drawing.Point(119, 223);
             this.cbx_certbase.Name = "cbx_certbase";
             this.cbx_certbase.Size = new System.Drawing.Size(81, 18);
             this.cbx_certbase.TabIndex = 17;
@@ -1271,7 +1108,7 @@
             // cbx_ippatron
             // 
             this.cbx_ippatron.AutoSize = true;
-            this.cbx_ippatron.Location = new System.Drawing.Point(453, 68);
+            this.cbx_ippatron.Location = new System.Drawing.Point(229, 81);
             this.cbx_ippatron.Name = "cbx_ippatron";
             this.cbx_ippatron.Size = new System.Drawing.Size(79, 18);
             this.cbx_ippatron.TabIndex = 3;
@@ -1281,7 +1118,7 @@
             // cbx_ipintegr
             // 
             this.cbx_ipintegr.AutoSize = true;
-            this.cbx_ipintegr.Location = new System.Drawing.Point(453, 23);
+            this.cbx_ipintegr.Location = new System.Drawing.Point(229, 33);
             this.cbx_ipintegr.Name = "cbx_ipintegr";
             this.cbx_ipintegr.Size = new System.Drawing.Size(74, 18);
             this.cbx_ipintegr.TabIndex = 10;
@@ -1291,7 +1128,7 @@
             // cbx_contalap
             // 
             this.cbx_contalap.AutoSize = true;
-            this.cbx_contalap.Location = new System.Drawing.Point(54, 116);
+            this.cbx_contalap.Location = new System.Drawing.Point(17, 129);
             this.cbx_contalap.Name = "cbx_contalap";
             this.cbx_contalap.Size = new System.Drawing.Size(80, 18);
             this.cbx_contalap.TabIndex = 2;
@@ -1301,7 +1138,7 @@
             // cbx_notibase
             // 
             this.cbx_notibase.AutoSize = true;
-            this.cbx_notibase.Location = new System.Drawing.Point(346, 44);
+            this.cbx_notibase.Location = new System.Drawing.Point(119, 199);
             this.cbx_notibase.Name = "cbx_notibase";
             this.cbx_notibase.Size = new System.Drawing.Size(81, 18);
             this.cbx_notibase.TabIndex = 16;
@@ -1311,7 +1148,7 @@
             // cbx_ipmodelo
             // 
             this.cbx_ipmodelo.AutoSize = true;
-            this.cbx_ipmodelo.Location = new System.Drawing.Point(149, 23);
+            this.cbx_ipmodelo.Location = new System.Drawing.Point(15, 175);
             this.cbx_ipmodelo.Name = "cbx_ipmodelo";
             this.cbx_ipmodelo.Size = new System.Drawing.Size(83, 18);
             this.cbx_ipmodelo.TabIndex = 11;
@@ -1321,7 +1158,7 @@
             // cbx_desdespa
             // 
             this.cbx_desdespa.AutoSize = true;
-            this.cbx_desdespa.Location = new System.Drawing.Point(346, 116);
+            this.cbx_desdespa.Location = new System.Drawing.Point(119, 271);
             this.cbx_desdespa.Name = "cbx_desdespa";
             this.cbx_desdespa.Size = new System.Drawing.Size(88, 18);
             this.cbx_desdespa.TabIndex = 15;
@@ -1331,6 +1168,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabProgramasPi);
+            this.tabControl1.Controls.Add(this.tabProgramasnoPI);
             this.tabControl1.Controls.Add(this.tabConfiguracion);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.HotTrack = true;
@@ -1341,24 +1179,528 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(5, 5);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(774, 601);
+            this.tabControl1.Size = new System.Drawing.Size(674, 391);
             this.tabControl1.TabIndex = 0;
+            // 
+            // tabProgramasnoPI
+            // 
+            this.tabProgramasnoPI.BackColor = System.Drawing.Color.SteelBlue;
+            this.tabProgramasnoPI.Controls.Add(this.groupBox2);
+            this.tabProgramasnoPI.Location = new System.Drawing.Point(4, 34);
+            this.tabProgramasnoPI.Margin = new System.Windows.Forms.Padding(5);
+            this.tabProgramasnoPI.Name = "tabProgramasnoPI";
+            this.tabProgramasnoPI.Padding = new System.Windows.Forms.Padding(10);
+            this.tabProgramasnoPI.Size = new System.Drawing.Size(666, 353);
+            this.tabProgramasnoPI.TabIndex = 6;
+            this.tabProgramasnoPI.Text = "Programas noPI";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.panel15);
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.label20);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.panel12);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(10, 10);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
+            this.groupBox2.Size = new System.Drawing.Size(646, 333);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Programas";
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.LightBlue;
+            this.panel12.Controls.Add(this.panel21);
+            this.panel12.Controls.Add(this.panel18);
+            this.panel12.Controls.Add(this.panel17);
+            this.panel12.Controls.Add(this.panel16);
+            this.panel12.Controls.Add(this.label24);
+            this.panel12.Controls.Add(this.label27);
+            this.panel12.Controls.Add(this.panel19);
+            this.panel12.Controls.Add(this.panel13);
+            this.panel12.Controls.Add(this.cbx_ered);
+            this.panel12.Controls.Add(this.cbx_efacges);
+            this.panel12.Controls.Add(this.cbx_enompat);
+            this.panel12.Controls.Add(this.cbx_dsgal);
+            this.panel12.Controls.Add(this.cbx_enom2);
+            this.panel12.Controls.Add(this.cbx_dscepsa);
+            this.panel12.Controls.Add(this.cbx_enom1);
+            this.panel12.Controls.Add(this.cbx_eintegra);
+            this.panel12.Controls.Add(this.cbx_ereopat);
+            this.panel12.Controls.Add(this.cbx_ereo);
+            this.panel12.Controls.Add(this.cbx_esocieda);
+            this.panel12.Controls.Add(this.cbx_starpat);
+            this.panel12.Controls.Add(this.cbx_star308);
+            this.panel12.Controls.Add(this.panel14);
+            this.panel12.Controls.Add(this.panel20);
+            this.panel12.Controls.Add(this.label23);
+            this.panel12.Controls.Add(this.label25);
+            this.panel12.Controls.Add(this.label26);
+            this.panel12.Controls.Add(this.label29);
+            this.panel12.ForeColor = System.Drawing.Color.Black;
+            this.panel12.Location = new System.Drawing.Point(10, 25);
+            this.panel12.Margin = new System.Windows.Forms.Padding(5);
+            this.panel12.Name = "panel12";
+            this.panel12.Padding = new System.Windows.Forms.Padding(5);
+            this.panel12.Size = new System.Drawing.Size(220, 300);
+            this.panel12.TabIndex = 24;
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel13.Location = new System.Drawing.Point(0, 97);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(110, 1);
+            this.panel13.TabIndex = 86;
+            // 
+            // cbx_dscepsa
+            // 
+            this.cbx_dscepsa.AutoSize = true;
+            this.cbx_dscepsa.Location = new System.Drawing.Point(120, 188);
+            this.cbx_dscepsa.Name = "cbx_dscepsa";
+            this.cbx_dscepsa.Size = new System.Drawing.Size(78, 18);
+            this.cbx_dscepsa.TabIndex = 84;
+            this.cbx_dscepsa.Tag = "noPI";
+            this.cbx_dscepsa.Text = "dscepsa";
+            this.cbx_dscepsa.UseVisualStyleBackColor = true;
+            // 
+            // cbx_dsgal
+            // 
+            this.cbx_dsgal.AutoSize = true;
+            this.cbx_dsgal.Location = new System.Drawing.Point(120, 212);
+            this.cbx_dsgal.Name = "cbx_dsgal";
+            this.cbx_dsgal.Size = new System.Drawing.Size(60, 18);
+            this.cbx_dsgal.TabIndex = 85;
+            this.cbx_dsgal.Tag = "noPI";
+            this.cbx_dsgal.Text = "dsgal";
+            this.cbx_dsgal.UseVisualStyleBackColor = true;
+            // 
+            // cbx_ered
+            // 
+            this.cbx_ered.AutoSize = true;
+            this.cbx_ered.Location = new System.Drawing.Point(11, 236);
+            this.cbx_ered.Name = "cbx_ered";
+            this.cbx_ered.Size = new System.Drawing.Size(55, 18);
+            this.cbx_ered.TabIndex = 83;
+            this.cbx_ered.Tag = "noPI";
+            this.cbx_ered.Text = "ered";
+            this.cbx_ered.UseVisualStyleBackColor = true;
+            // 
+            // cbx_enompat
+            // 
+            this.cbx_enompat.AutoSize = true;
+            this.cbx_enompat.Location = new System.Drawing.Point(11, 260);
+            this.cbx_enompat.Name = "cbx_enompat";
+            this.cbx_enompat.Size = new System.Drawing.Size(82, 18);
+            this.cbx_enompat.TabIndex = 82;
+            this.cbx_enompat.Tag = "noPI";
+            this.cbx_enompat.Text = "enompat";
+            this.cbx_enompat.UseVisualStyleBackColor = true;
+            // 
+            // cbx_enom2
+            // 
+            this.cbx_enom2.AutoSize = true;
+            this.cbx_enom2.Location = new System.Drawing.Point(11, 212);
+            this.cbx_enom2.Name = "cbx_enom2";
+            this.cbx_enom2.Size = new System.Drawing.Size(69, 18);
+            this.cbx_enom2.TabIndex = 81;
+            this.cbx_enom2.Tag = "noPI";
+            this.cbx_enom2.Text = "enom2";
+            this.cbx_enom2.UseVisualStyleBackColor = true;
+            // 
+            // cbx_enom1
+            // 
+            this.cbx_enom1.AutoSize = true;
+            this.cbx_enom1.Location = new System.Drawing.Point(11, 188);
+            this.cbx_enom1.Name = "cbx_enom1";
+            this.cbx_enom1.Size = new System.Drawing.Size(69, 18);
+            this.cbx_enom1.TabIndex = 80;
+            this.cbx_enom1.Tag = "noPI";
+            this.cbx_enom1.Text = "enom1";
+            this.cbx_enom1.UseVisualStyleBackColor = true;
+            // 
+            // cbx_eintegra
+            // 
+            this.cbx_eintegra.AutoSize = true;
+            this.cbx_eintegra.Location = new System.Drawing.Point(117, 27);
+            this.cbx_eintegra.Name = "cbx_eintegra";
+            this.cbx_eintegra.Size = new System.Drawing.Size(79, 18);
+            this.cbx_eintegra.TabIndex = 78;
+            this.cbx_eintegra.Tag = "noPI";
+            this.cbx_eintegra.Text = "eintegra";
+            this.cbx_eintegra.UseVisualStyleBackColor = true;
+            // 
+            // cbx_ereopat
+            // 
+            this.cbx_ereopat.AutoSize = true;
+            this.cbx_ereopat.Location = new System.Drawing.Point(117, 51);
+            this.cbx_ereopat.Name = "cbx_ereopat";
+            this.cbx_ereopat.Size = new System.Drawing.Size(76, 18);
+            this.cbx_ereopat.TabIndex = 79;
+            this.cbx_ereopat.Tag = "noPI";
+            this.cbx_ereopat.Text = "ereopat";
+            this.cbx_ereopat.UseVisualStyleBackColor = true;
+            // 
+            // cbx_efacges
+            // 
+            this.cbx_efacges.AutoSize = true;
+            this.cbx_efacges.Location = new System.Drawing.Point(120, 104);
+            this.cbx_efacges.Name = "cbx_efacges";
+            this.cbx_efacges.Size = new System.Drawing.Size(75, 18);
+            this.cbx_efacges.TabIndex = 77;
+            this.cbx_efacges.Tag = "noPI";
+            this.cbx_efacges.Text = "efacges";
+            this.cbx_efacges.UseVisualStyleBackColor = true;
+            // 
+            // cbx_ereo
+            // 
+            this.cbx_ereo.AutoSize = true;
+            this.cbx_ereo.Location = new System.Drawing.Point(11, 104);
+            this.cbx_ereo.Name = "cbx_ereo";
+            this.cbx_ereo.Size = new System.Drawing.Size(55, 18);
+            this.cbx_ereo.TabIndex = 75;
+            this.cbx_ereo.Tag = "noPI";
+            this.cbx_ereo.Text = "ereo";
+            this.cbx_ereo.UseVisualStyleBackColor = true;
+            // 
+            // cbx_esocieda
+            // 
+            this.cbx_esocieda.AutoSize = true;
+            this.cbx_esocieda.Location = new System.Drawing.Point(11, 128);
+            this.cbx_esocieda.Name = "cbx_esocieda";
+            this.cbx_esocieda.Size = new System.Drawing.Size(82, 18);
+            this.cbx_esocieda.TabIndex = 76;
+            this.cbx_esocieda.Tag = "noPI";
+            this.cbx_esocieda.Text = "esocieda";
+            this.cbx_esocieda.UseVisualStyleBackColor = true;
+            // 
+            // cbx_starpat
+            // 
+            this.cbx_starpat.AutoSize = true;
+            this.cbx_starpat.Location = new System.Drawing.Point(11, 51);
+            this.cbx_starpat.Name = "cbx_starpat";
+            this.cbx_starpat.Size = new System.Drawing.Size(72, 18);
+            this.cbx_starpat.TabIndex = 74;
+            this.cbx_starpat.Tag = "noPI";
+            this.cbx_starpat.Text = "starpat";
+            this.cbx_starpat.UseVisualStyleBackColor = true;
+            // 
+            // cbx_star308
+            // 
+            this.cbx_star308.AutoSize = true;
+            this.cbx_star308.Location = new System.Drawing.Point(11, 27);
+            this.cbx_star308.Name = "cbx_star308";
+            this.cbx_star308.Size = new System.Drawing.Size(75, 18);
+            this.cbx_star308.TabIndex = 73;
+            this.cbx_star308.Tag = "noPI";
+            this.cbx_star308.Text = "star308";
+            this.cbx_star308.UseVisualStyleBackColor = true;
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel14.Location = new System.Drawing.Point(0, 20);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(110, 1);
+            this.panel14.TabIndex = 72;
+            // 
+            // panel20
+            // 
+            this.panel20.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel20.Location = new System.Drawing.Point(110, 0);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(1, 300);
+            this.panel20.TabIndex = 66;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.Black;
+            this.label23.Location = new System.Drawing.Point(8, 5);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(86, 14);
+            this.label23.TabIndex = 22;
+            this.label23.Text = "Contabilidad";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(117, 164);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(65, 14);
+            this.label24.TabIndex = 41;
+            this.label24.Text = "Gasoleos";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(29, 164);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(54, 14);
+            this.label25.TabIndex = 34;
+            this.label25.Text = "Laboral";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(117, 5);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(64, 14);
+            this.label26.TabIndex = 26;
+            this.label26.Text = "Patrones";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(117, 80);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(78, 14);
+            this.label27.TabIndex = 25;
+            this.label27.Text = "Facturacion";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(11, 80);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(59, 14);
+            this.label29.TabIndex = 23;
+            this.label29.Text = "Modelos";
+            // 
+            // panel16
+            // 
+            this.panel16.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel16.Location = new System.Drawing.Point(110, 20);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(110, 1);
+            this.panel16.TabIndex = 88;
+            // 
+            // panel17
+            // 
+            this.panel17.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel17.Location = new System.Drawing.Point(0, 181);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(110, 1);
+            this.panel17.TabIndex = 89;
+            // 
+            // panel18
+            // 
+            this.panel18.BackColor = System.Drawing.Color.SeaGreen;
+            this.panel18.Controls.Add(this.panel23);
+            this.panel18.Controls.Add(this.checkBox3);
+            this.panel18.Controls.Add(this.checkBox4);
+            this.panel18.Controls.Add(this.label22);
+            this.panel18.Controls.Add(this.panel22);
+            this.panel18.Location = new System.Drawing.Point(110, 97);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(110, 1);
+            this.panel18.TabIndex = 90;
+            // 
+            // panel19
+            // 
+            this.panel19.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel19.Location = new System.Drawing.Point(110, 181);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(110, 1);
+            this.panel19.TabIndex = 87;
+            // 
+            // panel21
+            // 
+            this.panel21.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel21.Location = new System.Drawing.Point(110, 97);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(110, 1);
+            this.panel21.TabIndex = 90;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(7, -69);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(78, 18);
+            this.checkBox3.TabIndex = 84;
+            this.checkBox3.Tag = "noPI";
+            this.checkBox3.Text = "dscepsa";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(7, -47);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(60, 18);
+            this.checkBox4.TabIndex = 85;
+            this.checkBox4.Tag = "noPI";
+            this.checkBox4.Text = "dsgal";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // panel22
+            // 
+            this.panel22.BackColor = System.Drawing.Color.SeaGreen;
+            this.panel22.Location = new System.Drawing.Point(-1, -72);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(110, 1);
+            this.panel22.TabIndex = 87;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(7, -89);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(65, 14);
+            this.label22.TabIndex = 41;
+            this.label22.Text = "Gasoleos";
+            // 
+            // panel23
+            // 
+            this.panel23.BackColor = System.Drawing.Color.SeaGreen;
+            this.panel23.Location = new System.Drawing.Point(0, 0);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(110, 1);
+            this.panel23.TabIndex = 90;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.SeaGreen;
+            this.panel6.Location = new System.Drawing.Point(220, 266);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(110, 1);
+            this.panel6.TabIndex = 73;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.SeaGreen;
+            this.panel11.Location = new System.Drawing.Point(220, 146);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(110, 1);
+            this.panel11.TabIndex = 66;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.AutoSize = true;
+            this.button1.BackColor = System.Drawing.Color.LightBlue;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.button1.FlatAppearance.BorderSize = 2;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(354, 291);
+            this.button1.Margin = new System.Windows.Forms.Padding(1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 28);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "Limpiar";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // panel15
+            // 
+            this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel15.Controls.Add(this.comboBox1);
+            this.panel15.Controls.Add(this.label19);
+            this.panel15.Location = new System.Drawing.Point(354, 23);
+            this.panel15.Name = "panel15";
+            this.panel15.Padding = new System.Windows.Forms.Padding(5);
+            this.panel15.Size = new System.Drawing.Size(284, 38);
+            this.panel15.TabIndex = 30;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Carpeta PI",
+            "Carpeta noPI",
+            "Carpeta local",
+            "Carpeta pasesPI",
+            "Carpeta pasesnoPI"});
+            this.comboBox1.Location = new System.Drawing.Point(105, 7);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(171, 22);
+            this.comboBox1.TabIndex = 25;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.ForeColor = System.Drawing.Color.Black;
+            this.label19.Location = new System.Drawing.Point(5, 10);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(92, 14);
+            this.label19.TabIndex = 2;
+            this.label19.Text = "Destino copia";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Location = new System.Drawing.Point(354, 83);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(284, 204);
+            this.textBox1.TabIndex = 27;
+            // 
+            // label20
+            // 
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(351, 64);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(109, 16);
+            this.label20.TabIndex = 29;
+            this.label20.Text = "Proceso copia";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.AutoSize = true;
+            this.button2.BackColor = System.Drawing.Color.LightBlue;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.button2.FlatAppearance.BorderSize = 2;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.Location = new System.Drawing.Point(546, 290);
+            this.button2.Margin = new System.Windows.Forms.Padding(1);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(92, 28);
+            this.button2.TabIndex = 28;
+            this.button2.Text = "Copiar";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // frmInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
-            this.ClientSize = new System.Drawing.Size(784, 611);
+            this.ClientSize = new System.Drawing.Size(684, 401);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(800, 650);
+            this.MinimumSize = new System.Drawing.Size(700, 440);
             this.Name = "frmInicio";
             this.Padding = new System.Windows.Forms.Padding(5);
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Copia paquetes master9";
             this.tabConfiguracion.ResumeLayout(false);
@@ -1371,6 +1713,15 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabProgramasnoPI.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1415,28 +1766,13 @@
         private System.Windows.Forms.TextBox txtProgresoCopia;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.CheckBox cbx_dscepsa;
-        private System.Windows.Forms.CheckBox cbx_dsgal;
         private System.Windows.Forms.CheckBox cbx_dscarter;
         private System.Windows.Forms.CheckBox cbx_dscomer9;
-        private System.Windows.Forms.CheckBox cbx_eintegra;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.CheckBox cbx_efacges;
-        private System.Windows.Forms.CheckBox cbx_ereopat;
-        private System.Windows.Forms.CheckBox cbx_starpat;
-        private System.Windows.Forms.CheckBox cbx_ereo;
-        private System.Windows.Forms.CheckBox cbx_esocieda;
-        private System.Windows.Forms.CheckBox cbx_star308;
-        private System.Windows.Forms.CheckBox cbx_ered;
         private System.Windows.Forms.CheckBox cbx_gasbase;
         private System.Windows.Forms.CheckBox cbx_dsgalx;
         private System.Windows.Forms.CheckBox cbx_dscepsax;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.CheckBox cbx_enompat;
-        private System.Windows.Forms.CheckBox cbx_enom2;
-        private System.Windows.Forms.CheckBox cbx_enom1;
         private System.Windows.Forms.CheckBox cbx_iplabor2;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
@@ -1470,11 +1806,53 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button btn_limpiar;
+        private System.Windows.Forms.TabPage tabProgramasnoPI;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel20;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.CheckBox cbx_dscepsa;
+        private System.Windows.Forms.CheckBox cbx_dsgal;
+        private System.Windows.Forms.CheckBox cbx_ered;
+        private System.Windows.Forms.CheckBox cbx_enompat;
+        private System.Windows.Forms.CheckBox cbx_enom2;
+        private System.Windows.Forms.CheckBox cbx_enom1;
+        private System.Windows.Forms.CheckBox cbx_eintegra;
+        private System.Windows.Forms.CheckBox cbx_ereopat;
+        private System.Windows.Forms.CheckBox cbx_efacges;
+        private System.Windows.Forms.CheckBox cbx_ereo;
+        private System.Windows.Forms.CheckBox cbx_esocieda;
+        private System.Windows.Forms.CheckBox cbx_starpat;
+        private System.Windows.Forms.CheckBox cbx_star308;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.Panel panel23;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Panel panel22;
+        private System.Windows.Forms.Panel panel19;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button button2;
     }
 }
 
