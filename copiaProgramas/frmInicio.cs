@@ -13,7 +13,7 @@ namespace copiaProgramas
 
 
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
-        private Dictionary<System.Windows.Forms.CheckBox, string> checkBoxVariables = new Dictionary<System.Windows.Forms.CheckBox, string>();
+        private Dictionary<CheckBox, string> checkBoxVariables = new Dictionary<CheckBox, string>();
 
 
         public frmInicio()
@@ -36,7 +36,7 @@ namespace copiaProgramas
             variable.CargarConfiguracion();
 
             //Rellena los textBox con los valores cargados en las variables desde el fichero de configuracion
-            cb_destino.SelectedIndex = 0;
+            cb_destinoPI.SelectedIndex = 0;
             LimpiaCbxPi();
         }
 
@@ -94,9 +94,22 @@ namespace copiaProgramas
         private void LimpiaCbxPi()
         {
             //Quita las marcas de los controlBox
-            foreach (Control control in panel1.Controls)
+            foreach (Control control in panelPI.Controls)
             {
-                if (control is System.Windows.Forms.CheckBox cbx)
+                if (control is CheckBox cbx)
+                {
+                    cbx.Checked = false;
+
+                }
+            }
+        }
+
+        private void LimpiaCbxnoPi()
+        {
+            //Quita las marcas de los controlBox
+            foreach (Control control in panelnoPI.Controls)
+            {
+                if (control is CheckBox cbx)
                 {
                     cbx.Checked = false;
 
@@ -107,7 +120,7 @@ namespace copiaProgramas
         private void CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Cuando hay algun cambio en los checkbox se captura cual es
-            System.Windows.Forms.CheckBox checkBox = (System.Windows.Forms.CheckBox)sender;
+            CheckBox checkBox = (CheckBox)sender;
 
             // Se obtiene la variable asociada al CheckBox
             string nombreVariable = checkBoxVariables[checkBox];
@@ -292,37 +305,51 @@ namespace copiaProgramas
 
         private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Verificar si la pestaña seleccionada es la de Configuracion
-            if (tabControl1.SelectedTab == tabConfiguracion)
+            // Acciones a realizar segun la pestaña seleccionada
+            switch (tabControl1.SelectedTab.Name)
             {
-                // Ejecutar el método cuando se selecciona la pestaña configuracion
-                //LimpiaCbxPi();
-                variable.CargarConfiguracion();
-                ActualizaTextBox();
-            }
+                case "tabConfiguracion":
+                    // Ejecutar el método cuando se selecciona la pestaña configuracion
+                    variable.CargarConfiguracion();
+                    ActualizaTextBox();
+                    break;
 
-            if (tabControl1.SelectedTab == tabProgramasPi)
-            {
-                txtProgresoCopia.Clear();
-                LimpiaCbxPi();
+                case "tabProgramasPi":
+                    txtProgresoCopiaPI.Clear();
+                    cb_destinoPI.SelectedIndex = 0;
+                    LimpiaCbxPi();
+                    break;
+
+                case "tabProgramasnoPI":
+                    txtProgresoCopianoPI.Clear();
+                    cb_destinonoPI.SelectedIndex = 0;
+                    LimpiaCbxnoPi();
+                    break;
             }
         }
 
-        private void ActualizarProgreso(string resultado)
+        private void ActualizarProgreso(string resultado, int pestaña)
         {
             //Este metodo escribe en el textBox el progreso de la copia
             if (InvokeRequired) // Se asegura que esta en el mismo hilo de ejecucion
             {
-                Invoke(new Action<string>(ActualizarProgreso), resultado);
+                Invoke(new Action<string, int>(ActualizarProgreso), resultado);
             }
             else
             {
-                // Mostrar el resultado en el TextBox ProgesoCopia
-                txtProgresoCopia.AppendText(resultado + Environment.NewLine);
+                if (pestaña == 1)
+                {
+                    txtProgresoCopiaPI.AppendText(resultado + Environment.NewLine);
+                }
+                else if (pestaña == 2)
+                {
+                    txtProgresoCopianoPI.AppendText(resultado + Environment.NewLine);
+                }
             }
         }
 
-        private int LanzaCopia(bool programa, string fichero, string titulo)
+
+        private int LanzaCopia(bool programa, string fichero, string titulo, int pestaña)
         {
             int resultado = 0;//Resultado de la copia
             if (programa) //Si esta marcado el programa pasado se lanza la copia
@@ -336,15 +363,15 @@ namespace copiaProgramas
                 {
                     try
                     {
-                        ActualizarProgreso(Environment.NewLine + $"Copiando el programa {titulo} ");
+                        ActualizarProgreso(Environment.NewLine + $"Copiando el programa {titulo} ", pestaña);
                         File.Copy(origen, destino, true);
-                        ActualizarProgreso($"Programa {titulo} copiado correctamente.");
+                        ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
                         resultado = 1;
                     }
 
                     catch (Exception ex)
                     {
-                        ActualizarProgreso(Environment.NewLine + $"No se ha podido copiar el programa {titulo}" + Environment.NewLine + ex.Message);
+                        ActualizarProgreso(Environment.NewLine + $"No se ha podido copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
                     }
                 }
                 else
@@ -352,7 +379,7 @@ namespace copiaProgramas
                     //Si la copia en al geco72
                     try
                     {
-                        ActualizarProgreso(Environment.NewLine + $"Copiando el programa {titulo}");
+                        ActualizarProgreso(Environment.NewLine + $"Copiando el programa {titulo}", pestaña);
 
                         // Configuración de opciones de sesión para la copia al geco72
                         SessionOptions sessionOptions = new SessionOptions
@@ -392,44 +419,53 @@ namespace copiaProgramas
                             // Muestra información sobre la transferencia al finalizar
                             foreach (TransferEventArgs transfer in transferResult.Transfers)
                             {
-                                ActualizarProgreso($"Programa {titulo} copiado correctamente.");
+                                ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
                             }
                         }
                         resultado = 1;
                     }
                     catch (Exception ex)
                     {
-                        ActualizarProgreso(Environment.NewLine + $"No se ha podido copiar el programa {titulo}" + Environment.NewLine + ex.Message);
+                        ActualizarProgreso(Environment.NewLine + $"No se ha podido copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
                     }
                 }
             }
             return resultado;
         }
 
-        private void cb_destino_SelectedIndexChanged(object sender, EventArgs e)
+        private void cb_destinoPI_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Metodo para asignar las rutas destino de la copia segun el valor seleccionado en el comboBox
-            int indice = cb_destino.SelectedIndex;
-
-            switch (indice)
+            switch (cb_destinoPI.SelectedIndex)
             {
                 case 0:
                     variable.destino = variable.destinoPi;
                     break;
 
                 case 1:
-                    variable.destino = variable.destinonoPi;
-                    break;
-
-                case 2:
                     variable.destino = variable.destinoLocal;
                     break;
 
-                case 3:
+                case 2:
                     variable.destino = variable.destinoPasesPi;
                     break;
+            }
+        }
 
-                case 4:
+        private void cb_destinonoPI_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Metodo para asignar las rutas destino de la copia segun el valor seleccionado en el comboBox
+            switch (cb_destinoPI.SelectedIndex)
+            {
+                case 0:
+                    variable.destino = variable.destinonoPi;
+                    break;
+
+                case 1:
+                    variable.destino = variable.destinoLocal;
+                    break;
+
+                case 2:
                     variable.destino = variable.destinoPasesnoPi;
                     break;
             }
@@ -438,16 +474,28 @@ namespace copiaProgramas
         private void btn_limpiar_Click(object sender, EventArgs e)
         {
             //Metodo para desmarcar todos los checkBox y limpiar el textoBox del resultado de la copia
-            txtProgresoCopia.Text = string.Empty;
-            foreach (Control control in panel1.Controls)
+            txtProgresoCopiaPI.Text = string.Empty;
+            foreach (Control control in panelPI.Controls)
             {
-                if (control is System.Windows.Forms.CheckBox cbx)
+                if (control is CheckBox cbx)
                 {
                     cbx.Checked = false;
                 }
             }
         }
 
+        private void btn_limpiarnoPI_Click(object sender, EventArgs e)
+        {
+            //Metodo para desmarcar todos los checkBox y limpiar el textoBox del resultado de la copia
+            txtProgresoCopianoPI.Text = string.Empty;
+            foreach (Control control in panelnoPI.Controls)
+            {
+                if (control is CheckBox cbx)
+                {
+                    cbx.Checked = false;
+                }
+            }
+        }
         #endregion
 
 
@@ -679,93 +727,109 @@ namespace copiaProgramas
         #region MouseClick
         //Metodos para cuando se hace clic en los iconos
 
-        private void btnCopiar_Click(object sender, EventArgs e)
+        private void btnCopiarPI_Click(object sender, EventArgs e)
         {
             int resultado = 0; //Control para si se ha hecho alguna copia correctamente
             int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
-            int controlDbxnoPI = 0; //Controla si hay checkBox de noPI marcados para controlar que no se copien a la carpeta de PI
-            foreach (Control control in panel1.Controls)
+            
+            foreach (Control control in panelPI.Controls)
             {
-                if (control is System.Windows.Forms.CheckBox cbx && cbx.Checked)
+                if (control is CheckBox cbx && cbx.Checked)
                 {
-                    if (cbx.Tag == "noPI" && variable.destino != variable.destinonoPi)
-                    {
-                        controlDbxnoPI++;
-                    }
-                    else
-                    {
-                        controlCbx++;
-                    }
+                    controlCbx++;
                 }
             }
 
-            if (controlDbxnoPI > 0)
+            if (controlCbx > 0)
             {
-                MessageBox.Show("No puede seleccionar programas noPI si el destino es la carpeta de PI", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
+                //Lanza el proceso de copia segun los checkBox marcados en los programas
+                //Programas PI
+                resultado += LanzaCopia(programa.ipcont08, programa.ipcont08Ruta, "ipcont08", 1);
+                resultado += LanzaCopia(programa.siibase, programa.siibaseRuta, "siibase", 1);
+                resultado += LanzaCopia(programa.v000adc, programa.v000adcRuta, "000adc", 1);
+                resultado += LanzaCopia(programa.n43base, programa.n43baseRuta, "n43base", 1);
+                resultado += LanzaCopia(programa.contalap, programa.contalapRuta, "contalap", 1);
+                resultado += LanzaCopia(programa.ipmodelo, programa.ipmodeloRuta, "ipmodelo", 1);
+                resultado += LanzaCopia(programa.iprent23, programa.iprent23Ruta, "iprent23", 1);
+                resultado += LanzaCopia(programa.iprent22, programa.iprent22Ruta, "iprent22", 1);
+                resultado += LanzaCopia(programa.iprent21, programa.iprent21Ruta, "iprent21", 1);
+                resultado += LanzaCopia(programa.ipconts2, programa.ipconts2Ruta, "ipconts2", 1);
+                resultado += LanzaCopia(programa.ipabogax, programa.ipabogaxRuta, "ipabogax", 1);
+                resultado += LanzaCopia(programa.ipabogad, programa.ipabogadRuta, "ipabogad", 1);
+                resultado += LanzaCopia(programa.ipabopar, programa.ipaboparRuta, "ipabopar", 1);
+                resultado += LanzaCopia(programa.dscomer9, programa.dscomer9Ruta, "dscomer9", 1);
+                resultado += LanzaCopia(programa.dscarter, programa.dscarterRuta, "dscarter", 1);
+                resultado += LanzaCopia(programa.dsarchi, programa.dsarchiRuta, "dsarchi", 1);
+                resultado += LanzaCopia(programa.notibase, programa.notibaseRuta, "notibase", 1);
+                resultado += LanzaCopia(programa.certbase, programa.certbaseRuta, "certbase", 1);
+                resultado += LanzaCopia(programa.dsesign, programa.dsesignRuta, "dsesign", 1);
+                resultado += LanzaCopia(programa.dsedespa, programa.dsedespaRuta, "dsedespa", 1);
+                resultado += LanzaCopia(programa.ipintegr, programa.ipintegrRuta, "ipintegr", 1);
+                resultado += LanzaCopia(programa.ipbasica, programa.ipbasicaRuta, "ipbasica", 1);
+                resultado += LanzaCopia(programa.ippatron, programa.ippatronRuta, "ippatron", 1);
+                resultado += LanzaCopia(programa.gasbase, programa.gasbaseRuta, "gasbase", 1);
+                resultado += LanzaCopia(programa.dscepsax, programa.dscepsaxRuta, "dscepsax", 1);
+                resultado += LanzaCopia(programa.dsgalx, programa.dsgalxRuta, "dsgalx", 1);
+                resultado += LanzaCopia(programa.iplabor2, programa.iplabor2Ruta, "iplabor2", 1);
 
-                if (controlCbx > 0)
+                if (resultado > 0)
                 {
-                    //Lanza el proceso de copia segun los checkBox marcados en los programas
-                    //Programas PI
-                    resultado += LanzaCopia(programa.ipcont08, programa.ipcont08Ruta, "ipcont08");
-                    resultado += LanzaCopia(programa.siibase, programa.siibaseRuta, "siibase");
-                    resultado += LanzaCopia(programa.v000adc, programa.v000adcRuta, "000adc");
-                    resultado += LanzaCopia(programa.n43base, programa.n43baseRuta, "n43base");
-                    resultado += LanzaCopia(programa.contalap, programa.contalapRuta, "contalap");
-                    resultado += LanzaCopia(programa.ipmodelo, programa.ipmodeloRuta, "ipmodelo");
-                    resultado += LanzaCopia(programa.iprent23, programa.iprent23Ruta, "iprent23");
-                    resultado += LanzaCopia(programa.iprent22, programa.iprent22Ruta, "iprent22");
-                    resultado += LanzaCopia(programa.iprent21, programa.iprent21Ruta, "iprent21");
-                    resultado += LanzaCopia(programa.ipconts2, programa.ipconts2Ruta, "ipconts2");
-                    resultado += LanzaCopia(programa.ipabogax, programa.ipabogaxRuta, "ipabogax");
-                    resultado += LanzaCopia(programa.ipabogad, programa.ipabogadRuta, "ipabogad");
-                    resultado += LanzaCopia(programa.ipabopar, programa.ipaboparRuta, "ipabopar");
-                    resultado += LanzaCopia(programa.dscomer9, programa.dscomer9Ruta, "dscomer9");
-                    resultado += LanzaCopia(programa.dscarter, programa.dscarterRuta, "dscarter");
-                    resultado += LanzaCopia(programa.dsarchi, programa.dsarchiRuta, "dsarchi");
-                    resultado += LanzaCopia(programa.notibase, programa.notibaseRuta, "notibase");
-                    resultado += LanzaCopia(programa.certbase, programa.certbaseRuta, "certbase");
-                    resultado += LanzaCopia(programa.dsesign, programa.dsesignRuta, "dsesign");
-                    resultado += LanzaCopia(programa.dsedespa, programa.dsedespaRuta, "dsedespa");
-                    resultado += LanzaCopia(programa.ipintegr, programa.ipintegrRuta, "ipintegr");
-                    resultado += LanzaCopia(programa.ipbasica, programa.ipbasicaRuta, "ipbasica");
-                    resultado += LanzaCopia(programa.ippatron, programa.ippatronRuta, "ippatron");
-                    resultado += LanzaCopia(programa.gasbase, programa.gasbaseRuta, "gasbase");
-                    resultado += LanzaCopia(programa.dscepsax, programa.dscepsaxRuta, "dscepsax");
-                    resultado += LanzaCopia(programa.dsgalx, programa.dsgalxRuta, "dsgalx");
-                    resultado += LanzaCopia(programa.iplabor2, programa.iplabor2Ruta, "iplabor2");
-
-                    //Programas noPI
-                    resultado += LanzaCopia(programa.star308, programa.star308Ruta, "star308");
-                    resultado += LanzaCopia(programa.starpat, programa.starpatRuta, "starpat");
-                    resultado += LanzaCopia(programa.ereo, programa.ereoRuta, "ereo");
-                    resultado += LanzaCopia(programa.esocieda, programa.esociedaRuta, "esocieda");
-                    resultado += LanzaCopia(programa.efacges, programa.efacgesRuta, "efacges");
-                    resultado += LanzaCopia(programa.eintegra, programa.eintegraRuta, "eintegra");
-                    resultado += LanzaCopia(programa.ereopat, programa.ereopatRuta, "ereopat");
-                    resultado += LanzaCopia(programa.enom1, programa.enom1Ruta, "enom1");
-                    resultado += LanzaCopia(programa.enom2, programa.enom2Ruta, "enom2");
-                    resultado += LanzaCopia(programa.ered, programa.eredRuta, "ered");
-                    resultado += LanzaCopia(programa.enompat, programa.enompatRuta, "enompat");
-                    resultado += LanzaCopia(programa.dscepsa, programa.dscepsaRuta, "dscepsa");
-                    resultado += LanzaCopia(programa.dsgal, programa.dsgalRuta, "dsgal");
-
-                    if (resultado > 0)
-                    {
-                        MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se han podido copiar los ficheros", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("No ha seleccionado ningun programa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se han podido copiar los ficheros", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+            }
+            else
+            {
+                MessageBox.Show("No ha seleccionado ningun programa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCopiarnoPI_Click(object sender, EventArgs e)
+        {
+            int resultado = 0; //Control para si se ha hecho alguna copia correctamente
+            int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
+
+            foreach (Control control in panelnoPI.Controls)
+            {
+                if (control is CheckBox cbx && cbx.Checked)
+                {
+                    controlCbx++;
+                }
+            }
+
+            if (controlCbx > 0)
+            {
+                //Lanza el proceso de copia segun los checkBox marcados en los programas
+                //Programas noPI
+                resultado += LanzaCopia(programa.star308, programa.star308Ruta, "star308", 2);
+                resultado += LanzaCopia(programa.starpat, programa.starpatRuta, "starpat", 2);
+                resultado += LanzaCopia(programa.ereo, programa.ereoRuta, "ereo", 2);
+                resultado += LanzaCopia(programa.esocieda, programa.esociedaRuta, "esocieda", 2);
+                resultado += LanzaCopia(programa.efacges, programa.efacgesRuta, "efacges", 2);
+                resultado += LanzaCopia(programa.eintegra, programa.eintegraRuta, "eintegra", 2);
+                resultado += LanzaCopia(programa.ereopat, programa.ereopatRuta, "ereopat", 2);
+                resultado += LanzaCopia(programa.enom1, programa.enom1Ruta, "enom1", 2);
+                resultado += LanzaCopia(programa.enom2, programa.enom2Ruta, "enom2", 2);
+                resultado += LanzaCopia(programa.ered, programa.eredRuta, "ered", 2);
+                resultado += LanzaCopia(programa.enompat, programa.enompatRuta, "enompat", 2);
+                resultado += LanzaCopia(programa.dscepsa, programa.dscepsaRuta, "dscepsa", 2);
+                resultado += LanzaCopia(programa.dsgal, programa.dsgalRuta, "dsgal", 2);
+
+                if (resultado > 0)
+                {
+                    MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se han podido copiar los ficheros", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No ha seleccionado ningun programa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -973,6 +1037,6 @@ namespace copiaProgramas
 
         #endregion
 
-        
+
     }
 }
