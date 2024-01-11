@@ -354,7 +354,17 @@ namespace copiaProgramas
             int resultado = 0;//Resultado de la copia
             if (programa) //Si esta marcado el programa pasado se lanza la copia
             {
-                string origen = variable.rutaPi + fichero;
+                string origen = string.Empty;
+                if (pestaña == 1)
+                {
+                    origen = variable.rutaPi + fichero;
+
+                }
+                else if (pestaña == 2)
+                {
+                    origen = variable.rutanoPi + fichero;
+
+                }
                 string nombreFichero = Path.GetFileName(fichero); //Obtiene el nombre del programa
                 string destino = variable.destino + nombreFichero; //Forma la ruta completa del programa
 
@@ -363,7 +373,7 @@ namespace copiaProgramas
                 {
                     try
                     {
-                        ActualizarProgreso(Environment.NewLine + $"Copiando el programa {titulo} ", pestaña);
+                        ActualizarProgreso(Environment.NewLine + $"Copiando el programa {titulo} . . .", pestaña);
                         File.Copy(origen, destino, true);
                         ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
                         resultado = 1;
@@ -379,7 +389,7 @@ namespace copiaProgramas
                     //Si la copia en al geco72
                     try
                     {
-                        ActualizarProgreso(Environment.NewLine + $"Copiando el programa {titulo}", pestaña);
+                        ActualizarProgreso(Environment.NewLine + $"Copiando el programa {titulo} . . .", pestaña);
 
                         // Configuración de opciones de sesión para la copia al geco72
                         SessionOptions sessionOptions = new SessionOptions
@@ -731,7 +741,7 @@ namespace copiaProgramas
         {
             int resultado = 0; //Control para si se ha hecho alguna copia correctamente
             int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
-            
+
             foreach (Control control in panelPI.Controls)
             {
                 if (control is CheckBox cbx && cbx.Checked)
