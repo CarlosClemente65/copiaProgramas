@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.IO;
 using WinSCP;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace copiaProgramas
 {
@@ -333,7 +335,7 @@ namespace copiaProgramas
             //Este metodo escribe en el textBox el progreso de la copia
             if (InvokeRequired) // Se asegura que esta en el mismo hilo de ejecucion
             {
-                Invoke(new Action<string, int>(ActualizarProgreso), resultado);
+                Invoke(new Action<string, int>(ActualizarProgreso), resultado, pestaña);
             }
             else
             {
@@ -349,7 +351,7 @@ namespace copiaProgramas
         }
 
 
-        private int LanzaCopia(bool programa, string fichero, string titulo, int pestaña)
+        private async Task<int> LanzaCopia(bool programa, string fichero, string titulo, int pestaña)
         {
             int resultado = 0;//Resultado de la copia
             if (programa) //Si esta marcado el programa pasado se lanza la copia
@@ -373,23 +375,23 @@ namespace copiaProgramas
                 {
                     try
                     {
-                        ActualizarProgreso(Environment.NewLine + $"Copiando el programa {titulo} . . .", pestaña);
-                        File.Copy(origen, destino, true);
+                        ActualizarProgreso($"Copiando el programa {titulo} ", pestaña);
+                        await Task.Run(() => File.Copy(origen, destino, true)).ConfigureAwait(false);
                         ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
                         resultado = 1;
                     }
 
                     catch (Exception ex)
                     {
-                        ActualizarProgreso(Environment.NewLine + $"No se ha podido copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
+                        ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
                     }
                 }
                 else
                 {
-                    //Si la copia en al geco72
+                    //Si la copia es al geco72
                     try
                     {
-                        ActualizarProgreso(Environment.NewLine + $"Copiando el programa {titulo} . . .", pestaña);
+                        ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
 
                         // Configuración de opciones de sesión para la copia al geco72
                         SessionOptions sessionOptions = new SessionOptions
@@ -402,37 +404,54 @@ namespace copiaProgramas
                         };
                         sessionOptions.AddRawSettings("AgentFwd", "1");
 
-                        using (Session session = new Session())
+                        Session session = null;
+
+                        try
                         {
-                            ////Permite hacer un log del resultado. La dejo comentada por si hace falta
-                            //string logFile = @"c:\carlos\winscp.log";
-                            //if (!File.Exists(logFile))
-                            //{
-                            //    File.Create(logFile).Close();
-                            //}
-                            //else
-                            //{
-                            //    File.Delete(logFile);
-                            //    File.Create(logFile).Close();
-                            //}
-                            //session.SessionLogPath = logFile;
-
-                            // Conexión
-                            session.Open(sessionOptions);
-
-                            TransferOptions transferOptions = new TransferOptions();
-                            transferOptions.TransferMode = TransferMode.Binary;
-
-                            TransferOperationResult transferResult = session.PutFiles(origen, variable.destino, false, transferOptions);
-                            transferResult.Check();
-
-                            // Muestra información sobre la transferencia al finalizar
-                            foreach (TransferEventArgs transfer in transferResult.Transfers)
+                            await Task.Run(async () =>
                             {
-                                ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
-                            }
+                                ////Permite hacer un log del resultado. La dejo comentada por si hace falta
+                                //string logFile = @"c:\carlos\winscp.log";
+                                //if (!File.Exists(logFile))
+                                //{
+                                //    File.Create(logFile).Close();
+                                //}
+                                //else
+                                //{
+                                //    File.Delete(logFile);
+                                //    File.Create(logFile).Close();
+                                //}
+                                //session.SessionLogPath = logFile;
+
+                                // Conexión
+                                session = new Session();
+                                session.Open(sessionOptions);
+
+                                TransferOptions transferOptions = new TransferOptions();
+                                transferOptions.TransferMode = TransferMode.Binary;
+
+                                TransferOperationResult transferResult = session.PutFiles(origen, variable.destino, false, transferOptions);
+                                transferResult.Check();
+
+                                // Muestra información sobre la transferencia al finalizar
+                                foreach (TransferEventArgs transfer in transferResult.Transfers)
+                                {
+                                    ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
+                                }
+                                resultado = 1;
+                            }).ConfigureAwait(false);
                         }
-                        resultado = 1;
+
+                        catch (Exception ex)
+                        {
+                            ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
+                        }
+
+                        finally
+                        {
+                            //Libera el recurso de la sesion
+                            session?.Dispose();
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -737,7 +756,7 @@ namespace copiaProgramas
         #region MouseClick
         //Metodos para cuando se hace clic en los iconos
 
-        private void btnCopiarPI_Click(object sender, EventArgs e)
+        private async void btnCopiarPI_Click(object sender, EventArgs e)
         {
             int resultado = 0; //Control para si se ha hecho alguna copia correctamente
             int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
@@ -752,35 +771,42 @@ namespace copiaProgramas
 
             if (controlCbx > 0)
             {
-                //Lanza el proceso de copia segun los checkBox marcados en los programas
-                //Programas PI
-                resultado += LanzaCopia(programa.ipcont08, programa.ipcont08Ruta, "ipcont08", 1);
-                resultado += LanzaCopia(programa.siibase, programa.siibaseRuta, "siibase", 1);
-                resultado += LanzaCopia(programa.v000adc, programa.v000adcRuta, "000adc", 1);
-                resultado += LanzaCopia(programa.n43base, programa.n43baseRuta, "n43base", 1);
-                resultado += LanzaCopia(programa.contalap, programa.contalapRuta, "contalap", 1);
-                resultado += LanzaCopia(programa.ipmodelo, programa.ipmodeloRuta, "ipmodelo", 1);
-                resultado += LanzaCopia(programa.iprent23, programa.iprent23Ruta, "iprent23", 1);
-                resultado += LanzaCopia(programa.iprent22, programa.iprent22Ruta, "iprent22", 1);
-                resultado += LanzaCopia(programa.iprent21, programa.iprent21Ruta, "iprent21", 1);
-                resultado += LanzaCopia(programa.ipconts2, programa.ipconts2Ruta, "ipconts2", 1);
-                resultado += LanzaCopia(programa.ipabogax, programa.ipabogaxRuta, "ipabogax", 1);
-                resultado += LanzaCopia(programa.ipabogad, programa.ipabogadRuta, "ipabogad", 1);
-                resultado += LanzaCopia(programa.ipabopar, programa.ipaboparRuta, "ipabopar", 1);
-                resultado += LanzaCopia(programa.dscomer9, programa.dscomer9Ruta, "dscomer9", 1);
-                resultado += LanzaCopia(programa.dscarter, programa.dscarterRuta, "dscarter", 1);
-                resultado += LanzaCopia(programa.dsarchi, programa.dsarchiRuta, "dsarchi", 1);
-                resultado += LanzaCopia(programa.notibase, programa.notibaseRuta, "notibase", 1);
-                resultado += LanzaCopia(programa.certbase, programa.certbaseRuta, "certbase", 1);
-                resultado += LanzaCopia(programa.dsesign, programa.dsesignRuta, "dsesign", 1);
-                resultado += LanzaCopia(programa.dsedespa, programa.dsedespaRuta, "dsedespa", 1);
-                resultado += LanzaCopia(programa.ipintegr, programa.ipintegrRuta, "ipintegr", 1);
-                resultado += LanzaCopia(programa.ipbasica, programa.ipbasicaRuta, "ipbasica", 1);
-                resultado += LanzaCopia(programa.ippatron, programa.ippatronRuta, "ippatron", 1);
-                resultado += LanzaCopia(programa.gasbase, programa.gasbaseRuta, "gasbase", 1);
-                resultado += LanzaCopia(programa.dscepsax, programa.dscepsaxRuta, "dscepsax", 1);
-                resultado += LanzaCopia(programa.dsgalx, programa.dsgalxRuta, "dsgalx", 1);
-                resultado += LanzaCopia(programa.iplabor2, programa.iplabor2Ruta, "iplabor2", 1);
+                //Crea una lista de las tareas de copia a realizar
+                List<Task<int>> tareasCopia = new List<Task<int>>
+                {
+                    //Lanza el proceso de copia segun los checkBox marcados en los programas
+                    //Programas PI
+                    LanzaCopia(programa.ipcont08, programa.ipcont08Ruta, "ipcont08", 1),
+                    LanzaCopia(programa.siibase, programa.siibaseRuta, "siibase", 1),
+                    LanzaCopia(programa.v000adc, programa.v000adcRuta, "000adc", 1),
+                    LanzaCopia(programa.n43base, programa.n43baseRuta, "n43base", 1),
+                    LanzaCopia(programa.contalap, programa.contalapRuta, "contalap", 1),
+                    LanzaCopia(programa.ipmodelo, programa.ipmodeloRuta, "ipmodelo", 1),
+                    LanzaCopia(programa.iprent23, programa.iprent23Ruta, "iprent23", 1),
+                    LanzaCopia(programa.iprent22, programa.iprent22Ruta, "iprent22", 1),
+                    LanzaCopia(programa.iprent21, programa.iprent21Ruta, "iprent21", 1),
+                    LanzaCopia(programa.ipconts2, programa.ipconts2Ruta, "ipconts2", 1),
+                    LanzaCopia(programa.ipabogax, programa.ipabogaxRuta, "ipabogax", 1),
+                    LanzaCopia(programa.ipabogad, programa.ipabogadRuta, "ipabogad", 1),
+                    LanzaCopia(programa.ipabopar, programa.ipaboparRuta, "ipabopar", 1),
+                    LanzaCopia(programa.dscomer9, programa.dscomer9Ruta, "dscomer9", 1),
+                    LanzaCopia(programa.dscarter, programa.dscarterRuta, "dscarter", 1),
+                    LanzaCopia(programa.dsarchi, programa.dsarchiRuta, "dsarchi", 1),
+                    LanzaCopia(programa.notibase, programa.notibaseRuta, "notibase", 1),
+                    LanzaCopia(programa.certbase, programa.certbaseRuta, "certbase", 1),
+                    LanzaCopia(programa.dsesign, programa.dsesignRuta, "dsesign", 1),
+                    LanzaCopia(programa.dsedespa, programa.dsedespaRuta, "dsedespa", 1),
+                    LanzaCopia(programa.ipintegr, programa.ipintegrRuta, "ipintegr", 1),
+                    LanzaCopia(programa.ipbasica, programa.ipbasicaRuta, "ipbasica", 1),
+                    LanzaCopia(programa.ippatron, programa.ippatronRuta, "ippatron", 1),
+                    LanzaCopia(programa.gasbase, programa.gasbaseRuta, "gasbase", 1),
+                    LanzaCopia(programa.dscepsax, programa.dscepsaxRuta, "dscepsax", 1),
+                    LanzaCopia(programa.dsgalx, programa.dsgalxRuta, "dsgalx", 1),
+                    LanzaCopia(programa.iplabor2, programa.iplabor2Ruta, "iplabor2", 1)
+                };
+
+                //Almacena el numero de tareas que se han realizado
+                resultado = (await Task.WhenAll(tareasCopia)).Sum();
 
                 if (resultado > 0)
                 {
@@ -788,7 +814,7 @@ namespace copiaProgramas
                 }
                 else
                 {
-                    MessageBox.Show("No se han podido copiar los ficheros", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Error al copiar los ficheros", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
@@ -797,7 +823,7 @@ namespace copiaProgramas
             }
         }
 
-        private void btnCopiarnoPI_Click(object sender, EventArgs e)
+        private async void btnCopiarnoPI_Click(object sender, EventArgs e)
         {
             int resultado = 0; //Control para si se ha hecho alguna copia correctamente
             int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
@@ -812,21 +838,28 @@ namespace copiaProgramas
 
             if (controlCbx > 0)
             {
-                //Lanza el proceso de copia segun los checkBox marcados en los programas
-                //Programas noPI
-                resultado += LanzaCopia(programa.star308, programa.star308Ruta, "star308", 2);
-                resultado += LanzaCopia(programa.starpat, programa.starpatRuta, "starpat", 2);
-                resultado += LanzaCopia(programa.ereo, programa.ereoRuta, "ereo", 2);
-                resultado += LanzaCopia(programa.esocieda, programa.esociedaRuta, "esocieda", 2);
-                resultado += LanzaCopia(programa.efacges, programa.efacgesRuta, "efacges", 2);
-                resultado += LanzaCopia(programa.eintegra, programa.eintegraRuta, "eintegra", 2);
-                resultado += LanzaCopia(programa.ereopat, programa.ereopatRuta, "ereopat", 2);
-                resultado += LanzaCopia(programa.enom1, programa.enom1Ruta, "enom1", 2);
-                resultado += LanzaCopia(programa.enom2, programa.enom2Ruta, "enom2", 2);
-                resultado += LanzaCopia(programa.ered, programa.eredRuta, "ered", 2);
-                resultado += LanzaCopia(programa.enompat, programa.enompatRuta, "enompat", 2);
-                resultado += LanzaCopia(programa.dscepsa, programa.dscepsaRuta, "dscepsa", 2);
-                resultado += LanzaCopia(programa.dsgal, programa.dsgalRuta, "dsgal", 2);
+                //Crea una lista de las tareas de copia a realizar
+                List<Task<int>> tareasCopia = new List<Task<int>>
+                {
+                    //Lanza el proceso de copia segun los checkBox marcados en los programas
+                    //Programas noPI
+                    LanzaCopia(programa.star308, programa.star308Ruta, "star308", 2),
+                    LanzaCopia(programa.starpat, programa.starpatRuta, "starpat", 2),
+                    LanzaCopia(programa.ereo, programa.ereoRuta, "ereo", 2),
+                    LanzaCopia(programa.esocieda, programa.esociedaRuta, "esocieda", 2),
+                    LanzaCopia(programa.efacges, programa.efacgesRuta, "efacges", 2),
+                    LanzaCopia(programa.eintegra, programa.eintegraRuta, "eintegra", 2),
+                    LanzaCopia(programa.ereopat, programa.ereopatRuta, "ereopat", 2),
+                    LanzaCopia(programa.enom1, programa.enom1Ruta, "enom1", 2),
+                    LanzaCopia(programa.enom2, programa.enom2Ruta, "enom2", 2),
+                    LanzaCopia(programa.ered, programa.eredRuta, "ered", 2),
+                    LanzaCopia(programa.enompat, programa.enompatRuta, "enompat", 2),
+                    LanzaCopia(programa.dscepsa, programa.dscepsaRuta, "dscepsa", 2),
+                    LanzaCopia(programa.dsgal, programa.dsgalRuta, "dsgal", 2)
+                };
+
+                //Almacena el numero de tareas que se han realizado
+                resultado = (await Task.WhenAll(tareasCopia)).Sum();
 
                 if (resultado > 0)
                 {
@@ -834,7 +867,7 @@ namespace copiaProgramas
                 }
                 else
                 {
-                    MessageBox.Show("No se han podido copiar los ficheros", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Error al copiar los ficheros", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
