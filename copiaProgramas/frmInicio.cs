@@ -341,11 +341,13 @@ namespace copiaProgramas
             {
                 if (pestaña == 1)
                 {
-                    txtProgresoCopiaPI.AppendText(resultado + Environment.NewLine);
+                    txtProgresoCopiaPI.AppendText(resultado);
+                    txtProgresoCopiaPI.AppendText(string.Empty + "\r\n");
                 }
                 else if (pestaña == 2)
                 {
-                    txtProgresoCopianoPI.AppendText(resultado + Environment.NewLine);
+                    txtProgresoCopianoPI.AppendText(resultado);
+                    txtProgresoCopianoPI.AppendText(string.Empty + "\r\n");
                 }
             }
         }
@@ -375,9 +377,9 @@ namespace copiaProgramas
                 {
                     try
                     {
-                        ActualizarProgreso($"Copiando el programa {titulo} ", pestaña);
+                        ActualizarProgreso($"Copiando el programa {titulo}" + Environment.NewLine, pestaña);
                         await Task.Run(() => File.Copy(origen, destino, true)).ConfigureAwait(false);
-                        ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
+                        ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
                         resultado = 1;
                     }
 
@@ -391,7 +393,7 @@ namespace copiaProgramas
                     //Si la copia es al geco72
                     try
                     {
-                        ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
+                        ActualizarProgreso($"Copiando el programa {titulo}" + Environment.NewLine, pestaña);
 
                         // Configuración de opciones de sesión para la copia al geco72
                         SessionOptions sessionOptions = new SessionOptions
@@ -436,7 +438,7 @@ namespace copiaProgramas
                                 // Muestra información sobre la transferencia al finalizar
                                 foreach (TransferEventArgs transfer in transferResult.Transfers)
                                 {
-                                    ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
+                                    ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
                                 }
                                 resultado = 1;
                             }).ConfigureAwait(false);
@@ -1078,8 +1080,8 @@ namespace copiaProgramas
             }
         }
 
-        #endregion
 
+        #endregion
 
     }
 }

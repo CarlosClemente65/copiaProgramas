@@ -204,7 +204,7 @@
             this.tabConfiguracion.Margin = new System.Windows.Forms.Padding(5);
             this.tabConfiguracion.Name = "tabConfiguracion";
             this.tabConfiguracion.Padding = new System.Windows.Forms.Padding(5);
-            this.tabConfiguracion.Size = new System.Drawing.Size(666, 353);
+            this.tabConfiguracion.Size = new System.Drawing.Size(696, 353);
             this.tabConfiguracion.TabIndex = 5;
             this.tabConfiguracion.Text = "Configuracion";
             // 
@@ -218,7 +218,7 @@
             this.btnGuardarConfiguracion.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarConfiguracion.ImageIndex = 0;
             this.btnGuardarConfiguracion.ImageList = this.imageList1;
-            this.btnGuardarConfiguracion.Location = new System.Drawing.Point(488, 290);
+            this.btnGuardarConfiguracion.Location = new System.Drawing.Point(493, 289);
             this.btnGuardarConfiguracion.Name = "btnGuardarConfiguracion";
             this.btnGuardarConfiguracion.Size = new System.Drawing.Size(151, 46);
             this.btnGuardarConfiguracion.TabIndex = 27;
@@ -238,7 +238,7 @@
             this.btnDestinoLocal.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDestinoLocal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDestinoLocal.ImageIndex = 0;
-            this.btnDestinoLocal.Location = new System.Drawing.Point(617, 197);
+            this.btnDestinoLocal.Location = new System.Drawing.Point(650, 210);
             this.btnDestinoLocal.Name = "btnDestinoLocal";
             this.btnDestinoLocal.Size = new System.Drawing.Size(22, 22);
             this.btnDestinoLocal.TabIndex = 26;
@@ -252,9 +252,9 @@
             this.txtDestinoLocal.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDestinoLocal.Enabled = false;
             this.txtDestinoLocal.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDestinoLocal.Location = new System.Drawing.Point(142, 197);
+            this.txtDestinoLocal.Location = new System.Drawing.Point(461, 210);
             this.txtDestinoLocal.Name = "txtDestinoLocal";
-            this.txtDestinoLocal.Size = new System.Drawing.Size(469, 22);
+            this.txtDestinoLocal.Size = new System.Drawing.Size(183, 22);
             this.txtDestinoLocal.TabIndex = 25;
             // 
             // txtDestinoPasesnoPi
@@ -262,9 +262,9 @@
             this.txtDestinoPasesnoPi.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDestinoPasesnoPi.Enabled = false;
             this.txtDestinoPasesnoPi.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDestinoPasesnoPi.Location = new System.Drawing.Point(142, 251);
+            this.txtDestinoPasesnoPi.Location = new System.Drawing.Point(461, 168);
             this.txtDestinoPasesnoPi.Name = "txtDestinoPasesnoPi";
-            this.txtDestinoPasesnoPi.Size = new System.Drawing.Size(469, 22);
+            this.txtDestinoPasesnoPi.Size = new System.Drawing.Size(183, 22);
             this.txtDestinoPasesnoPi.TabIndex = 22;
             // 
             // txtDestinoPasesPi
@@ -272,9 +272,9 @@
             this.txtDestinoPasesPi.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDestinoPasesPi.Enabled = false;
             this.txtDestinoPasesPi.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDestinoPasesPi.Location = new System.Drawing.Point(142, 224);
+            this.txtDestinoPasesPi.Location = new System.Drawing.Point(461, 80);
             this.txtDestinoPasesPi.Name = "txtDestinoPasesPi";
-            this.txtDestinoPasesPi.Size = new System.Drawing.Size(469, 22);
+            this.txtDestinoPasesPi.Size = new System.Drawing.Size(183, 22);
             this.txtDestinoPasesPi.TabIndex = 19;
             // 
             // txtDestinonoPi
@@ -282,9 +282,9 @@
             this.txtDestinonoPi.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDestinonoPi.Enabled = false;
             this.txtDestinonoPi.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDestinonoPi.Location = new System.Drawing.Point(142, 170);
+            this.txtDestinonoPi.Location = new System.Drawing.Point(461, 126);
             this.txtDestinonoPi.Name = "txtDestinonoPi";
-            this.txtDestinonoPi.Size = new System.Drawing.Size(469, 22);
+            this.txtDestinonoPi.Size = new System.Drawing.Size(183, 22);
             this.txtDestinonoPi.TabIndex = 16;
             // 
             // txtDestinoPi
@@ -292,9 +292,9 @@
             this.txtDestinoPi.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDestinoPi.Enabled = false;
             this.txtDestinoPi.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDestinoPi.Location = new System.Drawing.Point(142, 143);
+            this.txtDestinoPi.Location = new System.Drawing.Point(461, 38);
             this.txtDestinoPi.Name = "txtDestinoPi";
-            this.txtDestinoPi.Size = new System.Drawing.Size(469, 22);
+            this.txtDestinoPi.Size = new System.Drawing.Size(182, 22);
             this.txtDestinoPi.TabIndex = 13;
             // 
             // txtRutaGasoleos
@@ -302,9 +302,9 @@
             this.txtRutaGasoleos.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtRutaGasoleos.Enabled = false;
             this.txtRutaGasoleos.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRutaGasoleos.Location = new System.Drawing.Point(142, 97);
+            this.txtRutaGasoleos.Location = new System.Drawing.Point(13, 255);
             this.txtRutaGasoleos.Name = "txtRutaGasoleos";
-            this.txtRutaGasoleos.Size = new System.Drawing.Size(469, 22);
+            this.txtRutaGasoleos.Size = new System.Drawing.Size(395, 22);
             this.txtRutaGasoleos.TabIndex = 10;
             // 
             // txtRutaGestion
@@ -312,9 +312,9 @@
             this.txtRutaGestion.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtRutaGestion.Enabled = false;
             this.txtRutaGestion.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRutaGestion.Location = new System.Drawing.Point(142, 70);
+            this.txtRutaGestion.Location = new System.Drawing.Point(13, 209);
             this.txtRutaGestion.Name = "txtRutaGestion";
-            this.txtRutaGestion.Size = new System.Drawing.Size(469, 22);
+            this.txtRutaGestion.Size = new System.Drawing.Size(395, 22);
             this.txtRutaGestion.TabIndex = 7;
             // 
             // txtRutanoPi
@@ -322,9 +322,9 @@
             this.txtRutanoPi.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtRutanoPi.Enabled = false;
             this.txtRutanoPi.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRutanoPi.Location = new System.Drawing.Point(142, 43);
+            this.txtRutanoPi.Location = new System.Drawing.Point(13, 125);
             this.txtRutanoPi.Name = "txtRutanoPi";
-            this.txtRutanoPi.Size = new System.Drawing.Size(469, 22);
+            this.txtRutanoPi.Size = new System.Drawing.Size(395, 22);
             this.txtRutanoPi.TabIndex = 4;
             // 
             // txtRutaPi
@@ -332,15 +332,15 @@
             this.txtRutaPi.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtRutaPi.Enabled = false;
             this.txtRutaPi.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRutaPi.Location = new System.Drawing.Point(142, 16);
+            this.txtRutaPi.Location = new System.Drawing.Point(13, 38);
             this.txtRutaPi.Name = "txtRutaPi";
-            this.txtRutaPi.Size = new System.Drawing.Size(469, 22);
+            this.txtRutaPi.Size = new System.Drawing.Size(395, 22);
             this.txtRutaPi.TabIndex = 1;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(11, 200);
+            this.label10.Location = new System.Drawing.Point(461, 193);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(87, 14);
             this.label10.TabIndex = 24;
@@ -349,7 +349,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(10, 254);
+            this.label9.Location = new System.Drawing.Point(461, 151);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(128, 14);
             this.label9.TabIndex = 21;
@@ -358,7 +358,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 227);
+            this.label8.Location = new System.Drawing.Point(461, 63);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 14);
             this.label8.TabIndex = 18;
@@ -367,7 +367,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 173);
+            this.label7.Location = new System.Drawing.Point(461, 110);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 14);
             this.label7.TabIndex = 15;
@@ -376,7 +376,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 147);
+            this.label6.Location = new System.Drawing.Point(461, 22);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 14);
             this.label6.TabIndex = 12;
@@ -385,7 +385,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 100);
+            this.label5.Location = new System.Drawing.Point(13, 239);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 14);
             this.label5.TabIndex = 9;
@@ -394,7 +394,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 76);
+            this.label4.Location = new System.Drawing.Point(13, 193);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 14);
             this.label4.TabIndex = 6;
@@ -403,7 +403,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 49);
+            this.label3.Location = new System.Drawing.Point(13, 109);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 14);
             this.label3.TabIndex = 3;
@@ -412,7 +412,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 22);
+            this.label2.Location = new System.Drawing.Point(13, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 14);
             this.label2.TabIndex = 0;
@@ -429,7 +429,7 @@
             this.btnDestinoPasesnoPi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDestinoPasesnoPi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDestinoPasesnoPi.ImageIndex = 0;
-            this.btnDestinoPasesnoPi.Location = new System.Drawing.Point(617, 251);
+            this.btnDestinoPasesnoPi.Location = new System.Drawing.Point(650, 168);
             this.btnDestinoPasesnoPi.Name = "btnDestinoPasesnoPi";
             this.btnDestinoPasesnoPi.Size = new System.Drawing.Size(22, 22);
             this.btnDestinoPasesnoPi.TabIndex = 23;
@@ -449,7 +449,7 @@
             this.btnDestinoPasesPi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDestinoPasesPi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDestinoPasesPi.ImageIndex = 0;
-            this.btnDestinoPasesPi.Location = new System.Drawing.Point(617, 225);
+            this.btnDestinoPasesPi.Location = new System.Drawing.Point(650, 80);
             this.btnDestinoPasesPi.Name = "btnDestinoPasesPi";
             this.btnDestinoPasesPi.Size = new System.Drawing.Size(22, 22);
             this.btnDestinoPasesPi.TabIndex = 20;
@@ -469,7 +469,7 @@
             this.btnDestinonoPi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDestinonoPi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDestinonoPi.ImageIndex = 0;
-            this.btnDestinonoPi.Location = new System.Drawing.Point(617, 170);
+            this.btnDestinonoPi.Location = new System.Drawing.Point(650, 126);
             this.btnDestinonoPi.Name = "btnDestinonoPi";
             this.btnDestinonoPi.Size = new System.Drawing.Size(22, 22);
             this.btnDestinonoPi.TabIndex = 17;
@@ -489,7 +489,7 @@
             this.btnDestinoPi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDestinoPi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDestinoPi.ImageIndex = 0;
-            this.btnDestinoPi.Location = new System.Drawing.Point(617, 144);
+            this.btnDestinoPi.Location = new System.Drawing.Point(650, 38);
             this.btnDestinoPi.Name = "btnDestinoPi";
             this.btnDestinoPi.Size = new System.Drawing.Size(22, 22);
             this.btnDestinoPi.TabIndex = 14;
@@ -509,7 +509,7 @@
             this.btnRutaGasoleos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnRutaGasoleos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRutaGasoleos.ImageIndex = 0;
-            this.btnRutaGasoleos.Location = new System.Drawing.Point(617, 98);
+            this.btnRutaGasoleos.Location = new System.Drawing.Point(414, 255);
             this.btnRutaGasoleos.Name = "btnRutaGasoleos";
             this.btnRutaGasoleos.Size = new System.Drawing.Size(22, 22);
             this.btnRutaGasoleos.TabIndex = 11;
@@ -529,7 +529,7 @@
             this.btnRutaGestion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnRutaGestion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRutaGestion.ImageIndex = 0;
-            this.btnRutaGestion.Location = new System.Drawing.Point(617, 69);
+            this.btnRutaGestion.Location = new System.Drawing.Point(412, 209);
             this.btnRutaGestion.Name = "btnRutaGestion";
             this.btnRutaGestion.Size = new System.Drawing.Size(22, 22);
             this.btnRutaGestion.TabIndex = 8;
@@ -549,7 +549,7 @@
             this.btnRutanoPi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnRutanoPi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRutanoPi.ImageIndex = 0;
-            this.btnRutanoPi.Location = new System.Drawing.Point(617, 42);
+            this.btnRutanoPi.Location = new System.Drawing.Point(414, 125);
             this.btnRutanoPi.Name = "btnRutanoPi";
             this.btnRutanoPi.Size = new System.Drawing.Size(22, 22);
             this.btnRutanoPi.TabIndex = 5;
@@ -569,7 +569,7 @@
             this.btnRutaPi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnRutaPi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRutaPi.ImageIndex = 0;
-            this.btnRutaPi.Location = new System.Drawing.Point(617, 15);
+            this.btnRutaPi.Location = new System.Drawing.Point(414, 38);
             this.btnRutaPi.Name = "btnRutaPi";
             this.btnRutaPi.Size = new System.Drawing.Size(22, 22);
             this.btnRutaPi.TabIndex = 2;
@@ -585,7 +585,7 @@
             this.tabProgramasPi.Location = new System.Drawing.Point(4, 34);
             this.tabProgramasPi.Name = "tabProgramasPi";
             this.tabProgramasPi.Padding = new System.Windows.Forms.Padding(10);
-            this.tabProgramasPi.Size = new System.Drawing.Size(666, 353);
+            this.tabProgramasPi.Size = new System.Drawing.Size(696, 353);
             this.tabProgramasPi.TabIndex = 1;
             this.tabProgramasPi.Text = "Programas PI";
             // 
@@ -604,14 +604,13 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(646, 333);
+            this.groupBox1.Size = new System.Drawing.Size(676, 333);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Programas";
             // 
             // btn_limpiarPI
             // 
-            this.btn_limpiarPI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_limpiarPI.AutoSize = true;
             this.btn_limpiarPI.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btn_limpiarPI.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -619,10 +618,10 @@
             this.btn_limpiarPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_limpiarPI.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_limpiarPI.ForeColor = System.Drawing.Color.Black;
-            this.btn_limpiarPI.Location = new System.Drawing.Point(336, 294);
+            this.btn_limpiarPI.Location = new System.Drawing.Point(336, 293);
             this.btn_limpiarPI.Margin = new System.Windows.Forms.Padding(1);
             this.btn_limpiarPI.Name = "btn_limpiarPI";
-            this.btn_limpiarPI.Size = new System.Drawing.Size(99, 28);
+            this.btn_limpiarPI.Size = new System.Drawing.Size(95, 28);
             this.btn_limpiarPI.TabIndex = 26;
             this.btn_limpiarPI.Text = "Limpiar";
             this.btn_limpiarPI.UseVisualStyleBackColor = false;
@@ -630,17 +629,20 @@
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.cb_destinoPI);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(336, 23);
+            this.panel2.Location = new System.Drawing.Point(334, 23);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.panel2.Size = new System.Drawing.Size(302, 38);
+            this.panel2.Size = new System.Drawing.Size(334, 38);
             this.panel2.TabIndex = 22;
             // 
             // cb_destinoPI
             // 
+            this.cb_destinoPI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_destinoPI.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_destinoPI.FormattingEnabled = true;
             this.cb_destinoPI.Items.AddRange(new object[] {
@@ -649,7 +651,7 @@
             "Carpeta pasesPI"});
             this.cb_destinoPI.Location = new System.Drawing.Point(105, 7);
             this.cb_destinoPI.Name = "cb_destinoPI";
-            this.cb_destinoPI.Size = new System.Drawing.Size(193, 22);
+            this.cb_destinoPI.Size = new System.Drawing.Size(221, 22);
             this.cb_destinoPI.TabIndex = 25;
             this.cb_destinoPI.SelectedIndexChanged += new System.EventHandler(this.cb_destinoPI_SelectedIndexChanged);
             // 
@@ -666,22 +668,23 @@
             // 
             // txtProgresoCopiaPI
             // 
-            this.txtProgresoCopiaPI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtProgresoCopiaPI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtProgresoCopiaPI.BackColor = System.Drawing.SystemColors.Control;
             this.txtProgresoCopiaPI.Location = new System.Drawing.Point(336, 83);
             this.txtProgresoCopiaPI.Multiline = true;
             this.txtProgresoCopiaPI.Name = "txtProgresoCopiaPI";
             this.txtProgresoCopiaPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtProgresoCopiaPI.Size = new System.Drawing.Size(302, 204);
+            this.txtProgresoCopiaPI.Size = new System.Drawing.Size(332, 204);
             this.txtProgresoCopiaPI.TabIndex = 1;
             // 
             // label11
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(333, 64);
+            this.label11.Location = new System.Drawing.Point(336, 64);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(109, 16);
+            this.label11.Size = new System.Drawing.Size(94, 14);
             this.label11.TabIndex = 2;
             this.label11.Text = "Proceso copia";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -696,10 +699,10 @@
             this.btnCopiarPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopiarPI.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCopiarPI.ForeColor = System.Drawing.Color.Black;
-            this.btnCopiarPI.Location = new System.Drawing.Point(546, 293);
+            this.btnCopiarPI.Location = new System.Drawing.Point(578, 291);
             this.btnCopiarPI.Margin = new System.Windows.Forms.Padding(1);
             this.btnCopiarPI.Name = "btnCopiarPI";
-            this.btnCopiarPI.Size = new System.Drawing.Size(92, 28);
+            this.btnCopiarPI.Size = new System.Drawing.Size(90, 28);
             this.btnCopiarPI.TabIndex = 1;
             this.btnCopiarPI.Text = "Copiar";
             this.btnCopiarPI.UseVisualStyleBackColor = false;
@@ -1187,7 +1190,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(5, 5);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(674, 391);
+            this.tabControl1.Size = new System.Drawing.Size(704, 391);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.cb_destinonoPI_SelectedIndexChanged);
             // 
@@ -1199,7 +1202,7 @@
             this.tabProgramasnoPI.Margin = new System.Windows.Forms.Padding(5);
             this.tabProgramasnoPI.Name = "tabProgramasnoPI";
             this.tabProgramasnoPI.Padding = new System.Windows.Forms.Padding(10);
-            this.tabProgramasnoPI.Size = new System.Drawing.Size(666, 353);
+            this.tabProgramasnoPI.Size = new System.Drawing.Size(696, 353);
             this.tabProgramasnoPI.TabIndex = 6;
             this.tabProgramasnoPI.Text = "Programas noPI";
             // 
@@ -1216,14 +1219,13 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox2.Size = new System.Drawing.Size(646, 333);
+            this.groupBox2.Size = new System.Drawing.Size(676, 333);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Programas";
             // 
             // btn_limpiarnoPI
             // 
-            this.btn_limpiarnoPI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_limpiarnoPI.AutoSize = true;
             this.btn_limpiarnoPI.BackColor = System.Drawing.Color.LightBlue;
             this.btn_limpiarnoPI.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -1231,10 +1233,10 @@
             this.btn_limpiarnoPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_limpiarnoPI.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_limpiarnoPI.ForeColor = System.Drawing.Color.Black;
-            this.btn_limpiarnoPI.Location = new System.Drawing.Point(285, 290);
+            this.btn_limpiarnoPI.Location = new System.Drawing.Point(236, 290);
             this.btn_limpiarnoPI.Margin = new System.Windows.Forms.Padding(1);
             this.btn_limpiarnoPI.Name = "btn_limpiarnoPI";
-            this.btn_limpiarnoPI.Size = new System.Drawing.Size(99, 28);
+            this.btn_limpiarnoPI.Size = new System.Drawing.Size(90, 28);
             this.btn_limpiarnoPI.TabIndex = 31;
             this.btn_limpiarnoPI.Text = "Limpiar";
             this.btn_limpiarnoPI.UseVisualStyleBackColor = false;
@@ -1242,17 +1244,20 @@
             // 
             // panel15
             // 
-            this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel15.Controls.Add(this.cb_destinonoPI);
             this.panel15.Controls.Add(this.label19);
-            this.panel15.Location = new System.Drawing.Point(285, 23);
+            this.panel15.Location = new System.Drawing.Point(236, 23);
             this.panel15.Name = "panel15";
             this.panel15.Padding = new System.Windows.Forms.Padding(5);
-            this.panel15.Size = new System.Drawing.Size(353, 38);
+            this.panel15.Size = new System.Drawing.Size(432, 38);
             this.panel15.TabIndex = 30;
             // 
             // cb_destinonoPI
             // 
+            this.cb_destinonoPI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_destinonoPI.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_destinonoPI.FormattingEnabled = true;
             this.cb_destinonoPI.Items.AddRange(new object[] {
@@ -1261,7 +1266,7 @@
             "Carpeta pasesnoPI"});
             this.cb_destinonoPI.Location = new System.Drawing.Point(105, 7);
             this.cb_destinonoPI.Name = "cb_destinonoPI";
-            this.cb_destinonoPI.Size = new System.Drawing.Size(240, 22);
+            this.cb_destinonoPI.Size = new System.Drawing.Size(319, 22);
             this.cb_destinonoPI.TabIndex = 25;
             // 
             // label19
@@ -1277,23 +1282,25 @@
             // 
             // txtProgresoCopianoPI
             // 
-            this.txtProgresoCopianoPI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtProgresoCopianoPI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtProgresoCopianoPI.BackColor = System.Drawing.SystemColors.Control;
-            this.txtProgresoCopianoPI.Location = new System.Drawing.Point(285, 83);
+            this.txtProgresoCopianoPI.Location = new System.Drawing.Point(236, 83);
             this.txtProgresoCopianoPI.Multiline = true;
             this.txtProgresoCopianoPI.Name = "txtProgresoCopianoPI";
             this.txtProgresoCopianoPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtProgresoCopianoPI.Size = new System.Drawing.Size(353, 204);
+            this.txtProgresoCopianoPI.Size = new System.Drawing.Size(432, 204);
             this.txtProgresoCopianoPI.TabIndex = 27;
             // 
             // label20
             // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label20.AutoSize = true;
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(282, 64);
+            this.label20.Location = new System.Drawing.Point(236, 64);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(109, 16);
+            this.label20.Size = new System.Drawing.Size(94, 14);
             this.label20.TabIndex = 29;
             this.label20.Text = "Proceso copia";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1308,10 +1315,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(546, 290);
+            this.button2.Location = new System.Drawing.Point(578, 290);
             this.button2.Margin = new System.Windows.Forms.Padding(1);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(92, 28);
+            this.button2.Size = new System.Drawing.Size(90, 28);
             this.button2.TabIndex = 28;
             this.button2.Text = "Copiar";
             this.button2.UseVisualStyleBackColor = false;
@@ -1619,14 +1626,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(684, 401);
+            this.ClientSize = new System.Drawing.Size(714, 401);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(700, 440);
+            this.MinimumSize = new System.Drawing.Size(730, 440);
             this.Name = "frmInicio";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
