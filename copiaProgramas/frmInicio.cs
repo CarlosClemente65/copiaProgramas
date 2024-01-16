@@ -5,6 +5,7 @@ using System.IO;
 using WinSCP;
 using System.Threading.Tasks;
 using System.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace copiaProgramas
 {
@@ -427,6 +428,23 @@ namespace copiaProgramas
 
                                 // Conexión
                                 session = new Session();
+                                session.FileTransferProgress += (sender, e) =>
+                                {
+                                    if (pestaña == 1)
+                                    {
+                                        progressBar1.Invoke((MethodInvoker)(() =>
+                                        {
+                                            progressBar1.Value = (int)(e.OverallProgress * 100);
+                                        }));
+                                    }
+                                    else if (pestaña == 2)
+                                    {
+                                        progressBar2.Invoke((MethodInvoker)(() =>
+                                        {
+                                            progressBar2.Value = (int)(e.OverallProgress * 100);
+                                        }));
+                                    }
+                                };
                                 session.Open(sessionOptions);
 
                                 TransferOptions transferOptions = new TransferOptions();
@@ -463,6 +481,7 @@ namespace copiaProgramas
             }
             return resultado;
         }
+
 
         private void cb_destinoPI_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -763,6 +782,8 @@ namespace copiaProgramas
             int resultado = 0; //Control para si se ha hecho alguna copia correctamente
             int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
 
+            tabControl1.Enabled = false;
+
             foreach (Control control in panelPI.Controls)
             {
                 if (control is CheckBox cbx && cbx.Checked)
@@ -823,10 +844,13 @@ namespace copiaProgramas
             {
                 MessageBox.Show("No ha seleccionado ningun programa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            tabControl1.Enabled = true;
         }
 
         private async void btnCopiarnoPI_Click(object sender, EventArgs e)
         {
+            tabControl1.Enabled = false;
             int resultado = 0; //Control para si se ha hecho alguna copia correctamente
             int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
 
@@ -876,6 +900,8 @@ namespace copiaProgramas
             {
                 MessageBox.Show("No ha seleccionado ningun programa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            tabControl1.Enabled = true;
         }
 
         public void btnGuardarConfiguracion_MouseClick(object sender, MouseEventArgs e)
@@ -1044,7 +1070,7 @@ namespace copiaProgramas
             //Metodo para cambiar los iconos del resto de los botones cuando se pulsa alguno
             foreach (Control control in tabControl1.TabPages["tabConfiguracion"].Controls)
             {
-                if (control is Button btn)
+                if (control is System.Windows.Forms.Button btn)
                 {
                     if (estado)
                     {

@@ -150,6 +150,8 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.tabConfiguracion.SuspendLayout();
             this.tabProgramasPi.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -592,6 +594,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.SeaGreen;
+            this.groupBox1.Controls.Add(this.progressBar1);
             this.groupBox1.Controls.Add(this.btn_limpiarPI);
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.txtProgresoCopiaPI);
@@ -651,7 +654,7 @@
             "Carpeta pasesPI"});
             this.cb_destinoPI.Location = new System.Drawing.Point(105, 7);
             this.cb_destinoPI.Name = "cb_destinoPI";
-            this.cb_destinoPI.Size = new System.Drawing.Size(221, 22);
+            this.cb_destinoPI.Size = new System.Drawing.Size(229, 22);
             this.cb_destinoPI.TabIndex = 25;
             this.cb_destinoPI.SelectedIndexChanged += new System.EventHandler(this.cb_destinoPI_SelectedIndexChanged);
             // 
@@ -671,22 +674,22 @@
             this.txtProgresoCopiaPI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtProgresoCopiaPI.BackColor = System.Drawing.SystemColors.Control;
-            this.txtProgresoCopiaPI.Location = new System.Drawing.Point(336, 83);
+            this.txtProgresoCopiaPI.Location = new System.Drawing.Point(336, 92);
             this.txtProgresoCopiaPI.Multiline = true;
             this.txtProgresoCopiaPI.Name = "txtProgresoCopiaPI";
             this.txtProgresoCopiaPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtProgresoCopiaPI.Size = new System.Drawing.Size(332, 204);
+            this.txtProgresoCopiaPI.Size = new System.Drawing.Size(332, 195);
             this.txtProgresoCopiaPI.TabIndex = 1;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(336, 64);
+            this.label11.Location = new System.Drawing.Point(335, 69);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(94, 14);
+            this.label11.Size = new System.Drawing.Size(101, 14);
             this.label11.TabIndex = 2;
-            this.label11.Text = "Proceso copia";
+            this.label11.Text = "Progreso copia";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCopiarPI
@@ -1208,6 +1211,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.progressBar2);
             this.groupBox2.Controls.Add(this.btn_limpiarnoPI);
             this.groupBox2.Controls.Add(this.panel15);
             this.groupBox2.Controls.Add(this.txtProgresoCopianoPI);
@@ -1266,7 +1270,7 @@
             "Carpeta pasesnoPI"});
             this.cb_destinonoPI.Location = new System.Drawing.Point(105, 7);
             this.cb_destinonoPI.Name = "cb_destinonoPI";
-            this.cb_destinonoPI.Size = new System.Drawing.Size(319, 22);
+            this.cb_destinonoPI.Size = new System.Drawing.Size(327, 22);
             this.cb_destinonoPI.TabIndex = 25;
             // 
             // label19
@@ -1285,11 +1289,11 @@
             this.txtProgresoCopianoPI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtProgresoCopianoPI.BackColor = System.Drawing.SystemColors.Control;
-            this.txtProgresoCopianoPI.Location = new System.Drawing.Point(236, 83);
+            this.txtProgresoCopianoPI.Location = new System.Drawing.Point(236, 93);
             this.txtProgresoCopianoPI.Multiline = true;
             this.txtProgresoCopianoPI.Name = "txtProgresoCopianoPI";
             this.txtProgresoCopianoPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtProgresoCopianoPI.Size = new System.Drawing.Size(432, 204);
+            this.txtProgresoCopianoPI.Size = new System.Drawing.Size(432, 194);
             this.txtProgresoCopianoPI.TabIndex = 27;
             // 
             // label20
@@ -1298,7 +1302,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(236, 64);
+            this.label20.Location = new System.Drawing.Point(236, 68);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(94, 14);
             this.label20.TabIndex = 29;
@@ -1621,6 +1625,21 @@
             this.label29.TabIndex = 23;
             this.label29.Text = "Modelos";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(439, 65);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(229, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.TabIndex = 27;
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(341, 64);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(327, 23);
+            this.progressBar2.TabIndex = 32;
+            // 
             // frmInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
@@ -1781,6 +1800,8 @@
         private System.Windows.Forms.TextBox txtProgresoCopianoPI;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progressBar2;
     }
 }
 
