@@ -331,32 +331,31 @@ namespace copiaProgramas
             }
         }
 
-        private void ActualizarProgreso(string resultado, int pestaña)
+        private void ActualizarProgreso(string mensaje, int pestaña)
         {
             //Este metodo escribe en el textBox el progreso de la copia
             if (InvokeRequired) // Se asegura que esta en el mismo hilo de ejecucion
             {
-                Invoke(new Action<string, int>(ActualizarProgreso), resultado, pestaña);
+                Invoke(new Action<string, int>(ActualizarProgreso), mensaje, pestaña);
             }
             else
             {
                 if (pestaña == 1)
                 {
-                    txtProgresoCopiaPI.AppendText(resultado);
+                    txtProgresoCopiaPI.AppendText(mensaje);
                     txtProgresoCopiaPI.AppendText(string.Empty + "\r\n");
                 }
                 else if (pestaña == 2)
                 {
-                    txtProgresoCopianoPI.AppendText(resultado);
+                    txtProgresoCopianoPI.AppendText(mensaje);
                     txtProgresoCopianoPI.AppendText(string.Empty + "\r\n");
                 }
             }
         }
 
 
-        private async Task<int> LanzaCopia(bool programa, string fichero, string titulo, int pestaña)
+        private async Task LanzaCopia(bool programa, string fichero, string titulo, int pestaña)
         {
-            int resultado = 0;//Resultado de la copia
             if (programa) //Si esta marcado el programa pasado se lanza la copia
             {
                 string origen = string.Empty;
@@ -378,10 +377,9 @@ namespace copiaProgramas
                 {
                     try
                     {
-                        ActualizarProgreso($"Copiando el programa {titulo}" + Environment.NewLine, pestaña);
+                        ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
                         await Task.Run(() => File.Copy(origen, destino, true)).ConfigureAwait(false);
                         ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
-                        resultado = 1;
                     }
 
                     catch (Exception ex)
@@ -394,7 +392,7 @@ namespace copiaProgramas
                     //Si la copia es al geco72
                     try
                     {
-                        ActualizarProgreso($"Copiando el programa {titulo}" + Environment.NewLine, pestaña);
+                        ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
 
                         // Configuración de opciones de sesión para la copia al geco72
                         SessionOptions sessionOptions = new SessionOptions
@@ -428,13 +426,19 @@ namespace copiaProgramas
 
                                 // Conexión
                                 session = new Session();
+
+                                //Permite controlar el progreso de copia
                                 session.FileTransferProgress += (sender, e) =>
                                 {
                                     if (pestaña == 1)
                                     {
+                                        //Actualiza la barra de progreso de copia
                                         progressBar1.Invoke((MethodInvoker)(() =>
                                         {
                                             progressBar1.Value = (int)(e.OverallProgress * 100);
+                                            //Muestra el porcentaje completado
+                                            int porcentaje = (int)(e.OverallProgress * 100);
+                                            lbl_porcentaje.Text = $"{porcentaje}%";
                                         }));
                                     }
                                     else if (pestaña == 2)
@@ -442,23 +446,25 @@ namespace copiaProgramas
                                         progressBar2.Invoke((MethodInvoker)(() =>
                                         {
                                             progressBar2.Value = (int)(e.OverallProgress * 100);
+                                            int porcentaje = (int)(e.OverallProgress * 100);
+                                            lbl_porcentaje2.Text = $"{porcentaje}%";
                                         }));
                                     }
                                 };
+
+                                ActualizarProgreso($"Conectando con el servidor . . .", pestaña);
                                 session.Open(sessionOptions);
 
                                 TransferOptions transferOptions = new TransferOptions();
                                 transferOptions.TransferMode = TransferMode.Binary;
 
+                                ActualizarProgreso($"Iniciando copia . . .", pestaña);
                                 TransferOperationResult transferResult = session.PutFiles(origen, variable.destino, false, transferOptions);
                                 transferResult.Check();
 
                                 // Muestra información sobre la transferencia al finalizar
-                                foreach (TransferEventArgs transfer in transferResult.Transfers)
-                                {
-                                    ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
-                                }
-                                resultado = 1;
+                                ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
+
                             }).ConfigureAwait(false);
                         }
 
@@ -479,7 +485,7 @@ namespace copiaProgramas
                     }
                 }
             }
-            return resultado;
+            //return resultado;
         }
 
 
@@ -795,41 +801,46 @@ namespace copiaProgramas
             if (controlCbx > 0)
             {
                 //Crea una lista de las tareas de copia a realizar
-                List<Task<int>> tareasCopia = new List<Task<int>>
+                List<Func<Task>> tareasCopia = new List<Func<Task>>
                 {
                     //Lanza el proceso de copia segun los checkBox marcados en los programas
                     //Programas PI
-                    LanzaCopia(programa.ipcont08, programa.ipcont08Ruta, "ipcont08", 1),
-                    LanzaCopia(programa.siibase, programa.siibaseRuta, "siibase", 1),
-                    LanzaCopia(programa.v000adc, programa.v000adcRuta, "000adc", 1),
-                    LanzaCopia(programa.n43base, programa.n43baseRuta, "n43base", 1),
-                    LanzaCopia(programa.contalap, programa.contalapRuta, "contalap", 1),
-                    LanzaCopia(programa.ipmodelo, programa.ipmodeloRuta, "ipmodelo", 1),
-                    LanzaCopia(programa.iprent23, programa.iprent23Ruta, "iprent23", 1),
-                    LanzaCopia(programa.iprent22, programa.iprent22Ruta, "iprent22", 1),
-                    LanzaCopia(programa.iprent21, programa.iprent21Ruta, "iprent21", 1),
-                    LanzaCopia(programa.ipconts2, programa.ipconts2Ruta, "ipconts2", 1),
-                    LanzaCopia(programa.ipabogax, programa.ipabogaxRuta, "ipabogax", 1),
-                    LanzaCopia(programa.ipabogad, programa.ipabogadRuta, "ipabogad", 1),
-                    LanzaCopia(programa.ipabopar, programa.ipaboparRuta, "ipabopar", 1),
-                    LanzaCopia(programa.dscomer9, programa.dscomer9Ruta, "dscomer9", 1),
-                    LanzaCopia(programa.dscarter, programa.dscarterRuta, "dscarter", 1),
-                    LanzaCopia(programa.dsarchi, programa.dsarchiRuta, "dsarchi", 1),
-                    LanzaCopia(programa.notibase, programa.notibaseRuta, "notibase", 1),
-                    LanzaCopia(programa.certbase, programa.certbaseRuta, "certbase", 1),
-                    LanzaCopia(programa.dsesign, programa.dsesignRuta, "dsesign", 1),
-                    LanzaCopia(programa.dsedespa, programa.dsedespaRuta, "dsedespa", 1),
-                    LanzaCopia(programa.ipintegr, programa.ipintegrRuta, "ipintegr", 1),
-                    LanzaCopia(programa.ipbasica, programa.ipbasicaRuta, "ipbasica", 1),
-                    LanzaCopia(programa.ippatron, programa.ippatronRuta, "ippatron", 1),
-                    LanzaCopia(programa.gasbase, programa.gasbaseRuta, "gasbase", 1),
-                    LanzaCopia(programa.dscepsax, programa.dscepsaxRuta, "dscepsax", 1),
-                    LanzaCopia(programa.dsgalx, programa.dsgalxRuta, "dsgalx", 1),
-                    LanzaCopia(programa.iplabor2, programa.iplabor2Ruta, "iplabor2", 1)
+                    () => LanzaCopia(programa.ipcont08, programa.ipcont08Ruta, "ipcont08", 1),
+                    () => LanzaCopia(programa.siibase, programa.siibaseRuta, "siibase", 1),
+                    () => LanzaCopia(programa.v000adc, programa.v000adcRuta, "000adc", 1),
+                    () => LanzaCopia(programa.n43base, programa.n43baseRuta, "n43base", 1),
+                    () => LanzaCopia(programa.contalap, programa.contalapRuta, "contalap", 1),
+                    () => LanzaCopia(programa.ipmodelo, programa.ipmodeloRuta, "ipmodelo", 1),
+                    () => LanzaCopia(programa.iprent23, programa.iprent23Ruta, "iprent23", 1),
+                    () => LanzaCopia(programa.iprent22, programa.iprent22Ruta, "iprent22", 1),
+                    () => LanzaCopia(programa.iprent21, programa.iprent21Ruta, "iprent21", 1),
+                    () => LanzaCopia(programa.ipconts2, programa.ipconts2Ruta, "ipconts2", 1),
+                    () => LanzaCopia(programa.ipabogax, programa.ipabogaxRuta, "ipabogax", 1),
+                    () => LanzaCopia(programa.ipabogad, programa.ipabogadRuta, "ipabogad", 1),
+                    () => LanzaCopia(programa.ipabopar, programa.ipaboparRuta, "ipabopar", 1),
+                    () => LanzaCopia(programa.dscomer9, programa.dscomer9Ruta, "dscomer9", 1),
+                    () => LanzaCopia(programa.dscarter, programa.dscarterRuta, "dscarter", 1),
+                    () => LanzaCopia(programa.dsarchi, programa.dsarchiRuta, "dsarchi", 1),
+                    () => LanzaCopia(programa.notibase, programa.notibaseRuta, "notibase", 1),
+                    () => LanzaCopia(programa.certbase, programa.certbaseRuta, "certbase", 1),
+                    () => LanzaCopia(programa.dsesign, programa.dsesignRuta, "dsesign", 1),
+                    () => LanzaCopia(programa.dsedespa, programa.dsedespaRuta, "dsedespa", 1),
+                    () => LanzaCopia(programa.ipintegr, programa.ipintegrRuta, "ipintegr", 1),
+                    () => LanzaCopia(programa.ipbasica, programa.ipbasicaRuta, "ipbasica", 1),
+                    () => LanzaCopia(programa.ippatron, programa.ippatronRuta, "ippatron", 1),
+                    () => LanzaCopia(programa.gasbase, programa.gasbaseRuta, "gasbase", 1),
+                    () => LanzaCopia(programa.dscepsax, programa.dscepsaxRuta, "dscepsax", 1),
+                    () => LanzaCopia(programa.dsgalx, programa.dsgalxRuta, "dsgalx", 1),
+                    () => LanzaCopia(programa.iplabor2, programa.iplabor2Ruta, "iplabor2", 1)
                 };
 
-                //Almacena el numero de tareas que se han realizado
-                resultado = (await Task.WhenAll(tareasCopia)).Sum();
+                //Lanza las copias una a una
+                for (int i = 0; i < tareasCopia.Count; i++)
+                {
+                    await tareasCopia[i]();
+                    //Almacena el numero de tareas que se han realizado
+                    resultado++;
+                }
 
                 if (resultado > 0)
                 {
@@ -846,6 +857,8 @@ namespace copiaProgramas
             }
 
             tabControl1.Enabled = true;
+            lbl_porcentaje.Text = string.Empty;
+            progressBar1.Value = 0;
         }
 
         private async void btnCopiarnoPI_Click(object sender, EventArgs e)
@@ -865,27 +878,32 @@ namespace copiaProgramas
             if (controlCbx > 0)
             {
                 //Crea una lista de las tareas de copia a realizar
-                List<Task<int>> tareasCopia = new List<Task<int>>
+                List<Func<Task>> tareasCopia = new List<Func<Task>>
                 {
                     //Lanza el proceso de copia segun los checkBox marcados en los programas
                     //Programas noPI
-                    LanzaCopia(programa.star308, programa.star308Ruta, "star308", 2),
-                    LanzaCopia(programa.starpat, programa.starpatRuta, "starpat", 2),
-                    LanzaCopia(programa.ereo, programa.ereoRuta, "ereo", 2),
-                    LanzaCopia(programa.esocieda, programa.esociedaRuta, "esocieda", 2),
-                    LanzaCopia(programa.efacges, programa.efacgesRuta, "efacges", 2),
-                    LanzaCopia(programa.eintegra, programa.eintegraRuta, "eintegra", 2),
-                    LanzaCopia(programa.ereopat, programa.ereopatRuta, "ereopat", 2),
-                    LanzaCopia(programa.enom1, programa.enom1Ruta, "enom1", 2),
-                    LanzaCopia(programa.enom2, programa.enom2Ruta, "enom2", 2),
-                    LanzaCopia(programa.ered, programa.eredRuta, "ered", 2),
-                    LanzaCopia(programa.enompat, programa.enompatRuta, "enompat", 2),
-                    LanzaCopia(programa.dscepsa, programa.dscepsaRuta, "dscepsa", 2),
-                    LanzaCopia(programa.dsgal, programa.dsgalRuta, "dsgal", 2)
+                    () => LanzaCopia(programa.star308, programa.star308Ruta, "star308", 2),
+                    () => LanzaCopia(programa.starpat, programa.starpatRuta, "starpat", 2),
+                    () => LanzaCopia(programa.ereo, programa.ereoRuta, "ereo", 2),
+                    () => LanzaCopia(programa.esocieda, programa.esociedaRuta, "esocieda", 2),
+                    () => LanzaCopia(programa.efacges, programa.efacgesRuta, "efacges", 2),
+                    () => LanzaCopia(programa.eintegra, programa.eintegraRuta, "eintegra", 2),
+                    () => LanzaCopia(programa.ereopat, programa.ereopatRuta, "ereopat", 2),
+                    () => LanzaCopia(programa.enom1, programa.enom1Ruta, "enom1", 2),
+                    () => LanzaCopia(programa.enom2, programa.enom2Ruta, "enom2", 2),
+                    () => LanzaCopia(programa.ered, programa.eredRuta, "ered", 2),
+                    () => LanzaCopia(programa.enompat, programa.enompatRuta, "enompat", 2),
+                    () => LanzaCopia(programa.dscepsa, programa.dscepsaRuta, "dscepsa", 2),
+                    () => LanzaCopia(programa.dsgal, programa.dsgalRuta, "dsgal", 2)
                 };
 
-                //Almacena el numero de tareas que se han realizado
-                resultado = (await Task.WhenAll(tareasCopia)).Sum();
+                //Lanza las copias una a una
+                for (int i = 0; i < tareasCopia.Count; i++)
+                {
+                    await tareasCopia[i]();
+                    //Almacena el numero de tareas que se han realizado
+                    resultado++;
+                }
 
                 if (resultado > 0)
                 {
@@ -902,6 +920,8 @@ namespace copiaProgramas
             }
 
             tabControl1.Enabled = true;
+            lbl_porcentaje2.Text = string.Empty;
+            progressBar2.Value = 0;
         }
 
         public void btnGuardarConfiguracion_MouseClick(object sender, MouseEventArgs e)

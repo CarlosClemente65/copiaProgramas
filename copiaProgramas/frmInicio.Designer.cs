@@ -62,6 +62,7 @@
             this.btnRutaPi = new System.Windows.Forms.Button();
             this.tabProgramasPi = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btn_limpiarPI = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cb_destinoPI = new System.Windows.Forms.ComboBox();
@@ -116,6 +117,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabProgramasnoPI = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.btn_limpiarnoPI = new System.Windows.Forms.Button();
             this.panel15 = new System.Windows.Forms.Panel();
             this.cb_destinonoPI = new System.Windows.Forms.ComboBox();
@@ -150,8 +152,8 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.lbl_porcentaje = new System.Windows.Forms.Label();
+            this.lbl_porcentaje2 = new System.Windows.Forms.Label();
             this.tabConfiguracion.SuspendLayout();
             this.tabProgramasPi.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -594,11 +596,9 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.SeaGreen;
-            this.groupBox1.Controls.Add(this.progressBar1);
             this.groupBox1.Controls.Add(this.btn_limpiarPI);
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.txtProgresoCopiaPI);
-            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.btnCopiarPI);
             this.groupBox1.Controls.Add(this.panelPI);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -611,6 +611,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Programas";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(160, 35);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(174, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.TabIndex = 27;
             // 
             // btn_limpiarPI
             // 
@@ -634,12 +644,15 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.lbl_porcentaje);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.progressBar1);
             this.panel2.Controls.Add(this.cb_destinoPI);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(334, 23);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.panel2.Size = new System.Drawing.Size(334, 38);
+            this.panel2.Size = new System.Drawing.Size(334, 65);
             this.panel2.TabIndex = 22;
             // 
             // cb_destinoPI
@@ -684,8 +697,9 @@
             // label11
             // 
             this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(335, 69);
+            this.label11.Location = new System.Drawing.Point(5, 38);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(101, 14);
             this.label11.TabIndex = 2;
@@ -1211,11 +1225,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.progressBar2);
             this.groupBox2.Controls.Add(this.btn_limpiarnoPI);
             this.groupBox2.Controls.Add(this.panel15);
             this.groupBox2.Controls.Add(this.txtProgresoCopianoPI);
-            this.groupBox2.Controls.Add(this.label20);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.panelnoPI);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1227,6 +1239,13 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Programas";
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(156, 33);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(276, 23);
+            this.progressBar2.TabIndex = 32;
             // 
             // btn_limpiarnoPI
             // 
@@ -1250,12 +1269,15 @@
             // 
             this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel15.Controls.Add(this.label20);
+            this.panel15.Controls.Add(this.progressBar2);
+            this.panel15.Controls.Add(this.lbl_porcentaje2);
             this.panel15.Controls.Add(this.cb_destinonoPI);
             this.panel15.Controls.Add(this.label19);
             this.panel15.Location = new System.Drawing.Point(236, 23);
             this.panel15.Name = "panel15";
             this.panel15.Padding = new System.Windows.Forms.Padding(5);
-            this.panel15.Size = new System.Drawing.Size(432, 38);
+            this.panel15.Size = new System.Drawing.Size(432, 64);
             this.panel15.TabIndex = 30;
             // 
             // cb_destinonoPI
@@ -1278,7 +1300,7 @@
             this.label19.AutoSize = true;
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(5, 10);
+            this.label19.Location = new System.Drawing.Point(6, 10);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(92, 14);
             this.label19.TabIndex = 2;
@@ -1302,12 +1324,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(236, 68);
+            this.label20.Location = new System.Drawing.Point(6, 36);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(94, 14);
+            this.label20.Size = new System.Drawing.Size(101, 14);
             this.label20.TabIndex = 29;
-            this.label20.Text = "Proceso copia";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label20.Text = "Progreso copia";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button2
             // 
@@ -1625,20 +1647,26 @@
             this.label29.TabIndex = 23;
             this.label29.Text = "Modelos";
             // 
-            // progressBar1
+            // lbl_porcentaje
             // 
-            this.progressBar1.Location = new System.Drawing.Point(439, 65);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(229, 23);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar1.TabIndex = 27;
+            this.lbl_porcentaje.BackColor = System.Drawing.Color.SeaGreen;
+            this.lbl_porcentaje.Enabled = false;
+            this.lbl_porcentaje.Location = new System.Drawing.Point(102, 35);
+            this.lbl_porcentaje.Name = "lbl_porcentaje";
+            this.lbl_porcentaje.Size = new System.Drawing.Size(56, 23);
+            this.lbl_porcentaje.TabIndex = 28;
+            this.lbl_porcentaje.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // progressBar2
+            // lbl_porcentaje2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(341, 64);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(327, 23);
-            this.progressBar2.TabIndex = 32;
+            this.lbl_porcentaje2.BackColor = System.Drawing.Color.SteelBlue;
+            this.lbl_porcentaje2.Enabled = false;
+            this.lbl_porcentaje2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbl_porcentaje2.Location = new System.Drawing.Point(108, 33);
+            this.lbl_porcentaje2.Name = "lbl_porcentaje2";
+            this.lbl_porcentaje2.Size = new System.Drawing.Size(45, 20);
+            this.lbl_porcentaje2.TabIndex = 33;
+            this.lbl_porcentaje2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmInicio
             // 
@@ -1802,6 +1830,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.Label lbl_porcentaje;
+        private System.Windows.Forms.Label lbl_porcentaje2;
     }
 }
 
