@@ -13,7 +13,7 @@ namespace copiaProgramas
     {
         variables variable = new variables();
         Programas programa = new Programas();
-
+        int resultadoCopia = 0;
 
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
         private Dictionary<CheckBox, string> checkBoxVariables = new Dictionary<CheckBox, string>();
@@ -353,22 +353,13 @@ namespace copiaProgramas
             }
         }
 
-
-        private async Task LanzaCopia(bool programa, string fichero, string titulo, int pestaña)
+        private async Task LanzaCopia(bool programa, string fichero, string titulo, string ruta, int pestaña)
         {
             if (programa) //Si esta marcado el programa pasado se lanza la copia
             {
-                string origen = string.Empty;
-                if (pestaña == 1)
-                {
-                    origen = variable.rutaPi + fichero;
+                string origen = ruta + fichero;
 
-                }
-                else if (pestaña == 2)
-                {
-                    origen = variable.rutanoPi + fichero;
-
-                }
+                //}
                 string nombreFichero = Path.GetFileName(fichero); //Obtiene el nombre del programa
                 string destino = variable.destino + nombreFichero; //Forma la ruta completa del programa
 
@@ -378,8 +369,21 @@ namespace copiaProgramas
                     try
                     {
                         ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
-                        await Task.Run(() => File.Copy(origen, destino, true)).ConfigureAwait(false);
-                        ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
+                        await Task.Run(() =>
+                        {
+                            try
+                            {
+                                File.Copy(origen, destino, true);
+                                ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
+                                resultadoCopia++;
+                            }
+
+                            catch (Exception ex)
+                            {
+                                ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
+                            }
+                        }).ConfigureAwait(false);
+
                     }
 
                     catch (Exception ex)
@@ -464,13 +468,14 @@ namespace copiaProgramas
 
                                 // Muestra información sobre la transferencia al finalizar
                                 ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
+                                resultadoCopia++;
 
                             }).ConfigureAwait(false);
                         }
 
                         catch (Exception ex)
                         {
-                            ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
+                            ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message + Environment.NewLine, pestaña);
                         }
 
                         finally
@@ -485,7 +490,6 @@ namespace copiaProgramas
                     }
                 }
             }
-            //return resultado;
         }
 
 
@@ -511,7 +515,7 @@ namespace copiaProgramas
         private void cb_destinonoPI_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Metodo para asignar las rutas destino de la copia segun el valor seleccionado en el comboBox
-            switch (cb_destinoPI.SelectedIndex)
+            switch (cb_destinonoPI.SelectedIndex)
             {
                 case 0:
                     variable.destino = variable.destinonoPi;
@@ -785,7 +789,7 @@ namespace copiaProgramas
 
         private async void btnCopiarPI_Click(object sender, EventArgs e)
         {
-            int resultado = 0; //Control para si se ha hecho alguna copia correctamente
+            resultadoCopia = 0; //Control para si se ha hecho alguna copia correctamente
             int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
 
             tabControl1.Enabled = false;
@@ -805,44 +809,42 @@ namespace copiaProgramas
                 {
                     //Lanza el proceso de copia segun los checkBox marcados en los programas
                     //Programas PI
-                    () => LanzaCopia(programa.ipcont08, programa.ipcont08Ruta, "ipcont08", 1),
-                    () => LanzaCopia(programa.siibase, programa.siibaseRuta, "siibase", 1),
-                    () => LanzaCopia(programa.v000adc, programa.v000adcRuta, "000adc", 1),
-                    () => LanzaCopia(programa.n43base, programa.n43baseRuta, "n43base", 1),
-                    () => LanzaCopia(programa.contalap, programa.contalapRuta, "contalap", 1),
-                    () => LanzaCopia(programa.ipmodelo, programa.ipmodeloRuta, "ipmodelo", 1),
-                    () => LanzaCopia(programa.iprent23, programa.iprent23Ruta, "iprent23", 1),
-                    () => LanzaCopia(programa.iprent22, programa.iprent22Ruta, "iprent22", 1),
-                    () => LanzaCopia(programa.iprent21, programa.iprent21Ruta, "iprent21", 1),
-                    () => LanzaCopia(programa.ipconts2, programa.ipconts2Ruta, "ipconts2", 1),
-                    () => LanzaCopia(programa.ipabogax, programa.ipabogaxRuta, "ipabogax", 1),
-                    () => LanzaCopia(programa.ipabogad, programa.ipabogadRuta, "ipabogad", 1),
-                    () => LanzaCopia(programa.ipabopar, programa.ipaboparRuta, "ipabopar", 1),
-                    () => LanzaCopia(programa.dscomer9, programa.dscomer9Ruta, "dscomer9", 1),
-                    () => LanzaCopia(programa.dscarter, programa.dscarterRuta, "dscarter", 1),
-                    () => LanzaCopia(programa.dsarchi, programa.dsarchiRuta, "dsarchi", 1),
-                    () => LanzaCopia(programa.notibase, programa.notibaseRuta, "notibase", 1),
-                    () => LanzaCopia(programa.certbase, programa.certbaseRuta, "certbase", 1),
-                    () => LanzaCopia(programa.dsesign, programa.dsesignRuta, "dsesign", 1),
-                    () => LanzaCopia(programa.dsedespa, programa.dsedespaRuta, "dsedespa", 1),
-                    () => LanzaCopia(programa.ipintegr, programa.ipintegrRuta, "ipintegr", 1),
-                    () => LanzaCopia(programa.ipbasica, programa.ipbasicaRuta, "ipbasica", 1),
-                    () => LanzaCopia(programa.ippatron, programa.ippatronRuta, "ippatron", 1),
-                    () => LanzaCopia(programa.gasbase, programa.gasbaseRuta, "gasbase", 1),
-                    () => LanzaCopia(programa.dscepsax, programa.dscepsaxRuta, "dscepsax", 1),
-                    () => LanzaCopia(programa.dsgalx, programa.dsgalxRuta, "dsgalx", 1),
-                    () => LanzaCopia(programa.iplabor2, programa.iplabor2Ruta, "iplabor2", 1)
+                    () => LanzaCopia(programa.ipcont08, programa.ipcont08Ruta, "ipcont08", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.siibase, programa.siibaseRuta, "siibase", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.v000adc, programa.v000adcRuta, "000adc", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.n43base, programa.n43baseRuta, "n43base", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.contalap, programa.contalapRuta, "contalap", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.ipmodelo, programa.ipmodeloRuta, "ipmodelo", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.iprent23, programa.iprent23Ruta, "iprent23", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.iprent22, programa.iprent22Ruta, "iprent22", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.iprent21, programa.iprent21Ruta, "iprent21", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.ipconts2, programa.ipconts2Ruta, "ipconts2", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.ipabogax, programa.ipabogaxRuta, "ipabogax", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.ipabogad, programa.ipabogadRuta, "ipabogad", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.ipabopar, programa.ipaboparRuta, "ipabopar", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.dscomer9, programa.dscomer9Ruta, "dscomer9", variable.rutaGestion, 1),
+                    () => LanzaCopia(programa.dscarter, programa.dscarterRuta, "dscarter", variable.rutaGestion, 1),
+                    () => LanzaCopia(programa.dsarchi, programa.dsarchiRuta, "dsarchi", variable.rutaPi , 1),
+                    () => LanzaCopia(programa.notibase, programa.notibaseRuta, "notibase", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.certbase, programa.certbaseRuta, "certbase", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.dsesign, programa.dsesignRuta, "dsesign", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.dsedespa, programa.dsedespaRuta, "dsedespa", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.ipintegr, programa.ipintegrRuta, "ipintegr", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.ipbasica, programa.ipbasicaRuta, "ipbasica", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.ippatron, programa.ippatronRuta, "ippatron", variable.rutaPi, 1),
+                    () => LanzaCopia(programa.gasbase, programa.gasbaseRuta, "gasbase", variable.rutaGasoleos, 1),
+                    () => LanzaCopia(programa.dscepsax, programa.dscepsaxRuta, "dscepsax", variable.rutaGasoleos, 1),
+                    () => LanzaCopia(programa.dsgalx, programa.dsgalxRuta, "dsgalx", variable.rutaGasoleos, 1),
+                    () => LanzaCopia(programa.iplabor2, programa.iplabor2Ruta, "iplabor2", variable.rutaPi, 1)
                 };
 
                 //Lanza las copias una a una
                 for (int i = 0; i < tareasCopia.Count; i++)
                 {
                     await tareasCopia[i]();
-                    //Almacena el numero de tareas que se han realizado
-                    resultado++;
                 }
 
-                if (resultado > 0)
+                if (resultadoCopia > 0)
                 {
                     MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -864,7 +866,7 @@ namespace copiaProgramas
         private async void btnCopiarnoPI_Click(object sender, EventArgs e)
         {
             tabControl1.Enabled = false;
-            int resultado = 0; //Control para si se ha hecho alguna copia correctamente
+            resultadoCopia = 0; //Control para si se ha hecho alguna copia correctamente
             int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
 
             foreach (Control control in panelnoPI.Controls)
@@ -882,30 +884,28 @@ namespace copiaProgramas
                 {
                     //Lanza el proceso de copia segun los checkBox marcados en los programas
                     //Programas noPI
-                    () => LanzaCopia(programa.star308, programa.star308Ruta, "star308", 2),
-                    () => LanzaCopia(programa.starpat, programa.starpatRuta, "starpat", 2),
-                    () => LanzaCopia(programa.ereo, programa.ereoRuta, "ereo", 2),
-                    () => LanzaCopia(programa.esocieda, programa.esociedaRuta, "esocieda", 2),
-                    () => LanzaCopia(programa.efacges, programa.efacgesRuta, "efacges", 2),
-                    () => LanzaCopia(programa.eintegra, programa.eintegraRuta, "eintegra", 2),
-                    () => LanzaCopia(programa.ereopat, programa.ereopatRuta, "ereopat", 2),
-                    () => LanzaCopia(programa.enom1, programa.enom1Ruta, "enom1", 2),
-                    () => LanzaCopia(programa.enom2, programa.enom2Ruta, "enom2", 2),
-                    () => LanzaCopia(programa.ered, programa.eredRuta, "ered", 2),
-                    () => LanzaCopia(programa.enompat, programa.enompatRuta, "enompat", 2),
-                    () => LanzaCopia(programa.dscepsa, programa.dscepsaRuta, "dscepsa", 2),
-                    () => LanzaCopia(programa.dsgal, programa.dsgalRuta, "dsgal", 2)
+                    () => LanzaCopia(programa.star308, programa.star308Ruta, "star308", variable.rutanoPi ,2),
+                    () => LanzaCopia(programa.starpat, programa.starpatRuta, "starpat", variable.rutanoPi, 2),
+                    () => LanzaCopia(programa.ereo, programa.ereoRuta, "ereo", variable.rutanoPi, 2),
+                    () => LanzaCopia(programa.esocieda, programa.esociedaRuta, "esocieda", variable.rutanoPi, 2),
+                    () => LanzaCopia(programa.efacges, programa.efacgesRuta, "efacges", variable.rutanoPi, 2),
+                    () => LanzaCopia(programa.eintegra, programa.eintegraRuta, "eintegra", variable.rutanoPi,2),
+                    () => LanzaCopia(programa.ereopat, programa.ereopatRuta, "ereopat", variable.rutanoPi,2),
+                    () => LanzaCopia(programa.enom1, programa.enom1Ruta, "enom1", variable.rutanoPi,2),
+                    () => LanzaCopia(programa.enom2, programa.enom2Ruta, "enom2", variable.rutanoPi,2),
+                    () => LanzaCopia(programa.ered, programa.eredRuta, "ered", variable.rutanoPi,2),
+                    () => LanzaCopia(programa.enompat, programa.enompatRuta, "enompat", variable.rutanoPi,2),
+                    () => LanzaCopia(programa.dscepsa, programa.dscepsaRuta, "dscepsa", variable.rutaGasoleos,2),
+                    () => LanzaCopia(programa.dsgal, programa.dsgalRuta, "dsgal", variable.rutaGasoleos, 2)
                 };
 
                 //Lanza las copias una a una
                 for (int i = 0; i < tareasCopia.Count; i++)
                 {
                     await tareasCopia[i]();
-                    //Almacena el numero de tareas que se han realizado
-                    resultado++;
                 }
 
-                if (resultado > 0)
+                if (resultadoCopia > 0)
                 {
                     MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
