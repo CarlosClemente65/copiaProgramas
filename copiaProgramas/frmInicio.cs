@@ -13,7 +13,7 @@ namespace copiaProgramas
     {
         variables variable = new variables();
         Programas programa = new Programas();
-
+        int resultadoCopia = 0;
 
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
         private Dictionary<CheckBox, string> checkBoxVariables = new Dictionary<CheckBox, string>();
@@ -353,7 +353,6 @@ namespace copiaProgramas
             }
         }
 
-
         private async Task LanzaCopia(bool programa, string fichero, string titulo, int pestaña)
         {
             if (programa) //Si esta marcado el programa pasado se lanza la copia
@@ -378,8 +377,21 @@ namespace copiaProgramas
                     try
                     {
                         ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
-                        await Task.Run(() => File.Copy(origen, destino, true)).ConfigureAwait(false);
-                        ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
+                        await Task.Run(() =>
+                        {
+                            try
+                            {
+                                File.Copy(origen, destino, true);
+                                ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
+                                resultadoCopia++;
+                            }
+
+                            catch (Exception ex)
+                            {
+                                ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
+                            }
+                        }).ConfigureAwait(false);
+
                     }
 
                     catch (Exception ex)
@@ -464,13 +476,14 @@ namespace copiaProgramas
 
                                 // Muestra información sobre la transferencia al finalizar
                                 ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
+                                resultadoCopia++;
 
                             }).ConfigureAwait(false);
                         }
 
                         catch (Exception ex)
                         {
-                            ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
+                            ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message + Environment.NewLine, pestaña);
                         }
 
                         finally
@@ -485,7 +498,6 @@ namespace copiaProgramas
                     }
                 }
             }
-            //return resultado;
         }
 
 
@@ -511,7 +523,7 @@ namespace copiaProgramas
         private void cb_destinonoPI_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Metodo para asignar las rutas destino de la copia segun el valor seleccionado en el comboBox
-            switch (cb_destinoPI.SelectedIndex)
+            switch (cb_destinonoPI.SelectedIndex)
             {
                 case 0:
                     variable.destino = variable.destinonoPi;
@@ -785,7 +797,7 @@ namespace copiaProgramas
 
         private async void btnCopiarPI_Click(object sender, EventArgs e)
         {
-            int resultado = 0; //Control para si se ha hecho alguna copia correctamente
+            resultadoCopia = 0; //Control para si se ha hecho alguna copia correctamente
             int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
 
             tabControl1.Enabled = false;
@@ -838,11 +850,9 @@ namespace copiaProgramas
                 for (int i = 0; i < tareasCopia.Count; i++)
                 {
                     await tareasCopia[i]();
-                    //Almacena el numero de tareas que se han realizado
-                    resultado++;
                 }
 
-                if (resultado > 0)
+                if (resultadoCopia > 0)
                 {
                     MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -864,7 +874,7 @@ namespace copiaProgramas
         private async void btnCopiarnoPI_Click(object sender, EventArgs e)
         {
             tabControl1.Enabled = false;
-            int resultado = 0; //Control para si se ha hecho alguna copia correctamente
+            resultadoCopia = 0; //Control para si se ha hecho alguna copia correctamente
             int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
 
             foreach (Control control in panelnoPI.Controls)
@@ -901,11 +911,9 @@ namespace copiaProgramas
                 for (int i = 0; i < tareasCopia.Count; i++)
                 {
                     await tareasCopia[i]();
-                    //Almacena el numero de tareas que se han realizado
-                    resultado++;
                 }
 
-                if (resultado > 0)
+                if (resultadoCopia > 0)
                 {
                     MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
