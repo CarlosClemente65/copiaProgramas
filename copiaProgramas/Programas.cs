@@ -1,4 +1,9 @@
-﻿namespace copiaProgramas
+﻿using System.IO;
+using System.Threading.Tasks;
+using System;
+using WinSCP;
+
+namespace copiaProgramas
 {
     public class Programas
     {
@@ -87,6 +92,11 @@
         public string dscepsaRuta = @"_CEPSA\dscepsa\dscepsaz.tgz";
         public bool dsgal = false;
         public string dsgalRuta = @"_CEPSA\dscepsa_mod\dsgal\dsgalz.tgz";
+
+
+
+        
+
     }
 
 }

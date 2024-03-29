@@ -6,6 +6,9 @@ using WinSCP;
 using System.Threading.Tasks;
 using System.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Drawing;
+using System.Collections;
+using static copiaProgramas.Ficheros;
 
 namespace copiaProgramas
 {
@@ -13,7 +16,9 @@ namespace copiaProgramas
     {
         variables variable = new variables();
         Programas programa = new Programas();
+        Ficheros fichero = new Ficheros(); //Instanciacion de la clase Ficheros para leer el .json
         int resultadoCopia = 0;
+        System.Windows.Forms.ListView lista = null;
 
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
         private Dictionary<CheckBox, string> checkBoxVariables = new Dictionary<CheckBox, string>();
@@ -39,8 +44,12 @@ namespace copiaProgramas
             variable.CargarConfiguracion();
 
             //Rellena los textBox con los valores cargados en las variables desde el fichero de configuracion
-            cb_destinoPI.SelectedIndex = 0;
-            LimpiaCbxPi();
+            //cb_destinoPI.SelectedIndex = 0;
+            //LimpiaCbxPi();
+
+            cbDestinoCopias.SelectedIndex = 0;
+            actualizaListaFicheros(lstFicherosOrigen);
+            tabControl1.SelectedIndex = 4;
         }
 
 
@@ -92,32 +101,6 @@ namespace copiaProgramas
             checkBoxVariables.Add(cbx_enompat, "enompat");
             checkBoxVariables.Add(cbx_dscepsa, "dscepsa");
             checkBoxVariables.Add(cbx_dsgal, "dsgal");
-        }
-
-        private void LimpiaCbxPi()
-        {
-            //Quita las marcas de los controlBox
-            foreach (Control control in panelPI.Controls)
-            {
-                if (control is CheckBox cbx)
-                {
-                    cbx.Checked = false;
-
-                }
-            }
-        }
-
-        private void LimpiaCbxnoPi()
-        {
-            //Quita las marcas de los controlBox
-            foreach (Control control in panelnoPI.Controls)
-            {
-                if (control is CheckBox cbx)
-                {
-                    cbx.Checked = false;
-
-                }
-            }
         }
 
         private void CheckBox_CheckedChanged(object sender, EventArgs e)
@@ -328,6 +311,20 @@ namespace copiaProgramas
                     cb_destinonoPI.SelectedIndex = 0;
                     LimpiaCbxnoPi();
                     break;
+
+                case "tabFicheros":
+                    actualizaListaFicheros(lstFicheros);
+                    txtTipoFichero.Location = new Point(13, 148);
+                    btnCancelarFich.Location = new Point(13, 252);
+                    btnValidarFich.Location = new Point(210, 252);
+                    break;
+
+                case "tabCopias":
+                    actualizaListaFicheros(lstFicherosOrigen);
+                    cbDestinoCopias.SelectedIndex = 0;
+                    txtDestinoCopias.Clear();
+
+                    break;
             }
         }
 
@@ -340,21 +337,74 @@ namespace copiaProgramas
             }
             else
             {
-                if (pestaña == 1)
+                switch (pestaña)
                 {
-                    txtProgresoCopiaPI.AppendText(mensaje);
-                    txtProgresoCopiaPI.AppendText(string.Empty + "\r\n");
-                }
-                else if (pestaña == 2)
-                {
-                    txtProgresoCopianoPI.AppendText(mensaje);
-                    txtProgresoCopianoPI.AppendText(string.Empty + "\r\n");
+                    case 1:
+                        txtProgresoCopiaPI.AppendText(mensaje);
+                        txtProgresoCopiaPI.AppendText(string.Empty + "\r\n");
+                        break;
+
+                    case 2:
+                        txtProgresoCopianoPI.AppendText(mensaje);
+                        txtProgresoCopianoPI.AppendText(string.Empty + "\r\n");
+                        break;
+
+                    case 3:
+                        txtDestinoCopias.AppendText(mensaje);
+                        txtDestinoCopias.AppendText(string.Empty + "\r\n");
+                        break;
+
                 }
             }
         }
 
+        private void actualizaListaFicheros(System.Windows.Forms.ListView nombreLista)
+        {
+            //Metodo para cargar en una lista los nombres de ls ficheros de .json y mostrarlos en el ListView que se pase como parametro 
+            lista = nombreLista;
+            lista.Items.Clear();
+            foreach (var fichero in Ficheros.listaFicheros)
+            {
+                string nombre = fichero.Nombre;
+                string ruta = fichero.Ruta;
+                string tipo = fichero.Tipo;
+                ListViewItem item = new ListViewItem(nombre);
+                item.SubItems.Add(ruta);
+                item.SubItems.Add(tipo);
+
+                ListViewGroup grupo = null;
+                foreach (ListViewGroup Grupos in lista.Groups)
+                {
+                    if (Grupos.Header == tipo)
+                    {
+                        grupo = Grupos;
+                        break;
+                    }
+                }
+
+                if (grupo == null)
+                {
+                    grupo = new ListViewGroup(tipo);
+                    lista.Groups.Add(grupo);
+                }
+
+                item.Group = grupo;
+                lista.Items.Add(item);
+            }
+
+            // Establecer el encabezado de los grupos
+            foreach (ListViewGroup group in lista.Groups)
+            {
+                lista.Columns.Add(group.Header);
+            }
+
+            lista.View = View.Details;
+
+        }
+
         private async Task LanzaCopia(bool programa, string fichero, string titulo, string ruta, int pestaña)
         {
+            //Metodo para hacer las copias desde las pestañas de PI y noPI
             if (programa) //Si esta marcado el programa pasado se lanza la copia
             {
                 string origen = ruta + fichero;
@@ -492,6 +542,22 @@ namespace copiaProgramas
             }
         }
 
+        #endregion
+
+        #region pestaña_ProgramasPI
+        
+        private void LimpiaCbxPi()
+        {
+            //Quita las marcas de los controlBox
+            foreach (Control control in panelPI.Controls)
+            {
+                if (control is CheckBox cbx)
+                {
+                    cbx.Checked = false;
+
+                }
+            }
+        }
 
         private void cb_destinoPI_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -509,6 +575,39 @@ namespace copiaProgramas
                 case 2:
                     variable.destino = variable.destinoPasesPi;
                     break;
+            }
+        }
+
+        private void btn_limpiar_Click(object sender, EventArgs e)
+        {
+            //Metodo para desmarcar todos los checkBox y limpiar el textoBox del resultado de la copia
+            txtProgresoCopiaPI.Text = string.Empty;
+            foreach (Control control in panelPI.Controls)
+            {
+                if (control is CheckBox cbx)
+                {
+                    cbx.Checked = false;
+                }
+            }
+        }
+
+
+
+
+        #endregion
+
+        #region pestaña_ProgramasNoPi
+
+        private void LimpiaCbxnoPi()
+        {
+            //Quita las marcas de los controlBox
+            foreach (Control control in panelnoPI.Controls)
+            {
+                if (control is CheckBox cbx)
+                {
+                    cbx.Checked = false;
+
+                }
             }
         }
 
@@ -531,19 +630,6 @@ namespace copiaProgramas
             }
         }
 
-        private void btn_limpiar_Click(object sender, EventArgs e)
-        {
-            //Metodo para desmarcar todos los checkBox y limpiar el textoBox del resultado de la copia
-            txtProgresoCopiaPI.Text = string.Empty;
-            foreach (Control control in panelPI.Controls)
-            {
-                if (control is CheckBox cbx)
-                {
-                    cbx.Checked = false;
-                }
-            }
-        }
-
         private void btn_limpiarnoPI_Click(object sender, EventArgs e)
         {
             //Metodo para desmarcar todos los checkBox y limpiar el textoBox del resultado de la copia
@@ -556,11 +642,15 @@ namespace copiaProgramas
                 }
             }
         }
+
         #endregion
 
 
-        #region Mouse Hover
-        //Metodos para cuando el raton se posiciona dentro de los iconos
+        #region pestaña_Rutas
+
+        #region mouse_over
+        //Metodos para cuando el raton entra de los iconos
+
         private void btnRutaPi_MouseHover(object sender, EventArgs e)
         {
             if (txtRutaPi.Enabled == false)
@@ -671,7 +761,7 @@ namespace copiaProgramas
 
         #endregion
 
-        #region Mouse Leave
+        #region mouse_leave
         //Metodos para cuando el raton sale de los iconos
 
         private void btnRutaPi_MouseLeave(object sender, EventArgs e)
@@ -1129,5 +1219,398 @@ namespace copiaProgramas
 
         #endregion
 
+        #endregion
+
+
+
+        #region pestaña_configuracion
+
+        private void btnAddFic_Click(object sender, EventArgs e)
+        {
+            fichero.opcion = 'A';
+            estadoBotones(false);
+            txtNombreFichero.Text = string.Empty;
+            txtNombreFichero.Enabled = true;
+            txtRutaFichero.Text = string.Empty;
+            txtRutaFichero.Enabled = true;
+            txtTipoFichero.Text = string.Empty;
+            txtTipoFichero.Visible = false;
+            cbTipo.Visible = true;
+            cbTipo.SelectedIndex = 0;
+            txtNombreFichero.Focus();
+        }
+
+        private void btnModificarFich_Click(object sender, EventArgs e)
+        {
+            // Verificar si hay algún elemento seleccionado
+            if (lstFicheros.SelectedItems.Count > 0)
+            {
+                fichero.opcion = 'M';
+                estadoBotones(false);
+                txtRutaFichero.Enabled = true;
+                cbTipo.Visible = true;
+                txtRutaFichero.Focus();
+            }
+
+        }
+
+        private void btnEliminarFich_Click(object sender, EventArgs e)
+        {
+            if (lstFicheros.SelectedItems.Count > 0)
+            {
+                string nombre = txtNombreFichero.Text;
+                fichero.opcion = 'B';
+                DialogResult resultado = MessageBox.Show($"Quieres eliminar el registro {nombre}?", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (resultado == DialogResult.OK)
+                {
+                    fichero.eliminarFichero(nombre);
+                    fichero.grabarFicheros();
+                    actualizaListaFicheros(lstFicheros);
+                    txtNombreFichero.Text = string.Empty;
+                    txtRutaFichero.Text = string.Empty;
+                    txtTipoFichero.Text = string.Empty;
+                }
+            }
+        }
+
+        private void btnCancelarFich_Click(object sender, EventArgs e)
+        {
+            estadoBotones(true);
+            txtNombreFichero.Text = string.Empty;
+            txtNombreFichero.Enabled = false;
+            txtRutaFichero.Text = string.Empty;
+            txtRutaFichero.Enabled = false;
+            txtTipoFichero.Text = string.Empty;
+            txtTipoFichero.Visible = true;
+            cbTipo.SelectedIndex = 0;
+            cbTipo.Visible = false;
+        }
+
+        private void btnValidarFich_Click(object sender, EventArgs e)
+        {
+            string nombre = txtNombreFichero.Text;
+            string ruta = txtRutaFichero.Text;
+            string tipo = txtTipoFichero.Text;
+
+            if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(ruta) && !string.IsNullOrEmpty(tipo))
+            {
+                switch (fichero.opcion)
+                {
+                    case 'A':
+                        fichero.AgregarFichero(nombre, ruta, tipo);
+                        break;
+
+                    case 'M':
+
+                        // Obtener el nombre y la ruta del fichero desde los subelementos del ListViewItem
+                        fichero.modificarFichero(nombre, ruta, tipo);
+                        break;
+                }
+                fichero.grabarFicheros();
+            }
+            else
+            {
+                MessageBox.Show("Debes rellenar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            estadoBotones(true);
+            txtNombreFichero.Text = string.Empty;
+            txtNombreFichero.Enabled = false;
+            txtRutaFichero.Text = string.Empty;
+            txtRutaFichero.Enabled = false;
+            txtTipoFichero.Text = string.Empty;
+            txtTipoFichero.Enabled = false;
+            txtTipoFichero.Visible = true;
+            cbTipo.TabIndex = 0;
+            cbTipo.Visible = false;
+            actualizaListaFicheros(lstFicheros);
+        }
+
+        private void estadoBotones(bool estado)
+        {
+            btnAddFich.Visible = estado;
+            btnModificarFich.Visible = estado;
+            btnEliminarFich.Visible = estado;
+            btnCancelarFich.Visible = !estado;
+            btnValidarFich.Visible = !estado;
+            lstFicheros.Enabled = estado;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string textoSeleccionado = cbTipo.Text;
+            txtTipoFichero.Text = textoSeleccionado;
+        }
+
+        private void lstFicheros_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // Cambiar la dirección de ordenamiento si es la misma columna que la última vez que se hizo clic
+            // Cambiar la dirección de ordenamiento
+            if (lstFicheros.Sorting == SortOrder.Ascending)
+                lstFicheros.Sorting = SortOrder.Descending;
+            else
+                lstFicheros.Sorting = SortOrder.Ascending;
+
+            // Establecer el comparador de elementos del ListView
+            lstFicheros.ListViewItemSorter = new ListViewItemComparer(e.Column, lstFicheros.Sorting);
+
+            // Ordenar el ListView basado en la columna en la que se hizo clic
+            lstFicheros.Sort();
+
+        }
+
+        private void lstFicheros_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Verificar si hay algún elemento seleccionado
+            if (lstFicheros.SelectedItems.Count > 0)
+            {
+                // Obtener el primer elemento seleccionado
+                ListViewItem selectedItem = lstFicheros.SelectedItems[0];
+
+                // Obtener el nombre y la ruta del fichero desde los subelementos del ListViewItem
+                string nombreFichero = selectedItem.SubItems[0].Text;
+                string rutaFichero = selectedItem.SubItems[1].Text;
+                string tipoFichero = selectedItem.SubItems[2].Text;
+
+                // Mostrar el nombre y la ruta del fichero en los TextBox correspondientes
+                txtNombreFichero.Text = nombreFichero;
+                txtRutaFichero.Text = rutaFichero;
+                txtTipoFichero.Text = tipoFichero;
+                int indice = cbTipo.FindStringExact(tipoFichero);
+                if (indice != -1)
+                {
+                    cbTipo.SelectedIndex = indice;
+                }
+            }
+            else
+            {
+                // Limpiar los TextBox si no hay ningún elemento seleccionado en el ListBox
+                txtNombreFichero.Text = string.Empty;
+                txtRutaFichero.Text = string.Empty;
+                txtTipoFichero.Text = string.Empty;
+            }
+        }
+
+        #endregion
+
+
+
+        #region pestaña_copias
+
+        private void btnLimpiarCopia_Click(object sender, EventArgs e)
+        {
+            txtDestinoCopias.Text = string.Empty;
+            foreach (ListViewItem item in lstFicherosOrigen.CheckedItems)
+            {
+                item.Checked = false;
+            }
+        }
+
+        private async void btnCopiarCopias_Click(object sender, EventArgs e)
+        {
+            if (lstFicherosOrigen.CheckedItems.Count > 0)
+            {
+                resultadoCopia = 0;
+                List<Func<Task>> tareasCopia = new List<Func<Task>>();
+                foreach (ListViewItem item in lstFicherosOrigen.CheckedItems)
+                {
+                    string nombre = item.SubItems[0].Text;
+                    string ruta = item.SubItems[1].Text;
+
+                    tareasCopia.Add(() => hacerCopia(nombre, ruta));
+                }
+
+
+                //Lanza las copias una a una
+                for (int i = 0; i < tareasCopia.Count; i++)
+                {
+                    await tareasCopia[i]();
+                }
+
+                if (resultadoCopia > 0)
+                {
+                    MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error al copiar los ficheros", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay ningun programa seleccionado. Seleccione alguno","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+            }
+
+
+        }
+
+        private void cbDestinoCopias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Metodo para asignar las rutas destino de la copia segun el valor seleccionado en el comboBox
+            switch (cbDestinoCopias.SelectedIndex)
+            {
+                case 0:
+                    variable.destino = variable.destinoPi;
+                    break;
+
+                case 1:
+                    variable.destino = variable.destinoLocal;
+                    break;
+
+                case 2:
+                    variable.destino = variable.destinoPasesPi;
+                    break;
+            }
+        }
+
+        private async Task hacerCopia(string fichero, string ruta)
+        {
+            int pestaña = 3; //Pestaña de copias para mostrar el mensaje
+            string origen = ruta + fichero;
+            string titulo = fichero;
+
+            string nombreFichero = Path.GetFileName(fichero); //Obtiene el nombre del programa
+            string destino = variable.destino + nombreFichero; //Forma la ruta completa del programa
+
+            //Controla para hacer la copia local
+            if (variable.destino == variable.destinoLocal)
+            {
+                try
+                {
+                    ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
+                    await Task.Run(() =>
+                    {
+                        try
+                        {
+                            File.Copy(origen, destino, true);
+                            ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
+                            resultadoCopia++;
+                        }
+
+                        catch (Exception ex)
+                        {
+                            ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
+                        }
+                    }).ConfigureAwait(false);
+
+                }
+
+                catch (Exception ex)
+                {
+                    ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
+                }
+            }
+            else
+            {
+                //Si la copia es al geco72
+                try
+                {
+                    ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
+
+                    // Configuración de opciones de sesión para la copia al geco72
+                    SessionOptions sessionOptions = new SessionOptions
+                    {
+                        Protocol = Protocol.Sftp,
+                        HostName = "172.31.5.149",
+                        UserName = "centos",
+                        SshHostKeyFingerprint = "ssh-ed25519 255 ypCFfhJskB3YSCzQzF5iHV0eaWxlBIvMeM5kRl4N46o=",
+                        SshPrivateKeyPath = @"C:\Oficina_ds\Diagram\Accesos portatil\conexiones VPN\Credenciales SSH\aws_diagram_irlanda.ppk",
+                    };
+                    sessionOptions.AddRawSettings("AgentFwd", "1");
+
+                    Session session = null;
+
+                    try
+                    {
+                        await Task.Run(async () =>
+                        {
+                            ////Permite hacer un log del resultado. La dejo comentada por si hace falta
+                            //string logFile = @"c:\carlos\winscp.log";
+                            //if (!File.Exists(logFile))
+                            //{
+                            //    File.Create(logFile).Close();
+                            //}
+                            //else
+                            //{
+                            //    File.Delete(logFile);
+                            //    File.Create(logFile).Close();
+                            //}
+                            //session.SessionLogPath = logFile;
+
+                            // Conexión
+                            session = new Session();
+
+                            //Permite controlar el progreso de copia
+                            session.FileTransferProgress += (sender, e) =>
+                            {
+                                //Actualiza la barra de progreso de copia
+                                progressBar3.Invoke((MethodInvoker)(() =>
+                                {
+                                    progressBar3.Value = (int)(e.OverallProgress * 100);
+                                    //Muestra el porcentaje completado
+                                    int porcentaje = (int)(e.OverallProgress * 100);
+                                    lbl_porcentaje.Text = $"{porcentaje}%";
+                                }));
+                            };
+
+                            ActualizarProgreso($"Conectando con el servidor . . .", pestaña);
+                            session.Open(sessionOptions);
+
+                            TransferOptions transferOptions = new TransferOptions();
+                            transferOptions.TransferMode = TransferMode.Binary;
+
+                            ActualizarProgreso($"Iniciando copia . . .", pestaña);
+                            TransferOperationResult transferResult = session.PutFiles(origen, variable.destino, false, transferOptions);
+                            transferResult.Check();
+
+                            // Muestra información sobre la transferencia al finalizar
+                            ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
+                            resultadoCopia++;
+
+                        }).ConfigureAwait(false);
+                    }
+
+                    catch (Exception ex)
+                    {
+                        ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message + Environment.NewLine, pestaña);
+                    }
+
+                    finally
+                    {
+                        //Libera el recurso de la sesion
+                        session?.Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ActualizarProgreso(Environment.NewLine + $"No se ha podido copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
+                }
+            }
+
+        }
+
+        #endregion
+        
+    }
+
+    public class ListViewItemComparer : IComparer
+    {
+        private int col;
+        private SortOrder order;
+
+        public ListViewItemComparer(int column, SortOrder order)
+        {
+            col = column;
+            this.order = order;
+        }
+
+        public int Compare(object x, object y)
+        {
+            int result = String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
+
+            if (order == SortOrder.Descending)
+                result = -result;
+
+            return result;
+        }
     }
 }
