@@ -25,6 +25,7 @@ namespace copiaProgramas
             public string Nombre { get; set; }
             public string Ruta { get; set; }
             public string Tipo { get; set; }
+            public int Clase { get; set; }
         }
 
         //Constructor de la clase Ficheros
@@ -48,10 +49,10 @@ namespace copiaProgramas
         {
             try
             {
-                for (int i = 0; i < listaFicheros.Count; i++)
-                {
-                    //listaFicheros[i].Ruta.Replace(@"\", "\\"); 
-                }
+                //for (int i = 0; i < listaFicheros.Count; i++)
+                //{
+                //    //listaFicheros[i].Ruta.Replace(@"\", "\\"); 
+                //}
                 // Serializar la lista de ficheros a JSON
                 string json = JsonConvert.SerializeObject(listaFicheros);
 
@@ -68,13 +69,13 @@ namespace copiaProgramas
         }
 
         // Método para agregar un fichero a la lista
-        public void AgregarFichero(string nombre, string ruta, string tipo)
+        public void AgregarFichero(string nombre, string ruta, string tipo, int clase)
         {
-            listaFicheros.Add(new Fichero { Nombre = nombre, Ruta = ruta , Tipo = tipo});
+            listaFicheros.Add(new Fichero { Nombre = nombre, Ruta = ruta , Tipo = tipo, Clase = clase});
         }
 
         // Método para modificar un fichero de la lista
-        public void modificarFichero(string nombre, string nuevaRuta, string nuevoTipo)
+        public void modificarFichero(string nombre, string nuevaRuta, string nuevoTipo, int nuevaClase)
         {
             //Buscar el fichero en la lista
             Fichero item = listaFicheros.Find(f =>  f.Nombre == nombre);
@@ -83,6 +84,7 @@ namespace copiaProgramas
             {
                 item.Ruta = nuevaRuta;
                 item.Tipo = nuevoTipo;
+                item.Clase = nuevaClase;
             }
 
         }

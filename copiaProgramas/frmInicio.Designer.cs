@@ -170,6 +170,8 @@
             this.label29 = new System.Windows.Forms.Label();
             this.tabFicheros = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbClaseFichero = new System.Windows.Forms.ComboBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.cbTipo = new System.Windows.Forms.ComboBox();
             this.txtTipoFichero = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
@@ -181,6 +183,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label22 = new System.Windows.Forms.Label();
             this.txtNombreFichero = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -192,6 +195,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLimpiarCopia = new System.Windows.Forms.Button();
             this.txtDestinoCopias = new System.Windows.Forms.TextBox();
@@ -201,6 +205,7 @@
             this.cbDestinoCopias = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabConfiguracion.SuspendLayout();
             this.tabProgramasPi.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -1755,6 +1760,8 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.OliveDrab;
+            this.groupBox3.Controls.Add(this.cbClaseFichero);
+            this.groupBox3.Controls.Add(this.label32);
             this.groupBox3.Controls.Add(this.cbTipo);
             this.groupBox3.Controls.Add(this.txtTipoFichero);
             this.groupBox3.Controls.Add(this.label30);
@@ -1778,6 +1785,30 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ficheros";
             // 
+            // cbClaseFichero
+            // 
+            this.cbClaseFichero.Enabled = false;
+            this.cbClaseFichero.FormattingEnabled = true;
+            this.cbClaseFichero.Items.AddRange(new object[] {
+            "",
+            "PI",
+            "noPI",
+            "Gestion",
+            "Gasoleos"});
+            this.cbClaseFichero.Location = new System.Drawing.Point(13, 189);
+            this.cbClaseFichero.Name = "cbClaseFichero";
+            this.cbClaseFichero.Size = new System.Drawing.Size(154, 22);
+            this.cbClaseFichero.TabIndex = 15;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(13, 172);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(88, 14);
+            this.label32.TabIndex = 14;
+            this.label32.Text = "Clase fichero";
+            // 
             // cbTipo
             // 
             this.cbTipo.FormattingEnabled = true;
@@ -1790,7 +1821,7 @@
             "Patrones",
             "Laboral",
             "Gasoleos"});
-            this.cbTipo.Location = new System.Drawing.Point(13, 148);
+            this.cbTipo.Location = new System.Drawing.Point(13, 137);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(286, 22);
             this.cbTipo.TabIndex = 13;
@@ -1801,7 +1832,7 @@
             // 
             this.txtTipoFichero.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtTipoFichero.Enabled = false;
-            this.txtTipoFichero.Location = new System.Drawing.Point(13, 181);
+            this.txtTipoFichero.Location = new System.Drawing.Point(13, 150);
             this.txtTipoFichero.Name = "txtTipoFichero";
             this.txtTipoFichero.Size = new System.Drawing.Size(286, 22);
             this.txtTipoFichero.TabIndex = 3;
@@ -1809,7 +1840,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(10, 131);
+            this.label30.Location = new System.Drawing.Point(10, 119);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(79, 14);
             this.label30.TabIndex = 11;
@@ -1874,7 +1905,7 @@
             // 
             this.txtRutaFichero.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtRutaFichero.Enabled = false;
-            this.txtRutaFichero.Location = new System.Drawing.Point(13, 97);
+            this.txtRutaFichero.Location = new System.Drawing.Point(13, 90);
             this.txtRutaFichero.Name = "txtRutaFichero";
             this.txtRutaFichero.Size = new System.Drawing.Size(286, 22);
             this.txtRutaFichero.TabIndex = 2;
@@ -1887,7 +1918,8 @@
             this.lstFicheros.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader7});
             this.lstFicheros.FullRowSelect = true;
             this.lstFicheros.GridLines = true;
             listViewGroup1.Header = "Contabilidad";
@@ -1928,21 +1960,26 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Nombre";
-            this.columnHeader1.Width = 128;
+            this.columnHeader1.Width = 110;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Ruta";
-            this.columnHeader2.Width = 468;
+            this.columnHeader2.Width = 250;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Tipo";
+            this.columnHeader3.Width = 120;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Clase";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(13, 80);
+            this.label22.Location = new System.Drawing.Point(13, 73);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(82, 14);
             this.label22.TabIndex = 2;
@@ -2035,7 +2072,8 @@
             this.lstFicherosOrigen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader8});
             this.lstFicherosOrigen.FullRowSelect = true;
             this.lstFicherosOrigen.GridLines = true;
             listViewGroup8.Header = "Modelos";
@@ -2073,16 +2111,21 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "Nombre";
-            this.columnHeader4.Width = 128;
+            this.columnHeader4.Width = 110;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Ruta";
-            this.columnHeader5.Width = 468;
+            this.columnHeader5.Width = 250;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Tipo";
+            this.columnHeader6.Width = 120;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Clase";
             // 
             // panel1
             // 
@@ -2408,6 +2451,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ComboBox cbClaseFichero;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
     }
 }
 

@@ -314,7 +314,7 @@ namespace copiaProgramas
 
                 case "tabFicheros":
                     actualizaListaFicheros(lstFicheros);
-                    txtTipoFichero.Location = new Point(13, 148);
+                    txtTipoFichero.Location = new Point(13, 137);
                     btnCancelarFich.Location = new Point(13, 252);
                     btnValidarFich.Location = new Point(210, 252);
                     break;
@@ -368,9 +368,11 @@ namespace copiaProgramas
                 string nombre = fichero.Nombre;
                 string ruta = fichero.Ruta;
                 string tipo = fichero.Tipo;
+                string clase = fichero.Clase.ToString();
                 ListViewItem item = new ListViewItem(nombre);
                 item.SubItems.Add(ruta);
                 item.SubItems.Add(tipo);
+                item.SubItems.Add(clase);
 
                 ListViewGroup grupo = null;
                 foreach (ListViewGroup Grupos in lista.Groups)
@@ -392,11 +394,11 @@ namespace copiaProgramas
                 lista.Items.Add(item);
             }
 
-            // Establecer el encabezado de los grupos
-            foreach (ListViewGroup group in lista.Groups)
-            {
-                lista.Columns.Add(group.Header);
-            }
+            //// Establecer el encabezado de los grupos
+            //foreach (ListViewGroup group in lista.Groups)
+            //{
+            //    lista.Columns.Add(group.Header);
+            //}
 
             lista.View = View.Details;
 
@@ -545,7 +547,7 @@ namespace copiaProgramas
         #endregion
 
         #region pestaña_ProgramasPI
-        
+
         private void LimpiaCbxPi()
         {
             //Quita las marcas de los controlBox
@@ -1237,6 +1239,8 @@ namespace copiaProgramas
             txtTipoFichero.Visible = false;
             cbTipo.Visible = true;
             cbTipo.SelectedIndex = 0;
+            cbClaseFichero.SelectedIndex = 0;
+            cbClaseFichero.Enabled = true;
             txtNombreFichero.Focus();
         }
 
@@ -1249,9 +1253,9 @@ namespace copiaProgramas
                 estadoBotones(false);
                 txtRutaFichero.Enabled = true;
                 cbTipo.Visible = true;
+                cbClaseFichero.Enabled = true;
                 txtRutaFichero.Focus();
             }
-
         }
 
         private void btnEliminarFich_Click(object sender, EventArgs e)
@@ -1284,6 +1288,8 @@ namespace copiaProgramas
             txtTipoFichero.Visible = true;
             cbTipo.SelectedIndex = 0;
             cbTipo.Visible = false;
+            cbClaseFichero.SelectedIndex = 0;
+            cbClaseFichero.Enabled = false;
         }
 
         private void btnValidarFich_Click(object sender, EventArgs e)
@@ -1291,19 +1297,20 @@ namespace copiaProgramas
             string nombre = txtNombreFichero.Text;
             string ruta = txtRutaFichero.Text;
             string tipo = txtTipoFichero.Text;
+            int clase = cbClaseFichero.SelectedIndex;
 
-            if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(ruta) && !string.IsNullOrEmpty(tipo))
+            if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(ruta) && !string.IsNullOrEmpty(tipo) && clase > 0)
             {
                 switch (fichero.opcion)
                 {
                     case 'A':
-                        fichero.AgregarFichero(nombre, ruta, tipo);
+                        fichero.AgregarFichero(nombre, ruta, tipo, clase);
                         break;
 
                     case 'M':
 
                         // Obtener el nombre y la ruta del fichero desde los subelementos del ListViewItem
-                        fichero.modificarFichero(nombre, ruta, tipo);
+                        fichero.modificarFichero(nombre, ruta, tipo, clase);
                         break;
                 }
                 fichero.grabarFicheros();
@@ -1322,6 +1329,8 @@ namespace copiaProgramas
             txtTipoFichero.Visible = true;
             cbTipo.TabIndex = 0;
             cbTipo.Visible = false;
+            cbClaseFichero.SelectedIndex = 0;
+            cbClaseFichero.Enabled = false;
             actualizaListaFicheros(lstFicheros);
         }
 
@@ -1370,6 +1379,7 @@ namespace copiaProgramas
                 string nombreFichero = selectedItem.SubItems[0].Text;
                 string rutaFichero = selectedItem.SubItems[1].Text;
                 string tipoFichero = selectedItem.SubItems[2].Text;
+                int claseFichero = Convert.ToInt32(selectedItem.SubItems[3].Text);
 
                 // Mostrar el nombre y la ruta del fichero en los TextBox correspondientes
                 txtNombreFichero.Text = nombreFichero;
@@ -1380,6 +1390,7 @@ namespace copiaProgramas
                 {
                     cbTipo.SelectedIndex = indice;
                 }
+                cbClaseFichero.SelectedIndex = claseFichero;
             }
             else
             {
@@ -1387,6 +1398,7 @@ namespace copiaProgramas
                 txtNombreFichero.Text = string.Empty;
                 txtRutaFichero.Text = string.Empty;
                 txtTipoFichero.Text = string.Empty;
+                cbClaseFichero.SelectedIndex = 0;
             }
         }
 
@@ -1409,14 +1421,36 @@ namespace copiaProgramas
         {
             if (lstFicherosOrigen.CheckedItems.Count > 0)
             {
+                lstFicherosOrigen.Enabled = false;
                 resultadoCopia = 0;
                 List<Func<Task>> tareasCopia = new List<Func<Task>>();
                 foreach (ListViewItem item in lstFicherosOrigen.CheckedItems)
                 {
                     string nombre = item.SubItems[0].Text;
-                    string ruta = item.SubItems[1].Text;
+                    string fichero = item.SubItems[1].Text;
+                    string rutaOrigen = string.Empty;
+                    int claseFichero = Convert.ToInt32(item.SubItems[3].Text);
+                    switch (claseFichero)
+                    {
+                        case 1:
+                            rutaOrigen = variable.rutaPi;
+                            break;
 
-                    tareasCopia.Add(() => hacerCopia(nombre, ruta));
+                        case 2:
+                            rutaOrigen = variable.rutanoPi;
+                            break;
+
+                        case 3:
+                            rutaOrigen = variable.rutaGestion;
+                            break;
+
+                        case 4:
+                            rutaOrigen = variable.rutaGasoleos;
+                            break;
+
+                    }
+
+                    tareasCopia.Add(() => hacerCopia(nombre, fichero, rutaOrigen));
                 }
 
 
@@ -1437,7 +1471,7 @@ namespace copiaProgramas
             }
             else
             {
-                MessageBox.Show("No hay ningun programa seleccionado. Seleccione alguno","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("No hay ningun programa seleccionado. Seleccione alguno", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
 
@@ -1462,11 +1496,11 @@ namespace copiaProgramas
             }
         }
 
-        private async Task hacerCopia(string fichero, string ruta)
+        private async Task hacerCopia(string nombre, string fichero, string rutaOrigen)
         {
             int pestaña = 3; //Pestaña de copias para mostrar el mensaje
-            string origen = ruta + fichero;
-            string titulo = fichero;
+            string origen = rutaOrigen + fichero;
+            string titulo = nombre;
 
             string nombreFichero = Path.GetFileName(fichero); //Obtiene el nombre del programa
             string destino = variable.destino + nombreFichero; //Forma la ruta completa del programa
@@ -1589,7 +1623,7 @@ namespace copiaProgramas
         }
 
         #endregion
-        
+
     }
 
     public class ListViewItemComparer : IComparer
