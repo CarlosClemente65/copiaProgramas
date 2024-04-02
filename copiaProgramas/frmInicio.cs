@@ -1474,6 +1474,7 @@ namespace copiaProgramas
                 MessageBox.Show("No hay ningun programa seleccionado. Seleccione alguno", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+            lstFicherosOrigen.Enabled = true;
 
         }
 
