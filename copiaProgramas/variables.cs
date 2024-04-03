@@ -49,7 +49,7 @@ namespace copiaProgramas
             try
             {
                 string rutaArchivo = "configuracion.json";
-                string jsonConfiguracion = JsonConvert.SerializeObject(this);
+                string jsonConfiguracion = JsonConvert.SerializeObject(this, Formatting.Indented);
                 File.WriteAllText(rutaArchivo, jsonConfiguracion);
                 MessageBox.Show("Fichero de configuracion actualizado correctamente", "Actualizar configuracion", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
