@@ -1475,6 +1475,7 @@ namespace copiaProgramas
             }
 
             lstFicherosOrigen.Enabled = true;
+            progressBar3.Value = 0;
 
         }
 
