@@ -30,20 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInicio));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup13 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup14 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup22 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup23 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup24 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup25 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup26 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup27 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup28 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup15 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup16 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup17 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup18 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup19 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup20 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup21 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabConfiguracion = new System.Windows.Forms.TabPage();
             this.btnGuardarConfiguracion = new System.Windows.Forms.Button();
@@ -130,6 +130,43 @@
             this.cbx_ipmodelo = new System.Windows.Forms.CheckBox();
             this.cbx_desdespa = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabCopias = new System.Windows.Forms.TabPage();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.lstFicherosOrigen = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLimpiarCopia = new System.Windows.Forms.Button();
+            this.txtDestinoCopias = new System.Windows.Forms.TextBox();
+            this.btnCopiarCopias = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
+            this.progressBar3 = new System.Windows.Forms.ProgressBar();
+            this.cbDestinoCopias = new System.Windows.Forms.ComboBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.tabFicheros = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.cbClaseFichero = new System.Windows.Forms.ComboBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.cbTipo = new System.Windows.Forms.ComboBox();
+            this.txtTipoFichero = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.btnEliminarFich = new System.Windows.Forms.Button();
+            this.btnModificarFich = new System.Windows.Forms.Button();
+            this.btnAddFich = new System.Windows.Forms.Button();
+            this.txtRutaFichero = new System.Windows.Forms.TextBox();
+            this.lstFicheros = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtNombreFichero = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.btnCancelarFich = new System.Windows.Forms.Button();
+            this.btnValidarFich = new System.Windows.Forms.Button();
             this.tabProgramasnoPI = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_limpiarnoPI = new System.Windows.Forms.Button();
@@ -168,61 +205,23 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.tabFicheros = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.cbClaseFichero = new System.Windows.Forms.ComboBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.cbTipo = new System.Windows.Forms.ComboBox();
-            this.txtTipoFichero = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.btnEliminarFich = new System.Windows.Forms.Button();
-            this.btnModificarFich = new System.Windows.Forms.Button();
-            this.btnAddFich = new System.Windows.Forms.Button();
-            this.txtRutaFichero = new System.Windows.Forms.TextBox();
-            this.lstFicheros = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtNombreFichero = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.btnCancelarFich = new System.Windows.Forms.Button();
-            this.btnValidarFich = new System.Windows.Forms.Button();
-            this.tabCopias = new System.Windows.Forms.TabPage();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.lstFicherosOrigen = new System.Windows.Forms.ListView();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnLimpiarCopia = new System.Windows.Forms.Button();
-            this.txtDestinoCopias = new System.Windows.Forms.TextBox();
-            this.btnCopiarCopias = new System.Windows.Forms.Button();
-            this.label28 = new System.Windows.Forms.Label();
-            this.progressBar3 = new System.Windows.Forms.ProgressBar();
-            this.cbDestinoCopias = new System.Windows.Forms.ComboBox();
-            this.label31 = new System.Windows.Forms.Label();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.button3 = new System.Windows.Forms.Button();
             this.tabConfiguracion.SuspendLayout();
             this.tabProgramasPi.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelPI.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabCopias.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tabFicheros.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.tabProgramasnoPI.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panelnoPI.SuspendLayout();
-            this.tabFicheros.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.tabCopias.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList1
@@ -247,7 +246,6 @@
             // tabConfiguracion
             // 
             this.tabConfiguracion.BackColor = System.Drawing.Color.Peru;
-            this.tabConfiguracion.Controls.Add(this.button3);
             this.tabConfiguracion.Controls.Add(this.btnGuardarConfiguracion);
             this.tabConfiguracion.Controls.Add(this.btnDestinoLocal);
             this.tabConfiguracion.Controls.Add(this.txtDestinoLocal);
@@ -1281,11 +1279,11 @@
             // tabControl1
             // 
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tabControl1.Controls.Add(this.tabCopias);
+            this.tabControl1.Controls.Add(this.tabFicheros);
+            this.tabControl1.Controls.Add(this.tabConfiguracion);
             this.tabControl1.Controls.Add(this.tabProgramasPi);
             this.tabControl1.Controls.Add(this.tabProgramasnoPI);
-            this.tabControl1.Controls.Add(this.tabConfiguracion);
-            this.tabControl1.Controls.Add(this.tabFicheros);
-            this.tabControl1.Controls.Add(this.tabCopias);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.HotTrack = true;
             this.tabControl1.ItemSize = new System.Drawing.Size(97, 30);
@@ -1298,6 +1296,517 @@
             this.tabControl1.Size = new System.Drawing.Size(704, 391);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.cb_destinonoPI_SelectedIndexChanged);
+            // 
+            // tabCopias
+            // 
+            this.tabCopias.BackColor = System.Drawing.Color.PeachPuff;
+            this.tabCopias.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabCopias.Controls.Add(this.panel12);
+            this.tabCopias.Controls.Add(this.panel1);
+            this.tabCopias.Location = new System.Drawing.Point(4, 34);
+            this.tabCopias.Name = "tabCopias";
+            this.tabCopias.Size = new System.Drawing.Size(696, 353);
+            this.tabCopias.TabIndex = 8;
+            this.tabCopias.Text = "Proceso copia";
+            // 
+            // panel12
+            // 
+            this.panel12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel12.Controls.Add(this.lstFicherosOrigen);
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(360, 350);
+            this.panel12.TabIndex = 1;
+            // 
+            // lstFicherosOrigen
+            // 
+            this.lstFicherosOrigen.AutoArrange = false;
+            this.lstFicherosOrigen.BackColor = System.Drawing.Color.LemonChiffon;
+            this.lstFicherosOrigen.CausesValidation = false;
+            this.lstFicherosOrigen.CheckBoxes = true;
+            this.lstFicherosOrigen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader8});
+            this.lstFicherosOrigen.FullRowSelect = true;
+            this.lstFicherosOrigen.GridLines = true;
+            listViewGroup22.Header = "Modelos";
+            listViewGroup22.Name = "Modelos";
+            listViewGroup23.Header = "Patrones";
+            listViewGroup23.Name = "Patrones";
+            listViewGroup24.Header = "Contabilidad";
+            listViewGroup24.Name = "Contabilidad";
+            listViewGroup25.Header = "Documentales";
+            listViewGroup25.Name = "Documentales";
+            listViewGroup26.Header = "Facturacion";
+            listViewGroup26.Name = "Facturacion";
+            listViewGroup27.Header = "Laboral";
+            listViewGroup27.Name = "Laboral";
+            listViewGroup28.Header = "Gasoleos";
+            listViewGroup28.Name = "Gasoleos";
+            this.lstFicherosOrigen.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup22,
+            listViewGroup23,
+            listViewGroup24,
+            listViewGroup25,
+            listViewGroup26,
+            listViewGroup27,
+            listViewGroup28});
+            this.lstFicherosOrigen.HideSelection = false;
+            this.lstFicherosOrigen.LabelWrap = false;
+            this.lstFicherosOrigen.Location = new System.Drawing.Point(10, 13);
+            this.lstFicherosOrigen.Name = "lstFicherosOrigen";
+            this.lstFicherosOrigen.Size = new System.Drawing.Size(349, 321);
+            this.lstFicherosOrigen.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lstFicherosOrigen.TabIndex = 6;
+            this.lstFicherosOrigen.UseCompatibleStateImageBehavior = false;
+            this.lstFicherosOrigen.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Nombre";
+            this.columnHeader4.Width = 110;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Ruta";
+            this.columnHeader5.Width = 250;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Tipo";
+            this.columnHeader6.Width = 120;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Clase";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnLimpiarCopia);
+            this.panel1.Controls.Add(this.txtDestinoCopias);
+            this.panel1.Controls.Add(this.btnCopiarCopias);
+            this.panel1.Controls.Add(this.label28);
+            this.panel1.Controls.Add(this.progressBar3);
+            this.panel1.Controls.Add(this.cbDestinoCopias);
+            this.panel1.Controls.Add(this.label31);
+            this.panel1.Location = new System.Drawing.Point(368, -2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(326, 354);
+            this.panel1.TabIndex = 0;
+            // 
+            // btnLimpiarCopia
+            // 
+            this.btnLimpiarCopia.AutoSize = true;
+            this.btnLimpiarCopia.BackColor = System.Drawing.Color.SandyBrown;
+            this.btnLimpiarCopia.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnLimpiarCopia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Moccasin;
+            this.btnLimpiarCopia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarCopia.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarCopia.ForeColor = System.Drawing.Color.Black;
+            this.btnLimpiarCopia.Location = new System.Drawing.Point(10, 308);
+            this.btnLimpiarCopia.Margin = new System.Windows.Forms.Padding(1);
+            this.btnLimpiarCopia.Name = "btnLimpiarCopia";
+            this.btnLimpiarCopia.Size = new System.Drawing.Size(95, 28);
+            this.btnLimpiarCopia.TabIndex = 34;
+            this.btnLimpiarCopia.Text = "Limpiar";
+            this.btnLimpiarCopia.UseVisualStyleBackColor = false;
+            this.btnLimpiarCopia.Click += new System.EventHandler(this.btnLimpiarCopia_Click);
+            // 
+            // txtDestinoCopias
+            // 
+            this.txtDestinoCopias.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDestinoCopias.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDestinoCopias.Location = new System.Drawing.Point(10, 82);
+            this.txtDestinoCopias.Multiline = true;
+            this.txtDestinoCopias.Name = "txtDestinoCopias";
+            this.txtDestinoCopias.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDestinoCopias.Size = new System.Drawing.Size(300, 222);
+            this.txtDestinoCopias.TabIndex = 32;
+            // 
+            // btnCopiarCopias
+            // 
+            this.btnCopiarCopias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCopiarCopias.AutoSize = true;
+            this.btnCopiarCopias.BackColor = System.Drawing.Color.SandyBrown;
+            this.btnCopiarCopias.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnCopiarCopias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Moccasin;
+            this.btnCopiarCopias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCopiarCopias.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCopiarCopias.ForeColor = System.Drawing.Color.Black;
+            this.btnCopiarCopias.Location = new System.Drawing.Point(221, 308);
+            this.btnCopiarCopias.Margin = new System.Windows.Forms.Padding(1);
+            this.btnCopiarCopias.Name = "btnCopiarCopias";
+            this.btnCopiarCopias.Size = new System.Drawing.Size(90, 28);
+            this.btnCopiarCopias.TabIndex = 33;
+            this.btnCopiarCopias.Text = "Copiar";
+            this.btnCopiarCopias.UseVisualStyleBackColor = false;
+            this.btnCopiarCopias.Click += new System.EventHandler(this.btnCopiarCopias_Click);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.BackColor = System.Drawing.Color.Transparent;
+            this.label28.ForeColor = System.Drawing.Color.Black;
+            this.label28.Location = new System.Drawing.Point(10, 53);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(101, 14);
+            this.label28.TabIndex = 28;
+            this.label28.Text = "Progreso copia";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // progressBar3
+            // 
+            this.progressBar3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar3.Location = new System.Drawing.Point(117, 53);
+            this.progressBar3.Name = "progressBar3";
+            this.progressBar3.Size = new System.Drawing.Size(194, 23);
+            this.progressBar3.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar3.TabIndex = 31;
+            // 
+            // cbDestinoCopias
+            // 
+            this.cbDestinoCopias.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbDestinoCopias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDestinoCopias.FormattingEnabled = true;
+            this.cbDestinoCopias.Items.AddRange(new object[] {
+            "Carpeta PI",
+            "Carpeta local",
+            "Carpeta pasesPI"});
+            this.cbDestinoCopias.Location = new System.Drawing.Point(108, 25);
+            this.cbDestinoCopias.Name = "cbDestinoCopias";
+            this.cbDestinoCopias.Size = new System.Drawing.Size(203, 22);
+            this.cbDestinoCopias.TabIndex = 30;
+            this.cbDestinoCopias.SelectedIndexChanged += new System.EventHandler(this.cbDestinoCopias_SelectedIndexChanged);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.ForeColor = System.Drawing.Color.Black;
+            this.label31.Location = new System.Drawing.Point(10, 28);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(92, 14);
+            this.label31.TabIndex = 29;
+            this.label31.Text = "Destino copia";
+            // 
+            // tabFicheros
+            // 
+            this.tabFicheros.BackColor = System.Drawing.Color.OliveDrab;
+            this.tabFicheros.Controls.Add(this.groupBox3);
+            this.tabFicheros.ForeColor = System.Drawing.Color.Black;
+            this.tabFicheros.Location = new System.Drawing.Point(4, 34);
+            this.tabFicheros.Margin = new System.Windows.Forms.Padding(10);
+            this.tabFicheros.Name = "tabFicheros";
+            this.tabFicheros.Padding = new System.Windows.Forms.Padding(10);
+            this.tabFicheros.Size = new System.Drawing.Size(696, 353);
+            this.tabFicheros.TabIndex = 7;
+            this.tabFicheros.Text = "Configuracion";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.OliveDrab;
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.cbClaseFichero);
+            this.groupBox3.Controls.Add(this.label32);
+            this.groupBox3.Controls.Add(this.cbTipo);
+            this.groupBox3.Controls.Add(this.txtTipoFichero);
+            this.groupBox3.Controls.Add(this.label30);
+            this.groupBox3.Controls.Add(this.btnEliminarFich);
+            this.groupBox3.Controls.Add(this.btnModificarFich);
+            this.groupBox3.Controls.Add(this.btnAddFich);
+            this.groupBox3.Controls.Add(this.txtRutaFichero);
+            this.groupBox3.Controls.Add(this.lstFicheros);
+            this.groupBox3.Controls.Add(this.label22);
+            this.groupBox3.Controls.Add(this.txtNombreFichero);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.btnCancelarFich);
+            this.groupBox3.Controls.Add(this.btnValidarFich);
+            this.groupBox3.ForeColor = System.Drawing.Color.Azure;
+            this.groupBox3.Location = new System.Drawing.Point(10, 10);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(10);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox3.Size = new System.Drawing.Size(676, 328);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Ficheros";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.LemonChiffon;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.Location = new System.Drawing.Point(165, 178);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(134, 39);
+            this.button3.TabIndex = 29;
+            this.button3.Text = "Activar / desactivar pestañas";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // cbClaseFichero
+            // 
+            this.cbClaseFichero.Enabled = false;
+            this.cbClaseFichero.FormattingEnabled = true;
+            this.cbClaseFichero.Items.AddRange(new object[] {
+            "",
+            "PI",
+            "noPI",
+            "Gestion",
+            "Gasoleos"});
+            this.cbClaseFichero.Location = new System.Drawing.Point(13, 189);
+            this.cbClaseFichero.Name = "cbClaseFichero";
+            this.cbClaseFichero.Size = new System.Drawing.Size(113, 22);
+            this.cbClaseFichero.TabIndex = 15;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(13, 172);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(88, 14);
+            this.label32.TabIndex = 14;
+            this.label32.Text = "Clase fichero";
+            // 
+            // cbTipo
+            // 
+            this.cbTipo.FormattingEnabled = true;
+            this.cbTipo.Items.AddRange(new object[] {
+            "",
+            "Contabilidad",
+            "Modelos",
+            "Documentales",
+            "Facturacion",
+            "Patrones",
+            "Laboral",
+            "Gasoleos"});
+            this.cbTipo.Location = new System.Drawing.Point(13, 137);
+            this.cbTipo.Name = "cbTipo";
+            this.cbTipo.Size = new System.Drawing.Size(286, 22);
+            this.cbTipo.TabIndex = 13;
+            this.cbTipo.Visible = false;
+            this.cbTipo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // txtTipoFichero
+            // 
+            this.txtTipoFichero.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtTipoFichero.Enabled = false;
+            this.txtTipoFichero.Location = new System.Drawing.Point(13, 150);
+            this.txtTipoFichero.Name = "txtTipoFichero";
+            this.txtTipoFichero.Size = new System.Drawing.Size(286, 22);
+            this.txtTipoFichero.TabIndex = 3;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(10, 119);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(79, 14);
+            this.label30.TabIndex = 11;
+            this.label30.Text = "Tipo fichero";
+            // 
+            // btnEliminarFich
+            // 
+            this.btnEliminarFich.BackColor = System.Drawing.Color.OliveDrab;
+            this.btnEliminarFich.FlatAppearance.BorderSize = 0;
+            this.btnEliminarFich.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarFich.ForeColor = System.Drawing.Color.Azure;
+            this.btnEliminarFich.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnEliminarFich.ImageIndex = 4;
+            this.btnEliminarFich.ImageList = this.imageList1;
+            this.btnEliminarFich.Location = new System.Drawing.Point(210, 252);
+            this.btnEliminarFich.Name = "btnEliminarFich";
+            this.btnEliminarFich.Size = new System.Drawing.Size(75, 60);
+            this.btnEliminarFich.TabIndex = 6;
+            this.btnEliminarFich.Text = "Eliminar";
+            this.btnEliminarFich.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEliminarFich.UseVisualStyleBackColor = false;
+            this.btnEliminarFich.Click += new System.EventHandler(this.btnEliminarFich_Click);
+            // 
+            // btnModificarFich
+            // 
+            this.btnModificarFich.BackColor = System.Drawing.Color.OliveDrab;
+            this.btnModificarFich.FlatAppearance.BorderSize = 0;
+            this.btnModificarFich.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificarFich.ForeColor = System.Drawing.Color.Azure;
+            this.btnModificarFich.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnModificarFich.ImageIndex = 5;
+            this.btnModificarFich.ImageList = this.imageList1;
+            this.btnModificarFich.Location = new System.Drawing.Point(115, 252);
+            this.btnModificarFich.Name = "btnModificarFich";
+            this.btnModificarFich.Size = new System.Drawing.Size(75, 60);
+            this.btnModificarFich.TabIndex = 5;
+            this.btnModificarFich.Text = "Modificar";
+            this.btnModificarFich.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnModificarFich.UseVisualStyleBackColor = false;
+            this.btnModificarFich.Click += new System.EventHandler(this.btnModificarFich_Click);
+            // 
+            // btnAddFich
+            // 
+            this.btnAddFich.BackColor = System.Drawing.Color.OliveDrab;
+            this.btnAddFich.FlatAppearance.BorderSize = 0;
+            this.btnAddFich.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddFich.ForeColor = System.Drawing.Color.Azure;
+            this.btnAddFich.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAddFich.ImageIndex = 2;
+            this.btnAddFich.ImageList = this.imageList1;
+            this.btnAddFich.Location = new System.Drawing.Point(13, 252);
+            this.btnAddFich.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAddFich.Name = "btnAddFich";
+            this.btnAddFich.Size = new System.Drawing.Size(75, 60);
+            this.btnAddFich.TabIndex = 4;
+            this.btnAddFich.Text = "Insertar";
+            this.btnAddFich.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAddFich.UseVisualStyleBackColor = false;
+            this.btnAddFich.Click += new System.EventHandler(this.btnAddFic_Click);
+            // 
+            // txtRutaFichero
+            // 
+            this.txtRutaFichero.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtRutaFichero.Enabled = false;
+            this.txtRutaFichero.Location = new System.Drawing.Point(13, 90);
+            this.txtRutaFichero.Name = "txtRutaFichero";
+            this.txtRutaFichero.Size = new System.Drawing.Size(286, 22);
+            this.txtRutaFichero.TabIndex = 2;
+            // 
+            // lstFicheros
+            // 
+            this.lstFicheros.AutoArrange = false;
+            this.lstFicheros.BackColor = System.Drawing.Color.LemonChiffon;
+            this.lstFicheros.CausesValidation = false;
+            this.lstFicheros.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader7});
+            this.lstFicheros.FullRowSelect = true;
+            this.lstFicheros.GridLines = true;
+            listViewGroup15.Header = "Contabilidad";
+            listViewGroup15.Name = "Contabilidad";
+            listViewGroup16.Header = "Modelos";
+            listViewGroup16.Name = "Modelos";
+            listViewGroup17.Header = "Documentales";
+            listViewGroup17.Name = "Documentales";
+            listViewGroup18.Header = "Facturacion";
+            listViewGroup18.Name = "Facturacion";
+            listViewGroup19.Header = "Patrones";
+            listViewGroup19.Name = "Patrones";
+            listViewGroup20.Header = "Laboral";
+            listViewGroup20.Name = "Laboral";
+            listViewGroup21.Header = "Gasoleos";
+            listViewGroup21.Name = "Gasoleos";
+            this.lstFicheros.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup15,
+            listViewGroup16,
+            listViewGroup17,
+            listViewGroup18,
+            listViewGroup19,
+            listViewGroup20,
+            listViewGroup21});
+            this.lstFicheros.HideSelection = false;
+            this.lstFicheros.LabelWrap = false;
+            this.lstFicheros.Location = new System.Drawing.Point(317, 24);
+            this.lstFicheros.MultiSelect = false;
+            this.lstFicheros.Name = "lstFicheros";
+            this.lstFicheros.Size = new System.Drawing.Size(346, 291);
+            this.lstFicheros.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lstFicheros.TabIndex = 0;
+            this.lstFicheros.UseCompatibleStateImageBehavior = false;
+            this.lstFicheros.View = System.Windows.Forms.View.Details;
+            this.lstFicheros.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstFicheros_ColumnClick);
+            this.lstFicheros.SelectedIndexChanged += new System.EventHandler(this.lstFicheros_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Nombre";
+            this.columnHeader1.Width = 110;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Ruta";
+            this.columnHeader2.Width = 250;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Tipo";
+            this.columnHeader3.Width = 120;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Clase";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(13, 73);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(82, 14);
+            this.label22.TabIndex = 2;
+            this.label22.Text = "Ruta fichero";
+            // 
+            // txtNombreFichero
+            // 
+            this.txtNombreFichero.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtNombreFichero.Enabled = false;
+            this.txtNombreFichero.Location = new System.Drawing.Point(13, 44);
+            this.txtNombreFichero.Name = "txtNombreFichero";
+            this.txtNombreFichero.Size = new System.Drawing.Size(286, 22);
+            this.txtNombreFichero.TabIndex = 1;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(10, 27);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(102, 14);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "Nombre fichero";
+            // 
+            // btnCancelarFich
+            // 
+            this.btnCancelarFich.BackColor = System.Drawing.Color.OliveDrab;
+            this.btnCancelarFich.FlatAppearance.BorderSize = 0;
+            this.btnCancelarFich.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelarFich.ForeColor = System.Drawing.Color.Azure;
+            this.btnCancelarFich.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancelarFich.ImageIndex = 3;
+            this.btnCancelarFich.ImageList = this.imageList1;
+            this.btnCancelarFich.Location = new System.Drawing.Point(13, 209);
+            this.btnCancelarFich.Name = "btnCancelarFich";
+            this.btnCancelarFich.Size = new System.Drawing.Size(75, 60);
+            this.btnCancelarFich.TabIndex = 8;
+            this.btnCancelarFich.Text = "Cancelar";
+            this.btnCancelarFich.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCancelarFich.UseVisualStyleBackColor = false;
+            this.btnCancelarFich.Visible = false;
+            this.btnCancelarFich.Click += new System.EventHandler(this.btnCancelarFich_Click);
+            // 
+            // btnValidarFich
+            // 
+            this.btnValidarFich.BackColor = System.Drawing.Color.OliveDrab;
+            this.btnValidarFich.FlatAppearance.BorderSize = 0;
+            this.btnValidarFich.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnValidarFich.ForeColor = System.Drawing.Color.Azure;
+            this.btnValidarFich.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnValidarFich.ImageIndex = 6;
+            this.btnValidarFich.ImageList = this.imageList1;
+            this.btnValidarFich.Location = new System.Drawing.Point(210, 209);
+            this.btnValidarFich.Name = "btnValidarFich";
+            this.btnValidarFich.Size = new System.Drawing.Size(75, 60);
+            this.btnValidarFich.TabIndex = 7;
+            this.btnValidarFich.Text = "Validar";
+            this.btnValidarFich.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnValidarFich.UseVisualStyleBackColor = false;
+            this.btnValidarFich.Visible = false;
+            this.btnValidarFich.Click += new System.EventHandler(this.btnValidarFich_Click);
             // 
             // tabProgramasnoPI
             // 
@@ -1747,512 +2256,6 @@
             this.label29.TabIndex = 23;
             this.label29.Text = "Modelos";
             // 
-            // tabFicheros
-            // 
-            this.tabFicheros.BackColor = System.Drawing.Color.OliveDrab;
-            this.tabFicheros.Controls.Add(this.groupBox3);
-            this.tabFicheros.ForeColor = System.Drawing.Color.Black;
-            this.tabFicheros.Location = new System.Drawing.Point(4, 34);
-            this.tabFicheros.Margin = new System.Windows.Forms.Padding(10);
-            this.tabFicheros.Name = "tabFicheros";
-            this.tabFicheros.Padding = new System.Windows.Forms.Padding(10);
-            this.tabFicheros.Size = new System.Drawing.Size(696, 353);
-            this.tabFicheros.TabIndex = 7;
-            this.tabFicheros.Text = "Configuracion";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.BackColor = System.Drawing.Color.OliveDrab;
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.cbClaseFichero);
-            this.groupBox3.Controls.Add(this.label32);
-            this.groupBox3.Controls.Add(this.cbTipo);
-            this.groupBox3.Controls.Add(this.txtTipoFichero);
-            this.groupBox3.Controls.Add(this.label30);
-            this.groupBox3.Controls.Add(this.btnEliminarFich);
-            this.groupBox3.Controls.Add(this.btnModificarFich);
-            this.groupBox3.Controls.Add(this.btnAddFich);
-            this.groupBox3.Controls.Add(this.txtRutaFichero);
-            this.groupBox3.Controls.Add(this.lstFicheros);
-            this.groupBox3.Controls.Add(this.label22);
-            this.groupBox3.Controls.Add(this.txtNombreFichero);
-            this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.btnCancelarFich);
-            this.groupBox3.Controls.Add(this.btnValidarFich);
-            this.groupBox3.ForeColor = System.Drawing.Color.Azure;
-            this.groupBox3.Location = new System.Drawing.Point(10, 10);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(10);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox3.Size = new System.Drawing.Size(676, 328);
-            this.groupBox3.TabIndex = 6;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Ficheros";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(193, 189);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "ocultar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // cbClaseFichero
-            // 
-            this.cbClaseFichero.Enabled = false;
-            this.cbClaseFichero.FormattingEnabled = true;
-            this.cbClaseFichero.Items.AddRange(new object[] {
-            "",
-            "PI",
-            "noPI",
-            "Gestion",
-            "Gasoleos"});
-            this.cbClaseFichero.Location = new System.Drawing.Point(13, 189);
-            this.cbClaseFichero.Name = "cbClaseFichero";
-            this.cbClaseFichero.Size = new System.Drawing.Size(154, 22);
-            this.cbClaseFichero.TabIndex = 15;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(13, 172);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(88, 14);
-            this.label32.TabIndex = 14;
-            this.label32.Text = "Clase fichero";
-            // 
-            // cbTipo
-            // 
-            this.cbTipo.FormattingEnabled = true;
-            this.cbTipo.Items.AddRange(new object[] {
-            "",
-            "Contabilidad",
-            "Modelos",
-            "Documentales",
-            "Facturacion",
-            "Patrones",
-            "Laboral",
-            "Gasoleos"});
-            this.cbTipo.Location = new System.Drawing.Point(13, 137);
-            this.cbTipo.Name = "cbTipo";
-            this.cbTipo.Size = new System.Drawing.Size(286, 22);
-            this.cbTipo.TabIndex = 13;
-            this.cbTipo.Visible = false;
-            this.cbTipo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // txtTipoFichero
-            // 
-            this.txtTipoFichero.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtTipoFichero.Enabled = false;
-            this.txtTipoFichero.Location = new System.Drawing.Point(13, 150);
-            this.txtTipoFichero.Name = "txtTipoFichero";
-            this.txtTipoFichero.Size = new System.Drawing.Size(286, 22);
-            this.txtTipoFichero.TabIndex = 3;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(10, 119);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(79, 14);
-            this.label30.TabIndex = 11;
-            this.label30.Text = "Tipo fichero";
-            // 
-            // btnEliminarFich
-            // 
-            this.btnEliminarFich.BackColor = System.Drawing.Color.OliveDrab;
-            this.btnEliminarFich.FlatAppearance.BorderSize = 0;
-            this.btnEliminarFich.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarFich.ForeColor = System.Drawing.Color.Azure;
-            this.btnEliminarFich.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEliminarFich.ImageIndex = 4;
-            this.btnEliminarFich.ImageList = this.imageList1;
-            this.btnEliminarFich.Location = new System.Drawing.Point(210, 252);
-            this.btnEliminarFich.Name = "btnEliminarFich";
-            this.btnEliminarFich.Size = new System.Drawing.Size(75, 60);
-            this.btnEliminarFich.TabIndex = 6;
-            this.btnEliminarFich.Text = "Eliminar";
-            this.btnEliminarFich.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnEliminarFich.UseVisualStyleBackColor = false;
-            this.btnEliminarFich.Click += new System.EventHandler(this.btnEliminarFich_Click);
-            // 
-            // btnModificarFich
-            // 
-            this.btnModificarFich.BackColor = System.Drawing.Color.OliveDrab;
-            this.btnModificarFich.FlatAppearance.BorderSize = 0;
-            this.btnModificarFich.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificarFich.ForeColor = System.Drawing.Color.Azure;
-            this.btnModificarFich.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnModificarFich.ImageIndex = 5;
-            this.btnModificarFich.ImageList = this.imageList1;
-            this.btnModificarFich.Location = new System.Drawing.Point(115, 252);
-            this.btnModificarFich.Name = "btnModificarFich";
-            this.btnModificarFich.Size = new System.Drawing.Size(75, 60);
-            this.btnModificarFich.TabIndex = 5;
-            this.btnModificarFich.Text = "Modificar";
-            this.btnModificarFich.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnModificarFich.UseVisualStyleBackColor = false;
-            this.btnModificarFich.Click += new System.EventHandler(this.btnModificarFich_Click);
-            // 
-            // btnAddFich
-            // 
-            this.btnAddFich.BackColor = System.Drawing.Color.OliveDrab;
-            this.btnAddFich.FlatAppearance.BorderSize = 0;
-            this.btnAddFich.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddFich.ForeColor = System.Drawing.Color.Azure;
-            this.btnAddFich.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAddFich.ImageIndex = 2;
-            this.btnAddFich.ImageList = this.imageList1;
-            this.btnAddFich.Location = new System.Drawing.Point(13, 252);
-            this.btnAddFich.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAddFich.Name = "btnAddFich";
-            this.btnAddFich.Size = new System.Drawing.Size(75, 60);
-            this.btnAddFich.TabIndex = 4;
-            this.btnAddFich.Text = "Insertar";
-            this.btnAddFich.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAddFich.UseVisualStyleBackColor = false;
-            this.btnAddFich.Click += new System.EventHandler(this.btnAddFic_Click);
-            // 
-            // txtRutaFichero
-            // 
-            this.txtRutaFichero.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtRutaFichero.Enabled = false;
-            this.txtRutaFichero.Location = new System.Drawing.Point(13, 90);
-            this.txtRutaFichero.Name = "txtRutaFichero";
-            this.txtRutaFichero.Size = new System.Drawing.Size(286, 22);
-            this.txtRutaFichero.TabIndex = 2;
-            // 
-            // lstFicheros
-            // 
-            this.lstFicheros.AutoArrange = false;
-            this.lstFicheros.BackColor = System.Drawing.Color.LemonChiffon;
-            this.lstFicheros.CausesValidation = false;
-            this.lstFicheros.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader7});
-            this.lstFicheros.FullRowSelect = true;
-            this.lstFicheros.GridLines = true;
-            listViewGroup1.Header = "Contabilidad";
-            listViewGroup1.Name = "Contabilidad";
-            listViewGroup2.Header = "Modelos";
-            listViewGroup2.Name = "Modelos";
-            listViewGroup3.Header = "Documentales";
-            listViewGroup3.Name = "Documentales";
-            listViewGroup4.Header = "Facturacion";
-            listViewGroup4.Name = "Facturacion";
-            listViewGroup5.Header = "Patrones";
-            listViewGroup5.Name = "Patrones";
-            listViewGroup6.Header = "Laboral";
-            listViewGroup6.Name = "Laboral";
-            listViewGroup7.Header = "Gasoleos";
-            listViewGroup7.Name = "Gasoleos";
-            this.lstFicheros.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3,
-            listViewGroup4,
-            listViewGroup5,
-            listViewGroup6,
-            listViewGroup7});
-            this.lstFicheros.HideSelection = false;
-            this.lstFicheros.LabelWrap = false;
-            this.lstFicheros.Location = new System.Drawing.Point(305, 24);
-            this.lstFicheros.MultiSelect = false;
-            this.lstFicheros.Name = "lstFicheros";
-            this.lstFicheros.Size = new System.Drawing.Size(358, 291);
-            this.lstFicheros.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lstFicheros.TabIndex = 0;
-            this.lstFicheros.UseCompatibleStateImageBehavior = false;
-            this.lstFicheros.View = System.Windows.Forms.View.Details;
-            this.lstFicheros.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstFicheros_ColumnClick);
-            this.lstFicheros.SelectedIndexChanged += new System.EventHandler(this.lstFicheros_SelectedIndexChanged);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Nombre";
-            this.columnHeader1.Width = 110;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Ruta";
-            this.columnHeader2.Width = 250;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Tipo";
-            this.columnHeader3.Width = 120;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Clase";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(13, 73);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(82, 14);
-            this.label22.TabIndex = 2;
-            this.label22.Text = "Ruta fichero";
-            // 
-            // txtNombreFichero
-            // 
-            this.txtNombreFichero.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtNombreFichero.Enabled = false;
-            this.txtNombreFichero.Location = new System.Drawing.Point(13, 44);
-            this.txtNombreFichero.Name = "txtNombreFichero";
-            this.txtNombreFichero.Size = new System.Drawing.Size(286, 22);
-            this.txtNombreFichero.TabIndex = 1;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(10, 27);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(102, 14);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "Nombre fichero";
-            // 
-            // btnCancelarFich
-            // 
-            this.btnCancelarFich.BackColor = System.Drawing.Color.OliveDrab;
-            this.btnCancelarFich.FlatAppearance.BorderSize = 0;
-            this.btnCancelarFich.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelarFich.ForeColor = System.Drawing.Color.Azure;
-            this.btnCancelarFich.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelarFich.ImageIndex = 3;
-            this.btnCancelarFich.ImageList = this.imageList1;
-            this.btnCancelarFich.Location = new System.Drawing.Point(13, 209);
-            this.btnCancelarFich.Name = "btnCancelarFich";
-            this.btnCancelarFich.Size = new System.Drawing.Size(75, 60);
-            this.btnCancelarFich.TabIndex = 8;
-            this.btnCancelarFich.Text = "Cancelar";
-            this.btnCancelarFich.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancelarFich.UseVisualStyleBackColor = false;
-            this.btnCancelarFich.Visible = false;
-            this.btnCancelarFich.Click += new System.EventHandler(this.btnCancelarFich_Click);
-            // 
-            // btnValidarFich
-            // 
-            this.btnValidarFich.BackColor = System.Drawing.Color.OliveDrab;
-            this.btnValidarFich.FlatAppearance.BorderSize = 0;
-            this.btnValidarFich.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnValidarFich.ForeColor = System.Drawing.Color.Azure;
-            this.btnValidarFich.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnValidarFich.ImageIndex = 6;
-            this.btnValidarFich.ImageList = this.imageList1;
-            this.btnValidarFich.Location = new System.Drawing.Point(210, 209);
-            this.btnValidarFich.Name = "btnValidarFich";
-            this.btnValidarFich.Size = new System.Drawing.Size(75, 60);
-            this.btnValidarFich.TabIndex = 7;
-            this.btnValidarFich.Text = "Validar";
-            this.btnValidarFich.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnValidarFich.UseVisualStyleBackColor = false;
-            this.btnValidarFich.Visible = false;
-            this.btnValidarFich.Click += new System.EventHandler(this.btnValidarFich_Click);
-            // 
-            // tabCopias
-            // 
-            this.tabCopias.BackColor = System.Drawing.Color.PeachPuff;
-            this.tabCopias.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tabCopias.Controls.Add(this.panel12);
-            this.tabCopias.Controls.Add(this.panel1);
-            this.tabCopias.Location = new System.Drawing.Point(4, 34);
-            this.tabCopias.Name = "tabCopias";
-            this.tabCopias.Size = new System.Drawing.Size(696, 353);
-            this.tabCopias.TabIndex = 8;
-            this.tabCopias.Text = "Proceso copia";
-            // 
-            // panel12
-            // 
-            this.panel12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel12.Controls.Add(this.lstFicherosOrigen);
-            this.panel12.Location = new System.Drawing.Point(0, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(360, 350);
-            this.panel12.TabIndex = 1;
-            // 
-            // lstFicherosOrigen
-            // 
-            this.lstFicherosOrigen.AutoArrange = false;
-            this.lstFicherosOrigen.BackColor = System.Drawing.Color.LemonChiffon;
-            this.lstFicherosOrigen.CausesValidation = false;
-            this.lstFicherosOrigen.CheckBoxes = true;
-            this.lstFicherosOrigen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader8});
-            this.lstFicherosOrigen.FullRowSelect = true;
-            this.lstFicherosOrigen.GridLines = true;
-            listViewGroup8.Header = "Modelos";
-            listViewGroup8.Name = "Modelos";
-            listViewGroup9.Header = "Patrones";
-            listViewGroup9.Name = "Patrones";
-            listViewGroup10.Header = "Contabilidad";
-            listViewGroup10.Name = "Contabilidad";
-            listViewGroup11.Header = "Documentales";
-            listViewGroup11.Name = "Documentales";
-            listViewGroup12.Header = "Facturacion";
-            listViewGroup12.Name = "Facturacion";
-            listViewGroup13.Header = "Laboral";
-            listViewGroup13.Name = "Laboral";
-            listViewGroup14.Header = "Gasoleos";
-            listViewGroup14.Name = "Gasoleos";
-            this.lstFicherosOrigen.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup8,
-            listViewGroup9,
-            listViewGroup10,
-            listViewGroup11,
-            listViewGroup12,
-            listViewGroup13,
-            listViewGroup14});
-            this.lstFicherosOrigen.HideSelection = false;
-            this.lstFicherosOrigen.LabelWrap = false;
-            this.lstFicherosOrigen.Location = new System.Drawing.Point(10, 13);
-            this.lstFicherosOrigen.Name = "lstFicherosOrigen";
-            this.lstFicherosOrigen.Size = new System.Drawing.Size(349, 321);
-            this.lstFicherosOrigen.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lstFicherosOrigen.TabIndex = 6;
-            this.lstFicherosOrigen.UseCompatibleStateImageBehavior = false;
-            this.lstFicherosOrigen.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Nombre";
-            this.columnHeader4.Width = 110;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Ruta";
-            this.columnHeader5.Width = 250;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Tipo";
-            this.columnHeader6.Width = 120;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Clase";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnLimpiarCopia);
-            this.panel1.Controls.Add(this.txtDestinoCopias);
-            this.panel1.Controls.Add(this.btnCopiarCopias);
-            this.panel1.Controls.Add(this.label28);
-            this.panel1.Controls.Add(this.progressBar3);
-            this.panel1.Controls.Add(this.cbDestinoCopias);
-            this.panel1.Controls.Add(this.label31);
-            this.panel1.Location = new System.Drawing.Point(368, -2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(326, 354);
-            this.panel1.TabIndex = 0;
-            // 
-            // btnLimpiarCopia
-            // 
-            this.btnLimpiarCopia.AutoSize = true;
-            this.btnLimpiarCopia.BackColor = System.Drawing.Color.SandyBrown;
-            this.btnLimpiarCopia.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnLimpiarCopia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Moccasin;
-            this.btnLimpiarCopia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiarCopia.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiarCopia.ForeColor = System.Drawing.Color.Black;
-            this.btnLimpiarCopia.Location = new System.Drawing.Point(10, 308);
-            this.btnLimpiarCopia.Margin = new System.Windows.Forms.Padding(1);
-            this.btnLimpiarCopia.Name = "btnLimpiarCopia";
-            this.btnLimpiarCopia.Size = new System.Drawing.Size(95, 28);
-            this.btnLimpiarCopia.TabIndex = 34;
-            this.btnLimpiarCopia.Text = "Limpiar";
-            this.btnLimpiarCopia.UseVisualStyleBackColor = false;
-            this.btnLimpiarCopia.Click += new System.EventHandler(this.btnLimpiarCopia_Click);
-            // 
-            // txtDestinoCopias
-            // 
-            this.txtDestinoCopias.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDestinoCopias.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDestinoCopias.Location = new System.Drawing.Point(10, 82);
-            this.txtDestinoCopias.Multiline = true;
-            this.txtDestinoCopias.Name = "txtDestinoCopias";
-            this.txtDestinoCopias.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDestinoCopias.Size = new System.Drawing.Size(300, 222);
-            this.txtDestinoCopias.TabIndex = 32;
-            // 
-            // btnCopiarCopias
-            // 
-            this.btnCopiarCopias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCopiarCopias.AutoSize = true;
-            this.btnCopiarCopias.BackColor = System.Drawing.Color.SandyBrown;
-            this.btnCopiarCopias.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnCopiarCopias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Moccasin;
-            this.btnCopiarCopias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCopiarCopias.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCopiarCopias.ForeColor = System.Drawing.Color.Black;
-            this.btnCopiarCopias.Location = new System.Drawing.Point(221, 308);
-            this.btnCopiarCopias.Margin = new System.Windows.Forms.Padding(1);
-            this.btnCopiarCopias.Name = "btnCopiarCopias";
-            this.btnCopiarCopias.Size = new System.Drawing.Size(90, 28);
-            this.btnCopiarCopias.TabIndex = 33;
-            this.btnCopiarCopias.Text = "Copiar";
-            this.btnCopiarCopias.UseVisualStyleBackColor = false;
-            this.btnCopiarCopias.Click += new System.EventHandler(this.btnCopiarCopias_Click);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.Color.Transparent;
-            this.label28.ForeColor = System.Drawing.Color.Black;
-            this.label28.Location = new System.Drawing.Point(10, 53);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(101, 14);
-            this.label28.TabIndex = 28;
-            this.label28.Text = "Progreso copia";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // progressBar3
-            // 
-            this.progressBar3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar3.Location = new System.Drawing.Point(117, 53);
-            this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(194, 23);
-            this.progressBar3.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar3.TabIndex = 31;
-            // 
-            // cbDestinoCopias
-            // 
-            this.cbDestinoCopias.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbDestinoCopias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDestinoCopias.FormattingEnabled = true;
-            this.cbDestinoCopias.Items.AddRange(new object[] {
-            "Carpeta PI",
-            "Carpeta local",
-            "Carpeta pasesPI"});
-            this.cbDestinoCopias.Location = new System.Drawing.Point(108, 25);
-            this.cbDestinoCopias.Name = "cbDestinoCopias";
-            this.cbDestinoCopias.Size = new System.Drawing.Size(203, 22);
-            this.cbDestinoCopias.TabIndex = 30;
-            this.cbDestinoCopias.SelectedIndexChanged += new System.EventHandler(this.cbDestinoCopias_SelectedIndexChanged);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.BackColor = System.Drawing.Color.Transparent;
-            this.label31.ForeColor = System.Drawing.Color.Black;
-            this.label31.Location = new System.Drawing.Point(10, 28);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(92, 14);
-            this.label31.TabIndex = 29;
-            this.label31.Text = "Destino copia";
-            // 
             // imageList2
             // 
             this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
@@ -2260,18 +2263,6 @@
             this.imageList2.Images.SetKeyName(0, "abajo.png");
             this.imageList2.Images.SetKeyName(1, "arriba.png");
             this.imageList2.Images.SetKeyName(2, "cancela.png");
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(179)))), ((int)(((byte)(135)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(16, 306);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(140, 39);
-            this.button3.TabIndex = 28;
-            this.button3.Text = "Activar / desactivar pestañas";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // frmInicio
             // 
@@ -2291,7 +2282,6 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Copia paquetes master9";
-            this.Load += new System.EventHandler(this.frmInicio_Load);
             this.tabConfiguracion.ResumeLayout(false);
             this.tabConfiguracion.PerformLayout();
             this.tabProgramasPi.ResumeLayout(false);
@@ -2302,6 +2292,13 @@
             this.panelPI.ResumeLayout(false);
             this.panelPI.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabCopias.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.tabFicheros.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.tabProgramasnoPI.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -2309,13 +2306,6 @@
             this.panel15.PerformLayout();
             this.panelnoPI.ResumeLayout(false);
             this.panelnoPI.PerformLayout();
-            this.tabFicheros.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.tabCopias.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2483,7 +2473,6 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
     }
 }

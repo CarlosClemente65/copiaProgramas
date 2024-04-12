@@ -21,6 +21,7 @@ namespace copiaProgramas
         System.Windows.Forms.ListView lista = null;
         TabPage tabPI = new TabPage();
         TabPage tabNopi = new TabPage();
+        bool controlTab = true;
 
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
         private Dictionary<CheckBox, string> checkBoxVariables = new Dictionary<CheckBox, string>();
@@ -51,7 +52,10 @@ namespace copiaProgramas
 
             cbDestinoCopias.SelectedIndex = 0;
             actualizaListaFicheros(lstFicherosOrigen);
-            tabControl1.SelectedIndex = 4;
+            tabControl1.SelectTab("tabCopias");
+            tabPI = tabControl1.TabPages["tabProgramasPi"];
+            tabNopi = tabControl1.TabPages["tabProgramasnoPI"];
+            activarPestañas();
 
         }
 
@@ -1633,38 +1637,26 @@ namespace copiaProgramas
 
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //tabControl1.TabPages["tabProgramasPi"].Hide();
-            //TabPage p = new TabPage();
-            //p = tabControl1.TabPages[0];
-            //tabControl1.TabPages.RemoveAt(0);
-            //MessageBox.Show("Test", "pulsa una tecla",MessageBoxButtons.OK);
-            //tabControl1.TabPages.Add(p);
 
-        }
-
-        private void frmInicio_Load(object sender, EventArgs e)
-        {
-            //tabPI = tabControl1.TabPages["tabProgramasPi"];
-            //tabNopi = tabControl1.TabPages["tabProgramasnoPI"];
-            //tabControl1.TabPages.Remove(tabPI);
-            //tabControl1.TabPages.Remove(tabNopi);
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            tabPI = tabControl1.TabPages["tabProgramasPi"];
-            tabNopi = tabControl1.TabPages["tabProgramasnoPI"];
-            if (tabPI != null)
+            activarPestañas();
+        }
+
+        private void activarPestañas()
+        {
+            if (controlTab)
             {
                 tabControl1.TabPages.Remove(tabPI);
                 tabControl1.TabPages.Remove(tabNopi);
+                controlTab = false;
             }
             else
             {
-                TabPage nuevaTabPi = new TabPage("tabProgramasPI");
-                tabControl1.TabPages.Add(nuevaTabPi);
+                tabControl1.TabPages.Add(tabPI);
+                tabControl1.TabPages.Add(tabNopi);
+                controlTab = true;
             }
         }
     }
