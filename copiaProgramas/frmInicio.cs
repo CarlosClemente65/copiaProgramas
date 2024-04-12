@@ -19,6 +19,8 @@ namespace copiaProgramas
         Ficheros fichero = new Ficheros(); //Instanciacion de la clase Ficheros para leer el .json
         int resultadoCopia = 0;
         System.Windows.Forms.ListView lista = null;
+        TabPage tabPI = new TabPage();
+        TabPage tabNopi = new TabPage();
 
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
         private Dictionary<CheckBox, string> checkBoxVariables = new Dictionary<CheckBox, string>();
@@ -50,6 +52,7 @@ namespace copiaProgramas
             cbDestinoCopias.SelectedIndex = 0;
             actualizaListaFicheros(lstFicherosOrigen);
             tabControl1.SelectedIndex = 4;
+
         }
 
 
@@ -1476,6 +1479,10 @@ namespace copiaProgramas
 
             lstFicherosOrigen.Enabled = true;
             progressBar3.Value = 0;
+            foreach (ListViewItem item in lstFicherosOrigen.CheckedItems)
+            {
+                item.Checked = false;
+            }
 
         }
 
@@ -1626,6 +1633,40 @@ namespace copiaProgramas
 
         #endregion
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //tabControl1.TabPages["tabProgramasPi"].Hide();
+            //TabPage p = new TabPage();
+            //p = tabControl1.TabPages[0];
+            //tabControl1.TabPages.RemoveAt(0);
+            //MessageBox.Show("Test", "pulsa una tecla",MessageBoxButtons.OK);
+            //tabControl1.TabPages.Add(p);
+
+        }
+
+        private void frmInicio_Load(object sender, EventArgs e)
+        {
+            //tabPI = tabControl1.TabPages["tabProgramasPi"];
+            //tabNopi = tabControl1.TabPages["tabProgramasnoPI"];
+            //tabControl1.TabPages.Remove(tabPI);
+            //tabControl1.TabPages.Remove(tabNopi);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            tabPI = tabControl1.TabPages["tabProgramasPi"];
+            tabNopi = tabControl1.TabPages["tabProgramasnoPI"];
+            if (tabPI != null)
+            {
+                tabControl1.TabPages.Remove(tabPI);
+                tabControl1.TabPages.Remove(tabNopi);
+            }
+            else
+            {
+                TabPage nuevaTabPi = new TabPage("tabProgramasPI");
+                tabControl1.TabPages.Add(nuevaTabPi);
+            }
+        }
     }
 
     public class ListViewItemComparer : IComparer

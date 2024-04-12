@@ -170,6 +170,7 @@
             this.label29 = new System.Windows.Forms.Label();
             this.tabFicheros = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.cbClaseFichero = new System.Windows.Forms.ComboBox();
             this.label32 = new System.Windows.Forms.Label();
             this.cbTipo = new System.Windows.Forms.ComboBox();
@@ -206,6 +207,7 @@
             this.label31 = new System.Windows.Forms.Label();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabConfiguracion.SuspendLayout();
             this.tabProgramasPi.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -245,6 +247,7 @@
             // tabConfiguracion
             // 
             this.tabConfiguracion.BackColor = System.Drawing.Color.Peru;
+            this.tabConfiguracion.Controls.Add(this.button3);
             this.tabConfiguracion.Controls.Add(this.btnGuardarConfiguracion);
             this.tabConfiguracion.Controls.Add(this.btnDestinoLocal);
             this.tabConfiguracion.Controls.Add(this.txtDestinoLocal);
@@ -1760,6 +1763,7 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.OliveDrab;
+            this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.cbClaseFichero);
             this.groupBox3.Controls.Add(this.label32);
             this.groupBox3.Controls.Add(this.cbTipo);
@@ -1784,6 +1788,16 @@
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ficheros";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(193, 189);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "ocultar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cbClaseFichero
             // 
@@ -2247,6 +2261,18 @@
             this.imageList2.Images.SetKeyName(1, "arriba.png");
             this.imageList2.Images.SetKeyName(2, "cancela.png");
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(179)))), ((int)(((byte)(135)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(16, 306);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(140, 39);
+            this.button3.TabIndex = 28;
+            this.button3.Text = "Activar / desactivar pestañas";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // frmInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
@@ -2265,6 +2291,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Copia paquetes master9";
+            this.Load += new System.EventHandler(this.frmInicio_Load);
             this.tabConfiguracion.ResumeLayout(false);
             this.tabConfiguracion.PerformLayout();
             this.tabProgramasPi.ResumeLayout(false);
@@ -2456,6 +2483,8 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
     }
 }
 
