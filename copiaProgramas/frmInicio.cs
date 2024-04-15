@@ -1428,7 +1428,7 @@ namespace copiaProgramas
         {
             if (lstFicherosOrigen.CheckedItems.Count > 0)
             {
-                lstFicherosOrigen.Enabled = false;
+                tabControl1.Enabled = false;
                 resultadoCopia = 0;
                 List<Func<Task>> tareasCopia = new List<Func<Task>>();
                 foreach (ListViewItem item in lstFicherosOrigen.CheckedItems)
@@ -1481,7 +1481,7 @@ namespace copiaProgramas
                 MessageBox.Show("No hay ningun programa seleccionado. Seleccione alguno", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            lstFicherosOrigen.Enabled = true;
+            tabControl1.Enabled = true;
             progressBar3.Value = 0;
             foreach (ListViewItem item in lstFicherosOrigen.CheckedItems)
             {
