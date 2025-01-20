@@ -9,6 +9,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Drawing;
 using System.Collections;
 using static copiaProgramas.Ficheros;
+using System.Diagnostics;
+using System.Data.SqlTypes;
 
 namespace copiaProgramas
 {
@@ -38,7 +40,7 @@ namespace copiaProgramas
             vincularChecboxVariables();
 
             // Suscribir al evento CheckedChanged para todos los CheckBoxes
-            foreach (var elemento in checkBoxVariables)
+            foreach(var elemento in checkBoxVariables)
             {
                 elemento.Key.CheckedChanged += CheckBox_CheckedChanged;
             }
@@ -119,7 +121,7 @@ namespace copiaProgramas
             string nombreVariable = checkBoxVariables[checkBox];
 
             // Segun la variable asociada al checkbox, se modifica el valor de la variable correspondiente
-            switch (nombreVariable)
+            switch(nombreVariable)
             {
                 case "ipcont08":
                     programa.ipcont08 = checkBox.Checked;
@@ -299,7 +301,7 @@ namespace copiaProgramas
         private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Acciones a realizar segun la pestaña seleccionada
-            switch (tabControl1.SelectedTab.Name)
+            switch(tabControl1.SelectedTab.Name)
             {
                 case "tabConfiguracion":
                     // Ejecutar el método cuando se selecciona la pestaña configuracion
@@ -338,13 +340,13 @@ namespace copiaProgramas
         private void ActualizarProgreso(string mensaje, int pestaña)
         {
             //Este metodo escribe en el textBox el progreso de la copia
-            if (InvokeRequired) // Se asegura que esta en el mismo hilo de ejecucion
+            if(InvokeRequired) // Se asegura que esta en el mismo hilo de ejecucion
             {
                 Invoke(new Action<string, int>(ActualizarProgreso), mensaje, pestaña);
             }
             else
             {
-                switch (pestaña)
+                switch(pestaña)
                 {
                     case 1:
                         txtProgresoCopiaPI.AppendText(mensaje);
@@ -370,7 +372,7 @@ namespace copiaProgramas
             //Metodo para cargar en una lista los nombres de ls ficheros de .json y mostrarlos en el ListView que se pase como parametro 
             lista = nombreLista;
             lista.Items.Clear();
-            foreach (var fichero in Ficheros.listaFicheros)
+            foreach(var fichero in Ficheros.listaFicheros)
             {
                 string nombre = fichero.Nombre;
                 string ruta = fichero.Ruta;
@@ -382,16 +384,16 @@ namespace copiaProgramas
                 item.SubItems.Add(clase);
 
                 ListViewGroup grupo = null;
-                foreach (ListViewGroup Grupos in lista.Groups)
+                foreach(ListViewGroup Grupos in lista.Groups)
                 {
-                    if (Grupos.Header == tipo)
+                    if(Grupos.Header == tipo)
                     {
                         grupo = Grupos;
                         break;
                     }
                 }
 
-                if (grupo == null)
+                if(grupo == null)
                 {
                     grupo = new ListViewGroup(tipo);
                     lista.Groups.Add(grupo);
@@ -414,7 +416,7 @@ namespace copiaProgramas
         private async Task LanzaCopia(bool programa, string fichero, string titulo, string ruta, int pestaña)
         {
             //Metodo para hacer las copias desde las pestañas de PI y noPI
-            if (programa) //Si esta marcado el programa pasado se lanza la copia
+            if(programa) //Si esta marcado el programa pasado se lanza la copia
             {
                 string origen = ruta + fichero;
 
@@ -423,7 +425,7 @@ namespace copiaProgramas
                 string destino = variable.destino + nombreFichero; //Forma la ruta completa del programa
 
                 //Controla para hacer la copia local
-                if (variable.destino == variable.destinoLocal)
+                if(variable.destino == variable.destinoLocal)
                 {
                     try
                     {
@@ -437,7 +439,7 @@ namespace copiaProgramas
                                 resultadoCopia++;
                             }
 
-                            catch (Exception ex)
+                            catch(Exception ex)
                             {
                                 ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
                             }
@@ -445,7 +447,7 @@ namespace copiaProgramas
 
                     }
 
-                    catch (Exception ex)
+                    catch(Exception ex)
                     {
                         ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
                     }
@@ -493,7 +495,7 @@ namespace copiaProgramas
                                 //Permite controlar el progreso de copia
                                 session.FileTransferProgress += (sender, e) =>
                                 {
-                                    if (pestaña == 1)
+                                    if(pestaña == 1)
                                     {
                                         //Actualiza la barra de progreso de copia
                                         progressBar1.Invoke((MethodInvoker)(() =>
@@ -504,7 +506,7 @@ namespace copiaProgramas
                                             lbl_porcentaje.Text = $"{porcentaje}%";
                                         }));
                                     }
-                                    else if (pestaña == 2)
+                                    else if(pestaña == 2)
                                     {
                                         progressBar2.Invoke((MethodInvoker)(() =>
                                         {
@@ -532,7 +534,7 @@ namespace copiaProgramas
                             }).ConfigureAwait(false);
                         }
 
-                        catch (Exception ex)
+                        catch(Exception ex)
                         {
                             ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message + Environment.NewLine, pestaña);
                         }
@@ -543,7 +545,7 @@ namespace copiaProgramas
                             session?.Dispose();
                         }
                     }
-                    catch (Exception ex)
+                    catch(Exception ex)
                     {
                         ActualizarProgreso(Environment.NewLine + $"No se ha podido copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
                     }
@@ -558,9 +560,9 @@ namespace copiaProgramas
         private void LimpiaCbxPi()
         {
             //Quita las marcas de los controlBox
-            foreach (Control control in panelPI.Controls)
+            foreach(Control control in panelPI.Controls)
             {
-                if (control is CheckBox cbx)
+                if(control is CheckBox cbx)
                 {
                     cbx.Checked = false;
 
@@ -571,7 +573,7 @@ namespace copiaProgramas
         private void cb_destinoPI_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Metodo para asignar las rutas destino de la copia segun el valor seleccionado en el comboBox
-            switch (cb_destinoPI.SelectedIndex)
+            switch(cb_destinoPI.SelectedIndex)
             {
                 case 0:
                     variable.destino = variable.destinoPi;
@@ -591,9 +593,9 @@ namespace copiaProgramas
         {
             //Metodo para desmarcar todos los checkBox y limpiar el textoBox del resultado de la copia
             txtProgresoCopiaPI.Text = string.Empty;
-            foreach (Control control in panelPI.Controls)
+            foreach(Control control in panelPI.Controls)
             {
-                if (control is CheckBox cbx)
+                if(control is CheckBox cbx)
                 {
                     cbx.Checked = false;
                 }
@@ -610,9 +612,9 @@ namespace copiaProgramas
         private void LimpiaCbxnoPi()
         {
             //Quita las marcas de los controlBox
-            foreach (Control control in panelnoPI.Controls)
+            foreach(Control control in panelnoPI.Controls)
             {
-                if (control is CheckBox cbx)
+                if(control is CheckBox cbx)
                 {
                     cbx.Checked = false;
 
@@ -623,7 +625,7 @@ namespace copiaProgramas
         private void cb_destinonoPI_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Metodo para asignar las rutas destino de la copia segun el valor seleccionado en el comboBox
-            switch (cb_destinonoPI.SelectedIndex)
+            switch(cb_destinonoPI.SelectedIndex)
             {
                 case 0:
                     variable.destino = variable.destinonoPi;
@@ -643,9 +645,9 @@ namespace copiaProgramas
         {
             //Metodo para desmarcar todos los checkBox y limpiar el textoBox del resultado de la copia
             txtProgresoCopianoPI.Text = string.Empty;
-            foreach (Control control in panelnoPI.Controls)
+            foreach(Control control in panelnoPI.Controls)
             {
-                if (control is CheckBox cbx)
+                if(control is CheckBox cbx)
                 {
                     cbx.Checked = false;
                 }
@@ -662,7 +664,7 @@ namespace copiaProgramas
 
         private void btnRutaPi_MouseHover(object sender, EventArgs e)
         {
-            if (txtRutaPi.Enabled == false)
+            if(txtRutaPi.Enabled == false)
             {
                 btnRutaPi.BackgroundImage = global::copiaProgramas.Properties.Resources.editar_hover;
             }
@@ -674,7 +676,7 @@ namespace copiaProgramas
 
         private void btnRutanoPi_MouseHover(object sender, EventArgs e)
         {
-            if (txtRutanoPi.Enabled == false)
+            if(txtRutanoPi.Enabled == false)
             {
                 btnRutanoPi.BackgroundImage = global::copiaProgramas.Properties.Resources.editar_hover;
             }
@@ -686,7 +688,7 @@ namespace copiaProgramas
 
         private void btnRutaGestion_MouseHover(object sender, EventArgs e)
         {
-            if (txtRutaGestion.Enabled == false)
+            if(txtRutaGestion.Enabled == false)
             {
                 btnRutaGestion.BackgroundImage = global::copiaProgramas.Properties.Resources.editar_hover;
             }
@@ -698,7 +700,7 @@ namespace copiaProgramas
 
         private void btnRutaGasoleos_MouseHover(object sender, EventArgs e)
         {
-            if (txtRutaGasoleos.Enabled == false)
+            if(txtRutaGasoleos.Enabled == false)
             {
                 btnRutaGasoleos.BackgroundImage = global::copiaProgramas.Properties.Resources.editar_hover;
             }
@@ -710,7 +712,7 @@ namespace copiaProgramas
 
         private void btnDestinoPi_MouseHover(object sender, EventArgs e)
         {
-            if (txtDestinoPi.Enabled == false)
+            if(txtDestinoPi.Enabled == false)
             {
                 btnDestinoPi.BackgroundImage = global::copiaProgramas.Properties.Resources.editar_hover;
             }
@@ -722,7 +724,7 @@ namespace copiaProgramas
 
         private void btnDestinonoPi_MouseHover(object sender, EventArgs e)
         {
-            if (txtDestinonoPi.Enabled == false)
+            if(txtDestinonoPi.Enabled == false)
             {
                 btnDestinonoPi.BackgroundImage = global::copiaProgramas.Properties.Resources.editar_hover;
             }
@@ -734,7 +736,7 @@ namespace copiaProgramas
 
         private void btnDestinoLocal_MouseHover(object sender, EventArgs e)
         {
-            if (txtDestinoLocal.Enabled == false)
+            if(txtDestinoLocal.Enabled == false)
             {
                 btnDestinoLocal.BackgroundImage = global::copiaProgramas.Properties.Resources.editar_hover;
             }
@@ -746,7 +748,7 @@ namespace copiaProgramas
 
         private void btnDestinoPasesPi_MouseHover(object sender, EventArgs e)
         {
-            if (txtDestinoPasesPi.Enabled == false)
+            if(txtDestinoPasesPi.Enabled == false)
             {
                 btnDestinoPasesPi.BackgroundImage = global::copiaProgramas.Properties.Resources.editar_hover;
             }
@@ -758,7 +760,7 @@ namespace copiaProgramas
 
         private void btnDestinoPasesnoPi_MouseHover(object sender, EventArgs e)
         {
-            if (txtDestinoPasesnoPi.Enabled == false)
+            if(txtDestinoPasesnoPi.Enabled == false)
             {
                 btnDestinoPasesnoPi.BackgroundImage = global::copiaProgramas.Properties.Resources.editar_hover;
             }
@@ -775,7 +777,7 @@ namespace copiaProgramas
 
         private void btnRutaPi_MouseLeave(object sender, EventArgs e)
         {
-            if (txtRutaPi.Enabled == false)
+            if(txtRutaPi.Enabled == false)
             {
                 btnRutaPi.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
             }
@@ -787,7 +789,7 @@ namespace copiaProgramas
 
         private void btnRutanoPi_MouseLeave(object sender, EventArgs e)
         {
-            if (txtRutanoPi.Enabled == false)
+            if(txtRutanoPi.Enabled == false)
             {
                 btnRutanoPi.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
             }
@@ -799,7 +801,7 @@ namespace copiaProgramas
 
         private void btnRutaGestion_MouseLeave(object sender, EventArgs e)
         {
-            if (txtRutaGestion.Enabled == false)
+            if(txtRutaGestion.Enabled == false)
             {
                 btnRutaGestion.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
             }
@@ -811,7 +813,7 @@ namespace copiaProgramas
 
         private void btnRutaGasoleos_MouseLeave(object sender, EventArgs e)
         {
-            if (txtRutaGasoleos.Enabled == false)
+            if(txtRutaGasoleos.Enabled == false)
             {
                 btnRutaGasoleos.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
             }
@@ -823,7 +825,7 @@ namespace copiaProgramas
 
         private void btnDestinoPi_MouseLeave(object sender, EventArgs e)
         {
-            if (txtDestinoPi.Enabled == false)
+            if(txtDestinoPi.Enabled == false)
             {
                 btnDestinoPi.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
             }
@@ -835,7 +837,7 @@ namespace copiaProgramas
 
         private void btnDestinonoPi_MouseLeave(object sender, EventArgs e)
         {
-            if (txtDestinonoPi.Enabled == false)
+            if(txtDestinonoPi.Enabled == false)
             {
                 btnDestinonoPi.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
             }
@@ -847,7 +849,7 @@ namespace copiaProgramas
 
         private void btnDestinoLocal_MouseLeave(object sender, EventArgs e)
         {
-            if (txtDestinoLocal.Enabled == false)
+            if(txtDestinoLocal.Enabled == false)
             {
                 btnDestinoLocal.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
             }
@@ -859,7 +861,7 @@ namespace copiaProgramas
 
         private void btnDestinoPasesPi_MouseLeave(object sender, EventArgs e)
         {
-            if (txtDestinoPasesPi.Enabled == false)
+            if(txtDestinoPasesPi.Enabled == false)
             {
                 btnDestinoPasesPi.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
             }
@@ -871,7 +873,7 @@ namespace copiaProgramas
 
         private void btnDestinoPasesnoPi_MouseLeave(object sender, EventArgs e)
         {
-            if (txtDestinoPasesnoPi.Enabled == false)
+            if(txtDestinoPasesnoPi.Enabled == false)
             {
                 btnDestinoPasesnoPi.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
             }
@@ -893,15 +895,15 @@ namespace copiaProgramas
 
             tabControl1.Enabled = false;
 
-            foreach (Control control in panelPI.Controls)
+            foreach(Control control in panelPI.Controls)
             {
-                if (control is CheckBox cbx && cbx.Checked)
+                if(control is CheckBox cbx && cbx.Checked)
                 {
                     controlCbx++;
                 }
             }
 
-            if (controlCbx > 0)
+            if(controlCbx > 0)
             {
                 //Crea una lista de las tareas de copia a realizar
                 List<Func<Task>> tareasCopia = new List<Func<Task>>
@@ -938,12 +940,12 @@ namespace copiaProgramas
                 };
 
                 //Lanza las copias una a una
-                for (int i = 0; i < tareasCopia.Count; i++)
+                for(int i = 0; i < tareasCopia.Count; i++)
                 {
                     await tareasCopia[i]();
                 }
 
-                if (resultadoCopia > 0)
+                if(resultadoCopia > 0)
                 {
                     MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -968,15 +970,15 @@ namespace copiaProgramas
             resultadoCopia = 0; //Control para si se ha hecho alguna copia correctamente
             int controlCbx = 0;//Controla si hay algun checbox marcado para hacer la copia
 
-            foreach (Control control in panelnoPI.Controls)
+            foreach(Control control in panelnoPI.Controls)
             {
-                if (control is CheckBox cbx && cbx.Checked)
+                if(control is CheckBox cbx && cbx.Checked)
                 {
                     controlCbx++;
                 }
             }
 
-            if (controlCbx > 0)
+            if(controlCbx > 0)
             {
                 //Crea una lista de las tareas de copia a realizar
                 List<Func<Task>> tareasCopia = new List<Func<Task>>
@@ -999,12 +1001,12 @@ namespace copiaProgramas
                 };
 
                 //Lanza las copias una a una
-                for (int i = 0; i < tareasCopia.Count; i++)
+                for(int i = 0; i < tareasCopia.Count; i++)
                 {
                     await tareasCopia[i]();
                 }
 
-                if (resultadoCopia > 0)
+                if(resultadoCopia > 0)
                 {
                     MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -1031,7 +1033,7 @@ namespace copiaProgramas
 
         private void btnRutaPi_MouseClick(object sender, MouseEventArgs e)
         {
-            if (txtRutaPi.Enabled == false)
+            if(txtRutaPi.Enabled == false)
             {
                 txtRutaPi.Enabled = true;
                 txtRutaPi.Focus();
@@ -1048,7 +1050,7 @@ namespace copiaProgramas
 
         private void btnRutanoPi_MouseClick(object sender, MouseEventArgs e)
         {
-            if (txtRutanoPi.Enabled == false)
+            if(txtRutanoPi.Enabled == false)
             {
                 txtRutanoPi.Enabled = true;
                 txtRutanoPi.Focus();
@@ -1065,7 +1067,7 @@ namespace copiaProgramas
 
         private void btnRutaGestion_MouseClick(object sender, MouseEventArgs e)
         {
-            if (txtRutaGestion.Enabled == false)
+            if(txtRutaGestion.Enabled == false)
             {
                 txtRutaGestion.Enabled = true;
                 txtRutaGestion.Focus();
@@ -1082,7 +1084,7 @@ namespace copiaProgramas
 
         private void btnRutaGasoleos_MouseClick(object sender, MouseEventArgs e)
         {
-            if (txtRutaGasoleos.Enabled == false)
+            if(txtRutaGasoleos.Enabled == false)
             {
                 txtRutaGasoleos.Enabled = true;
                 txtRutaGasoleos.Focus();
@@ -1099,7 +1101,7 @@ namespace copiaProgramas
 
         private void btnDestinoPi_MouseClick(object sender, MouseEventArgs e)
         {
-            if (txtDestinoPi.Enabled == false)
+            if(txtDestinoPi.Enabled == false)
             {
                 btnGuardarConfiguracion.Enabled = false;
                 txtDestinoPi.Enabled = true;
@@ -1117,7 +1119,7 @@ namespace copiaProgramas
 
         private void btnDestinonoPi_MouseClick(object sender, MouseEventArgs e)
         {
-            if (txtDestinonoPi.Enabled == false)
+            if(txtDestinonoPi.Enabled == false)
             {
                 txtDestinonoPi.Enabled = true;
                 txtDestinonoPi.Focus();
@@ -1134,7 +1136,7 @@ namespace copiaProgramas
 
         private void btnDestinoLocal_MouseClick(object sender, MouseEventArgs e)
         {
-            if (txtDestinoLocal.Enabled == false)
+            if(txtDestinoLocal.Enabled == false)
             {
                 txtDestinoLocal.Enabled = true;
                 txtDestinoLocal.Focus();
@@ -1151,7 +1153,7 @@ namespace copiaProgramas
 
         private void btnDestinoPasesPi_MouseClick(object sender, MouseEventArgs e)
         {
-            if (txtDestinoPasesPi.Enabled == false)
+            if(txtDestinoPasesPi.Enabled == false)
             {
                 txtDestinoPasesPi.Enabled = true;
                 txtDestinoPasesPi.Focus();
@@ -1169,7 +1171,7 @@ namespace copiaProgramas
 
         private void btnDestinoPasesnoPi_MouseClick(object sender, MouseEventArgs e)
         {
-            if (txtDestinoPasesnoPi.Enabled == false)
+            if(txtDestinoPasesnoPi.Enabled == false)
             {
                 txtDestinoPasesnoPi.Enabled = true;
                 txtDestinoPasesnoPi.Focus();
@@ -1187,20 +1189,20 @@ namespace copiaProgramas
         private void gestionBotones(bool estado, string nombreBoton)
         {
             //Metodo para cambiar los iconos del resto de los botones cuando se pulsa alguno
-            foreach (Control control in tabControl1.TabPages["tabConfiguracion"].Controls)
+            foreach(Control control in tabControl1.TabPages["tabConfiguracion"].Controls)
             {
-                if (control is System.Windows.Forms.Button btn)
+                if(control is System.Windows.Forms.Button btn)
                 {
-                    if (estado)
+                    if(estado)
                     {
-                        if (btn.Name == nombreBoton)
+                        if(btn.Name == nombreBoton)
                         {
                             btn.BackgroundImage = global::copiaProgramas.Properties.Resources.guardar;
                         }
                         else
                         {
                             btn.Enabled = false;
-                            if (btn.Name != btnGuardarConfiguracion.Name)
+                            if(btn.Name != btnGuardarConfiguracion.Name)
                             {
                                 btn.BackgroundImage = global::copiaProgramas.Properties.Resources.editar_noActivo;
                             }
@@ -1208,14 +1210,14 @@ namespace copiaProgramas
                     }
                     else
                     {
-                        if (btn.Name == nombreBoton)
+                        if(btn.Name == nombreBoton)
                         {
                             btn.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
                         }
                         else
                         {
                             btn.Enabled = true;
-                            if (btn.Name != btnGuardarConfiguracion.Name)
+                            if(btn.Name != btnGuardarConfiguracion.Name)
                             {
                                 btn.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
                             }
@@ -1254,7 +1256,7 @@ namespace copiaProgramas
         private void btnModificarFich_Click(object sender, EventArgs e)
         {
             // Verificar si hay algún elemento seleccionado
-            if (lstFicheros.SelectedItems.Count > 0)
+            if(lstFicheros.SelectedItems.Count > 0)
             {
                 fichero.opcion = 'M';
                 estadoBotones(false);
@@ -1267,12 +1269,12 @@ namespace copiaProgramas
 
         private void btnEliminarFich_Click(object sender, EventArgs e)
         {
-            if (lstFicheros.SelectedItems.Count > 0)
+            if(lstFicheros.SelectedItems.Count > 0)
             {
                 string nombre = txtNombreFichero.Text;
                 fichero.opcion = 'B';
                 DialogResult resultado = MessageBox.Show($"Quieres eliminar el registro {nombre}?", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (resultado == DialogResult.OK)
+                if(resultado == DialogResult.OK)
                 {
                     fichero.eliminarFichero(nombre);
                     fichero.grabarFicheros();
@@ -1306,9 +1308,9 @@ namespace copiaProgramas
             string tipo = txtTipoFichero.Text;
             int clase = cbClaseFichero.SelectedIndex;
 
-            if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(ruta) && !string.IsNullOrEmpty(tipo) && clase > 0)
+            if(!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(ruta) && !string.IsNullOrEmpty(tipo) && clase > 0)
             {
-                switch (fichero.opcion)
+                switch(fichero.opcion)
                 {
                     case 'A':
                         fichero.AgregarFichero(nombre, ruta, tipo, clase);
@@ -1361,7 +1363,7 @@ namespace copiaProgramas
         {
             // Cambiar la dirección de ordenamiento si es la misma columna que la última vez que se hizo clic
             // Cambiar la dirección de ordenamiento
-            if (lstFicheros.Sorting == SortOrder.Ascending)
+            if(lstFicheros.Sorting == SortOrder.Ascending)
                 lstFicheros.Sorting = SortOrder.Descending;
             else
                 lstFicheros.Sorting = SortOrder.Ascending;
@@ -1377,7 +1379,7 @@ namespace copiaProgramas
         private void lstFicheros_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Verificar si hay algún elemento seleccionado
-            if (lstFicheros.SelectedItems.Count > 0)
+            if(lstFicheros.SelectedItems.Count > 0)
             {
                 // Obtener el primer elemento seleccionado
                 ListViewItem selectedItem = lstFicheros.SelectedItems[0];
@@ -1393,7 +1395,7 @@ namespace copiaProgramas
                 txtRutaFichero.Text = rutaFichero;
                 txtTipoFichero.Text = tipoFichero;
                 int indice = cbTipo.FindStringExact(tipoFichero);
-                if (indice != -1)
+                if(indice != -1)
                 {
                     cbTipo.SelectedIndex = indice;
                 }
@@ -1418,7 +1420,7 @@ namespace copiaProgramas
         private void btnLimpiarCopia_Click(object sender, EventArgs e)
         {
             txtDestinoCopias.Text = string.Empty;
-            foreach (ListViewItem item in lstFicherosOrigen.CheckedItems)
+            foreach(ListViewItem item in lstFicherosOrigen.CheckedItems)
             {
                 item.Checked = false;
             }
@@ -1426,18 +1428,20 @@ namespace copiaProgramas
 
         private async void btnCopiarCopias_Click(object sender, EventArgs e)
         {
-            if (lstFicherosOrigen.CheckedItems.Count > 0)
+            if(lstFicherosOrigen.CheckedItems.Count > 0)
             {
                 tabControl1.Enabled = false;
                 resultadoCopia = 0;
                 List<Func<Task>> tareasCopia = new List<Func<Task>>();
-                foreach (ListViewItem item in lstFicherosOrigen.CheckedItems)
+
+                Stopwatch tiempoTotal = Stopwatch.StartNew();
+                foreach(ListViewItem item in lstFicherosOrigen.CheckedItems)
                 {
                     string nombre = item.SubItems[0].Text;
                     string fichero = item.SubItems[1].Text;
                     string rutaOrigen = string.Empty;
                     int claseFichero = Convert.ToInt32(item.SubItems[3].Text);
-                    switch (claseFichero)
+                    switch(claseFichero)
                     {
                         case 1:
                             rutaOrigen = variable.rutaPi;
@@ -1462,13 +1466,17 @@ namespace copiaProgramas
 
 
                 //Lanza las copias una a una
-                for (int i = 0; i < tareasCopia.Count; i++)
+                Stopwatch tiempoAplicacion = Stopwatch.StartNew();
+                for(int i = 0; i < tareasCopia.Count; i++)
                 {
                     await tareasCopia[i]();
                 }
-
-                if (resultadoCopia > 0)
+                tiempoTotal.Stop();
+                if(resultadoCopia > 0)
                 {
+                    int pestaña = 3; //Pestaña de copias para mostrar el mensaje
+                    string tiempo = convierteTiempo((int)tiempoTotal.Elapsed.TotalSeconds);
+                    ActualizarProgreso($"Total tiempo de copia: {tiempo}" + Environment.NewLine, pestaña);
                     MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -1483,7 +1491,7 @@ namespace copiaProgramas
 
             tabControl1.Enabled = true;
             progressBar3.Value = 0;
-            foreach (ListViewItem item in lstFicherosOrigen.CheckedItems)
+            foreach(ListViewItem item in lstFicherosOrigen.CheckedItems)
             {
                 item.Checked = false;
             }
@@ -1493,7 +1501,7 @@ namespace copiaProgramas
         private void cbDestinoCopias_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Metodo para asignar las rutas destino de la copia segun el valor seleccionado en el comboBox
-            switch (cbDestinoCopias.SelectedIndex)
+            switch(cbDestinoCopias.SelectedIndex)
             {
                 case 0:
                     variable.destino = variable.destinoPi;
@@ -1518,8 +1526,11 @@ namespace copiaProgramas
             string nombreFichero = Path.GetFileName(fichero); //Obtiene el nombre del programa
             string destino = variable.destino + nombreFichero; //Forma la ruta completa del programa
 
+            //Inicio del control de tiempo de copia
+            Stopwatch tiempoAplicacion = Stopwatch.StartNew();
+
             //Controla para hacer la copia local
-            if (variable.destino == variable.destinoLocal)
+            if(variable.destino == variable.destinoLocal)
             {
                 try
                 {
@@ -1529,11 +1540,16 @@ namespace copiaProgramas
                         try
                         {
                             File.Copy(origen, destino, true);
-                            ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
+                            ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
+
+                            //control del tiempo de copia
+                            tiempoAplicacion.Stop();
+                            string tiempo = convierteTiempo((int)tiempoAplicacion.Elapsed.TotalSeconds);
+                            ActualizarProgreso($"Duracion de la copia: {tiempo}" + Environment.NewLine, pestaña);
                             resultadoCopia++;
                         }
 
-                        catch (Exception ex)
+                        catch(Exception ex)
                         {
                             ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
                         }
@@ -1541,7 +1557,7 @@ namespace copiaProgramas
 
                 }
 
-                catch (Exception ex)
+                catch(Exception ex)
                 {
                     ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
                 }
@@ -1610,13 +1626,18 @@ namespace copiaProgramas
                             transferResult.Check();
 
                             // Muestra información sobre la transferencia al finalizar
-                            ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
+                            ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
                             resultadoCopia++;
+
+                            //Control del tiempo de copia
+                            tiempoAplicacion.Stop();
+                            string tiempo = convierteTiempo((int)tiempoAplicacion.Elapsed.TotalSeconds);
+                            ActualizarProgreso($"Duracion de la copia: {tiempo}" + Environment.NewLine, pestaña);
 
                         }).ConfigureAwait(false);
                     }
 
-                    catch (Exception ex)
+                    catch(Exception ex)
                     {
                         ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message + Environment.NewLine, pestaña);
                     }
@@ -1627,9 +1648,13 @@ namespace copiaProgramas
                         session?.Dispose();
                     }
                 }
-                catch (Exception ex)
+                catch(Exception ex)
                 {
                     ActualizarProgreso(Environment.NewLine + $"No se ha podido copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
+                }
+                finally
+                {
+                    tiempoAplicacion.Stop();
                 }
             }
 
@@ -1646,7 +1671,7 @@ namespace copiaProgramas
 
         private void activarPestañas()
         {
-            if (controlTab)
+            if(controlTab)
             {
                 tabControl1.TabPages.Remove(tabPI);
                 tabControl1.TabPages.Remove(tabNopi);
@@ -1658,6 +1683,19 @@ namespace copiaProgramas
                 tabControl1.TabPages.Add(tabNopi);
                 controlTab = true;
             }
+        }
+
+        private string convierteTiempo(int tiempo)
+        {
+            string tiempoTotal = string.Empty;
+            int minutos = tiempo / 60;
+            int segundos = tiempo % 60;
+            if(minutos > 0)
+            {
+                tiempoTotal += $"{minutos} minutos ";
+            }
+            tiempoTotal += $"{segundos} segundos";
+            return tiempoTotal;
         }
     }
 
@@ -1676,7 +1714,7 @@ namespace copiaProgramas
         {
             int result = String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
 
-            if (order == SortOrder.Descending)
+            if(order == SortOrder.Descending)
                 result = -result;
 
             return result;
