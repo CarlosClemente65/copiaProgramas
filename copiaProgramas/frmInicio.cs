@@ -11,6 +11,7 @@ using System.Collections;
 using static copiaProgramas.Ficheros;
 using System.Diagnostics;
 using System.Data.SqlTypes;
+using System.Text;
 
 namespace copiaProgramas
 {
@@ -24,6 +25,8 @@ namespace copiaProgramas
         TabPage tabPI = new TabPage();
         TabPage tabNopi = new TabPage();
         bool controlTab = true;
+        StringBuilder informeCopia = new StringBuilder(); //Variable para el informe de copias
+        string rutaInforme = "logCopia.txt"; //Ruta del informe de copias
 
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
         private Dictionary<CheckBox, string> checkBoxVariables = new Dictionary<CheckBox, string>();
@@ -419,8 +422,6 @@ namespace copiaProgramas
             if(programa) //Si esta marcado el programa pasado se lanza la copia
             {
                 string origen = ruta + fichero;
-
-                //}
                 string nombreFichero = Path.GetFileName(fichero); //Obtiene el nombre del programa
                 string destino = variable.destino + nombreFichero; //Forma la ruta completa del programa
 
@@ -437,6 +438,11 @@ namespace copiaProgramas
                                 File.Copy(origen, destino, true);
                                 ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
                                 resultadoCopia++;
+                                if (informeCopia.Length == 0)
+                                {
+                                    informeCopia.AppendLine($"Fecha copia: {DateTime.Now}");
+                                }
+                                actualizaInformeCopia($"Copiado {nombreFichero} en {destino}");
                             }
 
                             catch(Exception ex)
@@ -530,6 +536,7 @@ namespace copiaProgramas
                                 // Muestra información sobre la transferencia al finalizar
                                 ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
                                 resultadoCopia++;
+                                actualizaInformeCopia($"Copiado {nombreFichero} en {destino}");
 
                             }).ConfigureAwait(false);
                         }
@@ -1428,6 +1435,8 @@ namespace copiaProgramas
 
         private async void btnCopiarCopias_Click(object sender, EventArgs e)
         {
+            //Inicializa el informe de copias
+            informeCopia.Clear();
             if(lstFicherosOrigen.CheckedItems.Count > 0)
             {
                 tabControl1.Enabled = false;
@@ -1478,10 +1487,18 @@ namespace copiaProgramas
                     string tiempo = convierteTiempo((int)tiempoTotal.Elapsed.TotalSeconds);
                     ActualizarProgreso($"Total tiempo de copia: {tiempo}" + Environment.NewLine, pestaña);
                     MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                    //Genera el informe de copias
+                    actualizaInformeCopia($"Total tiempo de copia: {tiempo}" + Environment.NewLine);
                 }
                 else
                 {
                     MessageBox.Show("Error al copiar los ficheros", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                if (informeCopia.Length > 0)
+                {
+                    //Graba el informe de copias
+                    File.AppendAllText("logCopias.txt", informeCopia.ToString());
                 }
             }
             else
@@ -1525,6 +1542,7 @@ namespace copiaProgramas
 
             string nombreFichero = Path.GetFileName(fichero); //Obtiene el nombre del programa
             string destino = variable.destino + nombreFichero; //Forma la ruta completa del programa
+            
 
             //Inicio del control de tiempo de copia
             Stopwatch tiempoAplicacion = Stopwatch.StartNew();
@@ -1547,6 +1565,7 @@ namespace copiaProgramas
                             string tiempo = convierteTiempo((int)tiempoAplicacion.Elapsed.TotalSeconds);
                             ActualizarProgreso($"Duracion de la copia: {tiempo}" + Environment.NewLine, pestaña);
                             resultadoCopia++;
+                            actualizaInformeCopia($"Copiado {titulo} a {variable.destino}");
                         }
 
                         catch(Exception ex)
@@ -1628,6 +1647,7 @@ namespace copiaProgramas
                             // Muestra información sobre la transferencia al finalizar
                             ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
                             resultadoCopia++;
+                            actualizaInformeCopia($"Copiado {titulo} a {variable.destino}");
 
                             //Control del tiempo de copia
                             tiempoAplicacion.Stop();
@@ -1696,6 +1716,18 @@ namespace copiaProgramas
             }
             tiempoTotal += $"{segundos} segundos";
             return tiempoTotal;
+        }
+
+        private void actualizaInformeCopia (string mensaje)
+        {
+            if(informeCopia.Length == 0)
+            {
+                informeCopia.AppendLine(new string('#', 50));
+                informeCopia.AppendLine($"Fecha copia: {DateTime.Now}");
+            }
+
+            informeCopia.AppendLine(mensaje);
+
         }
     }
 
