@@ -1,6 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using WinSCP;
 
 namespace copiaProgramas
 {
@@ -21,6 +24,13 @@ namespace copiaProgramas
         public string destinoPasesnoPi { get; set; }
         public string destino {  get; set; }
 
+        //Configuracion WinSCP
+        public WinSCP.Protocol Protocolo { get; set; }
+        public string HostName { get; set; }
+        public string UserName { get; set; }
+        public string HostKey { get; set; }
+        public string PrivateKey { get; set; }
+
         public variables()
         {
             /*Constructor de la clase que asigna los valores a las variables cuando se hace una instancia
@@ -40,6 +50,14 @@ namespace copiaProgramas
             destinoPasesPi = @"/u/pases_pi/master/";
             destinoPasesnoPi = @"/u/pases_nopi/master/";
             destino = destinoPi;
+
+            //Configuracion WinSCP por defecto
+            Protocolo = Protocol.Sftp;
+            HostName = "172.31.5.149";
+            UserName = "centos";
+            HostKey = "ssh-ed25519 255 ypCFfhJskB3YSCzQzF5iHV0eaWxlBIvMeM5kRl4N46o="; 
+            PrivateKey = @"C:\Oficina_ds\Diagram\Accesos portatil\conexiones VPN\Credenciales SSH\aws_diagram_irlanda.ppk";
+
         }
 
 
@@ -49,9 +67,20 @@ namespace copiaProgramas
             try
             {
                 string rutaArchivo = "configuracion.json";
-                string jsonConfiguracion = JsonConvert.SerializeObject(this, Formatting.Indented);
+                string jsonConfiguracion = JsonConvert.SerializeObject(
+                    this, 
+                    Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        Converters = {new Newtonsoft.Json.Converters.StringEnumConverter()}
+                    });
+
                 File.WriteAllText(rutaArchivo, jsonConfiguracion);
-                MessageBox.Show("Fichero de configuracion actualizado correctamente", "Actualizar configuracion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Fichero de configuracion actualizado correctamente", 
+                    "Actualizar configuracion", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
             }
             catch
             {
@@ -70,12 +99,12 @@ namespace copiaProgramas
                 JsonConvert.PopulateObject(jsonConfiguracion, this);
 
                 // Actualiza las variables después de cargar la configuración
-                ActualizaVariables(rutaPi, rutanoPi, rutaGestion, rutaGasoleos, destinoPi, destinonoPi, destinoLocal, destinoPasesPi, destinoPasesnoPi);
+                ActualizaVariables(rutaPi, rutanoPi, rutaGestion, rutaGasoleos, destinoPi, destinonoPi, destinoLocal, destinoPasesPi, destinoPasesnoPi, Protocolo, HostName, UserName, HostKey, PrivateKey);
             }
 
         }
 
-        public void ActualizaVariables(string nuevaRutaPi, string nuevaRutanoPi, string nuevaRutaGestion, string nuevaRutaGasoleos, string nuevoDestinoPi, string nuevoDestinonoPi, string nuevoDestinoLocal, string nuevoDestinoPasesPi, string nuevoDestinoPasesnoPi)
+        public void ActualizaVariables(string nuevaRutaPi, string nuevaRutanoPi, string nuevaRutaGestion, string nuevaRutaGasoleos, string nuevoDestinoPi, string nuevoDestinonoPi, string nuevoDestinoLocal, string nuevoDestinoPasesPi, string nuevoDestinoPasesnoPi, WinSCP.Protocol _protocolo, string _hostName, string _userName, string _hostKey, string _privateKey)
         {
             //Una vez leidas las variables del fichero de configuracion, se graban en las variables de la clase
             rutaPi = nuevaRutaPi;
@@ -87,6 +116,11 @@ namespace copiaProgramas
             destinoLocal = nuevoDestinoLocal;
             destinoPasesPi = nuevoDestinoPasesPi;
             destinoPasesnoPi = nuevoDestinoPasesnoPi;
+            Protocolo = _protocolo;
+            HostName = _hostName;
+            UserName = _userName;
+            HostKey = _hostKey;
+            PrivateKey = _privateKey;
         }
     }
 

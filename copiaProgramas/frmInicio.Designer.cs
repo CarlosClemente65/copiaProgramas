@@ -30,20 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInicio));
-            System.Windows.Forms.ListViewGroup listViewGroup22 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup23 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup24 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup25 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup26 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup27 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup28 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup15 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup16 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup17 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup18 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup19 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup20 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup21 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup85 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup86 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup87 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup88 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup89 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup90 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup91 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup92 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup93 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup94 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup95 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup96 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup97 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup98 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabConfiguracion = new System.Windows.Forms.TabPage();
             this.btnGuardarConfiguracion = new System.Windows.Forms.Button();
@@ -167,6 +167,23 @@
             this.label21 = new System.Windows.Forms.Label();
             this.btnCancelarFich = new System.Windows.Forms.Button();
             this.btnValidarFich = new System.Windows.Forms.Button();
+            this.tabWinscp = new System.Windows.Forms.TabPage();
+            this.btnPrivatekey = new System.Windows.Forms.Button();
+            this.btnHostkey = new System.Windows.Forms.Button();
+            this.btnUsername = new System.Windows.Forms.Button();
+            this.btnHostname = new System.Windows.Forms.Button();
+            this.btnGuardarWinscp = new System.Windows.Forms.Button();
+            this.btnProtocolo = new System.Windows.Forms.Button();
+            this.label38 = new System.Windows.Forms.Label();
+            this.txtPrivatekey = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.txtHostkey = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtHostname = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.txtProtocolo = new System.Windows.Forms.TextBox();
             this.tabProgramasnoPI = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_limpiarnoPI = new System.Windows.Forms.Button();
@@ -218,6 +235,7 @@
             this.panel1.SuspendLayout();
             this.tabFicheros.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.tabWinscp.SuspendLayout();
             this.tabProgramasnoPI.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel15.SuspendLayout();
@@ -280,7 +298,7 @@
             this.tabConfiguracion.Padding = new System.Windows.Forms.Padding(5);
             this.tabConfiguracion.Size = new System.Drawing.Size(696, 353);
             this.tabConfiguracion.TabIndex = 5;
-            this.tabConfiguracion.Text = "Rutas";
+            this.tabConfiguracion.Text = "Configuracion rutas";
             // 
             // btnGuardarConfiguracion
             // 
@@ -292,7 +310,7 @@
             this.btnGuardarConfiguracion.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarConfiguracion.ImageIndex = 0;
             this.btnGuardarConfiguracion.ImageList = this.imageList1;
-            this.btnGuardarConfiguracion.Location = new System.Drawing.Point(493, 289);
+            this.btnGuardarConfiguracion.Location = new System.Drawing.Point(532, 286);
             this.btnGuardarConfiguracion.Name = "btnGuardarConfiguracion";
             this.btnGuardarConfiguracion.Size = new System.Drawing.Size(151, 46);
             this.btnGuardarConfiguracion.TabIndex = 27;
@@ -312,7 +330,7 @@
             this.btnDestinoLocal.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDestinoLocal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDestinoLocal.ImageIndex = 0;
-            this.btnDestinoLocal.Location = new System.Drawing.Point(650, 210);
+            this.btnDestinoLocal.Location = new System.Drawing.Point(319, 298);
             this.btnDestinoLocal.Name = "btnDestinoLocal";
             this.btnDestinoLocal.Size = new System.Drawing.Size(22, 22);
             this.btnDestinoLocal.TabIndex = 26;
@@ -326,9 +344,9 @@
             this.txtDestinoLocal.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDestinoLocal.Enabled = false;
             this.txtDestinoLocal.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDestinoLocal.Location = new System.Drawing.Point(461, 210);
+            this.txtDestinoLocal.Location = new System.Drawing.Point(13, 298);
             this.txtDestinoLocal.Name = "txtDestinoLocal";
-            this.txtDestinoLocal.Size = new System.Drawing.Size(183, 22);
+            this.txtDestinoLocal.Size = new System.Drawing.Size(300, 22);
             this.txtDestinoLocal.TabIndex = 25;
             // 
             // txtDestinoPasesnoPi
@@ -336,9 +354,9 @@
             this.txtDestinoPasesnoPi.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDestinoPasesnoPi.Enabled = false;
             this.txtDestinoPasesnoPi.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDestinoPasesnoPi.Location = new System.Drawing.Point(461, 168);
+            this.txtDestinoPasesnoPi.Location = new System.Drawing.Point(355, 157);
             this.txtDestinoPasesnoPi.Name = "txtDestinoPasesnoPi";
-            this.txtDestinoPasesnoPi.Size = new System.Drawing.Size(183, 22);
+            this.txtDestinoPasesnoPi.Size = new System.Drawing.Size(300, 22);
             this.txtDestinoPasesnoPi.TabIndex = 22;
             // 
             // txtDestinoPasesPi
@@ -346,9 +364,9 @@
             this.txtDestinoPasesPi.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDestinoPasesPi.Enabled = false;
             this.txtDestinoPasesPi.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDestinoPasesPi.Location = new System.Drawing.Point(461, 80);
+            this.txtDestinoPasesPi.Location = new System.Drawing.Point(355, 67);
             this.txtDestinoPasesPi.Name = "txtDestinoPasesPi";
-            this.txtDestinoPasesPi.Size = new System.Drawing.Size(183, 22);
+            this.txtDestinoPasesPi.Size = new System.Drawing.Size(300, 22);
             this.txtDestinoPasesPi.TabIndex = 19;
             // 
             // txtDestinonoPi
@@ -356,9 +374,9 @@
             this.txtDestinonoPi.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDestinonoPi.Enabled = false;
             this.txtDestinonoPi.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDestinonoPi.Location = new System.Drawing.Point(461, 126);
+            this.txtDestinonoPi.Location = new System.Drawing.Point(13, 157);
             this.txtDestinonoPi.Name = "txtDestinonoPi";
-            this.txtDestinonoPi.Size = new System.Drawing.Size(183, 22);
+            this.txtDestinonoPi.Size = new System.Drawing.Size(300, 22);
             this.txtDestinonoPi.TabIndex = 16;
             // 
             // txtDestinoPi
@@ -366,9 +384,9 @@
             this.txtDestinoPi.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDestinoPi.Enabled = false;
             this.txtDestinoPi.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDestinoPi.Location = new System.Drawing.Point(461, 38);
+            this.txtDestinoPi.Location = new System.Drawing.Point(13, 68);
             this.txtDestinoPi.Name = "txtDestinoPi";
-            this.txtDestinoPi.Size = new System.Drawing.Size(182, 22);
+            this.txtDestinoPi.Size = new System.Drawing.Size(300, 22);
             this.txtDestinoPi.TabIndex = 13;
             // 
             // txtRutaGasoleos
@@ -376,9 +394,9 @@
             this.txtRutaGasoleos.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtRutaGasoleos.Enabled = false;
             this.txtRutaGasoleos.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRutaGasoleos.Location = new System.Drawing.Point(13, 255);
+            this.txtRutaGasoleos.Location = new System.Drawing.Point(13, 249);
             this.txtRutaGasoleos.Name = "txtRutaGasoleos";
-            this.txtRutaGasoleos.Size = new System.Drawing.Size(395, 22);
+            this.txtRutaGasoleos.Size = new System.Drawing.Size(642, 22);
             this.txtRutaGasoleos.TabIndex = 10;
             // 
             // txtRutaGestion
@@ -386,9 +404,9 @@
             this.txtRutaGestion.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtRutaGestion.Enabled = false;
             this.txtRutaGestion.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRutaGestion.Location = new System.Drawing.Point(13, 209);
+            this.txtRutaGestion.Location = new System.Drawing.Point(13, 203);
             this.txtRutaGestion.Name = "txtRutaGestion";
-            this.txtRutaGestion.Size = new System.Drawing.Size(395, 22);
+            this.txtRutaGestion.Size = new System.Drawing.Size(642, 22);
             this.txtRutaGestion.TabIndex = 7;
             // 
             // txtRutanoPi
@@ -396,9 +414,9 @@
             this.txtRutanoPi.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtRutanoPi.Enabled = false;
             this.txtRutanoPi.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRutanoPi.Location = new System.Drawing.Point(13, 125);
+            this.txtRutanoPi.Location = new System.Drawing.Point(13, 116);
             this.txtRutanoPi.Name = "txtRutanoPi";
-            this.txtRutanoPi.Size = new System.Drawing.Size(395, 22);
+            this.txtRutanoPi.Size = new System.Drawing.Size(642, 22);
             this.txtRutanoPi.TabIndex = 4;
             // 
             // txtRutaPi
@@ -406,15 +424,15 @@
             this.txtRutaPi.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtRutaPi.Enabled = false;
             this.txtRutaPi.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRutaPi.Location = new System.Drawing.Point(13, 38);
+            this.txtRutaPi.Location = new System.Drawing.Point(13, 27);
             this.txtRutaPi.Name = "txtRutaPi";
-            this.txtRutaPi.Size = new System.Drawing.Size(395, 22);
+            this.txtRutaPi.Size = new System.Drawing.Size(642, 22);
             this.txtRutaPi.TabIndex = 1;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(461, 193);
+            this.label10.Location = new System.Drawing.Point(13, 281);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(87, 14);
             this.label10.TabIndex = 24;
@@ -423,7 +441,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(461, 151);
+            this.label9.Location = new System.Drawing.Point(352, 140);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(128, 14);
             this.label9.TabIndex = 21;
@@ -432,7 +450,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(461, 63);
+            this.label8.Location = new System.Drawing.Point(352, 52);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 14);
             this.label8.TabIndex = 18;
@@ -441,7 +459,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(461, 110);
+            this.label7.Location = new System.Drawing.Point(13, 140);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 14);
             this.label7.TabIndex = 15;
@@ -450,7 +468,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(461, 22);
+            this.label6.Location = new System.Drawing.Point(13, 52);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 14);
             this.label6.TabIndex = 12;
@@ -459,7 +477,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 239);
+            this.label5.Location = new System.Drawing.Point(13, 232);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 14);
             this.label5.TabIndex = 9;
@@ -468,7 +486,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 193);
+            this.label4.Location = new System.Drawing.Point(13, 186);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 14);
             this.label4.TabIndex = 6;
@@ -477,7 +495,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 109);
+            this.label3.Location = new System.Drawing.Point(13, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 14);
             this.label3.TabIndex = 3;
@@ -486,7 +504,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 22);
+            this.label2.Location = new System.Drawing.Point(13, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 14);
             this.label2.TabIndex = 0;
@@ -503,7 +521,7 @@
             this.btnDestinoPasesnoPi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDestinoPasesnoPi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDestinoPasesnoPi.ImageIndex = 0;
-            this.btnDestinoPasesnoPi.Location = new System.Drawing.Point(650, 168);
+            this.btnDestinoPasesnoPi.Location = new System.Drawing.Point(661, 156);
             this.btnDestinoPasesnoPi.Name = "btnDestinoPasesnoPi";
             this.btnDestinoPasesnoPi.Size = new System.Drawing.Size(22, 22);
             this.btnDestinoPasesnoPi.TabIndex = 23;
@@ -523,7 +541,7 @@
             this.btnDestinoPasesPi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDestinoPasesPi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDestinoPasesPi.ImageIndex = 0;
-            this.btnDestinoPasesPi.Location = new System.Drawing.Point(650, 80);
+            this.btnDestinoPasesPi.Location = new System.Drawing.Point(661, 67);
             this.btnDestinoPasesPi.Name = "btnDestinoPasesPi";
             this.btnDestinoPasesPi.Size = new System.Drawing.Size(22, 22);
             this.btnDestinoPasesPi.TabIndex = 20;
@@ -543,7 +561,7 @@
             this.btnDestinonoPi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDestinonoPi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDestinonoPi.ImageIndex = 0;
-            this.btnDestinonoPi.Location = new System.Drawing.Point(650, 126);
+            this.btnDestinonoPi.Location = new System.Drawing.Point(319, 157);
             this.btnDestinonoPi.Name = "btnDestinonoPi";
             this.btnDestinonoPi.Size = new System.Drawing.Size(22, 22);
             this.btnDestinonoPi.TabIndex = 17;
@@ -563,7 +581,7 @@
             this.btnDestinoPi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDestinoPi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDestinoPi.ImageIndex = 0;
-            this.btnDestinoPi.Location = new System.Drawing.Point(650, 38);
+            this.btnDestinoPi.Location = new System.Drawing.Point(319, 67);
             this.btnDestinoPi.Name = "btnDestinoPi";
             this.btnDestinoPi.Size = new System.Drawing.Size(22, 22);
             this.btnDestinoPi.TabIndex = 14;
@@ -583,7 +601,7 @@
             this.btnRutaGasoleos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnRutaGasoleos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRutaGasoleos.ImageIndex = 0;
-            this.btnRutaGasoleos.Location = new System.Drawing.Point(414, 255);
+            this.btnRutaGasoleos.Location = new System.Drawing.Point(661, 248);
             this.btnRutaGasoleos.Name = "btnRutaGasoleos";
             this.btnRutaGasoleos.Size = new System.Drawing.Size(22, 22);
             this.btnRutaGasoleos.TabIndex = 11;
@@ -603,7 +621,7 @@
             this.btnRutaGestion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnRutaGestion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRutaGestion.ImageIndex = 0;
-            this.btnRutaGestion.Location = new System.Drawing.Point(412, 209);
+            this.btnRutaGestion.Location = new System.Drawing.Point(661, 203);
             this.btnRutaGestion.Name = "btnRutaGestion";
             this.btnRutaGestion.Size = new System.Drawing.Size(22, 22);
             this.btnRutaGestion.TabIndex = 8;
@@ -623,7 +641,7 @@
             this.btnRutanoPi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnRutanoPi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRutanoPi.ImageIndex = 0;
-            this.btnRutanoPi.Location = new System.Drawing.Point(414, 125);
+            this.btnRutanoPi.Location = new System.Drawing.Point(661, 116);
             this.btnRutanoPi.Name = "btnRutanoPi";
             this.btnRutanoPi.Size = new System.Drawing.Size(22, 22);
             this.btnRutanoPi.TabIndex = 5;
@@ -643,7 +661,7 @@
             this.btnRutaPi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnRutaPi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRutaPi.ImageIndex = 0;
-            this.btnRutaPi.Location = new System.Drawing.Point(414, 38);
+            this.btnRutaPi.Location = new System.Drawing.Point(661, 26);
             this.btnRutaPi.Name = "btnRutaPi";
             this.btnRutaPi.Size = new System.Drawing.Size(22, 22);
             this.btnRutaPi.TabIndex = 2;
@@ -1282,6 +1300,7 @@
             this.tabControl1.Controls.Add(this.tabCopias);
             this.tabControl1.Controls.Add(this.tabFicheros);
             this.tabControl1.Controls.Add(this.tabConfiguracion);
+            this.tabControl1.Controls.Add(this.tabWinscp);
             this.tabControl1.Controls.Add(this.tabProgramasPi);
             this.tabControl1.Controls.Add(this.tabProgramasnoPI);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1303,9 +1322,9 @@
             this.tabCopias.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.tabCopias.Controls.Add(this.panel12);
             this.tabCopias.Controls.Add(this.panel1);
-            this.tabCopias.Location = new System.Drawing.Point(4, 34);
+            this.tabCopias.Location = new System.Drawing.Point(4, 67);
             this.tabCopias.Name = "tabCopias";
-            this.tabCopias.Size = new System.Drawing.Size(696, 353);
+            this.tabCopias.Size = new System.Drawing.Size(696, 320);
             this.tabCopias.TabIndex = 8;
             this.tabCopias.Text = "Proceso copia";
             // 
@@ -1316,7 +1335,7 @@
             this.panel12.Controls.Add(this.lstFicherosOrigen);
             this.panel12.Location = new System.Drawing.Point(0, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(360, 350);
+            this.panel12.Size = new System.Drawing.Size(360, 317);
             this.panel12.TabIndex = 1;
             // 
             // lstFicherosOrigen
@@ -1332,28 +1351,28 @@
             this.columnHeader8});
             this.lstFicherosOrigen.FullRowSelect = true;
             this.lstFicherosOrigen.GridLines = true;
-            listViewGroup22.Header = "Modelos";
-            listViewGroup22.Name = "Modelos";
-            listViewGroup23.Header = "Patrones";
-            listViewGroup23.Name = "Patrones";
-            listViewGroup24.Header = "Contabilidad";
-            listViewGroup24.Name = "Contabilidad";
-            listViewGroup25.Header = "Documentales";
-            listViewGroup25.Name = "Documentales";
-            listViewGroup26.Header = "Facturacion";
-            listViewGroup26.Name = "Facturacion";
-            listViewGroup27.Header = "Laboral";
-            listViewGroup27.Name = "Laboral";
-            listViewGroup28.Header = "Gasoleos";
-            listViewGroup28.Name = "Gasoleos";
+            listViewGroup85.Header = "Modelos";
+            listViewGroup85.Name = "Modelos";
+            listViewGroup86.Header = "Patrones";
+            listViewGroup86.Name = "Patrones";
+            listViewGroup87.Header = "Contabilidad";
+            listViewGroup87.Name = "Contabilidad";
+            listViewGroup88.Header = "Documentales";
+            listViewGroup88.Name = "Documentales";
+            listViewGroup89.Header = "Facturacion";
+            listViewGroup89.Name = "Facturacion";
+            listViewGroup90.Header = "Laboral";
+            listViewGroup90.Name = "Laboral";
+            listViewGroup91.Header = "Gasoleos";
+            listViewGroup91.Name = "Gasoleos";
             this.lstFicherosOrigen.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup22,
-            listViewGroup23,
-            listViewGroup24,
-            listViewGroup25,
-            listViewGroup26,
-            listViewGroup27,
-            listViewGroup28});
+            listViewGroup85,
+            listViewGroup86,
+            listViewGroup87,
+            listViewGroup88,
+            listViewGroup89,
+            listViewGroup90,
+            listViewGroup91});
             this.lstFicherosOrigen.HideSelection = false;
             this.lstFicherosOrigen.LabelWrap = false;
             this.lstFicherosOrigen.Location = new System.Drawing.Point(10, 13);
@@ -1506,7 +1525,7 @@
             this.tabFicheros.Padding = new System.Windows.Forms.Padding(10);
             this.tabFicheros.Size = new System.Drawing.Size(696, 353);
             this.tabFicheros.TabIndex = 7;
-            this.tabFicheros.Text = "Configuracion";
+            this.tabFicheros.Text = "Configuracion ficheros";
             // 
             // groupBox3
             // 
@@ -1689,28 +1708,28 @@
             this.columnHeader7});
             this.lstFicheros.FullRowSelect = true;
             this.lstFicheros.GridLines = true;
-            listViewGroup15.Header = "Contabilidad";
-            listViewGroup15.Name = "Contabilidad";
-            listViewGroup16.Header = "Modelos";
-            listViewGroup16.Name = "Modelos";
-            listViewGroup17.Header = "Documentales";
-            listViewGroup17.Name = "Documentales";
-            listViewGroup18.Header = "Facturacion";
-            listViewGroup18.Name = "Facturacion";
-            listViewGroup19.Header = "Patrones";
-            listViewGroup19.Name = "Patrones";
-            listViewGroup20.Header = "Laboral";
-            listViewGroup20.Name = "Laboral";
-            listViewGroup21.Header = "Gasoleos";
-            listViewGroup21.Name = "Gasoleos";
+            listViewGroup92.Header = "Contabilidad";
+            listViewGroup92.Name = "Contabilidad";
+            listViewGroup93.Header = "Modelos";
+            listViewGroup93.Name = "Modelos";
+            listViewGroup94.Header = "Documentales";
+            listViewGroup94.Name = "Documentales";
+            listViewGroup95.Header = "Facturacion";
+            listViewGroup95.Name = "Facturacion";
+            listViewGroup96.Header = "Patrones";
+            listViewGroup96.Name = "Patrones";
+            listViewGroup97.Header = "Laboral";
+            listViewGroup97.Name = "Laboral";
+            listViewGroup98.Header = "Gasoleos";
+            listViewGroup98.Name = "Gasoleos";
             this.lstFicheros.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup15,
-            listViewGroup16,
-            listViewGroup17,
-            listViewGroup18,
-            listViewGroup19,
-            listViewGroup20,
-            listViewGroup21});
+            listViewGroup92,
+            listViewGroup93,
+            listViewGroup94,
+            listViewGroup95,
+            listViewGroup96,
+            listViewGroup97,
+            listViewGroup98});
             this.lstFicheros.HideSelection = false;
             this.lstFicheros.LabelWrap = false;
             this.lstFicheros.Location = new System.Drawing.Point(317, 24);
@@ -1808,15 +1827,246 @@
             this.btnValidarFich.Visible = false;
             this.btnValidarFich.Click += new System.EventHandler(this.btnValidarFich_Click);
             // 
+            // tabWinscp
+            // 
+            this.tabWinscp.BackColor = System.Drawing.Color.SandyBrown;
+            this.tabWinscp.Controls.Add(this.btnPrivatekey);
+            this.tabWinscp.Controls.Add(this.btnHostkey);
+            this.tabWinscp.Controls.Add(this.btnUsername);
+            this.tabWinscp.Controls.Add(this.btnHostname);
+            this.tabWinscp.Controls.Add(this.btnGuardarWinscp);
+            this.tabWinscp.Controls.Add(this.btnProtocolo);
+            this.tabWinscp.Controls.Add(this.label38);
+            this.tabWinscp.Controls.Add(this.txtPrivatekey);
+            this.tabWinscp.Controls.Add(this.label37);
+            this.tabWinscp.Controls.Add(this.txtHostkey);
+            this.tabWinscp.Controls.Add(this.label36);
+            this.tabWinscp.Controls.Add(this.txtUsername);
+            this.tabWinscp.Controls.Add(this.label35);
+            this.tabWinscp.Controls.Add(this.txtHostname);
+            this.tabWinscp.Controls.Add(this.label34);
+            this.tabWinscp.Controls.Add(this.txtProtocolo);
+            this.tabWinscp.Location = new System.Drawing.Point(4, 34);
+            this.tabWinscp.Margin = new System.Windows.Forms.Padding(5);
+            this.tabWinscp.Name = "tabWinscp";
+            this.tabWinscp.Padding = new System.Windows.Forms.Padding(5);
+            this.tabWinscp.Size = new System.Drawing.Size(696, 353);
+            this.tabWinscp.TabIndex = 9;
+            this.tabWinscp.Text = "Configuracion WinSCP";
+            // 
+            // btnPrivatekey
+            // 
+            this.btnPrivatekey.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrivatekey.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
+            this.btnPrivatekey.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPrivatekey.FlatAppearance.BorderSize = 0;
+            this.btnPrivatekey.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnPrivatekey.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnPrivatekey.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPrivatekey.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrivatekey.ImageIndex = 0;
+            this.btnPrivatekey.Location = new System.Drawing.Point(657, 172);
+            this.btnPrivatekey.Name = "btnPrivatekey";
+            this.btnPrivatekey.Size = new System.Drawing.Size(22, 22);
+            this.btnPrivatekey.TabIndex = 55;
+            this.btnPrivatekey.UseVisualStyleBackColor = false;
+            this.btnPrivatekey.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnPrivatekey_MouseClick);
+            this.btnPrivatekey.MouseLeave += new System.EventHandler(this.btnPrivatekey_MouseLeave);
+            this.btnPrivatekey.MouseHover += new System.EventHandler(this.btnPrivatekey_MouseHover);
+            // 
+            // btnHostkey
+            // 
+            this.btnHostkey.BackColor = System.Drawing.Color.Transparent;
+            this.btnHostkey.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
+            this.btnHostkey.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnHostkey.FlatAppearance.BorderSize = 0;
+            this.btnHostkey.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnHostkey.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnHostkey.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnHostkey.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHostkey.ImageIndex = 0;
+            this.btnHostkey.Location = new System.Drawing.Point(657, 110);
+            this.btnHostkey.Name = "btnHostkey";
+            this.btnHostkey.Size = new System.Drawing.Size(22, 22);
+            this.btnHostkey.TabIndex = 54;
+            this.btnHostkey.UseVisualStyleBackColor = false;
+            this.btnHostkey.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHostkey_MouseClick);
+            this.btnHostkey.MouseLeave += new System.EventHandler(this.btnHostkey_MouseLeave);
+            this.btnHostkey.MouseHover += new System.EventHandler(this.btnHostkey_MouseHover);
+            // 
+            // btnUsername
+            // 
+            this.btnUsername.BackColor = System.Drawing.Color.Transparent;
+            this.btnUsername.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
+            this.btnUsername.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnUsername.FlatAppearance.BorderSize = 0;
+            this.btnUsername.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnUsername.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnUsername.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnUsername.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsername.ImageIndex = 0;
+            this.btnUsername.Location = new System.Drawing.Point(657, 55);
+            this.btnUsername.Name = "btnUsername";
+            this.btnUsername.Size = new System.Drawing.Size(22, 22);
+            this.btnUsername.TabIndex = 53;
+            this.btnUsername.UseVisualStyleBackColor = false;
+            this.btnUsername.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnUsername_MouseClick);
+            this.btnUsername.MouseLeave += new System.EventHandler(this.btnUsername_MouseLeave);
+            this.btnUsername.MouseHover += new System.EventHandler(this.btnUsername_MouseHover);
+            // 
+            // btnHostname
+            // 
+            this.btnHostname.BackColor = System.Drawing.Color.Transparent;
+            this.btnHostname.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
+            this.btnHostname.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnHostname.FlatAppearance.BorderSize = 0;
+            this.btnHostname.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnHostname.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnHostname.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnHostname.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHostname.ImageIndex = 0;
+            this.btnHostname.Location = new System.Drawing.Point(427, 56);
+            this.btnHostname.Name = "btnHostname";
+            this.btnHostname.Size = new System.Drawing.Size(22, 22);
+            this.btnHostname.TabIndex = 52;
+            this.btnHostname.UseVisualStyleBackColor = false;
+            this.btnHostname.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHostname_MouseClick);
+            this.btnHostname.MouseLeave += new System.EventHandler(this.btnHostname_MouseLeave);
+            this.btnHostname.MouseHover += new System.EventHandler(this.btnHostname_MouseHover);
+            // 
+            // btnGuardarWinscp
+            // 
+            this.btnGuardarWinscp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(179)))), ((int)(((byte)(135)))));
+            this.btnGuardarWinscp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnGuardarWinscp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(209)))), ((int)(((byte)(183)))));
+            this.btnGuardarWinscp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarWinscp.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardarWinscp.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGuardarWinscp.ImageIndex = 0;
+            this.btnGuardarWinscp.ImageList = this.imageList1;
+            this.btnGuardarWinscp.Location = new System.Drawing.Point(528, 290);
+            this.btnGuardarWinscp.Name = "btnGuardarWinscp";
+            this.btnGuardarWinscp.Size = new System.Drawing.Size(151, 46);
+            this.btnGuardarWinscp.TabIndex = 51;
+            this.btnGuardarWinscp.Text = "Guardar configuracion";
+            this.btnGuardarWinscp.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnGuardarWinscp.UseVisualStyleBackColor = false;
+            this.btnGuardarWinscp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnGuardarWinscp_MouseClick);
+            // 
+            // btnProtocolo
+            // 
+            this.btnProtocolo.BackColor = System.Drawing.Color.Transparent;
+            this.btnProtocolo.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
+            this.btnProtocolo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnProtocolo.FlatAppearance.BorderSize = 0;
+            this.btnProtocolo.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnProtocolo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnProtocolo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnProtocolo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProtocolo.ImageIndex = 0;
+            this.btnProtocolo.Location = new System.Drawing.Point(199, 56);
+            this.btnProtocolo.Name = "btnProtocolo";
+            this.btnProtocolo.Size = new System.Drawing.Size(22, 22);
+            this.btnProtocolo.TabIndex = 50;
+            this.btnProtocolo.UseVisualStyleBackColor = false;
+            this.btnProtocolo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnProtocolo_MouseClick);
+            this.btnProtocolo.MouseLeave += new System.EventHandler(this.btnProtocolo_MouseLeave);
+            this.btnProtocolo.MouseHover += new System.EventHandler(this.btnProtocolo_MouseHover);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(15, 155);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(126, 14);
+            this.label38.TabIndex = 49;
+            this.label38.Text = "SshPrivateKeyPath";
+            // 
+            // txtPrivatekey
+            // 
+            this.txtPrivatekey.Enabled = false;
+            this.txtPrivatekey.Location = new System.Drawing.Point(18, 172);
+            this.txtPrivatekey.Name = "txtPrivatekey";
+            this.txtPrivatekey.Size = new System.Drawing.Size(633, 22);
+            this.txtPrivatekey.TabIndex = 48;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(15, 94);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(150, 14);
+            this.label37.TabIndex = 47;
+            this.label37.Text = "SshHostKeyFingerprint";
+            // 
+            // txtHostkey
+            // 
+            this.txtHostkey.Enabled = false;
+            this.txtHostkey.Location = new System.Drawing.Point(18, 111);
+            this.txtHostkey.Name = "txtHostkey";
+            this.txtHostkey.Size = new System.Drawing.Size(633, 22);
+            this.txtHostkey.TabIndex = 46;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(473, 37);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(71, 14);
+            this.label36.TabIndex = 45;
+            this.label36.Text = "Username";
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Enabled = false;
+            this.txtUsername.Location = new System.Drawing.Point(476, 57);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(175, 22);
+            this.txtUsername.TabIndex = 44;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(243, 37);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(75, 14);
+            this.label35.TabIndex = 43;
+            this.label35.Text = "Host name";
+            // 
+            // txtHostname
+            // 
+            this.txtHostname.Enabled = false;
+            this.txtHostname.Location = new System.Drawing.Point(246, 57);
+            this.txtHostname.Name = "txtHostname";
+            this.txtHostname.Size = new System.Drawing.Size(175, 22);
+            this.txtHostname.TabIndex = 42;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(15, 37);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(66, 14);
+            this.label34.TabIndex = 41;
+            this.label34.Text = "Protocolo";
+            // 
+            // txtProtocolo
+            // 
+            this.txtProtocolo.Enabled = false;
+            this.txtProtocolo.Location = new System.Drawing.Point(18, 56);
+            this.txtProtocolo.Name = "txtProtocolo";
+            this.txtProtocolo.Size = new System.Drawing.Size(175, 22);
+            this.txtProtocolo.TabIndex = 40;
+            // 
             // tabProgramasnoPI
             // 
             this.tabProgramasnoPI.BackColor = System.Drawing.Color.SteelBlue;
             this.tabProgramasnoPI.Controls.Add(this.groupBox2);
-            this.tabProgramasnoPI.Location = new System.Drawing.Point(4, 34);
+            this.tabProgramasnoPI.Location = new System.Drawing.Point(4, 67);
             this.tabProgramasnoPI.Margin = new System.Windows.Forms.Padding(5);
             this.tabProgramasnoPI.Name = "tabProgramasnoPI";
             this.tabProgramasnoPI.Padding = new System.Windows.Forms.Padding(10);
-            this.tabProgramasnoPI.Size = new System.Drawing.Size(696, 353);
+            this.tabProgramasnoPI.Size = new System.Drawing.Size(696, 320);
             this.tabProgramasnoPI.TabIndex = 6;
             this.tabProgramasnoPI.Text = "Programas noPI";
             // 
@@ -1832,7 +2082,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox2.Size = new System.Drawing.Size(676, 333);
+            this.groupBox2.Size = new System.Drawing.Size(676, 300);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Programas";
@@ -2299,6 +2549,8 @@
             this.tabFicheros.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.tabWinscp.ResumeLayout(false);
+            this.tabWinscp.PerformLayout();
             this.tabProgramasnoPI.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -2474,6 +2726,23 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TabPage tabWinscp;
+        private System.Windows.Forms.Button btnPrivatekey;
+        private System.Windows.Forms.Button btnHostkey;
+        private System.Windows.Forms.Button btnUsername;
+        private System.Windows.Forms.Button btnHostname;
+        private System.Windows.Forms.Button btnGuardarWinscp;
+        private System.Windows.Forms.Button btnProtocolo;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.TextBox txtPrivatekey;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox txtHostkey;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox txtHostname;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TextBox txtProtocolo;
     }
 }
 

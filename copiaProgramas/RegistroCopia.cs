@@ -10,19 +10,26 @@ namespace copiaProgramas
     {
         public DateTime FechaCopia { get; set; }
         public List<ProgramaCopiado> ProgramasCopiados { get; set; }
-        public string TiempoTotal { get; set; }
+        public string TiempoTotalCopia { get; set; }
 
         public RegistroCopia()
         {
             ProgramasCopiados = new List<ProgramaCopiado>();
-            FechaCopia = DateTime.Now;
-            TiempoTotal = string.Empty;
+            FechaCopia = DateTime.MinValue;
+            TiempoTotalCopia = string.Empty;
+        }
+
+        public void CrearRegistroCopia(DateTime _fechaCopia, List<ProgramaCopiado> _programasCopiados, string _tiempoTotal)
+        {
+            FechaCopia = _fechaCopia;
+            ProgramasCopiados = _programasCopiados;
+            TiempoTotalCopia = _tiempoTotal;
         }
     }
 
     public class ProgramaCopiado
     {
-        public string Nombre { get; set; }
+        public string Programa { get; set; }
         public string RutaDestino { get; set; }
     }
 }

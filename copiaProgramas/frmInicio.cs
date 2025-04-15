@@ -4,13 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using WinSCP;
 using System.Threading.Tasks;
-using System.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Drawing;
 using System.Collections;
-using static copiaProgramas.Ficheros;
 using System.Diagnostics;
-using System.Data.SqlTypes;
 using System.Text;
 
 namespace copiaProgramas
@@ -26,6 +22,7 @@ namespace copiaProgramas
         TabPage tabNopi = new TabPage();
         bool controlTab = true;
         StringBuilder informeCopia = new StringBuilder(); //Variable para el informe de copias
+        List<ProgramaCopiado> programasCopiados = new List<ProgramaCopiado>();
         string rutaInforme = "logCopia.txt"; //Ruta del informe de copias
 
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
@@ -299,6 +296,11 @@ namespace copiaProgramas
             txtDestinoLocal.Text = variable.destinoLocal;
             txtDestinoPasesPi.Text = variable.destinoPasesPi;
             txtDestinoPasesnoPi.Text = variable.destinoPasesnoPi;
+            txtProtocolo.Text = variable.Protocolo.ToString();
+            txtHostname.Text = variable.HostName;
+            txtUsername.Text = variable.UserName;
+            txtHostkey.Text = variable.HostKey;
+            txtPrivatekey.Text = variable.PrivateKey;
         }
 
         private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -335,6 +337,12 @@ namespace copiaProgramas
                     actualizaListaFicheros(lstFicherosOrigen);
                     cbDestinoCopias.SelectedIndex = 0;
                     txtDestinoCopias.Clear();
+                    break;
+
+                case "tabWinscp":
+                    // Ejecutar el método cuando se selecciona la pestaña configuracion Winscp
+                    variable.CargarConfiguracion();
+                    ActualizaTextBox();
 
                     break;
             }
@@ -438,7 +446,7 @@ namespace copiaProgramas
                                 File.Copy(origen, destino, true);
                                 ActualizarProgreso($"Programa {titulo} copiado correctamente." + Environment.NewLine, pestaña);
                                 resultadoCopia++;
-                                if (informeCopia.Length == 0)
+                                if(informeCopia.Length == 0)
                                 {
                                     informeCopia.AppendLine($"Fecha copia: {DateTime.Now}");
                                 }
@@ -1193,10 +1201,10 @@ namespace copiaProgramas
             }
         }
 
-        private void gestionBotones(bool estado, string nombreBoton)
+        private void gestionBotones(bool estado, string nombreBoton, string pestaña = "tabConfiguracion")
         {
             //Metodo para cambiar los iconos del resto de los botones cuando se pulsa alguno
-            foreach(Control control in tabControl1.TabPages["tabConfiguracion"].Controls)
+            foreach(Control control in tabControl1.TabPages[pestaña].Controls)
             {
                 if(control is System.Windows.Forms.Button btn)
                 {
@@ -1487,15 +1495,21 @@ namespace copiaProgramas
                     string tiempo = convierteTiempo((int)tiempoTotal.Elapsed.TotalSeconds);
                     ActualizarProgreso($"Total tiempo de copia: {tiempo}" + Environment.NewLine, pestaña);
                     MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
+
                     //Genera el informe de copias
                     actualizaInformeCopia($"Total tiempo de copia: {tiempo}" + Environment.NewLine);
+                    RegistroCopia registroCopia = new RegistroCopia
+                    {
+                        FechaCopia = DateTime.Now.Date,
+                        ProgramasCopiados = programasCopiados,
+                        TiempoTotalCopia = $"{tiempo}"
+                    };
                 }
                 else
                 {
                     MessageBox.Show("Error al copiar los ficheros", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                if (informeCopia.Length > 0)
+                if(informeCopia.Length > 0)
                 {
                     //Graba el informe de copias
                     File.AppendAllText("logCopias.txt", informeCopia.ToString());
@@ -1542,7 +1556,6 @@ namespace copiaProgramas
 
             string nombreFichero = Path.GetFileName(fichero); //Obtiene el nombre del programa
             string destino = variable.destino + nombreFichero; //Forma la ruta completa del programa
-            
 
             //Inicio del control de tiempo de copia
             Stopwatch tiempoAplicacion = Stopwatch.StartNew();
@@ -1566,6 +1579,11 @@ namespace copiaProgramas
                             ActualizarProgreso($"Duracion de la copia: {tiempo}" + Environment.NewLine, pestaña);
                             resultadoCopia++;
                             actualizaInformeCopia($"Copiado {titulo} a {variable.destino}");
+                            programasCopiados.Add(new ProgramaCopiado
+                            {
+                                Programa = nombreFichero,
+                                RutaDestino = variable.destino,
+                            });
                         }
 
                         catch(Exception ex)
@@ -1648,6 +1666,11 @@ namespace copiaProgramas
                             ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
                             resultadoCopia++;
                             actualizaInformeCopia($"Copiado {titulo} a {variable.destino}");
+                            programasCopiados.Add(new ProgramaCopiado
+                            {
+                                Programa = nombreFichero,
+                                RutaDestino = variable.destino,
+                            });
 
                             //Control del tiempo de copia
                             tiempoAplicacion.Stop();
@@ -1718,7 +1741,7 @@ namespace copiaProgramas
             return tiempoTotal;
         }
 
-        private void actualizaInformeCopia (string mensaje)
+        private void actualizaInformeCopia(string mensaje)
         {
             if(informeCopia.Length == 0)
             {
@@ -1728,6 +1751,146 @@ namespace copiaProgramas
 
             informeCopia.AppendLine(mensaje);
 
+        }
+
+        private void btnProtocolo_MouseClick(object sender, MouseEventArgs e)
+        {
+            PulsarBoton(txtProtocolo, btnProtocolo, "Protocolo");
+        }
+
+        private void btnProtocolo_MouseHover(object sender, EventArgs e)
+        {
+            CambiarIconoHover(txtProtocolo, btnProtocolo);
+        }
+
+        private void btnProtocolo_MouseLeave(object sender, EventArgs e)
+        {
+            CambiarIconoLeave(txtProtocolo, btnProtocolo);
+        }
+
+        private void btnHostname_MouseClick(object sender, MouseEventArgs e)
+        {
+            PulsarBoton(txtHostname, btnHostname, "HostName");
+        }
+
+        private void btnHostname_MouseHover(object sender, EventArgs e)
+        {
+            CambiarIconoHover(txtHostname, btnHostname);
+        }
+
+        private void btnHostname_MouseLeave(object sender, EventArgs e)
+        {
+            CambiarIconoLeave(txtHostname, btnHostname);
+        }
+
+        private void btnUsername_MouseClick(object sender, MouseEventArgs e)
+        {
+            PulsarBoton(txtUsername, btnUsername, "UserName");
+        }
+
+        private void btnUsername_MouseHover(object sender, EventArgs e)
+        {
+            CambiarIconoHover(txtUsername, btnUsername);
+        }
+
+        private void btnUsername_MouseLeave(object sender, EventArgs e)
+        {
+            CambiarIconoLeave(txtUsername, btnUsername);
+        }
+
+        private void btnHostkey_MouseClick(object sender, MouseEventArgs e)
+        {
+            PulsarBoton(txtHostkey, btnHostkey, "HostKey");
+        }
+
+        private void btnHostkey_MouseHover(object sender, EventArgs e)
+        {
+            CambiarIconoHover(txtHostkey, btnHostkey);
+
+        }
+
+        private void btnHostkey_MouseLeave(object sender, EventArgs e)
+        {
+            CambiarIconoLeave(txtHostkey, btnHostkey);
+        }
+
+        private void btnPrivatekey_MouseClick(object sender, MouseEventArgs e)
+        {
+            PulsarBoton(txtPrivatekey, btnPrivatekey, "PrivateKey");
+        }
+
+        private void btnPrivatekey_MouseHover(object sender, EventArgs e)
+        {
+            CambiarIconoHover(txtPrivatekey, btnPrivatekey);
+        }
+
+        private void btnPrivatekey_MouseLeave(object sender, EventArgs e)
+        {
+            CambiarIconoLeave(txtPrivatekey, btnPrivatekey);
+        }
+
+
+        //Metodo para cambiar el icono del boton al dejar de tener el foco
+        private void CambiarIconoLeave(TextBox txt, Button btn)
+        {
+            if(!txt.Enabled)
+            {
+                btn.BackgroundImage = global::copiaProgramas.Properties.Resources.editar;
+            }
+            else
+            {
+                btn.BackgroundImage = global::copiaProgramas.Properties.Resources.guardar;
+            }
+        }
+
+        private void CambiarIconoHover(TextBox txt, Button btn)
+        {
+            if(!txt.Enabled)
+            {
+                btn.BackgroundImage = global::copiaProgramas.Properties.Resources.editar_hover;
+            }
+            else
+            {
+                btn.BackgroundImage = global::copiaProgramas.Properties.Resources.guardar_noActivo;
+            }
+        }
+
+
+        private void PulsarBoton(TextBox txt, Button btn, string nombreVariable)
+        {
+            if(!txt.Enabled)
+            {
+                btnGuardarWinscp.Enabled = false;
+                txt.Enabled = true;
+                txt.Focus();
+                txt.SelectionStart = txt.TextLength;
+                gestionBotones(true, btn.Name, "tabWinscp");
+
+            }
+            else
+            {
+                var propiedad = typeof(variables).GetProperty(nombreVariable);
+                // Si la propiedad es del tipo WinSCP.Protocol, se convierte el texto
+                if(propiedad.PropertyType == typeof(WinSCP.Protocol))
+                {
+                    if(Enum.TryParse(txt.Text, true, out WinSCP.Protocol protocolo))
+                    {
+                        propiedad.SetValue(variable, protocolo);
+                    }
+                }
+                else
+                {
+                    propiedad.SetValue(variable, txt.Text);
+                }
+                txt.Enabled = false;
+                gestionBotones(false, txt.Name, "tabWinscp");
+            }
+        }
+
+        private void btnGuardarWinscp_MouseClick(object sender, MouseEventArgs e)
+        {
+            //Graba en el fichero de configuracion las variables
+            variable.GuardarConfiguracion();
         }
     }
 
