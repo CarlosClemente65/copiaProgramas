@@ -30,20 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInicio));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup13 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup14 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup15 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup16 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup17 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup18 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup19 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup20 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup21 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup22 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup23 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup24 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup25 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup26 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup27 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup28 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabConfiguracion = new System.Windows.Forms.TabPage();
             this.btnGuardarConfiguracion = new System.Windows.Forms.Button();
@@ -145,6 +145,11 @@
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.cbDestinoCopias = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
+            this.tabControlCopias = new System.Windows.Forms.TabPage();
+            this.mcFiltroFecha = new System.Windows.Forms.MonthCalendar();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.rbCopias = new System.Windows.Forms.RichTextBox();
             this.tabFicheros = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -224,6 +229,7 @@
             this.label29 = new System.Windows.Forms.Label();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.btnBorrarFiltro = new System.Windows.Forms.Button();
             this.tabConfiguracion.SuspendLayout();
             this.tabProgramasPi.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -233,6 +239,7 @@
             this.tabCopias.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabControlCopias.SuspendLayout();
             this.tabFicheros.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabWinscp.SuspendLayout();
@@ -292,11 +299,11 @@
             this.tabConfiguracion.Controls.Add(this.btnRutaGestion);
             this.tabConfiguracion.Controls.Add(this.btnRutanoPi);
             this.tabConfiguracion.Controls.Add(this.btnRutaPi);
-            this.tabConfiguracion.Location = new System.Drawing.Point(4, 67);
+            this.tabConfiguracion.Location = new System.Drawing.Point(4, 34);
             this.tabConfiguracion.Margin = new System.Windows.Forms.Padding(5);
             this.tabConfiguracion.Name = "tabConfiguracion";
             this.tabConfiguracion.Padding = new System.Windows.Forms.Padding(5);
-            this.tabConfiguracion.Size = new System.Drawing.Size(696, 320);
+            this.tabConfiguracion.Size = new System.Drawing.Size(696, 353);
             this.tabConfiguracion.TabIndex = 5;
             this.tabConfiguracion.Text = "Configuracion rutas";
             // 
@@ -674,10 +681,10 @@
             // 
             this.tabProgramasPi.BackColor = System.Drawing.Color.SeaGreen;
             this.tabProgramasPi.Controls.Add(this.groupBox1);
-            this.tabProgramasPi.Location = new System.Drawing.Point(4, 67);
+            this.tabProgramasPi.Location = new System.Drawing.Point(4, 34);
             this.tabProgramasPi.Name = "tabProgramasPi";
             this.tabProgramasPi.Padding = new System.Windows.Forms.Padding(10);
-            this.tabProgramasPi.Size = new System.Drawing.Size(696, 320);
+            this.tabProgramasPi.Size = new System.Drawing.Size(696, 353);
             this.tabProgramasPi.TabIndex = 1;
             this.tabProgramasPi.Text = "Programas PI";
             // 
@@ -1298,6 +1305,7 @@
             // 
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.tabCopias);
+            this.tabControl1.Controls.Add(this.tabControlCopias);
             this.tabControl1.Controls.Add(this.tabFicheros);
             this.tabControl1.Controls.Add(this.tabConfiguracion);
             this.tabControl1.Controls.Add(this.tabWinscp);
@@ -1308,7 +1316,6 @@
             this.tabControl1.ItemSize = new System.Drawing.Size(97, 30);
             this.tabControl1.Location = new System.Drawing.Point(5, 5);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(5);
-            this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(5, 5);
             this.tabControl1.SelectedIndex = 0;
@@ -1322,9 +1329,9 @@
             this.tabCopias.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.tabCopias.Controls.Add(this.panel12);
             this.tabCopias.Controls.Add(this.panel1);
-            this.tabCopias.Location = new System.Drawing.Point(4, 67);
+            this.tabCopias.Location = new System.Drawing.Point(4, 34);
             this.tabCopias.Name = "tabCopias";
-            this.tabCopias.Size = new System.Drawing.Size(696, 320);
+            this.tabCopias.Size = new System.Drawing.Size(696, 353);
             this.tabCopias.TabIndex = 8;
             this.tabCopias.Text = "Proceso copia";
             // 
@@ -1335,7 +1342,7 @@
             this.panel12.Controls.Add(this.lstFicherosOrigen);
             this.panel12.Location = new System.Drawing.Point(0, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(360, 317);
+            this.panel12.Size = new System.Drawing.Size(360, 350);
             this.panel12.TabIndex = 1;
             // 
             // lstFicherosOrigen
@@ -1351,28 +1358,28 @@
             this.columnHeader8});
             this.lstFicherosOrigen.FullRowSelect = true;
             this.lstFicherosOrigen.GridLines = true;
-            listViewGroup1.Header = "Modelos";
-            listViewGroup1.Name = "Modelos";
-            listViewGroup2.Header = "Patrones";
-            listViewGroup2.Name = "Patrones";
-            listViewGroup3.Header = "Contabilidad";
-            listViewGroup3.Name = "Contabilidad";
-            listViewGroup4.Header = "Documentales";
-            listViewGroup4.Name = "Documentales";
-            listViewGroup5.Header = "Facturacion";
-            listViewGroup5.Name = "Facturacion";
-            listViewGroup6.Header = "Laboral";
-            listViewGroup6.Name = "Laboral";
-            listViewGroup7.Header = "Gasoleos";
-            listViewGroup7.Name = "Gasoleos";
+            listViewGroup15.Header = "Modelos";
+            listViewGroup15.Name = "Modelos";
+            listViewGroup16.Header = "Patrones";
+            listViewGroup16.Name = "Patrones";
+            listViewGroup17.Header = "Contabilidad";
+            listViewGroup17.Name = "Contabilidad";
+            listViewGroup18.Header = "Documentales";
+            listViewGroup18.Name = "Documentales";
+            listViewGroup19.Header = "Facturacion";
+            listViewGroup19.Name = "Facturacion";
+            listViewGroup20.Header = "Laboral";
+            listViewGroup20.Name = "Laboral";
+            listViewGroup21.Header = "Gasoleos";
+            listViewGroup21.Name = "Gasoleos";
             this.lstFicherosOrigen.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3,
-            listViewGroup4,
-            listViewGroup5,
-            listViewGroup6,
-            listViewGroup7});
+            listViewGroup15,
+            listViewGroup16,
+            listViewGroup17,
+            listViewGroup18,
+            listViewGroup19,
+            listViewGroup20,
+            listViewGroup21});
             this.lstFicherosOrigen.HideSelection = false;
             this.lstFicherosOrigen.LabelWrap = false;
             this.lstFicherosOrigen.Location = new System.Drawing.Point(10, 13);
@@ -1514,16 +1521,69 @@
             this.label31.TabIndex = 29;
             this.label31.Text = "Destino copia";
             // 
+            // tabControlCopias
+            // 
+            this.tabControlCopias.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.tabControlCopias.Controls.Add(this.btnBorrarFiltro);
+            this.tabControlCopias.Controls.Add(this.mcFiltroFecha);
+            this.tabControlCopias.Controls.Add(this.label39);
+            this.tabControlCopias.Controls.Add(this.label33);
+            this.tabControlCopias.Controls.Add(this.rbCopias);
+            this.tabControlCopias.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tabControlCopias.Location = new System.Drawing.Point(4, 34);
+            this.tabControlCopias.Margin = new System.Windows.Forms.Padding(5);
+            this.tabControlCopias.Name = "tabControlCopias";
+            this.tabControlCopias.Padding = new System.Windows.Forms.Padding(5);
+            this.tabControlCopias.Size = new System.Drawing.Size(696, 353);
+            this.tabControlCopias.TabIndex = 10;
+            this.tabControlCopias.Text = "Control copias";
+            // 
+            // mcFiltroFecha
+            // 
+            this.mcFiltroFecha.Location = new System.Drawing.Point(476, 35);
+            this.mcFiltroFecha.Name = "mcFiltroFecha";
+            this.mcFiltroFecha.TabIndex = 5;
+            this.mcFiltroFecha.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.mcFiltroFecha_DateChanged);
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(53, 9);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(328, 23);
+            this.label39.TabIndex = 4;
+            this.label39.Text = "Relacion de copias realizadas";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(509, 14);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(126, 18);
+            this.label33.TabIndex = 3;
+            this.label33.Text = "Filtrar por dia";
+            // 
+            // rbCopias
+            // 
+            this.rbCopias.BackColor = System.Drawing.Color.LightCyan;
+            this.rbCopias.Location = new System.Drawing.Point(9, 35);
+            this.rbCopias.Name = "rbCopias";
+            this.rbCopias.Size = new System.Drawing.Size(441, 310);
+            this.rbCopias.TabIndex = 1;
+            this.rbCopias.Text = "";
+            // 
             // tabFicheros
             // 
             this.tabFicheros.BackColor = System.Drawing.Color.OliveDrab;
             this.tabFicheros.Controls.Add(this.groupBox3);
             this.tabFicheros.ForeColor = System.Drawing.Color.Black;
-            this.tabFicheros.Location = new System.Drawing.Point(4, 67);
+            this.tabFicheros.Location = new System.Drawing.Point(4, 34);
             this.tabFicheros.Margin = new System.Windows.Forms.Padding(10);
             this.tabFicheros.Name = "tabFicheros";
             this.tabFicheros.Padding = new System.Windows.Forms.Padding(10);
-            this.tabFicheros.Size = new System.Drawing.Size(696, 320);
+            this.tabFicheros.Size = new System.Drawing.Size(696, 353);
             this.tabFicheros.TabIndex = 7;
             this.tabFicheros.Text = "Configuracion ficheros";
             // 
@@ -1708,28 +1768,28 @@
             this.columnHeader7});
             this.lstFicheros.FullRowSelect = true;
             this.lstFicheros.GridLines = true;
-            listViewGroup8.Header = "Contabilidad";
-            listViewGroup8.Name = "Contabilidad";
-            listViewGroup9.Header = "Modelos";
-            listViewGroup9.Name = "Modelos";
-            listViewGroup10.Header = "Documentales";
-            listViewGroup10.Name = "Documentales";
-            listViewGroup11.Header = "Facturacion";
-            listViewGroup11.Name = "Facturacion";
-            listViewGroup12.Header = "Patrones";
-            listViewGroup12.Name = "Patrones";
-            listViewGroup13.Header = "Laboral";
-            listViewGroup13.Name = "Laboral";
-            listViewGroup14.Header = "Gasoleos";
-            listViewGroup14.Name = "Gasoleos";
+            listViewGroup22.Header = "Contabilidad";
+            listViewGroup22.Name = "Contabilidad";
+            listViewGroup23.Header = "Modelos";
+            listViewGroup23.Name = "Modelos";
+            listViewGroup24.Header = "Documentales";
+            listViewGroup24.Name = "Documentales";
+            listViewGroup25.Header = "Facturacion";
+            listViewGroup25.Name = "Facturacion";
+            listViewGroup26.Header = "Patrones";
+            listViewGroup26.Name = "Patrones";
+            listViewGroup27.Header = "Laboral";
+            listViewGroup27.Name = "Laboral";
+            listViewGroup28.Header = "Gasoleos";
+            listViewGroup28.Name = "Gasoleos";
             this.lstFicheros.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup8,
-            listViewGroup9,
-            listViewGroup10,
-            listViewGroup11,
-            listViewGroup12,
-            listViewGroup13,
-            listViewGroup14});
+            listViewGroup22,
+            listViewGroup23,
+            listViewGroup24,
+            listViewGroup25,
+            listViewGroup26,
+            listViewGroup27,
+            listViewGroup28});
             this.lstFicheros.HideSelection = false;
             this.lstFicheros.LabelWrap = false;
             this.lstFicheros.Location = new System.Drawing.Point(317, 24);
@@ -1846,11 +1906,11 @@
             this.tabWinscp.Controls.Add(this.txtHostname);
             this.tabWinscp.Controls.Add(this.label34);
             this.tabWinscp.Controls.Add(this.txtProtocolo);
-            this.tabWinscp.Location = new System.Drawing.Point(4, 67);
+            this.tabWinscp.Location = new System.Drawing.Point(4, 34);
             this.tabWinscp.Margin = new System.Windows.Forms.Padding(5);
             this.tabWinscp.Name = "tabWinscp";
             this.tabWinscp.Padding = new System.Windows.Forms.Padding(5);
-            this.tabWinscp.Size = new System.Drawing.Size(696, 320);
+            this.tabWinscp.Size = new System.Drawing.Size(696, 353);
             this.tabWinscp.TabIndex = 9;
             this.tabWinscp.Text = "Configuracion WinSCP";
             // 
@@ -2062,11 +2122,11 @@
             // 
             this.tabProgramasnoPI.BackColor = System.Drawing.Color.SteelBlue;
             this.tabProgramasnoPI.Controls.Add(this.groupBox2);
-            this.tabProgramasnoPI.Location = new System.Drawing.Point(4, 67);
+            this.tabProgramasnoPI.Location = new System.Drawing.Point(4, 34);
             this.tabProgramasnoPI.Margin = new System.Windows.Forms.Padding(5);
             this.tabProgramasnoPI.Name = "tabProgramasnoPI";
             this.tabProgramasnoPI.Padding = new System.Windows.Forms.Padding(10);
-            this.tabProgramasnoPI.Size = new System.Drawing.Size(696, 320);
+            this.tabProgramasnoPI.Size = new System.Drawing.Size(696, 353);
             this.tabProgramasnoPI.TabIndex = 6;
             this.tabProgramasnoPI.Text = "Programas noPI";
             // 
@@ -2082,7 +2142,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox2.Size = new System.Drawing.Size(676, 300);
+            this.groupBox2.Size = new System.Drawing.Size(676, 333);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Programas";
@@ -2514,6 +2574,16 @@
             this.imageList2.Images.SetKeyName(1, "arriba.png");
             this.imageList2.Images.SetKeyName(2, "cancela.png");
             // 
+            // btnBorrarFiltro
+            // 
+            this.btnBorrarFiltro.Location = new System.Drawing.Point(476, 210);
+            this.btnBorrarFiltro.Name = "btnBorrarFiltro";
+            this.btnBorrarFiltro.Size = new System.Drawing.Size(192, 23);
+            this.btnBorrarFiltro.TabIndex = 6;
+            this.btnBorrarFiltro.Text = "Borrar filtro";
+            this.btnBorrarFiltro.UseVisualStyleBackColor = true;
+            this.btnBorrarFiltro.Click += new System.EventHandler(this.btnBorrarFiltro_Click);
+            // 
             // frmInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
@@ -2546,6 +2616,8 @@
             this.panel12.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabControlCopias.ResumeLayout(false);
+            this.tabControlCopias.PerformLayout();
             this.tabFicheros.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -2743,6 +2815,12 @@
         private System.Windows.Forms.TextBox txtHostname;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TextBox txtProtocolo;
+        private System.Windows.Forms.TabPage tabControlCopias;
+        private System.Windows.Forms.RichTextBox rbCopias;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.MonthCalendar mcFiltroFecha;
+        private System.Windows.Forms.Button btnBorrarFiltro;
     }
 }
 

@@ -8,6 +8,8 @@ using System.Drawing;
 using System.Collections;
 using System.Diagnostics;
 using System.Text;
+using System.Security.Cryptography;
+using System.Linq;
 
 namespace copiaProgramas
 {
@@ -87,6 +89,17 @@ namespace copiaProgramas
                     txtDestinoCopias.Clear(); //Limpia el textBox de destino de la copia
                     break;
 
+                case "tabControlCopias":
+                    // Ruta del archivo JSON (ajusta si está en otra ubicación)
+                    string rutaArchivo = "RegistroCopias.json";
+
+                    //Carga el registro de copias
+                    var listaCopias = RegistroCopia.ProcesarCopiasLeidas(rutaArchivo);
+
+                    //Llama al metodo para mostrar la lista de copias
+                    MostrarListaCopias(listaCopias);
+                    break;
+
                 //Pestaña configuracion ficheros
                 case "tabFicheros":
                     actualizaListaFicheros(lstFicheros); //Carga la lista de ficheros
@@ -120,6 +133,32 @@ namespace copiaProgramas
                     cb_destinonoPI.SelectedIndex = 0; //Selecciona el destino de la copia a la carpeta no PI
                     LimpiaCbxnoPi(); //Quita las marcas de los checkBox
                     break;
+            }
+        }
+
+        //Metodo para mostrar la lista de copias de la pestaña de copias
+        private void MostrarListaCopias(List<(DateTime Fecha, RegistroCopia Copia)> listaCopias)
+        {
+            // Limpiamos el ListBox antes de mostrar los nuevos datos
+            rbCopias.Clear();
+
+            string indentado = "   ";
+
+            // Recorremos la lista de copias y las mostramos en el ListBox
+            foreach(var (fecha, copia) in listaCopias)
+            {
+                rbCopias.AppendText("\n"); //Linea en blanco para separar elementos
+                rbCopias.SelectionFont = new Font(rbCopias.Font, FontStyle.Bold); // Cambia el estilo de la fuente a negrita
+                rbCopias.AppendText($"{indentado}- Fecha copia: {fecha:dd.MM.yyyy}\n");
+                rbCopias.SelectionFont = new Font(rbCopias.Font, FontStyle.Regular); // Cambia el estilo de la fuente a normal
+                rbCopias.AppendText($"{indentado}{indentado}Tiempo total: {copia.TiempoTotalCopia}\n");
+
+                rbCopias.AppendText($"{indentado}{indentado}Programas copiados:\n");
+
+                foreach(var programa in copia.ProgramasCopiados)
+                {
+                    rbCopias.AppendText($"{indentado}{indentado}{indentado}- {programa.Programa}\n");
+                }
             }
         }
 
@@ -1723,6 +1762,43 @@ namespace copiaProgramas
 
         }
 
+        //Evento al modificar una fecha en el calendario
+        private void mcFiltroFecha_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            DateTime fechaSeleccionada = e.Start.Date;
+            FiltrarCopiasPorFecha(fechaSeleccionada);
+        }
+
+        //Evento para quitar el filtro de fecha
+        private void btnBorrarFiltro_Click(object sender, EventArgs e)
+        {
+            MostrarListaCopias(RegistroCopia.ListadoCopias);
+        }
+
+        //Metodo para filtrar el registro de copias por fecha
+        private void FiltrarCopiasPorFecha(DateTime fechaSeleccionada)
+        {
+            //Carga la lista con el registro de copias leidas
+            var listaCopias = RegistroCopia.ListadoCopias;
+
+            // Filtrar por fecha exacta (ignorando hora)
+            var copiasFiltradas = listaCopias
+                .Where(c => c.fecha.Date == fechaSeleccionada)
+                .ToList();
+
+
+            // Si no hay copias para esa fecha
+            if(!copiasFiltradas.Any())
+            {
+                rbCopias.Clear();
+                rbCopias.AppendText($"\n    No se encontraron copias para esta fecha.");
+            }
+            else
+            {
+                //Llama al metodo para mostrar la lista de copias filtrada
+                MostrarListaCopias(copiasFiltradas);
+            }
+        }
 
         #endregion
 

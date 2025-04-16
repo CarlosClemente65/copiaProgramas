@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Globalization;
 
 namespace copiaProgramas
 {
@@ -13,6 +14,8 @@ namespace copiaProgramas
         public string FechaCopia { get; set; }
         public string TiempoTotalCopia { get; set; }
         public List<ProgramaCopiado> ProgramasCopiados { get; set; }
+
+        public static List<(DateTime fecha, RegistroCopia copia)> ListadoCopias { get; set; } = new List<(DateTime, RegistroCopia)>(); // Lista para almacenar las copias leídas y procesadas
 
         public class ProgramaCopiado
         {
@@ -31,7 +34,7 @@ namespace copiaProgramas
         {
             // Guardar la configuración en un archivo
             List<RegistroCopia> registros;
-            if (File.Exists(_rutaArchivo))
+            if(File.Exists(_rutaArchivo))
             {
                 // Si el archivo existe, se leen los registros existentes
                 registros = LeerRegistroCopias(_rutaArchivo);
@@ -65,7 +68,34 @@ namespace copiaProgramas
 
 
         }
+
+        public static List<(DateTime Fecha, RegistroCopia Copia)> ProcesarCopiasLeidas(string rutaArchivo)
+        {
+            var copiasLeidas = LeerRegistroCopias(rutaArchivo);
+            //var listaProcesada = new List<(DateTime, RegistroCopia)>();
+
+            foreach(var copia in copiasLeidas)
+            {
+                // Intentamos convertir la fecha string a DateTime
+                if(DateTime.TryParseExact(copia.FechaCopia, "'Dia:' dd.MM.yyyy '- Hora:' HH:mm",
+                    CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fecha))
+                {
+                    ListadoCopias.Add((fecha, copia));
+                }
+                else
+                {
+                    // Si la conversión falla, puedes registrar un error o simplemente ignorar esa entrada
+                    Console.WriteLine($"No se pudo interpretar la fecha: {copia.FechaCopia}");
+                }
+            }
+
+            // Ordenamos de más reciente a más antigua
+            return ListadoCopias
+                   .OrderByDescending(x => x.Item1)
+                   .ToList();
+        }
+
     }
 
-    
+
 }

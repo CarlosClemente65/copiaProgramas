@@ -1,0 +1,54 @@
+[
+  {
+    "FechaCopia": "Dia: 15.04.2025 - Hora: 10:15",
+    "TiempoTotalCopia": "1 minuto 20 segundos",
+    "ProgramasCopiados": [
+      {
+        "Programa": "Contabilidad2025",
+        "RutaDestino": "D:\\Copias\\Contabilidad2025"
+      },
+      {
+        "Programa": "Nominas",
+        "RutaDestino": "D:\\Copias\\Nominas"
+      }
+    ]
+  },
+  {
+    "FechaCopia": "Dia: 15.04.2025 - Hora: 14:42",
+    "TiempoTotalCopia": "35 segundos",
+    "ProgramasCopiados": [
+      {
+        "Programa": "Contabilidad2025",
+        "RutaDestino": "D:\\Copias\\Contabilidad2025"
+      }
+    ]
+  },
+  {
+    "FechaCopia": "Dia: 14.04.2025 - Hora: 18:05",
+    "TiempoTotalCopia": "2 minutos 10 segundos",
+    "ProgramasCopiados": [
+      {
+        "Programa": "Impuestos",
+        "RutaDestino": "D:\\Copias\\Impuestos"
+      },
+      {
+        "Programa": "SII",
+        "RutaDestino": "D:\\Copias\\SII"
+      },
+      {
+        "Programa": "Declaraciones",
+        "RutaDestino": "D:\\Copias\\Declaraciones"
+      }
+    ]
+  },
+  {
+    "FechaCopia": "Dia: 13.04.2025 - Hora: 09:30",
+    "TiempoTotalCopia": "45 segundos",
+    "ProgramasCopiados": [
+      {
+        "Programa": "Contabilidad2025",
+        "RutaDestino": "D:\\Copias\\Contabilidad2025"
+      }
+    ]
+  }
+]
