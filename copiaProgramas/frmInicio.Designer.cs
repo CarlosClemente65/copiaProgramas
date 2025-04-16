@@ -30,20 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInicio));
-            System.Windows.Forms.ListViewGroup listViewGroup85 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup86 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup87 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup88 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup89 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup90 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup91 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup92 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup93 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup94 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup95 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup96 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup97 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup98 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup13 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup14 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabConfiguracion = new System.Windows.Forms.TabPage();
             this.btnGuardarConfiguracion = new System.Windows.Forms.Button();
@@ -292,11 +292,11 @@
             this.tabConfiguracion.Controls.Add(this.btnRutaGestion);
             this.tabConfiguracion.Controls.Add(this.btnRutanoPi);
             this.tabConfiguracion.Controls.Add(this.btnRutaPi);
-            this.tabConfiguracion.Location = new System.Drawing.Point(4, 34);
+            this.tabConfiguracion.Location = new System.Drawing.Point(4, 67);
             this.tabConfiguracion.Margin = new System.Windows.Forms.Padding(5);
             this.tabConfiguracion.Name = "tabConfiguracion";
             this.tabConfiguracion.Padding = new System.Windows.Forms.Padding(5);
-            this.tabConfiguracion.Size = new System.Drawing.Size(696, 353);
+            this.tabConfiguracion.Size = new System.Drawing.Size(696, 320);
             this.tabConfiguracion.TabIndex = 5;
             this.tabConfiguracion.Text = "Configuracion rutas";
             // 
@@ -674,10 +674,10 @@
             // 
             this.tabProgramasPi.BackColor = System.Drawing.Color.SeaGreen;
             this.tabProgramasPi.Controls.Add(this.groupBox1);
-            this.tabProgramasPi.Location = new System.Drawing.Point(4, 34);
+            this.tabProgramasPi.Location = new System.Drawing.Point(4, 67);
             this.tabProgramasPi.Name = "tabProgramasPi";
             this.tabProgramasPi.Padding = new System.Windows.Forms.Padding(10);
-            this.tabProgramasPi.Size = new System.Drawing.Size(696, 353);
+            this.tabProgramasPi.Size = new System.Drawing.Size(696, 320);
             this.tabProgramasPi.TabIndex = 1;
             this.tabProgramasPi.Text = "Programas PI";
             // 
@@ -1351,28 +1351,28 @@
             this.columnHeader8});
             this.lstFicherosOrigen.FullRowSelect = true;
             this.lstFicherosOrigen.GridLines = true;
-            listViewGroup85.Header = "Modelos";
-            listViewGroup85.Name = "Modelos";
-            listViewGroup86.Header = "Patrones";
-            listViewGroup86.Name = "Patrones";
-            listViewGroup87.Header = "Contabilidad";
-            listViewGroup87.Name = "Contabilidad";
-            listViewGroup88.Header = "Documentales";
-            listViewGroup88.Name = "Documentales";
-            listViewGroup89.Header = "Facturacion";
-            listViewGroup89.Name = "Facturacion";
-            listViewGroup90.Header = "Laboral";
-            listViewGroup90.Name = "Laboral";
-            listViewGroup91.Header = "Gasoleos";
-            listViewGroup91.Name = "Gasoleos";
+            listViewGroup1.Header = "Modelos";
+            listViewGroup1.Name = "Modelos";
+            listViewGroup2.Header = "Patrones";
+            listViewGroup2.Name = "Patrones";
+            listViewGroup3.Header = "Contabilidad";
+            listViewGroup3.Name = "Contabilidad";
+            listViewGroup4.Header = "Documentales";
+            listViewGroup4.Name = "Documentales";
+            listViewGroup5.Header = "Facturacion";
+            listViewGroup5.Name = "Facturacion";
+            listViewGroup6.Header = "Laboral";
+            listViewGroup6.Name = "Laboral";
+            listViewGroup7.Header = "Gasoleos";
+            listViewGroup7.Name = "Gasoleos";
             this.lstFicherosOrigen.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup85,
-            listViewGroup86,
-            listViewGroup87,
-            listViewGroup88,
-            listViewGroup89,
-            listViewGroup90,
-            listViewGroup91});
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4,
+            listViewGroup5,
+            listViewGroup6,
+            listViewGroup7});
             this.lstFicherosOrigen.HideSelection = false;
             this.lstFicherosOrigen.LabelWrap = false;
             this.lstFicherosOrigen.Location = new System.Drawing.Point(10, 13);
@@ -1519,11 +1519,11 @@
             this.tabFicheros.BackColor = System.Drawing.Color.OliveDrab;
             this.tabFicheros.Controls.Add(this.groupBox3);
             this.tabFicheros.ForeColor = System.Drawing.Color.Black;
-            this.tabFicheros.Location = new System.Drawing.Point(4, 34);
+            this.tabFicheros.Location = new System.Drawing.Point(4, 67);
             this.tabFicheros.Margin = new System.Windows.Forms.Padding(10);
             this.tabFicheros.Name = "tabFicheros";
             this.tabFicheros.Padding = new System.Windows.Forms.Padding(10);
-            this.tabFicheros.Size = new System.Drawing.Size(696, 353);
+            this.tabFicheros.Size = new System.Drawing.Size(696, 320);
             this.tabFicheros.TabIndex = 7;
             this.tabFicheros.Text = "Configuracion ficheros";
             // 
@@ -1612,7 +1612,7 @@
             this.cbTipo.Size = new System.Drawing.Size(286, 22);
             this.cbTipo.TabIndex = 13;
             this.cbTipo.Visible = false;
-            this.cbTipo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cbTipo.SelectedIndexChanged += new System.EventHandler(this.cbTipo_SelectedIndexChanged);
             // 
             // txtTipoFichero
             // 
@@ -1708,28 +1708,28 @@
             this.columnHeader7});
             this.lstFicheros.FullRowSelect = true;
             this.lstFicheros.GridLines = true;
-            listViewGroup92.Header = "Contabilidad";
-            listViewGroup92.Name = "Contabilidad";
-            listViewGroup93.Header = "Modelos";
-            listViewGroup93.Name = "Modelos";
-            listViewGroup94.Header = "Documentales";
-            listViewGroup94.Name = "Documentales";
-            listViewGroup95.Header = "Facturacion";
-            listViewGroup95.Name = "Facturacion";
-            listViewGroup96.Header = "Patrones";
-            listViewGroup96.Name = "Patrones";
-            listViewGroup97.Header = "Laboral";
-            listViewGroup97.Name = "Laboral";
-            listViewGroup98.Header = "Gasoleos";
-            listViewGroup98.Name = "Gasoleos";
+            listViewGroup8.Header = "Contabilidad";
+            listViewGroup8.Name = "Contabilidad";
+            listViewGroup9.Header = "Modelos";
+            listViewGroup9.Name = "Modelos";
+            listViewGroup10.Header = "Documentales";
+            listViewGroup10.Name = "Documentales";
+            listViewGroup11.Header = "Facturacion";
+            listViewGroup11.Name = "Facturacion";
+            listViewGroup12.Header = "Patrones";
+            listViewGroup12.Name = "Patrones";
+            listViewGroup13.Header = "Laboral";
+            listViewGroup13.Name = "Laboral";
+            listViewGroup14.Header = "Gasoleos";
+            listViewGroup14.Name = "Gasoleos";
             this.lstFicheros.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup92,
-            listViewGroup93,
-            listViewGroup94,
-            listViewGroup95,
-            listViewGroup96,
-            listViewGroup97,
-            listViewGroup98});
+            listViewGroup8,
+            listViewGroup9,
+            listViewGroup10,
+            listViewGroup11,
+            listViewGroup12,
+            listViewGroup13,
+            listViewGroup14});
             this.lstFicheros.HideSelection = false;
             this.lstFicheros.LabelWrap = false;
             this.lstFicheros.Location = new System.Drawing.Point(317, 24);
@@ -1846,11 +1846,11 @@
             this.tabWinscp.Controls.Add(this.txtHostname);
             this.tabWinscp.Controls.Add(this.label34);
             this.tabWinscp.Controls.Add(this.txtProtocolo);
-            this.tabWinscp.Location = new System.Drawing.Point(4, 34);
+            this.tabWinscp.Location = new System.Drawing.Point(4, 67);
             this.tabWinscp.Margin = new System.Windows.Forms.Padding(5);
             this.tabWinscp.Name = "tabWinscp";
             this.tabWinscp.Padding = new System.Windows.Forms.Padding(5);
-            this.tabWinscp.Size = new System.Drawing.Size(696, 353);
+            this.tabWinscp.Size = new System.Drawing.Size(696, 320);
             this.tabWinscp.TabIndex = 9;
             this.tabWinscp.Text = "Configuracion WinSCP";
             // 
