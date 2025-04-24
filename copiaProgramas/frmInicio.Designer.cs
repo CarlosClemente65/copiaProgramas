@@ -146,6 +146,7 @@
             this.cbDestinoCopias = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
             this.tabControlCopias = new System.Windows.Forms.TabPage();
+            this.btnBorrarFiltro = new System.Windows.Forms.Button();
             this.mcFiltroFecha = new System.Windows.Forms.MonthCalendar();
             this.label39 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
@@ -229,7 +230,7 @@
             this.label29 = new System.Windows.Forms.Label();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.btnBorrarFiltro = new System.Windows.Forms.Button();
+            this.btnBorrarCopias = new System.Windows.Forms.Button();
             this.tabConfiguracion.SuspendLayout();
             this.tabProgramasPi.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -1321,7 +1322,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(704, 391);
             this.tabControl1.TabIndex = 0;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.cb_destinonoPI_SelectedIndexChanged);
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
             // tabCopias
             // 
@@ -1524,6 +1525,7 @@
             // tabControlCopias
             // 
             this.tabControlCopias.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.tabControlCopias.Controls.Add(this.btnBorrarCopias);
             this.tabControlCopias.Controls.Add(this.btnBorrarFiltro);
             this.tabControlCopias.Controls.Add(this.mcFiltroFecha);
             this.tabControlCopias.Controls.Add(this.label39);
@@ -1537,6 +1539,16 @@
             this.tabControlCopias.Size = new System.Drawing.Size(696, 353);
             this.tabControlCopias.TabIndex = 10;
             this.tabControlCopias.Text = "Control copias";
+            // 
+            // btnBorrarFiltro
+            // 
+            this.btnBorrarFiltro.Location = new System.Drawing.Point(476, 210);
+            this.btnBorrarFiltro.Name = "btnBorrarFiltro";
+            this.btnBorrarFiltro.Size = new System.Drawing.Size(192, 23);
+            this.btnBorrarFiltro.TabIndex = 6;
+            this.btnBorrarFiltro.Text = "Limpiar filtro fechas";
+            this.btnBorrarFiltro.UseVisualStyleBackColor = true;
+            this.btnBorrarFiltro.Click += new System.EventHandler(this.btnBorrarFiltro_Click);
             // 
             // mcFiltroFecha
             // 
@@ -2574,15 +2586,15 @@
             this.imageList2.Images.SetKeyName(1, "arriba.png");
             this.imageList2.Images.SetKeyName(2, "cancela.png");
             // 
-            // btnBorrarFiltro
+            // btnBorrarCopias
             // 
-            this.btnBorrarFiltro.Location = new System.Drawing.Point(476, 210);
-            this.btnBorrarFiltro.Name = "btnBorrarFiltro";
-            this.btnBorrarFiltro.Size = new System.Drawing.Size(192, 23);
-            this.btnBorrarFiltro.TabIndex = 6;
-            this.btnBorrarFiltro.Text = "Borrar filtro";
-            this.btnBorrarFiltro.UseVisualStyleBackColor = true;
-            this.btnBorrarFiltro.Click += new System.EventHandler(this.btnBorrarFiltro_Click);
+            this.btnBorrarCopias.Location = new System.Drawing.Point(476, 239);
+            this.btnBorrarCopias.Name = "btnBorrarCopias";
+            this.btnBorrarCopias.Size = new System.Drawing.Size(192, 23);
+            this.btnBorrarCopias.TabIndex = 7;
+            this.btnBorrarCopias.Text = "Borrar registros";
+            this.btnBorrarCopias.UseVisualStyleBackColor = true;
+            this.btnBorrarCopias.Click += new System.EventHandler(this.brnBorrarCopias_Click);
             // 
             // frmInicio
             // 
@@ -2821,6 +2833,7 @@
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.MonthCalendar mcFiltroFecha;
         private System.Windows.Forms.Button btnBorrarFiltro;
+        private System.Windows.Forms.Button btnBorrarCopias;
     }
 }
 

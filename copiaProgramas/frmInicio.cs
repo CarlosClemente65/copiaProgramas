@@ -10,6 +10,8 @@ using System.Diagnostics;
 using System.Text;
 using System.Security.Cryptography;
 using System.Linq;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 
 namespace copiaProgramas
 {
@@ -23,6 +25,8 @@ namespace copiaProgramas
         TabPage tabPI = new TabPage();
         TabPage tabNopi = new TabPage();
         bool controlTab = true;
+        string passwordBorrado = "Carlos65";
+        string PathRegistroCopias = "RegistroCopias.json"; //Ruta del registro de copias
 
         //Variables para controlar el informe de copias
         StringBuilder informeCopia = new StringBuilder(); //Variable para el informe de copias
@@ -30,7 +34,6 @@ namespace copiaProgramas
 
         //Variables para controlas el registro de copias
         List<RegistroCopia.ProgramaCopiado> programasCopiados = new List<RegistroCopia.ProgramaCopiado>(); //Lista de programas copiados
-        string rutaRegistro = "RegistroCopias.json"; //Ruta del registro de copias
         string TiempoTotalCopia = string.Empty; //Variable para el tiempo total de la copia
 
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
@@ -90,11 +93,11 @@ namespace copiaProgramas
                     break;
 
                 case "tabControlCopias":
-                    // Ruta del archivo JSON (ajusta si está en otra ubicación)
-                    string rutaArchivo = "RegistroCopias.json";
+                    //// Ruta del archivo JSON (ajusta si está en otra ubicación)
+                    //string rutaArchivo = "RegistroCopias.json";
 
                     //Carga el registro de copias
-                    var listaCopias = RegistroCopia.ProcesarCopiasLeidas(rutaArchivo);
+                    var listaCopias = RegistroCopia.ProcesarCopiasLeidas(PathRegistroCopias);
 
                     //Llama al metodo para mostrar la lista de copias
                     MostrarListaCopias(listaCopias);
@@ -144,12 +147,15 @@ namespace copiaProgramas
 
             string indentado = "   ";
 
+            //Ordenamos la lista de copias por fecha
+            listaCopias = RegistroCopia.OrdenarCopiasLeidas(listaCopias);
+
             // Recorremos la lista de copias y las mostramos en el ListBox
             foreach(var (fecha, copia) in listaCopias)
             {
                 rbCopias.AppendText("\n"); //Linea en blanco para separar elementos
                 rbCopias.SelectionFont = new Font(rbCopias.Font, FontStyle.Bold); // Cambia el estilo de la fuente a negrita
-                rbCopias.AppendText($"{indentado}- Fecha copia: {fecha:dd.MM.yyyy}\n");
+                rbCopias.AppendText($"{indentado}- Fecha copia: {fecha:dd.MM.yyyy} - {fecha:HH:mm}\n");
                 rbCopias.SelectionFont = new Font(rbCopias.Font, FontStyle.Regular); // Cambia el estilo de la fuente a normal
                 rbCopias.AppendText($"{indentado}{indentado}Tiempo total: {copia.TiempoTotalCopia}\n");
 
@@ -1514,7 +1520,7 @@ namespace copiaProgramas
                         TiempoTotalCopia = $"{tiempo}" //Tiempo total de la copia
                     };
                     //Graba el informe de copias
-                    RegistroCopia.GuardarRegistroCopia(registroCopia, "RegistroCopias.json");
+                    RegistroCopia.GuardarRegistroCopia(registroCopia, PathRegistroCopias);
                 }
                 else
                 {
@@ -1781,6 +1787,8 @@ namespace copiaProgramas
             //Carga la lista con el registro de copias leidas
             var listaCopias = RegistroCopia.ListadoCopias;
 
+            //listaCopias = RegistroCopia.OrdenarCopiasLeidas(listaCopias);
+
             // Filtrar por fecha exacta (ignorando hora)
             var copiasFiltradas = listaCopias
                 .Where(c => c.fecha.Date == fechaSeleccionada)
@@ -1800,30 +1808,84 @@ namespace copiaProgramas
             }
         }
 
+
         #endregion
 
-
-    }
-
-    public class ListViewItemComparer : IComparer
-    {
-        private int col;
-        private SortOrder order;
-
-        public ListViewItemComparer(int column, SortOrder order)
+        private void brnBorrarCopias_Click(object sender, EventArgs e)
         {
-            col = column;
-            this.order = order;
-        }
+            //Comprueba si hay alguna fecha seleccionada
+            DateTime fechaSeleccionada = mcFiltroFecha.SelectionStart.Date;
 
-        public int Compare(object x, object y)
-        {
-            int result = String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
+            //Filtra por la fecha seleccionada
+            var registrosSeleccionados = RegistroCopia.ListadoCopias
+                .Where(c => c.fecha.Date == fechaSeleccionada)
+                .ToList();
 
-            if(order == SortOrder.Descending)
-                result = -result;
+            bool borrarPorFecha = registrosSeleccionados.Any();
 
-            return result;
+            // Confirmación previa al borrado
+            DialogResult confirmacion = MessageBox.Show(
+                borrarPorFecha
+                    ? $"¿Deseas eliminar {registrosSeleccionados.Count} registro(s) del día {fechaSeleccionada:dd.MM.yyyy}?"
+                    : "¿Deseas eliminar TODOS los registros?\nEsta acción requiere contraseña.",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if(confirmacion != DialogResult.Yes)
+                return;
+
+            if(borrarPorFecha)
+            {
+                // Eliminar solo los del día seleccionado
+                RegistroCopia.ListadoCopias = RegistroCopia.ListadoCopias
+                    .Where(r => r.fecha.Date != fechaSeleccionada)
+                    .ToList();
+            }
+            else
+            {
+                // Solicitar contraseña antes de eliminar todo
+                using(var formPwd = new frmPassword())
+                {
+                    if(formPwd.ShowDialog() != DialogResult.OK || formPwd.Contraseña != passwordBorrado)
+                    {
+                        MessageBox.Show("Contraseña incorrecta. Operación cancelada.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                RegistroCopia.ListadoCopias.Clear();
+            }
+
+            //Guardar cambios y actualizar la lista
+            var registros = RegistroCopia.ListadoCopias.Select(t => t.copia).ToList();
+            string jsonSalida = JsonConvert.SerializeObject(registros, Formatting.Indented);
+            File.WriteAllText(PathRegistroCopias, jsonSalida);
+            MessageBox.Show("Registros eliminados correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MostrarListaCopias(RegistroCopia.ListadoCopias);
         }
     }
 }
+
+public class ListViewItemComparer : IComparer
+{
+    private int col;
+    private SortOrder order;
+
+    public ListViewItemComparer(int column, SortOrder order)
+    {
+        col = column;
+        this.order = order;
+    }
+
+    public int Compare(object x, object y)
+    {
+        int result = String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
+
+        if(order == SortOrder.Descending)
+            result = -result;
+
+        return result;
+    }
+}
+

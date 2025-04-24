@@ -67,32 +67,41 @@ namespace copiaProgramas
             return JsonConvert.DeserializeObject<List<RegistroCopia>>(json) ?? new List<RegistroCopia>();
 
 
+
         }
 
         public static List<(DateTime Fecha, RegistroCopia Copia)> ProcesarCopiasLeidas(string rutaArchivo)
         {
-            var copiasLeidas = LeerRegistroCopias(rutaArchivo);
-            //var listaProcesada = new List<(DateTime, RegistroCopia)>();
-
-            foreach(var copia in copiasLeidas)
+            if(ListadoCopias.Count == 0)
             {
-                // Intentamos convertir la fecha string a DateTime
-                if(DateTime.TryParseExact(copia.FechaCopia, "'Dia:' dd.MM.yyyy '- Hora:' HH:mm",
-                    CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fecha))
+                var copiasLeidas = LeerRegistroCopias(rutaArchivo);
+                //var listaProcesada = new List<(DateTime, RegistroCopia)>();
+
+                foreach(var copia in copiasLeidas)
                 {
-                    ListadoCopias.Add((fecha, copia));
-                }
-                else
-                {
-                    // Si la conversión falla, puedes registrar un error o simplemente ignorar esa entrada
-                    Console.WriteLine($"No se pudo interpretar la fecha: {copia.FechaCopia}");
+                    // Intentamos convertir la fecha string a DateTime
+                    if(DateTime.TryParseExact(copia.FechaCopia, "'Dia:' dd.MM.yyyy '- Hora:' HH:mm",
+                        CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fecha))
+                    {
+                        ListadoCopias.Add((fecha, copia));
+                    }
+                    else
+                    {
+                        // Si la conversión falla, puedes registrar un error o simplemente ignorar esa entrada
+                        Console.WriteLine($"No se pudo interpretar la fecha: {copia.FechaCopia}");
+                    }
                 }
             }
 
             // Ordenamos de más reciente a más antigua
-            return ListadoCopias
-                   .OrderByDescending(x => x.Item1)
-                   .ToList();
+            return ListadoCopias;
+            
+        }
+
+        public static List<(DateTime Fecha, RegistroCopia Copia)> OrdenarCopiasLeidas (List<(DateTime Fecha, RegistroCopia Copia)> listado)
+        {
+            // Ordenar la lista de copias leídas por fecha
+            return listado.OrderByDescending(x => x.Item1).ToList();
         }
 
     }
