@@ -1775,6 +1775,29 @@ namespace copiaProgramas
             FiltrarCopiasPorFecha(fechaSeleccionada);
         }
 
+        //Evento para filtrar por un rango de fechas
+        private void mcFiltroFecha_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            DateTime fechaInicioSeleccion = e.Start.Date;
+            DateTime fechaFinSeleccion = e.End.Date;
+            // Filtrar por rango de fechas
+            var copiasFiltradas = RegistroCopia.ListadoCopias
+                .Where(c => c.fecha.Date >= fechaInicioSeleccion && c.fecha.Date <= fechaFinSeleccion)
+                .ToList();
+            // Si no hay copias para ese rango
+            if(!copiasFiltradas.Any())
+            {
+                rbCopias.Clear();
+                rbCopias.AppendText($"\n    No se encontraron copias para este rango de fechas.");
+            }
+            else
+            {
+                //Llama al metodo para mostrar la lista de copias filtrada
+                MostrarListaCopias(copiasFiltradas);
+            }
+
+        }
+
         //Evento para quitar el filtro de fecha
         private void btnBorrarFiltro_Click(object sender, EventArgs e)
         {
@@ -1814,19 +1837,21 @@ namespace copiaProgramas
         private void brnBorrarCopias_Click(object sender, EventArgs e)
         {
             //Comprueba si hay alguna fecha seleccionada
-            DateTime fechaSeleccionada = mcFiltroFecha.SelectionStart.Date;
+            DateTime fechaInicioSeleccion = mcFiltroFecha.SelectionRange.Start.Date;
+            DateTime fechaFinSeleccion = mcFiltroFecha.SelectionRange.End.Date;
 
             //Filtra por la fecha seleccionada
             var registrosSeleccionados = RegistroCopia.ListadoCopias
-                .Where(c => c.fecha.Date == fechaSeleccionada)
+                .Where(c => c.fecha.Date >= fechaInicioSeleccion && c.fecha.Date <= fechaFinSeleccion)
                 .ToList();
 
             bool borrarPorFecha = registrosSeleccionados.Any();
 
             // Confirmación previa al borrado
+            string rangoFechas = fechaFinSeleccion > fechaInicioSeleccion ? $"de los dias {fechaInicioSeleccion:dd.MM.yyyy} hasta {fechaFinSeleccion:dd.MM.yyyy}?" : $"del día {fechaInicioSeleccion:dd.MM.yyyy}?";
             DialogResult confirmacion = MessageBox.Show(
                 borrarPorFecha
-                    ? $"¿Deseas eliminar {registrosSeleccionados.Count} registro(s) del día {fechaSeleccionada:dd.MM.yyyy}?"
+                    ? $"¿Deseas eliminar {registrosSeleccionados.Count} registro(s) {rangoFechas}?"
                     : "¿Deseas eliminar TODOS los registros?\nEsta acción requiere contraseña.",
                 "Confirmar eliminación",
                 MessageBoxButtons.YesNo,
@@ -1840,7 +1865,7 @@ namespace copiaProgramas
             {
                 // Eliminar solo los del día seleccionado
                 RegistroCopia.ListadoCopias = RegistroCopia.ListadoCopias
-                    .Where(r => r.fecha.Date != fechaSeleccionada)
+                    .Where(r => r.fecha.Date != fechaInicioSeleccion)
                     .ToList();
             }
             else
@@ -1864,6 +1889,8 @@ namespace copiaProgramas
             MessageBox.Show("Registros eliminados correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             MostrarListaCopias(RegistroCopia.ListadoCopias);
         }
+
+        
     }
 }
 
