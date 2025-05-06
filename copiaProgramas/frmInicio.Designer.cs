@@ -30,20 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInicio));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup13 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup14 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup15 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup16 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup17 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup18 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup19 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup20 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup21 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup22 = new System.Windows.Forms.ListViewGroup("Contabilidad", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup23 = new System.Windows.Forms.ListViewGroup("Modelos", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup24 = new System.Windows.Forms.ListViewGroup("Documentales", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup25 = new System.Windows.Forms.ListViewGroup("Facturacion", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup26 = new System.Windows.Forms.ListViewGroup("Patrones", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup27 = new System.Windows.Forms.ListViewGroup("Laboral", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup28 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabConfiguracion = new System.Windows.Forms.TabPage();
             this.btnGuardarConfiguracion = new System.Windows.Forms.Button();
@@ -1359,28 +1359,28 @@
             this.columnHeader8});
             this.lstFicherosOrigen.FullRowSelect = true;
             this.lstFicherosOrigen.GridLines = true;
-            listViewGroup1.Header = "Modelos";
-            listViewGroup1.Name = "Modelos";
-            listViewGroup2.Header = "Patrones";
-            listViewGroup2.Name = "Patrones";
-            listViewGroup3.Header = "Contabilidad";
-            listViewGroup3.Name = "Contabilidad";
-            listViewGroup4.Header = "Documentales";
-            listViewGroup4.Name = "Documentales";
-            listViewGroup5.Header = "Facturacion";
-            listViewGroup5.Name = "Facturacion";
-            listViewGroup6.Header = "Laboral";
-            listViewGroup6.Name = "Laboral";
-            listViewGroup7.Header = "Gasoleos";
-            listViewGroup7.Name = "Gasoleos";
+            listViewGroup15.Header = "Modelos";
+            listViewGroup15.Name = "Modelos";
+            listViewGroup16.Header = "Patrones";
+            listViewGroup16.Name = "Patrones";
+            listViewGroup17.Header = "Contabilidad";
+            listViewGroup17.Name = "Contabilidad";
+            listViewGroup18.Header = "Documentales";
+            listViewGroup18.Name = "Documentales";
+            listViewGroup19.Header = "Facturacion";
+            listViewGroup19.Name = "Facturacion";
+            listViewGroup20.Header = "Laboral";
+            listViewGroup20.Name = "Laboral";
+            listViewGroup21.Header = "Gasoleos";
+            listViewGroup21.Name = "Gasoleos";
             this.lstFicherosOrigen.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3,
-            listViewGroup4,
-            listViewGroup5,
-            listViewGroup6,
-            listViewGroup7});
+            listViewGroup15,
+            listViewGroup16,
+            listViewGroup17,
+            listViewGroup18,
+            listViewGroup19,
+            listViewGroup20,
+            listViewGroup21});
             this.lstFicherosOrigen.HideSelection = false;
             this.lstFicherosOrigen.LabelWrap = false;
             this.lstFicherosOrigen.Location = new System.Drawing.Point(10, 13);
@@ -1562,7 +1562,10 @@
             // 
             // mcFiltroFecha
             // 
+            this.mcFiltroFecha.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.mcFiltroFecha.FirstDayOfWeek = System.Windows.Forms.Day.Monday;
             this.mcFiltroFecha.Location = new System.Drawing.Point(476, 35);
+            this.mcFiltroFecha.MaxSelectionCount = 31;
             this.mcFiltroFecha.Name = "mcFiltroFecha";
             this.mcFiltroFecha.TabIndex = 5;
             this.mcFiltroFecha.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.mcFiltroFecha_DateChanged);
@@ -1791,28 +1794,28 @@
             this.columnHeader7});
             this.lstFicheros.FullRowSelect = true;
             this.lstFicheros.GridLines = true;
-            listViewGroup8.Header = "Contabilidad";
-            listViewGroup8.Name = "Contabilidad";
-            listViewGroup9.Header = "Modelos";
-            listViewGroup9.Name = "Modelos";
-            listViewGroup10.Header = "Documentales";
-            listViewGroup10.Name = "Documentales";
-            listViewGroup11.Header = "Facturacion";
-            listViewGroup11.Name = "Facturacion";
-            listViewGroup12.Header = "Patrones";
-            listViewGroup12.Name = "Patrones";
-            listViewGroup13.Header = "Laboral";
-            listViewGroup13.Name = "Laboral";
-            listViewGroup14.Header = "Gasoleos";
-            listViewGroup14.Name = "Gasoleos";
+            listViewGroup22.Header = "Contabilidad";
+            listViewGroup22.Name = "Contabilidad";
+            listViewGroup23.Header = "Modelos";
+            listViewGroup23.Name = "Modelos";
+            listViewGroup24.Header = "Documentales";
+            listViewGroup24.Name = "Documentales";
+            listViewGroup25.Header = "Facturacion";
+            listViewGroup25.Name = "Facturacion";
+            listViewGroup26.Header = "Patrones";
+            listViewGroup26.Name = "Patrones";
+            listViewGroup27.Header = "Laboral";
+            listViewGroup27.Name = "Laboral";
+            listViewGroup28.Header = "Gasoleos";
+            listViewGroup28.Name = "Gasoleos";
             this.lstFicheros.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup8,
-            listViewGroup9,
-            listViewGroup10,
-            listViewGroup11,
-            listViewGroup12,
-            listViewGroup13,
-            listViewGroup14});
+            listViewGroup22,
+            listViewGroup23,
+            listViewGroup24,
+            listViewGroup25,
+            listViewGroup26,
+            listViewGroup27,
+            listViewGroup28});
             this.lstFicheros.HideSelection = false;
             this.lstFicheros.LabelWrap = false;
             this.lstFicheros.Location = new System.Drawing.Point(317, 24);
