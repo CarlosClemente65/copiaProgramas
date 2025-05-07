@@ -1865,7 +1865,7 @@ namespace copiaProgramas
             {
                 // Eliminar solo los del día seleccionado
                 RegistroCopia.ListadoCopias = RegistroCopia.ListadoCopias
-                    .Where(r => r.fecha.Date != fechaInicioSeleccion)
+                    .Where(r => r.fecha.Date < fechaInicioSeleccion || r.fecha.Date > fechaFinSeleccion)
                     .ToList();
             }
             else
