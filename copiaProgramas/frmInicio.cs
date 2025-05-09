@@ -1801,6 +1801,7 @@ namespace copiaProgramas
         //Evento para quitar el filtro de fecha
         private void btnBorrarFiltro_Click(object sender, EventArgs e)
         {
+            mcFiltroFecha.SetSelectionRange(DateTime.Now, DateTime.Now);
             MostrarListaCopias(RegistroCopia.ListadoCopias);
         }
 
