@@ -290,7 +290,6 @@ namespace copiaProgramas
                     {
                         ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
 
-                        // Configuración de opciones de sesión para la copia al geco72
                         SessionOptions opcionesSesion = new SessionOptions
                         {
                             Protocol = variable.Protocolo,
@@ -1619,14 +1618,29 @@ namespace copiaProgramas
                     ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
 
                     // Configuración de opciones de sesión para la copia al geco72
+                    var servidor = new GestorServidores();
+
+                    string nombreServidor = "geco72";
+                    var configuracion = servidor.ObtenerConfiguracion(nombreServidor);
+
                     SessionOptions opcionesSesion = new SessionOptions
                     {
-                        Protocol = variable.Protocolo,
-                        HostName = variable.HostName,
-                        UserName = variable.UserName,
-                        SshHostKeyFingerprint = variable.HostKey,
-                        SshPrivateKeyPath = variable.PrivateKey,
+                        Protocol = configuracion.Protocolo,
+                        HostName = configuracion.HostName,
+                        UserName = configuracion.UserName,
+                        SshHostKeyFingerprint = configuracion.HostKey,
+                        SshPrivateKeyPath = configuracion.PrivateKey
                     };
+
+
+                    //SessionOptions opcionesSesion = new SessionOptions
+                    //{
+                    //    Protocol = variable.Protocolo,
+                    //    HostName = variable.HostName,
+                    //    UserName = variable.UserName,
+                    //    SshHostKeyFingerprint = variable.HostKey,
+                    //    SshPrivateKeyPath = variable.PrivateKey,
+                    //};
                     opcionesSesion.AddRawSettings("AgentFwd", "1");
 
                     Session session = null;

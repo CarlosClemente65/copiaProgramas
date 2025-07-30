@@ -31,6 +31,8 @@ namespace copiaProgramas
         public string HostKey { get; set; }
         public string PrivateKey { get; set; }
 
+        public SessionOptions ParametrosConexion { get; set; }
+
         public variables()
         {
             /*Constructor de la clase que asigna los valores a las variables cuando se hace una instancia
@@ -51,12 +53,22 @@ namespace copiaProgramas
             destinoPasesnoPi = @"/u/pases_nopi/master/";
             destino = destinoPi;
 
-            //Configuracion WinSCP por defecto
+            //Configuracion WinSCP geco72 (defecto)
             Protocolo = Protocol.Sftp;
             HostName = "172.31.5.149";
             UserName = "centos";
             HostKey = "ssh-ed25519 255 ypCFfhJskB3YSCzQzF5iHV0eaWxlBIvMeM5kRl4N46o="; 
             PrivateKey = @"C:\Oficina_ds\Diagram\Accesos portatil\conexiones VPN\Credenciales SSH\aws_diagram_irlanda.ppk";
+
+            //Configuraicon WinSCP geco04
+            SessionOptions ConexionGeco04 = new SessionOptions
+            {
+                Protocol = Protocol.Sftp,
+                HostName = "172.31.26.21",
+                UserName = "centos",
+                SshHostKeyFingerprint = "ssh-ed25519 255 EED2o6CV3I8GXE2qqXPEopvallRrpWb8MY2hqmJshGM=",
+                SshPrivateKeyPath = @"C:\Oficina_ds\Diagram\Accesos portatil\conexiones VPN\Credenciales SSH\aws_diagram_irlanda.ppk",
+            };
 
         }
 
