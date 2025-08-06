@@ -8,16 +8,14 @@ using System.Drawing;
 using System.Collections;
 using System.Diagnostics;
 using System.Text;
-using System.Security.Cryptography;
 using System.Linq;
-using Microsoft.Win32;
 using Newtonsoft.Json;
 
 namespace copiaProgramas
 {
     public partial class frmInicio : Form
     {
-        variables variable = new variables(); //Instanciacion de la clase variables para acceder a las variables de configuracion
+        static variables variable = new variables(); //Instanciacion de la clase variables para acceder a las variables de configuracion
         Programas programa = new Programas(); //Instanciacion de la clase Programas
         Ficheros fichero = new Ficheros(); //Instanciacion de la clase Ficheros para acceso a los ficheros de configuracion
         int resultadoCopia = 0;
@@ -36,6 +34,13 @@ namespace copiaProgramas
         List<RegistroCopia.ProgramaCopiado> programasCopiados = new List<RegistroCopia.ProgramaCopiado>(); //Lista de programas copiados
         string TiempoTotalCopia = string.Empty; //Variable para el tiempo total de la copia
 
+        // Instanciacion del gestor de servidores para obtener la configuracion del servidor
+        static GestorServidores servidor = new GestorServidores();
+        static string nombreServidor = "geco72";
+        ConfiguracionServidor configuracion = servidor.ObtenerConfiguracion(nombreServidor);
+
+        Servidores datosServidor = variable.ServidorSeleccionado; //Instanciacion de la clase Servidores para acceder a los datos del servidor seleccionado
+
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
         private Dictionary<CheckBox, string> checkBoxVariables = new Dictionary<CheckBox, string>();
 
@@ -50,8 +55,11 @@ namespace copiaProgramas
             //Lee el fichero de configuracion para cargar las variables
             variable.CargarConfiguracion();
 
+
             //Rellena los textBox con los valores cargados en las variables desde el fichero de configuracion
             cbDestinoCopias.SelectedIndex = 0;
+            cbServidorCopia.SelectedIndex = 0; //Selecciona el servidor por defecto (geco72)
+            //cbServidorCopia.Text = "Geco89";
             actualizaListaFicheros(lstFicherosOrigen);
             tabControl1.SelectTab("tabCopias");
             tabPI = tabControl1.TabPages["tabProgramasPi"];
@@ -64,6 +72,7 @@ namespace copiaProgramas
         //Carga los valores de los textBox de la configuracion de rutas y Winscp
         public void ActualizaTextBox()
         {
+
             txtRutaPi.Text = variable.rutaPi;
             txtRutanoPi.Text = variable.rutanoPi;
             txtRutaGestion.Text = variable.rutaGestion;
@@ -73,11 +82,13 @@ namespace copiaProgramas
             txtDestinoLocal.Text = variable.destinoLocal;
             txtDestinoPasesPi.Text = variable.destinoPasesPi;
             txtDestinoPasesnoPi.Text = variable.destinoPasesnoPi;
-            txtProtocolo.Text = variable.Protocolo.ToString();
-            txtHostname.Text = variable.HostName;
-            txtUsername.Text = variable.UserName;
-            txtHostkey.Text = variable.HostKey;
-            txtPrivatekey.Text = variable.PrivateKey;
+            txtProtocolo.Text = datosServidor.Protocolo.ToString();
+            txtHostname.Text = datosServidor.HostName;
+            txtUsername.Text = datosServidor.UserName;
+            txtHostkey.Text = datosServidor.HostKey;
+            txtPrivatekey.Text = datosServidor.PrivateKey;
+            cbServidor.SelectedIndex = 0; //Selecciona el servidor por defecto (geco72)
+            cbServidorCopia.SelectedIndex = 0; //Selecciona el servidor por defecto (geco72)
         }
 
         //Metodo para controlar las acciones a realizar segun la pestaña seleccionada
@@ -89,6 +100,7 @@ namespace copiaProgramas
                 case "tabCopias":
                     actualizaListaFicheros(lstFicherosOrigen); //Carga la lista de ficheros
                     cbDestinoCopias.SelectedIndex = 0; //Fija el destino de la copia a la carpeta PI
+                    cbServidor.SelectedIndex = 0; // Fija el servidor de copias en el geco72
                     txtDestinoCopias.Clear(); //Limpia el textBox de destino de la copia
                     break;
 
@@ -120,6 +132,7 @@ namespace copiaProgramas
                 //Pestaña configuracion Winscp
                 case "tabWinscp":
                     variable.CargarConfiguracion(); //Carga las variables del fichero de configuracion
+                    cbServidor.SelectedIndex = 0; //Selecciona el servidor por defecto (geco72)
                     ActualizaTextBox(); //Carga los valores de las variables en los textBox
                     break;
 
@@ -285,18 +298,18 @@ namespace copiaProgramas
                 }
                 else
                 {
-                    //Si la copia es al geco72
+                    //Si la copia es un geco
                     try
                     {
                         ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
 
                         SessionOptions opcionesSesion = new SessionOptions
                         {
-                            Protocol = variable.Protocolo,
-                            HostName = variable.HostName,
-                            UserName = variable.UserName,
-                            SshHostKeyFingerprint = variable.HostKey,
-                            SshPrivateKeyPath = variable.PrivateKey
+                            Protocol = datosServidor.Protocolo,
+                            HostName = datosServidor.HostName,
+                            UserName = datosServidor.UserName,
+                            SshHostKeyFingerprint = datosServidor.HostKey,
+                            SshPrivateKeyPath = datosServidor.PrivateKey
                         };
                         opcionesSesion.AddRawSettings("AgentFwd", "1");
 
@@ -1617,19 +1630,13 @@ namespace copiaProgramas
                 {
                     ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
 
-                    // Configuración de opciones de sesión para la copia al geco72
-                    var servidor = new GestorServidores();
-
-                    string nombreServidor = "geco72";
-                    var configuracion = servidor.ObtenerConfiguracion(nombreServidor);
-
                     SessionOptions opcionesSesion = new SessionOptions
                     {
-                        Protocol = configuracion.Protocolo,
-                        HostName = configuracion.HostName,
-                        UserName = configuracion.UserName,
-                        SshHostKeyFingerprint = configuracion.HostKey,
-                        SshPrivateKeyPath = configuracion.PrivateKey
+                        Protocol = datosServidor.Protocolo,
+                        HostName = datosServidor.HostName,
+                        UserName = datosServidor.UserName,
+                        SshHostKeyFingerprint = datosServidor.HostKey,
+                        SshPrivateKeyPath = datosServidor.PrivateKey
                     };
 
 
@@ -1905,7 +1912,34 @@ namespace copiaProgramas
             MostrarListaCopias(RegistroCopia.ListadoCopias);
         }
 
-        
+        private void cbServidor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Configuración de opciones de sesión para la copia al servidor seleccionado
+            var servidorSeleccionado = cbServidor.Text; //Obtiene el servidor seleccionado
+
+            var configuracion = servidor.ObtenerConfiguracion(servidorSeleccionado);
+
+            txtProtocolo.Text = configuracion.Protocolo.ToString();
+            txtHostname.Text = configuracion.HostName;
+            txtUsername.Text = configuracion.UserName;
+            txtHostkey.Text = configuracion.HostKey;
+            txtPrivatekey.Text = configuracion.PrivateKey;
+        }
+
+        private void cbServidorCopia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Configuración de opciones de sesión para la copia al servidor seleccionado
+            var servidorSeleccionado = cbServidorCopia.Text; //Obtiene el servidor seleccionado
+
+            var configuracion = servidor.ObtenerConfiguracion(servidorSeleccionado);
+            
+            variable.ServidorSeleccionado.Protocolo = configuracion.Protocolo;
+            variable.ServidorSeleccionado.HostName = configuracion.HostName;
+            variable.ServidorSeleccionado.UserName = configuracion.UserName;
+            variable.ServidorSeleccionado.HostKey = configuracion.HostKey;
+            variable.ServidorSeleccionado.PrivateKey = configuracion.PrivateKey;
+
+        }
     }
 }
 
