@@ -72,7 +72,13 @@ namespace copiaProgramas
         // Método para agregar un fichero a la lista
         public void AgregarFichero(string nombre, string ruta, string tipo, int clase)
         {
-            listaFicheros.Add(new Fichero { Nombre = nombre, Ruta = ruta, Tipo = tipo, Clase = clase });
+            listaFicheros.Add(
+                new Fichero { 
+                    Nombre = nombre, 
+                    Ruta = ruta, 
+                    Tipo = tipo, 
+                    Clase = clase 
+                });
         }
 
         // Método para modificar un fichero de la lista

@@ -1639,15 +1639,6 @@ namespace copiaProgramas
                         SshPrivateKeyPath = datosServidor.PrivateKey
                     };
 
-
-                    //SessionOptions opcionesSesion = new SessionOptions
-                    //{
-                    //    Protocol = variable.Protocolo,
-                    //    HostName = variable.HostName,
-                    //    UserName = variable.UserName,
-                    //    SshHostKeyFingerprint = variable.HostKey,
-                    //    SshPrivateKeyPath = variable.PrivateKey,
-                    //};
                     opcionesSesion.AddRawSettings("AgentFwd", "1");
 
                     Session session = null;
@@ -1908,7 +1899,13 @@ namespace copiaProgramas
             var registros = RegistroCopia.ListadoCopias.Select(t => t.copia).ToList();
             string jsonSalida = JsonConvert.SerializeObject(registros, Formatting.Indented);
             File.WriteAllText(PathRegistroCopias, jsonSalida);
-            MessageBox.Show("Registros eliminados correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            MessageBox.Show(
+                "Registros eliminados correctamente.",
+                "Información",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
             MostrarListaCopias(RegistroCopia.ListadoCopias);
         }
 
@@ -1932,12 +1929,28 @@ namespace copiaProgramas
             var servidorSeleccionado = cbServidorCopia.Text; //Obtiene el servidor seleccionado
 
             var configuracion = servidor.ObtenerConfiguracion(servidorSeleccionado);
-            
+
             variable.ServidorSeleccionado.Protocolo = configuracion.Protocolo;
             variable.ServidorSeleccionado.HostName = configuracion.HostName;
             variable.ServidorSeleccionado.UserName = configuracion.UserName;
             variable.ServidorSeleccionado.HostKey = configuracion.HostKey;
             variable.ServidorSeleccionado.PrivateKey = configuracion.PrivateKey;
+
+            if(servidorSeleccionado == "Geco04")
+            {
+                cbDestinoCopias.Items.Add("ase0516");
+                cbDestinoCopias.Text = "ase0516"; //Selecciona Geco04 como destino por defecto
+                variable.destino = variable.destinoGeco04;
+            }
+            else
+            {
+                cbDestinoCopias.Items.Remove("ase0516");
+                if(variable.destino == variable.destinoGeco04)
+                {
+                    cbDestinoCopias.SelectedIndex = 0;
+                    variable.destino = variable.destinoPi; //Vuelve a la ruta por defecto
+                }
+            }
 
         }
     }

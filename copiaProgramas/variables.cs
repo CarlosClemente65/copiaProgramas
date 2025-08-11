@@ -1,8 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using WinSCP;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +22,7 @@ namespace copiaProgramas
         public string destinonoPi { get; set; }
         public string destinoPasesPi { get; set; }
         public string destinoPasesnoPi { get; set; }
+        public string destinoGeco04 { get; set; }
         public string destino { get; set; }
 
         //Configuracion WinSCP
@@ -49,23 +48,13 @@ namespace copiaProgramas
             destinonoPi = @"/u/dsnopi/master/";
             destinoPasesPi = @"/u/pases_pi/master/";
             destinoPasesnoPi = @"/u/pases_nopi/master/";
+            destinoGeco04 = @"/u/ase0516/master/";
             destino = destinoPi;
 
             ListaServidores = new List<Servidores>(); // Inicializa la lista de servidores
 
             // Añade el servidor geco72 a la lista y lo pone como servidor seleccionado
             CargarServidor("Geco72");
-
-            //ListaServidores.Add(ServidorSeleccionado);
-
-            // Añade el servidor geco04 a la lista
-            //ListaServidores.Add(new Servidores(
-            //    "Geco04", 
-            //    Protocol.Sftp, 
-            //    "172.31.26.21", 
-            //    "centos", 
-            //    "ssh-ed25519 255 EED2o6CV3I8GXE2qqXPEopvallRrpWb8MY2hqmJshGM=", 
-            //    @"C:\Oficina_ds\Diagram\Accesos portatil\conexiones VPN\Credenciales SSH\aws_diagram_irlanda.ppk"));
 
         }
 
@@ -93,7 +82,11 @@ namespace copiaProgramas
             }
             catch
             {
-                MessageBox.Show("Fichero de configuracion no se ha podido actualizar", "Actualizar configuracion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Fichero de configuracion no se ha podido actualizar", 
+                    "Actualizar configuracion", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
             }
         }
 
