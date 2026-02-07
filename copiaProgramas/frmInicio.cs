@@ -11,13 +11,12 @@ using System.Text;
 using System.Linq;
 using Newtonsoft.Json;
 using copiaProgramas.Servicios;
+using Utiles = copiaProgramas.Comun.UtilidadesUI;
 
 namespace copiaProgramas
 {
     public partial class frmInicio : Form
     {
-       
-
         static variables variable = new variables(); //Instanciacion de la clase variables para acceder a las variables de configuracion
         Programas programa = new Programas(); //Instanciacion de la clase Programas
         Ficheros fichero = new Ficheros(); //Instanciacion de la clase Ficheros para acceso a los ficheros de configuracion
@@ -50,26 +49,41 @@ namespace copiaProgramas
 
         public frmInicio()
         {
-            
-            
             InitializeComponent();
 
-            //Suscribe al evento cuando se selecciona una pestaña del tabControl
-            tabControl1.SelectedIndexChanged += TabControl1_SelectedIndexChanged;
+            // Metodo para configurar los eventos de la aplicacion
+            ConfigurarEventos();
 
-            //Lee el fichero de configuracion para cargar las variables
-            variable.CargarConfiguracion();
+            // Metodo para cargar la configuracion inicial de la aplicacion
+            CargarConfiguracionInicial();
 
+            // Metodo para inicializar la interfaz de la aplicacion con los valores cargados en las variables
+            InicializarInterfaz();
 
+        }
+
+        private void InicializarInterfaz()
+        {
             //Rellena los textBox con los valores cargados en las variables desde el fichero de configuracion
             cbDestinoCopias.SelectedIndex = 0;
             cbServidorCopia.SelectedIndex = 0; //Selecciona el servidor por defecto (geco72)
-            //cbServidorCopia.Text = "Geco89";
             actualizaListaFicheros(lstFicherosOrigen);
             tabControl1.SelectTab("tabCopias");
             tabPI = tabControl1.TabPages["tabProgramasPi"];
             tabNopi = tabControl1.TabPages["tabProgramasnoPI"];
             activarPestañas();
+        }
+
+        private void CargarConfiguracionInicial()
+        {
+            //Lee el fichero de configuracion para cargar las variables
+            variable.CargarConfiguracion();
+        }
+
+        private void ConfigurarEventos()
+        {
+            //Suscribe al evento cuando se selecciona una pestaña del tabControl
+            tabControl1.SelectedIndexChanged += TabControl1_SelectedIndexChanged;
 
         }
 
@@ -1516,7 +1530,7 @@ namespace copiaProgramas
                 if(resultadoCopia > 0)
                 {
                     int pestaña = 3; //Pestaña de copias para mostrar el mensaje
-                    string tiempo = convierteTiempo((int)tiempoTotal.Elapsed.TotalSeconds);
+                    string tiempo = Utiles.convierteTiempo((int)tiempoTotal.Elapsed.TotalSeconds);
                     ActualizarProgreso($"Total tiempo de copia: {tiempo}" + Environment.NewLine, pestaña);
                     MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -1601,7 +1615,7 @@ namespace copiaProgramas
                             File.Copy(origen, destino, true); //Copia directamente
                             ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
                             tiempoAplicacion.Stop(); //Para el tiempo de copia de la aplicacion
-                            string tiempo = convierteTiempo((int)tiempoAplicacion.Elapsed.TotalSeconds);
+                            string tiempo = Utiles.convierteTiempo((int)tiempoAplicacion.Elapsed.TotalSeconds);
                             ActualizarProgreso($"Duracion de la copia: {tiempo}" + Environment.NewLine, pestaña);
                             resultadoCopia++; //Actualiza el contador de copias correctas
 
@@ -1707,7 +1721,7 @@ namespace copiaProgramas
 
                             //Control del tiempo de copia
                             tiempoAplicacion.Stop();
-                            string tiempo = convierteTiempo((int)tiempoAplicacion.Elapsed.TotalSeconds);
+                            string tiempo = Utiles.convierteTiempo((int)tiempoAplicacion.Elapsed.TotalSeconds);
                             ActualizarProgreso($"Duracion de la copia: {tiempo}" + Environment.NewLine, pestaña);
 
                         }).ConfigureAwait(false);
@@ -1756,33 +1770,6 @@ namespace copiaProgramas
                 tabControl1.TabPages.Add(tabNopi);
                 controlTab = true;
             }
-        }
-
-        //Metodo para devolver un string con el tiempo de copia formateado
-        private string convierteTiempo(int tiempo)
-        {
-            string tiempoTotal = string.Empty;
-            int minutos = tiempo / 60;
-            int segundos = tiempo % 60;
-            if(minutos > 0)
-            {
-                tiempoTotal += $"{minutos} minutos ";
-            }
-            tiempoTotal += $"{segundos} segundos";
-            return tiempoTotal;
-        }
-
-        //Metodo para actualizar el informe de copias (desactivado porque ahora se graba un registro de copias)
-        private void actualizaInformeCopia(string mensaje)
-        {
-            if(informeCopia.Length == 0)
-            {
-                informeCopia.AppendLine(new string('#', 50));
-                informeCopia.AppendLine($"Fecha copia: {DateTime.Now}");
-            }
-
-            informeCopia.AppendLine(mensaje);
-
         }
 
         //Evento al modificar una fecha en el calendario
@@ -1957,30 +1944,6 @@ namespace copiaProgramas
                 }
             }
 
-        }
-
-        private void frmInicio_Load(object sender, EventArgs e)
-        {
-            //// Instancia del gestor de configuracion
-            //gestorConfiguracion = GestorConfiguracion.Instancia;
-
-            //// Cargar rutas y servidores
-            //gestorConfiguracion.CargarConfiguracion("configuracion2.json");
-
-            //// Cargar lista de ficheros
-            //gestorConfiguracion.CargarFicheros("ficheros.json");
-
-            //// Ejemplo de acceso a los datos
-            //foreach(var fichero in gestorConfiguracion.ListaFicheros)
-            //{
-            //    var ruta = fichero.Ruta;
-            //    var tipo = fichero.Tipo;
-            //    var clase = fichero.Clase;
-            //    var nombre = fichero.Nombre;
-            //    var seleccionado = fichero.Seleccionado;
-            //    var rutaOrigen = fichero.RutaOrigenCompleta;
-            //    var rutaDestino = fichero.RutaDestino;
-            //}
         }
     }
 }

@@ -66,7 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comun\Constantes.cs" />
-    <Compile Include="Comun\UtilidadesRuta.cs" />
+    <Compile Include="Comun\Enums.cs" />
+    <Compile Include="Comun\GestionArchivos.cs" />
+    <Compile Include="Comun\UtilidadesUI.cs" />
     <Compile Include="ConfiguracionServidor.cs" />
     <Compile Include="Ficheros.cs" />
     <Compile Include="frmInicio.cs">

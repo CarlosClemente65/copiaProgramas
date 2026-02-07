@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using copiaProgramas.Comun;
 using copiaProgramas.Modelos;
 using Newtonsoft.Json;
+using enums = copiaProgramas.Comun.Enums;
 
 namespace copiaProgramas.Servicios
 {
@@ -26,45 +27,82 @@ namespace copiaProgramas.Servicios
         public RutasCopia Configuracion { get; set; }
         public List<FicheroCopia> ListaFicheros { get; set; }
 
-        // Método para cargar rutas y servidores
-        public void CargarConfiguracion(string archivoConfiguracion)
+        public void Inicializar()
         {
-            if (File.Exists(archivoConfiguracion))
+            string rutaConfiguracion = "configuracion_defecto.json";
+            string rutaFicheros = "ficheros.json";
+
+            // Cargar rutas y servidores
+            CargarConfiguracion(rutaConfiguracion);
+
+            // Cargar lista de ficheros
+            CargarFicheros(rutaFicheros);
+
+        }
+
+        // Método para cargar rutas y servidores
+        private void CargarConfiguracion(string archivoConfiguracion)
+        {
+            if (!File.Exists(archivoConfiguracion))
             {
-                generarConfiguracion();
+                GenerarConfiguracion(archivoConfiguracion);
             }
-            var json = File.ReadAllText(archivoConfiguracion);
-            Configuracion = JsonConvert.DeserializeObject<RutasCopia>(json);
+            else
+            {
+                Configuracion = GestionArchivos.LeerJson<RutasCopia>(archivoConfiguracion);
+
+                // Validar que se han cargado correctamente las secciones necesarias
+                if (Configuracion.Origenes == null || Configuracion.Destinos == null || Configuracion.ListaServidores == null)
+                {
+                    GenerarConfiguracion(archivoConfiguracion); // Regenera el archivo si falta alguna sección
+                }
+            }
+
+            // Establece el 'geco72' como servidor seleccionado por defecto si no se ha cargado uno previamente
+            if (Configuracion.ServidorSeleccionado == null)
+            {
+                Configuracion.ServidorSeleccionado = Configuracion.ListaServidores.Find(s => s.Nombre == "Geco72");
+            }
+
+            // Establece el destino geco72 como destino seleccionado por defecto si no se ha cargado uno previamente
+            if (Configuracion.DestinoSeleccionado == null)
+            {
+                Configuracion.DestinoSeleccionado = Configuracion.Destinos.Find(d => d.Nombre == "destinoPi");
+            }
         }
 
 
         // Método para cargar ficheros candidatos
-        public void CargarFicheros(string archivoFicheros)
+        private void CargarFicheros(string archivoFicheros)
         {
             //Si no existe el fichero.json crea uno por defecto
             if (!File.Exists(archivoFicheros))
             {
-                generarFichero();
+                GenerarFichero(archivoFicheros);
             }
+            else
+            {
+                ListaFicheros = GestionArchivos.LeerJson<List<FicheroCopia>>(archivoFicheros);
 
-            // Carga la configuracion de ficheros
-            var json = File.ReadAllText(archivoFicheros);
-            ListaFicheros = JsonConvert.DeserializeObject<List<FicheroCopia>>(json);
+                if (ListaFicheros == null)
+                {
+                    GenerarFichero(archivoFicheros); // Regenera el archivo si no se han cargado correctamente los ficheros
+                }
+            }
         }
 
 
-
         // Método para generar un fichero de configuración con valores por defecto
-        private void generarConfiguracion()
+        private void GenerarConfiguracion(string archivoConfiguracion)
         {
             Configuracion = new RutasCopia();
             // Rutas de origen
             Configuracion.Origenes = new List<Ruta>
             {
-                new Ruta {Nombre = "PI", RutaBase = @"\\185.57.175.101\basprog_cyc\master9\EstandarPI\"},
-                new Ruta {Nombre = "noPI", RutaBase = @"\\185.57.175.101\basprog_cyc\master9\EstandarAsesoria"},
-                new Ruta {Nombre = "Gestion", RutaBase = @"\\185.57.175.101\basprog_cyc\master9\EstandarEmpresa\"},
-                new Ruta {Nombre = "Gasoleos", RutaBase = @"\\185.57.175.101\basprog_cyc\master9\Medida\"}
+                new Ruta {Nombre = "PI", RutaBase = @"\\185.57.175.101\basprog_cyc\master9\EstandarPI\", Clase = enums.ClaseFichero.PI},
+                new Ruta {Nombre = "noPI", RutaBase = @"\\185.57.175.101\basprog_cyc\master9\EstandarAsesoria", Clase = enums.ClaseFichero.NoPI},
+                new Ruta {Nombre = "Gestion", RutaBase = @"\\185.57.175.101\basprog_cyc\master9\EstandarEmpresa\", Clase = enums.ClaseFichero.Gestion},
+                new Ruta {Nombre = "Gasoleos", RutaBase = @"\\185.57.175.101\basprog_cyc\master9\Medida\", Clase = enums.ClaseFichero.Gasoleos}
             };
 
             // Rutas de destino
@@ -101,49 +139,49 @@ namespace copiaProgramas.Servicios
             };
 
             string json = JsonConvert.SerializeObject(Configuracion, Formatting.Indented);
-            File.WriteAllText("configuracion_defecto.json", json);
+            File.WriteAllText(archivoConfiguracion, json);
         }
 
 
         // Metodo para generar un fichero con valores por defecto
-        public void generarFichero()
+        public void GenerarFichero(string archivoFicheros)
         {
             ListaFicheros = new List<FicheroCopia>();
 
             //Añade los valores por defecto
-            agregarFichero(1, "ipcont08", "ipcont08\\pcont08z.tgz", "Contabilidad");
-            agregarFichero(1, "ipbasica", "ipbasica\\pbasicaz.tgz", "Patrones");
-            agregarFichero(1, "ipmodelo", "ipmodelo\\pmodeloz.tgz", "Modelos");
-            agregarFichero(1, "ipintegr", "ipintegr\\pintegrz.tgz", "Patrones");
-            agregarFichero(1, "ippatron", "ippatron\\ppatronz.tgz", "Patrones");
-            agregarFichero(1, "siibase", "siibase\\siibasez.tgz", "Contabilidad");
-            agregarFichero(1, "000adc", "ipcont08_mod\\000adc\\000adcz.tgz", "Contabilidad");
-            agregarFichero(1, "contalap", "ipcontal\\pcontalz.tgz", "Contabilidad");
-            agregarFichero(1, "n43base", "n43base\\n43basez.tgz", "Contabilidad");
-            agregarFichero(1, "iprent23", "iprent23\\prent23z.tgz", "Modelos");
-            agregarFichero(1, "iprent22", "iprent22\\prent22z.tgz", "Modelos");
-            agregarFichero(1, "iprent21", "iprent21\\prent21z.tgz", "Modelos");
-            agregarFichero(1, "ipconts2", "ipconts2\\pconts2z.tgz", "Modelos");
-            agregarFichero(1, "ipabogad", "ipabogad\\pabogadz.tgz", "Facturacion");
-            agregarFichero(1, "ipabogax", "ipabogax\\pabogaxz.tgz", "Facturacion");
-            agregarFichero(1, "ipabopar", "ipabopar\\paboparz.tgz", "Facturacion");
-            agregarFichero(3, "dscomer9", "dscomer9\\scomer9z.tgz", "Facturacion");
-            agregarFichero(3, "dscarter", "dscarte5\\scarte5z.tgz", "Facturacion");
-            agregarFichero(1, "dsarchi", "dsarchi\\dsarchiz.tgz", "Documentales");
-            agregarFichero(1, "certbase", "certbase\\ertbasez.tgz", "Documentales");
-            agregarFichero(1, "notibase", "notibase\\otibasez.tgz", "Documentales");
-            agregarFichero(1, "dsedespa", "dsedespa\\sedespaz.tgz", "Documentales");
-            agregarFichero(1, "dsesign", "dsesign\\dsesignz.tgz", "Documentales");
-            agregarFichero(1, "iplabor2", "iplabor2\\plabor2z.tgz", "Laboral");
-            agregarFichero(4, "gasbase", "_CEPSA\\gasbase\\gasbasez.tgz", "Gasoleos");
-            agregarFichero(4, "dscepsax", "_CEPSA\\dscepsax\\scepsaxz.tgz", "Gasoleos");
-            agregarFichero(4, "dsgalx", "_CEPSA\\dscepsax_mod\\dsgalx\\dsgalxz.tgz", "Gasoleos");
+            AgregarFichero(enums.ClaseFichero.PI, "ipcont08", "ipcont08\\pcont08z.tgz", "Contabilidad");
+            AgregarFichero(enums.ClaseFichero.PI, "ipbasica", "ipbasica\\pbasicaz.tgz", "Patrones");
+            AgregarFichero(enums.ClaseFichero.PI, "ipmodelo", "ipmodelo\\pmodeloz.tgz", "Modelos");
+            AgregarFichero(enums.ClaseFichero.PI, "ipintegr", "ipintegr\\pintegrz.tgz", "Patrones");
+            AgregarFichero(enums.ClaseFichero.PI, "ippatron", "ippatron\\ppatronz.tgz", "Patrones");
+            AgregarFichero(enums.ClaseFichero.PI, "siibase", "siibase\\siibasez.tgz", "Contabilidad");
+            AgregarFichero(enums.ClaseFichero.PI, "000adc", "ipcont08_mod\\000adc\\000adcz.tgz", "Contabilidad");
+            AgregarFichero(enums.ClaseFichero.PI, "contalap", "ipcontal\\pcontalz.tgz", "Contabilidad");
+            AgregarFichero(enums.ClaseFichero.PI, "n43base", "n43base\\n43basez.tgz", "Contabilidad");
+            AgregarFichero(enums.ClaseFichero.PI, "iprent23", "iprent23\\prent23z.tgz", "Modelos");
+            AgregarFichero(enums.ClaseFichero.PI, "iprent22", "iprent22\\prent22z.tgz", "Modelos");
+            AgregarFichero(enums.ClaseFichero.PI, "iprent21", "iprent21\\prent21z.tgz", "Modelos");
+            AgregarFichero(enums.ClaseFichero.PI, "ipconts2", "ipconts2\\pconts2z.tgz", "Modelos");
+            AgregarFichero(enums.ClaseFichero.PI, "ipabogad", "ipabogad\\pabogadz.tgz", "Facturacion");
+            AgregarFichero(enums.ClaseFichero.PI, "ipabogax", "ipabogax\\pabogaxz.tgz", "Facturacion");
+            AgregarFichero(enums.ClaseFichero.PI, "ipabopar", "ipabopar\\paboparz.tgz", "Facturacion");
+            AgregarFichero(enums.ClaseFichero.Gestion, "dscomer9", "dscomer9\\scomer9z.tgz", "Facturacion");
+            AgregarFichero(enums.ClaseFichero.Gestion, "dscarter", "dscarte5\\scarte5z.tgz", "Facturacion");
+            AgregarFichero(enums.ClaseFichero.PI, "dsarchi", "dsarchi\\dsarchiz.tgz", "Documentales");
+            AgregarFichero(enums.ClaseFichero.PI, "certbase", "certbase\\ertbasez.tgz", "Documentales");
+            AgregarFichero(enums.ClaseFichero.PI, "notibase", "notibase\\otibasez.tgz", "Documentales");
+            AgregarFichero(enums.ClaseFichero.PI, "dsedespa", "dsedespa\\sedespaz.tgz", "Documentales");
+            AgregarFichero(enums.ClaseFichero.PI, "dsesign", "dsesign\\dsesignz.tgz", "Documentales");
+            AgregarFichero(enums.ClaseFichero.PI, "iplabor2", "iplabor2\\plabor2z.tgz", "Laboral");
+            AgregarFichero(enums.ClaseFichero.Gasoleos, "gasbase", "_CEPSA\\gasbase\\gasbasez.tgz", "Gasoleos");
+            AgregarFichero(enums.ClaseFichero.Gasoleos, "dscepsax", "_CEPSA\\dscepsax\\scepsaxz.tgz", "Gasoleos");
+            AgregarFichero(enums.ClaseFichero.Gasoleos, "dsgalx", "_CEPSA\\dscepsax_mod\\dsgalx\\dsgalxz.tgz", "Gasoleos");
 
             string json = JsonConvert.SerializeObject(ListaFicheros, Formatting.Indented);
-            File.WriteAllText("ficheros2.json", json);
+            File.WriteAllText(archivoFicheros, json);
         }
 
-        private void agregarFichero(int clase, string nombre, string ruta, string tipo)
+        private void AgregarFichero(enums.ClaseFichero clase, string nombre, string ruta, string tipo)
         {
             //Metodo para ir agregando cada fichero a la lista de ficheros por defecto
             FicheroCopia nuevoFichero = new FicheroCopia
@@ -158,6 +196,28 @@ namespace copiaProgramas.Servicios
             };
 
             ListaFicheros.Add(nuevoFichero);
+        }
+
+        public void AsignarRutas(List<FicheroCopia> listaFicheros)
+        {
+            // Recorre la lista de ficheros y asigna las rutas completas de origen y destino para los ficheros seleccionados
+            foreach (var fichero in listaFicheros)
+            {
+                // Busca la ruta de origen que corresponde a la clase del fichero
+                var rutaOrigen = Configuracion.Origenes.Find(o => o.Clase == (enums.ClaseFichero)fichero.Clase);
+                if (rutaOrigen != null)
+                {
+                    fichero.RutaOrigenCompleta = Path.Combine(rutaOrigen.RutaBase, fichero.Ruta);
+                }
+
+                // Combina la ruta base del destino seleccionado con el nombre del fichero para obtener la ruta destino completa
+                if (Configuracion.DestinoSeleccionado != null)
+                {
+                    fichero.RutaDestino = Path.Combine(Configuracion.DestinoSeleccionado.RutaBase, Path.GetFileName(fichero.Ruta));
+                }
+            }
+
+            return listaFicheros;
         }
     }
 }
