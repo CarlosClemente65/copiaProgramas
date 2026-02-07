@@ -2686,6 +2686,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Copia paquetes master9";
+            this.Load += new System.EventHandler(this.frmInicio_Load);
             this.tabConfiguracion.ResumeLayout(false);
             this.tabConfiguracion.PerformLayout();
             this.tabProgramasPi.ResumeLayout(false);

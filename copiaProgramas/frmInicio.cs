@@ -10,11 +10,15 @@ using System.Diagnostics;
 using System.Text;
 using System.Linq;
 using Newtonsoft.Json;
+using copiaProgramas.Servicios;
 
 namespace copiaProgramas
 {
     public partial class frmInicio : Form
     {
+        // Instancia para la carga de la configruacion y ficheros de copia con la nueva clase de gestion de configuracion
+        private GestorConfiguracion gestorConfiguracion;
+
         static variables variable = new variables(); //Instanciacion de la clase variables para acceder a las variables de configuracion
         Programas programa = new Programas(); //Instanciacion de la clase Programas
         Ficheros fichero = new Ficheros(); //Instanciacion de la clase Ficheros para acceso a los ficheros de configuracion
@@ -47,6 +51,8 @@ namespace copiaProgramas
 
         public frmInicio()
         {
+            
+            
             InitializeComponent();
 
             //Suscribe al evento cuando se selecciona una pestaña del tabControl
@@ -1952,6 +1958,30 @@ namespace copiaProgramas
                 }
             }
 
+        }
+
+        private void frmInicio_Load(object sender, EventArgs e)
+        {
+            // Instancia del gestor de configuracion
+            gestorConfiguracion = GestorConfiguracion.Instancia;
+
+            // Cargar rutas y servidores
+            gestorConfiguracion.CargarConfiguracion("configuracion2.json");
+
+            // Cargar lista de ficheros
+            gestorConfiguracion.CargarFicheros("ficheros.json");
+
+            // Ejemplo de acceso a los datos
+            foreach(var fichero in gestorConfiguracion.ListaFicheros)
+            {
+                var ruta = fichero.Ruta;
+                var tipo = fichero.Tipo;
+                var clase = fichero.Clase;
+                var nombre = fichero.Nombre;
+                var seleccionado = fichero.Seleccionado;
+                var rutaOrigen = fichero.RutaOrigenCompleta;
+                var rutaDestino = fichero.RutaDestino;
+            }
         }
     }
 }
