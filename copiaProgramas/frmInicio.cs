@@ -16,8 +16,7 @@ namespace copiaProgramas
 {
     public partial class frmInicio : Form
     {
-        // Instancia para la carga de la configruacion y ficheros de copia con la nueva clase de gestion de configuracion
-        private GestorConfiguracion gestorConfiguracion;
+       
 
         static variables variable = new variables(); //Instanciacion de la clase variables para acceder a las variables de configuracion
         Programas programa = new Programas(); //Instanciacion de la clase Programas
@@ -1962,26 +1961,26 @@ namespace copiaProgramas
 
         private void frmInicio_Load(object sender, EventArgs e)
         {
-            // Instancia del gestor de configuracion
-            gestorConfiguracion = GestorConfiguracion.Instancia;
+            //// Instancia del gestor de configuracion
+            //gestorConfiguracion = GestorConfiguracion.Instancia;
 
-            // Cargar rutas y servidores
-            gestorConfiguracion.CargarConfiguracion("configuracion2.json");
+            //// Cargar rutas y servidores
+            //gestorConfiguracion.CargarConfiguracion("configuracion2.json");
 
-            // Cargar lista de ficheros
-            gestorConfiguracion.CargarFicheros("ficheros.json");
+            //// Cargar lista de ficheros
+            //gestorConfiguracion.CargarFicheros("ficheros.json");
 
-            // Ejemplo de acceso a los datos
-            foreach(var fichero in gestorConfiguracion.ListaFicheros)
-            {
-                var ruta = fichero.Ruta;
-                var tipo = fichero.Tipo;
-                var clase = fichero.Clase;
-                var nombre = fichero.Nombre;
-                var seleccionado = fichero.Seleccionado;
-                var rutaOrigen = fichero.RutaOrigenCompleta;
-                var rutaDestino = fichero.RutaDestino;
-            }
+            //// Ejemplo de acceso a los datos
+            //foreach(var fichero in gestorConfiguracion.ListaFicheros)
+            //{
+            //    var ruta = fichero.Ruta;
+            //    var tipo = fichero.Tipo;
+            //    var clase = fichero.Clase;
+            //    var nombre = fichero.Nombre;
+            //    var seleccionado = fichero.Seleccionado;
+            //    var rutaOrigen = fichero.RutaOrigenCompleta;
+            //    var rutaDestino = fichero.RutaDestino;
+            //}
         }
     }
 }

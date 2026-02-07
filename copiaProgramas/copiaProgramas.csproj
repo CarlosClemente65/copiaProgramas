@@ -101,7 +101,9 @@
     <Compile Include="Servicios\GestorConfiguracion.cs" />
     <Compile Include="Servicios\GestorCopias.cs" />
     <Compile Include="Servicios\GestorRegistros.cs" />
-    <Compile Include="UI\frmInicio.cs" />
+    <Compile Include="UI\frmInicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\frmPassword.cs" />
     <Compile Include="variables.cs" />
     <EmbeddedResource Include="frmInicio.resx">
@@ -114,6 +116,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmInicio.resx">
+      <DependentUpon>frmInicio.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Carlos.p12" />
     <None Include="configuracion.json">
