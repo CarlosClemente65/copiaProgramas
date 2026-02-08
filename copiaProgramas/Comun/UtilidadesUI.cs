@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace copiaProgramas.Comun
 {
@@ -20,6 +17,25 @@ namespace copiaProgramas.Comun
             }
             tiempoTotal += $"{segundos} segundos";
             return tiempoTotal;
+        }
+
+        public static string FormatearTiempo(TimeSpan tiempo)
+        {
+            var partes = new List<string>();
+
+            if (tiempo.Hours > 0)
+                partes.Add($"{tiempo.Hours} hora{(tiempo.Hours > 1 ? "s" : "")}");
+            if (tiempo.Minutes > 0)
+                partes.Add($"{tiempo.Minutes} minuto{(tiempo.Minutes > 1 ? "s" : "")}");
+            if (tiempo.Seconds > 0 || partes.Count == 0) // siempre muestra segundos
+                partes.Add($"{tiempo.Seconds} segundo{(tiempo.Seconds != 1 ? "s" : "")}");
+
+            return string.Join(" ", partes);
+        }
+
+        public static string FormatearFechaCopia(DateTime fecha)
+        {
+            return fecha.ToString("'Dia:' dd.MM.yyyy '- Hora:' HH:mm");
         }
 
     }

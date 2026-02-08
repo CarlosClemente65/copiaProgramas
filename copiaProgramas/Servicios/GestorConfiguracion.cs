@@ -216,8 +216,6 @@ namespace copiaProgramas.Servicios
                     fichero.RutaDestino = Path.Combine(Configuracion.DestinoSeleccionado.RutaBase, Path.GetFileName(fichero.Ruta));
                 }
             }
-
-            return listaFicheros;
         }
     }
 }

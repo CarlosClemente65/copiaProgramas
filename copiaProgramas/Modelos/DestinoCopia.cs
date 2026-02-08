@@ -9,7 +9,7 @@ namespace copiaProgramas.Modelos
     internal class DestinoCopia
     {
         public string RutaDestino { get; set; }
-        public bool EsLocal { get; set; }
+        public bool EsRemoto { get; set; }
         public ServidorCopia Servidor { get; set; }
     }
 

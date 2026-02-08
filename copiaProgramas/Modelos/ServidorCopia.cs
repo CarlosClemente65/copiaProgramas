@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,6 @@ namespace copiaProgramas.Modelos
         public string UserName { get; set; }
         public string PrivateKey { get; set; }
         public string HostKey { get; set; }
+
     }
 }

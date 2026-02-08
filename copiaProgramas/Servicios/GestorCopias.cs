@@ -1,99 +1,95 @@
-﻿ using System;
+﻿using copiaProgramas.Infraestructura;
+using copiaProgramas.Modelos;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using copiaProgramas.Modelos;
+using Utiles = copiaProgramas.Comun.UtilidadesUI;
 
 namespace copiaProgramas.Servicios
 {
     internal class GestorCopias
     {
-        // Eventos que el formulario podrá suscribirse
-        public event EventHandler<string> Mensaje;            // Para mensajes info / error
-        public event EventHandler<int> Progreso;             // Para porcentaje de copia
-        public event EventHandler<ResultadoCopia> CopiasFinalizadas; // Para resultados finales
+        private readonly ServicioLog _servicioLog;
+        private readonly ServicioValidacion _servicioValidacion; 
 
-        // Método principal que recibe los ficheros y el destino
-        public async Task EjecutarCopiasAsync(List<FicheroCopia> ficheros, DestinoCopia destino)
+        // Eventos para comunicar progreso a la UI
+        public event EventHandler<ProgresoEventArgs> ProgresoActualizado;
+        public event EventHandler<ResumenCopiaEventArgs> CopiaFinalizada;
+
+        public GestorCopias()
         {
-            if(ficheros == null || ficheros.Count == 0)
-            {
-                Mensaje?.Invoke(this, "No hay ficheros seleccionados para copiar.");
-                return;
-            }
-
-            int totalFicheros = ficheros.Count(f => f.Seleccionado);
-            if(totalFicheros == 0)
-            {
-                Mensaje?.Invoke(this, "No hay ficheros marcados para copiar.");
-                return;
-            }
-
-            int ficherosCopiados = 0;
-            var log = new StringBuilder();
-
-            foreach(var fichero in ficheros)
-            {
-                if(!fichero.Seleccionado) continue;
-
-                // Aviso de inicio
-                Mensaje?.Invoke(this, $"Iniciando copia de {fichero.Nombre}...");
-
-                try
-                {
-                    if(destino.EsLocal)
-                    {
-                        await CopiarFicheroLocal(fichero, destino);
-                    }
-                    else
-                    {
-                        await CopiarFicheroRemoto(fichero, destino);
-                    }
-
-                    // Aviso de finalización
-                    Mensaje?.Invoke(this, $"Fichero {fichero.Nombre} copiado correctamente.");
-                    log.AppendLine($"{DateTime.Now}: {fichero.Nombre} copiado correctamente.");
-
-                    ficherosCopiados++;
-
-                    // Actualización de progreso
-                    int porcentajeTotal = (int)((ficherosCopiados / (double)totalFicheros) * 100);
-                    Progreso?.Invoke(this, porcentajeTotal);
-
-                }
-                catch(Exception ex)
-                {
-                    string error = $"Error al copiar {fichero.Nombre}: {ex.Message}";
-                    Mensaje?.Invoke(this, error);
-                    log.AppendLine($"{DateTime.Now}: {error}");
-                }
-            }
-
-            // Evento de finalización con resumen
-            CopiasFinalizadas?.Invoke(this, new ResultadoCopia
-            {
-                Total = totalFicheros,
-                Copiados = ficherosCopiados,
-                Log = log.ToString()
-            });
+            _servicioLog = new ServicioLog();
+            _servicioValidacion = new ServicioValidacion();
         }
 
-        // Copia local
-        private async Task CopiarFicheroLocal(FicheroCopia fichero, DestinoCopia destino)
+        /// <summary>
+        /// Inicia el proceso de copia de múltiples ficheros
+        /// </summary>
+        public async Task<ResultadoCopia> IniciarCopiaAsync(List<FicheroCopia> ficheros, DestinoCopia destino)
         {
-            string origen = fichero.RutaOrigenCompleta;
-            string destinoFinal = Path.Combine(destino.RutaDestino, Path.GetFileName(fichero.Ruta));
+            var resultado = new ResultadoCopia
+            {
+                FechaCopia = Utiles.FormatearFechaCopia(DateTime.Now)
+            };
 
-            await Task.Run(() => File.Copy(origen, destinoFinal, true));
+            var stopwatchTotal = Stopwatch.StartNew();
+
+            try
+            {
+                // Validar datos de entrada
+                var erroresValidacion = _servicioValidacion.ValidarCopia(ficheros, destino);
+                if (erroresValidacion.Any())
+                {
+                    resultado.Errores.AddRange(erroresValidacion);
+                    resultado.TiempoTotalCopia = Utiles.FormatearTiempo(stopwatchTotal.Elapsed);
+                    return resultado;
+                }
+
+                // Seleccionar el copiador apropiado
+                ICopiador GestorCopia = destino.EsRemoto
+                    ? (ICopiador)new CopiadorRemoto()
+                    : new CopiadorLocal();
+
+                // Suscribirse a los eventos del copiador
+                GestorCopia.ProgresoActualizado += (sender, e) => ProgresoActualizado?.Invoke(this, e);
+
+                // Copiar ficheros uno a uno
+                foreach (var fichero in ficheros)
+                {
+                    var resultadoCopia = await GestorCopia.CopiarAsync(fichero, destino);
+                    resultado.ProgramasCopiados.Add(resultadoCopia);
+                }
+
+                stopwatchTotal.Stop();
+                resultado.TiempoTotalCopia = Utiles.FormatearTiempo(stopwatchTotal.Elapsed);
+
+                // Guardar log de copias
+                await _servicioLog.GuardarLogCopiaAsync(resultado);
+
+                // Notificar finalización
+                CopiaFinalizada?.Invoke(this, new ResumenCopiaEventArgs(resultado));
+            }
+            catch (Exception ex)
+            {
+                stopwatchTotal.Stop();
+                resultado.Errores.Add($"Error general: {ex.Message}");
+            }
+
+            return resultado;
         }
+    }
 
-        // Copia remota: vacío por ahora, se implementará con WinSCP/SFTP
-        private async Task CopiarFicheroRemoto(FicheroCopia fichero, DestinoCopia destino)
+    internal class ResumenCopiaEventArgs : EventArgs
+    {
+        public ResultadoCopia Resumen { get; set; }
+        public ResumenCopiaEventArgs(ResultadoCopia resumen)
         {
-            // TODO: implementar copia remota
-            await Task.CompletedTask;
+            Resumen = resumen;
         }
     }
 }
+

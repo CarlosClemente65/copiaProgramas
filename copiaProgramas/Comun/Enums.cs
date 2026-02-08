@@ -15,5 +15,14 @@ namespace copiaProgramas.Comun
             Gestion = 3,
             Gasoleos = 4
         }
+
+        internal enum EstadoCopia
+        {
+            Iniciando,
+            Copiando,
+            Finalizado,
+            Error
+        }
     }
 }
+
