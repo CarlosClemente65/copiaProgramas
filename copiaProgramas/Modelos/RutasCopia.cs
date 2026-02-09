@@ -12,8 +12,8 @@ namespace copiaProgramas.Modelos
     {
         public string Nombre { get; set; }
         public string RutaBase { get; set; } // Ruta base para el origen
-        public bool EsRemoto { get; set; } // Indica si es un destino remoto
         public enums.ClaseFichero Clase { get; set; } // Clase del fichero que se corresponde con esta ruta (1. PI, 2. NO PI, 3. Gestion, 4. Gasoleos)
+        public bool EsRemoto { get; set; } = true; // Indica si es un destino remoto
     }
     internal class RutasCopia
     {

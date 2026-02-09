@@ -59,11 +59,6 @@ namespace copiaProgramas.Servicios
                     errores.Add($"El fichero '{fichero.Nombre}' no tiene ruta de origen");
                     continue;
                 }
-
-                if (!File.Exists(fichero.RutaOrigenCompleta))
-                {
-                    errores.Add($"No se encuentra el fichero: {fichero.RutaOrigenCompleta}");
-                }
             }
 
             return errores;

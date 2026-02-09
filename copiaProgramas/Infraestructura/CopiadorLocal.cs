@@ -40,15 +40,14 @@ namespace copiaProgramas.Infraestructura
                 // Realizar la copia
                 NotificarProgreso(fichero.Nombre, $"Copiando {fichero.Nombre}...", enums.EstadoCopia.Copiando, 50);
 
-                string rutaOrigen = fichero.RutaOrigenCompleta;
                 string rutaDestino = Path.Combine(destino.RutaDestino, Path.GetFileName(fichero.Ruta));
-                await Task.Run(() => File.Copy(rutaOrigen, rutaDestino, true));
+                await Task.Run(() => File.Copy(fichero.RutaOrigenCompleta, rutaDestino, true));
 
                 // Actualizar resultado
                 resultadoCopia.MensajeResultado = "Fichero copiado correctamente";
 
                 // Notificar finalización
-                NotificarProgreso(fichero.Nombre, $"Programa {fichero.Nombre} copiado correctamente", enums.EstadoCopia.Finalizado, 100);
+                NotificarProgreso(fichero.Nombre, $"Programa {fichero.Nombre} copiado correctamente\n", enums.EstadoCopia.Finalizado, 100);
             }
             catch (Exception ex)
             {

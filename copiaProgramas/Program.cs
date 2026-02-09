@@ -13,8 +13,8 @@ namespace copiaProgramas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmInicio()); // Formulario de inicio anterior (desactivado para pruebas)
-            Application.Run(new UI.frmInicio()); // Formulario de inicio actualizado en el espacio de nombres UI
+            Application.Run(new frmInicio()); // Formulario de inicio anterior (desactivado para pruebas)
+            //Application.Run(new UI.frmInicio()); // Formulario de inicio actualizado en el espacio de nombres UI
         }
     }
 }

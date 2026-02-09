@@ -23,6 +23,8 @@ namespace copiaProgramas.Infraestructura
                 RutaDestino = destino.RutaDestino
             };
 
+            // Se crea la sesion
+            Session session = null;
             try
             {
                 // Notificar inicio
@@ -39,59 +41,59 @@ namespace copiaProgramas.Infraestructura
                 };
                 opcionesSesion.AddRawSettings("AgentFwd", "1");
 
-                Session session = null;
-
-                try
+                await Task.Run(() =>
                 {
-                    await Task.Run(() =>
+                    // Crear y conectar sesión
+                    session = new Session();
+
+                    // Establece un timeout global para operaciones de la sesión (en milisegundos)
+                    session.Timeout = TimeSpan.FromSeconds(20); // Espera 20 segundos para cada operación antes de lanzar una excepción
+
+                    // Suscribir al evento de progreso de WinSCP
+                    session.FileTransferProgress += (sender, e) =>
                     {
-                        // Crear y conectar sesión
-                        session = new Session();
+                        int porcentaje = (int)(e.OverallProgress * 100);
+                        NotificarProgreso(fichero.Nombre, $"Copiando {fichero.Nombre}...", EstadoCopia.Copiando, porcentaje);
+                    };
 
-                        // Suscribir al evento de progreso de WinSCP
-                        session.FileTransferProgress += (sender, e) =>
-                        {
-                            int porcentaje = (int)(e.OverallProgress * 100);
-                            NotificarProgreso(fichero.Nombre, $"Copiando {fichero.Nombre}...", EstadoCopia.Copiando, porcentaje);
-                        };
+                    NotificarProgreso(fichero.Nombre, "Conectando con el servidor...", EstadoCopia.Copiando);
+                    session.Open(opcionesSesion);
 
-                        NotificarProgreso(fichero.Nombre, "Conectando con el servidor...", EstadoCopia.Copiando);
-                        session.Open(opcionesSesion);
+                    // Configurar opciones de transferencia
+                    TransferOptions transferOptions = new TransferOptions
+                    {
+                        TransferMode = TransferMode.Binary
+                    };
 
-                        // Configurar opciones de transferencia
-                        TransferOptions transferOptions = new TransferOptions
-                        {
-                            TransferMode = TransferMode.Binary
-                        };
+                    NotificarProgreso(fichero.Nombre, "Iniciando copia...", EstadoCopia.Copiando);
 
-                        NotificarProgreso(fichero.Nombre, "Iniciando copia...", EstadoCopia.Copiando);
+                    // Realizar la transferencia
+                    TransferOperationResult transferResult = session.PutFiles(
+                        fichero.RutaOrigenCompleta,
+                        destino.RutaDestino,
+                        false,
+                        transferOptions
+                    );
 
-                        // Realizar la transferencia
-                        TransferOperationResult transferResult = session.PutFiles(
-                            fichero.RutaOrigenCompleta,
-                            destino.RutaDestino,
-                            false,
-                            transferOptions
-                        );
+                    // Verificar resultado
+                    transferResult.Check();
+                }).ConfigureAwait(false); // Esto permite que el Task termine aunque no estemos en UI
 
-                        // Verificar resultado
-                        transferResult.Check();
-                    });
+                resultadoCopia.MensajeResultado = "Fichero copiado correctamente";
 
-                    resultadoCopia.MensajeResultado = "Fichero copiado correctamente";
+                NotificarProgreso(fichero.Nombre, $"Programa {fichero.Nombre} copiado correctamente\n", EstadoCopia.Finalizado, 100);
 
-                    NotificarProgreso(fichero.Nombre, $"Programa {fichero.Nombre} copiado correctamente", EstadoCopia.Finalizado, 100);
-                }
-                finally
-                {
-                    session?.Dispose();
-                }
             }
             catch (Exception ex)
             {
-                resultadoCopia.MensajeResultado = $"Error al copiar el fichero {fichero.Nombre}: {ex.Message}";
+                // TODO: Revisar los mensajes que se lanzan para que incluya un salto de línea al final para que se muestre correctamente en el log
+                resultadoCopia.MensajeError = $"Error al copiar el fichero {fichero.Nombre}: {ex.Message}";
 
-                NotificarProgreso(fichero.Nombre, $"Error al copiar {fichero.Nombre}: {ex.Message}", EstadoCopia.Error);
+                NotificarProgreso(fichero.Nombre, $"Error al copiar {fichero.Nombre}: {ex.Message}\n", EstadoCopia.Error);
+            }
+            finally
+            {
+                session?.Dispose();
             }
 
             return resultadoCopia;

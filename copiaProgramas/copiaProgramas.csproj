@@ -85,7 +85,6 @@
     <Compile Include="GestorServidores.cs" />
     <Compile Include="Infraestructura\CopiadorLocal.cs" />
     <Compile Include="Infraestructura\CopiadorRemoto.cs" />
-    <Compile Include="Infraestructura\CopiadorWinSCP.cs" />
     <Compile Include="Infraestructura\ICopiador.cs" />
     <Compile Include="Modelos\DestinoCopia.cs" />
     <Compile Include="Modelos\FicheroCopia.cs" />
@@ -104,7 +103,6 @@
     <Compile Include="RegistroCopia.cs" />
     <Compile Include="Servicios\GestorConfiguracion.cs" />
     <Compile Include="Servicios\GestorCopias.cs" />
-    <Compile Include="Servicios\GestorRegistros.cs" />
     <Compile Include="Servicios\ServicioLog.cs" />
     <Compile Include="Servicios\ServicioValidacion.cs" />
     <Compile Include="UI\frmInicio.cs">

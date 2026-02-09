@@ -11,12 +11,13 @@ namespace copiaProgramas.Modelos
     {
         public string FechaCopia { get; set; }
         public string TiempoTotalCopia { get; set; }
-        public List<ProgramasCopiados> ProgramasCopiados { get; set; } = new List<ProgramasCopiados>();
-        public List<string> Errores { get; set; } = new List<string>();
+        public List<ProgramasCopiados> ProgramasCopiados { get; set; }
+        public List<string> Errores { get; set; }
 
         public ResultadoCopia()
         {
             ProgramasCopiados = new List<ProgramasCopiados>();
+            Errores = new List<string>();
         }
     }
 
@@ -25,5 +26,6 @@ namespace copiaProgramas.Modelos
         public string Programa { get; set; }
         public string RutaDestino { get; set; }
         public string MensajeResultado { get; set; }
+        public string MensajeError { get; set; }
     }
 }

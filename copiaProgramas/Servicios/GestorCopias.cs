@@ -61,6 +61,11 @@ namespace copiaProgramas.Servicios
                 foreach (var fichero in ficheros)
                 {
                     var resultadoCopia = await GestorCopia.CopiarAsync(fichero, destino);
+                    if (!string.IsNullOrEmpty(resultadoCopia.MensajeError))
+                    {
+                        resultado.Errores.Add($"{resultadoCopia.MensajeError}");
+                    }
+
                     resultado.ProgramasCopiados.Add(resultadoCopia);
                 }
 

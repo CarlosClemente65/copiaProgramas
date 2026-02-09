@@ -29,7 +29,7 @@ namespace copiaProgramas.Servicios
                 }
 
                 // Agregar nuevo registro
-                logs.Add(resumen);
+                logs.Insert(0,resumen);
 
                 // Guardar
                 string jsonNuevo = JsonConvert.SerializeObject(logs, Formatting.Indented);

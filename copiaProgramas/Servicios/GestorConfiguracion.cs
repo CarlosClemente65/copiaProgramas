@@ -109,7 +109,7 @@ namespace copiaProgramas.Servicios
             Configuracion.Destinos = new List<Ruta>
             {
                 new Ruta {Nombre ="destinoPi", RutaBase ="/u/dspi/master/"},
-                new Ruta {Nombre ="destinoLocal", RutaBase ="c:\\descargas_geco72\\"},
+                new Ruta {Nombre ="destinoLocal", RutaBase ="c:\\descargas_geco72\\", EsRemoto = false},
                 new Ruta {Nombre ="destinonoPi", RutaBase ="/u/dsnopi/master/"},
                 new Ruta {Nombre ="destinoPasesPi", RutaBase ="/u/pases_pi/master/"},
                 new Ruta {Nombre ="destinoPasesnoPi", RutaBase ="/u/dsnopi/master/"}
