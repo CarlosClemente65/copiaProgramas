@@ -123,7 +123,4 @@ namespace copiaProgramas
             PrivateKey = _privateKey;
         }
     }
-
-    
-
 }

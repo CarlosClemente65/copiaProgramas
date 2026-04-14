@@ -32,12 +32,14 @@ namespace copiaProgramas
         StringBuilder informeCopia = new StringBuilder(); //Variable para el informe de copias
         string rutaInforme = "logCopia.txt"; //Ruta del informe de copias
 
-        //Variables para controlas el registro de copias
+        //Variables para controlar el registro de copias
         List<RegistroCopia.ProgramaCopiado> programasCopiados = new List<RegistroCopia.ProgramaCopiado>(); //Lista de programas copiados
         string TiempoTotalCopia = string.Empty; //Variable para el tiempo total de la copia
 
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
         private Dictionary<CheckBox, string> checkBoxVariables = new Dictionary<CheckBox, string>();
+
+        bool copiaMejorada = true; //Variable para controlar si se hace la copia mejorada o no
 
 
         public frmInicio()
@@ -56,6 +58,7 @@ namespace copiaProgramas
             tabControl1.SelectTab("tabCopias");
             tabPI = tabControl1.TabPages["tabProgramasPi"];
             tabNopi = tabControl1.TabPages["tabProgramasnoPI"];
+            cbCopiaMejorada.Checked = copiaMejorada;
             activarPestañas();
 
         }
@@ -1433,7 +1436,16 @@ namespace copiaProgramas
         //Metodo para quitar las marcas de los ficheros seleccionados
         private void btnLimpiarCopia_Click(object sender, EventArgs e)
         {
+            LimpiarTextBoxDestino();
+            LimpiarCheckBox();
+        }
+
+        private void LimpiarTextBoxDestino()
+        {
             txtDestinoCopias.Text = string.Empty;
+        }
+        private void LimpiarCheckBox()
+        {
             foreach(ListViewItem item in lstFicherosOrigen.CheckedItems)
             {
                 item.Checked = false;
@@ -1486,9 +1498,10 @@ namespace copiaProgramas
                     tareasCopia.Add(() => hacerCopia(nombre, fichero, rutaOrigen));
                 }
 
-
                 //Lanza las copias una a una
                 Stopwatch tiempoAplicacion = Stopwatch.StartNew(); //Inicializa el contador de tiempo para cada fichero
+
+                LimpiarTextBoxDestino(); //Llama al metodo para limpiar el campo de texto del destino antes de empezar a copiar
                 for(int i = 0; i < tareasCopia.Count; i++) //
                 {
                     await tareasCopia[i](); //Va haciendo la copia de los ficheros uno a uno
@@ -1502,15 +1515,6 @@ namespace copiaProgramas
                     string tiempo = convierteTiempo((int)tiempoTotal.Elapsed.TotalSeconds);
                     ActualizarProgreso($"Total tiempo de copia: {tiempo}" + Environment.NewLine, pestaña);
                     MessageBox.Show("Copia finalizada", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    ////Actualiza el informe de copias (desactivado porque ahora se graba un registro de copias)
-                    //actualizaInformeCopia($"Total tiempo de copia: {tiempo}" + Environment.NewLine);
-
-                    //if(informeCopia.Length > 0)
-                    //{
-                    //    //Graba el informe de copias
-                    //    File.AppendAllText("logCopias.txt", informeCopia.ToString());
-                    //}
 
                     //Genera el informe de copias
                     RegistroCopia registroCopia = new RegistroCopia //Nueva instancia para grabar los datos de la copia
@@ -1536,7 +1540,8 @@ namespace copiaProgramas
             tabControl1.Enabled = true;
             progressBar3.Value = 0;
 
-            btnLimpiarCopia_Click(sender, e); //Llama al metodo para quitar las marcas de los ficheros seleccionados
+            LimpiarCheckBox(); //Llama al metodo para quitar las marcas de los ficheros seleccionados
+
         }
 
         //Metodo para asignar las rutas destino de la copia segun el valor seleccionado en el comboBox
@@ -1616,7 +1621,22 @@ namespace copiaProgramas
             {
                 try
                 {
-                    ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
+                    var origenTemporal = Path.Combine(Path.GetTempPath(), nombreFichero); //Crea una copia del fichero de origen en la ruta temporal
+                    if(copiaMejorada)
+                    {
+                        ActualizarProgreso($"Copiando el programa {titulo} a carpeta temporal. Espere que finalice ...", pestaña);
+                        //ActualizarProgreso("Espere a que termine la copia local...", pestaña);
+
+                        await Task.Run(() => File.Copy(origen, origenTemporal, true)).ConfigureAwait(false); // Copia el fichero de origen a la ruta temporal
+
+                        // Mensaje para avisar que ha terminado la copia local
+                        ActualizarProgreso("Copia local terminada, continuamos con la copia al servidor.\n", pestaña);
+                    }
+                    else
+                    {
+                        ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
+                    }
+
 
                     // Configuración de opciones de sesión para la copia al geco72
                     SessionOptions opcionesSesion = new SessionOptions
@@ -1635,19 +1655,6 @@ namespace copiaProgramas
                     {
                         await Task.Run(async () =>
                         {
-                            ////Permite hacer un log del resultado. La dejo comentada por si hace falta
-                            //string logFile = @"c:\carlos\winscp.log";
-                            //if (!File.Exists(logFile))
-                            //{
-                            //    File.Create(logFile).Close();
-                            //}
-                            //else
-                            //{
-                            //    File.Delete(logFile);
-                            //    File.Create(logFile).Close();
-                            //}
-                            //session.SessionLogPath = logFile;
-
                             // Conexión
                             session = new Session();
 
@@ -1678,163 +1685,6 @@ namespace copiaProgramas
                             ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
                             resultadoCopia++; //Actualiza el contador de copias correctas
 
-                            ////Actualiza el informe de copias (desactivado porque ahora se graba un registro de copias)
-                            //actualizaInformeCopia($"Copiado {titulo} a {variable.destino}");
-
-                            //Añade el programa copiado a la lista de programas copiados
-                            programasCopiados.Add(new RegistroCopia.ProgramaCopiado
-                            {
-                                Programa = titulo,
-                                RutaDestino = variable.destino,
-                            });
-
-                            //Control del tiempo de copia
-                            tiempoAplicacion.Stop();
-                            string tiempo = convierteTiempo((int)tiempoAplicacion.Elapsed.TotalSeconds);
-                            ActualizarProgreso($"Duracion de la copia: {tiempo}" + Environment.NewLine, pestaña);
-
-                        }).ConfigureAwait(false);
-                    }
-
-                    catch(Exception ex)
-                    {
-                        ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message + Environment.NewLine, pestaña);
-                    }
-
-                    finally
-                    {
-                        //Libera el recurso de la sesion
-                        session?.Dispose();
-                    }
-                }
-                catch(Exception ex)
-                {
-                    ActualizarProgreso(Environment.NewLine + $"No se ha podido copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
-                }
-                finally
-                {
-                    tiempoAplicacion.Stop();
-                }
-            }
-
-        }
-
-
-        //Metodo que lanza la copia de cada fichero
-        // Si no es la copia local,hace primero una copia del fichero a una carpeta temporal local, y luego hace la copia al geco72 desde esa carpeta temporal
-        private async Task hacerCopiaMejorada(string nombre, string fichero, string rutaOrigen)
-        {
-            int pestaña = 3; //Pestaña de copias para mostrar el mensaje
-            string origen = rutaOrigen + fichero;
-            string titulo = nombre;
-
-            string nombreFichero = Path.GetFileName(fichero); //Obtiene el nombre del programa
-            string destino = variable.destino + nombreFichero; //Forma la ruta completa del programa
-
-            //Inicio del control de tiempo de copia
-            Stopwatch tiempoAplicacion = Stopwatch.StartNew();
-
-            //Controla si se hace la copia local o en el geco72
-            if(variable.destino == variable.destinoLocal) //Copia local
-            {
-                try
-                {
-                    ActualizarProgreso($"Copiando el programa {titulo}", pestaña);
-                    await Task.Run(() =>
-                    {
-                        try
-                        {
-                            File.Copy(origen, destino, true); //Copia directamente
-                            ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
-                            tiempoAplicacion.Stop(); //Para el tiempo de copia de la aplicacion
-                            string tiempo = convierteTiempo((int)tiempoAplicacion.Elapsed.TotalSeconds);
-                            ActualizarProgreso($"Duracion de la copia: {tiempo}" + Environment.NewLine, pestaña);
-                            resultadoCopia++; //Actualiza el contador de copias correctas
-
-                            ////Actualiza el informe de copias (desactivado porque ahora se hace el registro de copias
-                            //actualizaInformeCopia($"Copiado {titulo} a {variable.destino}");
-
-                            //Añade el programa copiado a la lista de programas copiados
-                            programasCopiados.Add(new RegistroCopia.ProgramaCopiado //Nueva instancia para grabar los datos de la copia
-                            {
-                                Programa = nombreFichero, //Nombre del programa
-                                RutaDestino = variable.destino, //Ruta de destino
-                            });
-                        }
-
-                        catch(Exception ex)
-                        {
-                            ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
-                        }
-                    }).ConfigureAwait(false);
-
-                }
-
-                catch(Exception ex)
-                {
-                    ActualizarProgreso(Environment.NewLine + $"Error al copiar el programa {titulo}" + Environment.NewLine + ex.Message, pestaña);
-                }
-            }
-            else //Si la copia es al geco72
-            {
-                try
-                {
-                    ActualizarProgreso($"Copiando el programa {titulo} a carpeta temporal. Espere que finalice ...", pestaña);
-                    //ActualizarProgreso("Espere a que termine la copia local...", pestaña);
-
-                    var origenTemporal = Path.Combine(Path.GetTempPath(), nombreFichero); //Crea una copia del fichero de origen en la ruta temporal
-                    await Task.Run(() => File.Copy(origen, origenTemporal, true)).ConfigureAwait(false); // Copia el fichero de origen a la ruta temporal
-
-                    // Mensaje para avisar que ha terminado la copia local
-                    ActualizarProgreso("Copia local terminada, continuamos con la copia al servidor.\n", pestaña);
-
-                    // Configuración de opciones de sesión para la copia al geco72
-                    SessionOptions opcionesSesion = new SessionOptions
-                    {
-                        Protocol = variable.Protocolo,
-                        HostName = variable.HostName,
-                        UserName = variable.UserName,
-                        SshHostKeyFingerprint = variable.HostKey,
-                        SshPrivateKeyPath = variable.PrivateKey,
-                    };
-                    opcionesSesion.AddRawSettings("AgentFwd", "1");
-
-                    Session session = null;
-
-                    try
-                    {
-                        await Task.Run(async () =>
-                        {
-                            // Conexión
-                            session = new Session();
-
-                            //Permite controlar el progreso de copia
-                            session.FileTransferProgress += (sender, e) =>
-                            {
-                                //Actualiza la barra de progreso de copia
-                                progressBar3.Invoke((MethodInvoker)(() =>
-                                {
-                                    progressBar3.Value = (int)(e.OverallProgress * 100);
-                                    //Muestra el porcentaje completado
-                                    int porcentaje = (int)(e.OverallProgress * 100);
-                                    lbl_porcentaje.Text = $"{porcentaje}%";
-                                }));
-                            };
-
-                            ActualizarProgreso($"Conectando con el servidor . . .", pestaña);
-                            session.Open(opcionesSesion);
-
-                            TransferOptions transferOptions = new TransferOptions();
-                            transferOptions.TransferMode = TransferMode.Binary;
-
-                            ActualizarProgreso($"Iniciando copia . . .", pestaña);
-                            TransferOperationResult transferResult = session.PutFiles(origenTemporal, variable.destino, false, transferOptions);
-                            transferResult.Check();
-
-                            // Muestra información sobre la transferencia al finalizar
-                            ActualizarProgreso($"Programa {titulo} copiado correctamente.", pestaña);
-                            resultadoCopia++; //Actualiza el contador de copias correctas
-
                             //Añade el programa copiado a la lista de programas copiados
                             programasCopiados.Add(new RegistroCopia.ProgramaCopiado
                             {
@@ -1849,7 +1699,7 @@ namespace copiaProgramas
 
                         }).ConfigureAwait(false);
 
-                        // Limpieza del temporal
+                        // Limpieza del fichero temporal si se ha utilizado
                         if(File.Exists(origenTemporal)) File.Delete(origenTemporal);
                     }
 
@@ -1875,6 +1725,7 @@ namespace copiaProgramas
             }
 
         }
+
 
         #endregion
 
@@ -2048,7 +1899,10 @@ namespace copiaProgramas
             MostrarListaCopias(RegistroCopia.ListadoCopias);
         }
 
-        
+        private void cbCopiaMejorada_CheckedChanged(object sender, EventArgs e)
+        {
+            copiaMejorada = cbCopiaMejorada.Checked;
+        }
     }
 }
 
