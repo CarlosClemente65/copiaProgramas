@@ -22,6 +22,10 @@ namespace copiaProgramas
         public string dsarchiRuta = @"dsarchi\dsarchiz.tgz";
         public bool ipconts2 = false;
         public string ipconts2Ruta = @"ipconts2\pconts2z.tgz";
+        public bool iprent25 = false;
+        public string iprent25Ruta = @"iprent25\prent25z.tgz"; 
+        public bool iprent24 = false;
+        public string iprent24Ruta = @"iprent24\prent24z.tgz";
         public bool iprent23 = false;
         public string iprent23Ruta = @"iprent23\prent23z.tgz";
         public bool iprent22 = false;
@@ -92,10 +96,6 @@ namespace copiaProgramas
         public string dscepsaRuta = @"_CEPSA\dscepsa\dscepsaz.tgz";
         public bool dsgal = false;
         public string dsgalRuta = @"_CEPSA\dscepsa_mod\dsgal\dsgalz.tgz";
-
-
-
-        
 
     }
 
