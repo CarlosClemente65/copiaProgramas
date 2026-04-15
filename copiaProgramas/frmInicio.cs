@@ -39,7 +39,7 @@ namespace copiaProgramas
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
         private Dictionary<CheckBox, string> checkBoxVariables = new Dictionary<CheckBox, string>();
 
-        bool copiaMejorada = true; //Variable para controlar si se hace la copia mejorada o no
+        //bool copiaMejorada = true; //Variable para controlar si se hace la copia mejorada o no
 
 
         public frmInicio()
@@ -58,7 +58,7 @@ namespace copiaProgramas
             tabControl1.SelectTab("tabCopias");
             tabPI = tabControl1.TabPages["tabProgramasPi"];
             tabNopi = tabControl1.TabPages["tabProgramasnoPI"];
-            cbCopiaMejorada.Checked = copiaMejorada;
+            cbCopiaMejorada.Checked = variable.copiaMejorada;
             activarPestañas();
 
         }
@@ -1622,7 +1622,7 @@ namespace copiaProgramas
                 try
                 {
                     var origenTemporal = Path.Combine(Path.GetTempPath(), nombreFichero); //Crea una copia del fichero de origen en la ruta temporal
-                    if(copiaMejorada)
+                    if(variable.copiaMejorada)
                     {
                         ActualizarProgreso($"Copiando el programa {titulo} a carpeta temporal. Espere que finalice ...", pestaña);
                         //ActualizarProgreso("Espere a que termine la copia local...", pestaña);
@@ -1899,9 +1899,25 @@ namespace copiaProgramas
             MostrarListaCopias(RegistroCopia.ListadoCopias);
         }
 
+
+
         private void cbCopiaMejorada_CheckedChanged(object sender, EventArgs e)
         {
-            copiaMejorada = cbCopiaMejorada.Checked;
+            variable.copiaMejorada = cbCopiaMejorada.Checked;
+        }
+
+        private void lstFicherosOrigen_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            // 1. Identificamos el elemento sobre el que se hizo doble clic
+            ListViewItem item = lstFicherosOrigen.GetItemAt(e.X, e.Y);
+
+            if(item != null)
+            {
+                // 2. Lo marcamos manualmente si no estaba marcado
+                item.Checked = true;
+                // Llamamos al evento del botón directamente
+                btnCopiarCopias_Click(sender, e);
+            }
         }
     }
 }

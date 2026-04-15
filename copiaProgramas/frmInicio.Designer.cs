@@ -46,6 +46,7 @@
             System.Windows.Forms.ListViewGroup listViewGroup14 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabConfiguracion = new System.Windows.Forms.TabPage();
+            this.cbCopiaMejorada = new System.Windows.Forms.CheckBox();
             this.btnGuardarConfiguracion = new System.Windows.Forms.Button();
             this.btnDestinoLocal = new System.Windows.Forms.Button();
             this.txtDestinoLocal = new System.Windows.Forms.TextBox();
@@ -138,7 +139,6 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cbCopiaMejorada = new System.Windows.Forms.CheckBox();
             this.btnLimpiarCopia = new System.Windows.Forms.Button();
             this.txtDestinoCopias = new System.Windows.Forms.TextBox();
             this.btnCopiarCopias = new System.Windows.Forms.Button();
@@ -273,6 +273,7 @@
             // tabConfiguracion
             // 
             this.tabConfiguracion.BackColor = System.Drawing.Color.Peru;
+            this.tabConfiguracion.Controls.Add(this.cbCopiaMejorada);
             this.tabConfiguracion.Controls.Add(this.btnGuardarConfiguracion);
             this.tabConfiguracion.Controls.Add(this.btnDestinoLocal);
             this.tabConfiguracion.Controls.Add(this.txtDestinoLocal);
@@ -308,6 +309,17 @@
             this.tabConfiguracion.Size = new System.Drawing.Size(696, 353);
             this.tabConfiguracion.TabIndex = 5;
             this.tabConfiguracion.Text = "Configuracion rutas";
+            // 
+            // cbCopiaMejorada
+            // 
+            this.cbCopiaMejorada.AutoSize = true;
+            this.cbCopiaMejorada.Location = new System.Drawing.Point(355, 298);
+            this.cbCopiaMejorada.Name = "cbCopiaMejorada";
+            this.cbCopiaMejorada.Size = new System.Drawing.Size(165, 18);
+            this.cbCopiaMejorada.TabIndex = 37;
+            this.cbCopiaMejorada.Text = "Copia intermedia local";
+            this.cbCopiaMejorada.UseVisualStyleBackColor = true;
+            this.cbCopiaMejorada.CheckedChanged += new System.EventHandler(this.cbCopiaMejorada_CheckedChanged);
             // 
             // btnGuardarConfiguracion
             // 
@@ -1391,6 +1403,7 @@
             this.lstFicherosOrigen.TabIndex = 6;
             this.lstFicherosOrigen.UseCompatibleStateImageBehavior = false;
             this.lstFicherosOrigen.View = System.Windows.Forms.View.Details;
+            this.lstFicherosOrigen.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstFicherosOrigen_MouseDoubleClick);
             // 
             // columnHeader4
             // 
@@ -1413,7 +1426,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.cbCopiaMejorada);
             this.panel1.Controls.Add(this.btnLimpiarCopia);
             this.panel1.Controls.Add(this.txtDestinoCopias);
             this.panel1.Controls.Add(this.btnCopiarCopias);
@@ -1425,17 +1437,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(326, 354);
             this.panel1.TabIndex = 0;
-            // 
-            // cbCopiaMejorada
-            // 
-            this.cbCopiaMejorada.AutoSize = true;
-            this.cbCopiaMejorada.Location = new System.Drawing.Point(13, 8);
-            this.cbCopiaMejorada.Name = "cbCopiaMejorada";
-            this.cbCopiaMejorada.Size = new System.Drawing.Size(165, 18);
-            this.cbCopiaMejorada.TabIndex = 35;
-            this.cbCopiaMejorada.Text = "Copia intermedia local";
-            this.cbCopiaMejorada.UseVisualStyleBackColor = true;
-            this.cbCopiaMejorada.CheckedChanged += new System.EventHandler(this.cbCopiaMejorada_CheckedChanged);
             // 
             // btnLimpiarCopia
             // 
@@ -1491,7 +1492,7 @@
             this.label28.AutoSize = true;
             this.label28.BackColor = System.Drawing.Color.Transparent;
             this.label28.ForeColor = System.Drawing.Color.Black;
-            this.label28.Location = new System.Drawing.Point(10, 53);
+            this.label28.Location = new System.Drawing.Point(10, 52);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(101, 14);
             this.label28.TabIndex = 28;
@@ -1502,7 +1503,7 @@
             // 
             this.progressBar3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar3.Location = new System.Drawing.Point(117, 53);
+            this.progressBar3.Location = new System.Drawing.Point(117, 48);
             this.progressBar3.Name = "progressBar3";
             this.progressBar3.Size = new System.Drawing.Size(194, 23);
             this.progressBar3.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -1518,7 +1519,7 @@
             "Carpeta PI",
             "Carpeta local",
             "Carpeta pasesPI"});
-            this.cbDestinoCopias.Location = new System.Drawing.Point(108, 27);
+            this.cbDestinoCopias.Location = new System.Drawing.Point(108, 16);
             this.cbDestinoCopias.Name = "cbDestinoCopias";
             this.cbDestinoCopias.Size = new System.Drawing.Size(203, 22);
             this.cbDestinoCopias.TabIndex = 30;
@@ -1529,7 +1530,7 @@
             this.label31.AutoSize = true;
             this.label31.BackColor = System.Drawing.Color.Transparent;
             this.label31.ForeColor = System.Drawing.Color.Black;
-            this.label31.Location = new System.Drawing.Point(10, 30);
+            this.label31.Location = new System.Drawing.Point(10, 19);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(92, 14);
             this.label31.TabIndex = 29;
@@ -1897,7 +1898,7 @@
             this.btnCancelarFich.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCancelarFich.ImageIndex = 3;
             this.btnCancelarFich.ImageList = this.imageList1;
-            this.btnCancelarFich.Location = new System.Drawing.Point(13, 209);
+            this.btnCancelarFich.Location = new System.Drawing.Point(51, 238);
             this.btnCancelarFich.Name = "btnCancelarFich";
             this.btnCancelarFich.Size = new System.Drawing.Size(75, 60);
             this.btnCancelarFich.TabIndex = 8;
@@ -1916,7 +1917,7 @@
             this.btnValidarFich.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnValidarFich.ImageIndex = 6;
             this.btnValidarFich.ImageList = this.imageList1;
-            this.btnValidarFich.Location = new System.Drawing.Point(210, 209);
+            this.btnValidarFich.Location = new System.Drawing.Point(236, 238);
             this.btnValidarFich.Name = "btnValidarFich";
             this.btnValidarFich.Size = new System.Drawing.Size(75, 60);
             this.btnValidarFich.TabIndex = 7;

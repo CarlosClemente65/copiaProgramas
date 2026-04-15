@@ -16,6 +16,8 @@ namespace copiaProgramas
         public string rutaGestion { get; set; }
         public string rutaGasoleos { get; set; }
 
+        public bool copiaMejorada { get; set; }
+
         //Destinos
         public string destinoPi { get; set; }
         public string destinoLocal { get; set; }
@@ -42,6 +44,7 @@ namespace copiaProgramas
             rutanoPi = @"\\185.57.175.101\basprog_cyc\master9\EstandarAsesoria\";
             rutaGestion = @"\\185.57.175.101\basprog_cyc\master9\EstandarEmpresa\";
             rutaGasoleos = @"\\185.57.175.101\basprog_cyc\master9\Medida\";
+            copiaMejorada = true;
 
             //Rutas destino por defecto
             destinoPi = @"/u/dspi/master/";
@@ -99,18 +102,19 @@ namespace copiaProgramas
                 JsonConvert.PopulateObject(jsonConfiguracion, this);
 
                 // Actualiza las variables después de cargar la configuración
-                ActualizaVariables(rutaPi, rutanoPi, rutaGestion, rutaGasoleos, destinoPi, destinonoPi, destinoLocal, destinoPasesPi, destinoPasesnoPi, Protocolo, HostName, UserName, HostKey, PrivateKey);
+                ActualizaVariables(rutaPi, rutanoPi, rutaGestion, rutaGasoleos, copiaMejorada, destinoPi, destinonoPi, destinoLocal, destinoPasesPi, destinoPasesnoPi, Protocolo, HostName, UserName, HostKey, PrivateKey);
             }
 
         }
 
-        public void ActualizaVariables(string nuevaRutaPi, string nuevaRutanoPi, string nuevaRutaGestion, string nuevaRutaGasoleos, string nuevoDestinoPi, string nuevoDestinonoPi, string nuevoDestinoLocal, string nuevoDestinoPasesPi, string nuevoDestinoPasesnoPi, WinSCP.Protocol _protocolo, string _hostName, string _userName, string _hostKey, string _privateKey)
+        public void ActualizaVariables(string nuevaRutaPi, string nuevaRutanoPi, string nuevaRutaGestion, string nuevaRutaGasoleos, bool nuevaCopiaMejorada, string nuevoDestinoPi, string nuevoDestinonoPi, string nuevoDestinoLocal, string nuevoDestinoPasesPi, string nuevoDestinoPasesnoPi, WinSCP.Protocol _protocolo, string _hostName, string _userName, string _hostKey, string _privateKey)
         {
             //Una vez leidas las variables del fichero de configuracion, se graban en las variables de la clase
             rutaPi = nuevaRutaPi;
             rutanoPi = nuevaRutanoPi;
             rutaGestion = nuevaRutaGestion;
             rutaGasoleos = nuevaRutaGasoleos;
+            copiaMejorada = nuevaCopiaMejorada;
             destinoPi = nuevoDestinoPi;
             destinonoPi = nuevoDestinonoPi;
             destinoLocal = nuevoDestinoLocal;
