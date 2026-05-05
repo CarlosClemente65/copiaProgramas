@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace copiaProgramas
 {
@@ -66,8 +65,6 @@ namespace copiaProgramas
             string json = File.ReadAllText(_rutaArchivo);
             return JsonConvert.DeserializeObject<List<RegistroCopia>>(json) ?? new List<RegistroCopia>();
 
-
-
         }
 
         public static List<(DateTime Fecha, RegistroCopia Copia)> ProcesarCopiasLeidas(string rutaArchivo)
@@ -95,14 +92,75 @@ namespace copiaProgramas
 
             // Ordenamos de más reciente a más antigua
             return ListadoCopias;
-            
+
         }
 
-        public static List<(DateTime Fecha, RegistroCopia Copia)> OrdenarCopiasLeidas (List<(DateTime Fecha, RegistroCopia Copia)> listado)
+        public static List<(DateTime Fecha, RegistroCopia Copia)> OrdenarCopiasLeidas(List<(DateTime Fecha, RegistroCopia Copia)> listado)
         {
             // Ordenar la lista de copias leídas por fecha
             return listado.OrderByDescending(x => x.Item1).ToList();
         }
 
+        public static void BorrarCopiasAntiguas(int diasCopias, string passwordBorrado, string pathRegistroCopias)
+        {
+            // Primero, aseguramos que la lista de copias leídas esté actualizada
+            ProcesarCopiasLeidas(pathRegistroCopias);
+
+            // Se calcula la fecha límite para eliminar las copias antiguas
+            DateTime fechaInicio = DateTime.MinValue;
+            DateTime fechaFin = DateTime.Now.AddDays(-diasCopias);
+
+            // Se llama al método de eliminación pasando el rango de fechas y la contraseña
+            EliminarCopias(fechaInicio, fechaFin, passwordBorrado, pathRegistroCopias, mostrarAviso: false);
+        }
+
+        public static void EliminarCopias(DateTime fechaInicio, DateTime fechaFin, string passwordBorrado, string pathRegistroCopias, bool mostrarAviso = true)
+        {
+            // Contamos cuántos registros caen en el rango
+            int registrosSeleccionados = RegistroCopia.ListadoCopias
+                .Count(c => c.fecha.Date >= fechaInicio && c.fecha.Date <= fechaFin);
+ 
+            if(mostrarAviso)
+            {
+                // Confirmación previa al borrado
+                string mensaje = registrosSeleccionados > 0
+                    ? $"¿Deseas eliminar {registrosSeleccionados} registro(s) entre los dias{fechaInicio:dd.MM.yyyy} y {fechaFin:dd.MM.yyyy}?"
+                    : "¿Deseas eliminar TODOS los registros?\nEsta acción requiere contraseña.";
+                
+                if(MessageBox.Show(mensaje, "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+
+            if(registrosSeleccionados > 0)
+            {
+                // Eliminar solo los de los días seleccionados
+                RegistroCopia.ListadoCopias.RemoveAll(r=> r.fecha.Date >= fechaInicio && r.fecha.Date <= fechaFin);
+            }
+            else
+            {
+                // Solicitar contraseña antes de eliminar todo
+                using(var formPwd = new frmPassword())
+                {
+                    if(formPwd.ShowDialog() != DialogResult.OK || formPwd.Contraseña != passwordBorrado)
+                    {
+                        MessageBox.Show("Contraseña incorrecta. Operación cancelada.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                RegistroCopia.ListadoCopias.Clear();
+            }
+
+            //Guardar cambios y actualizar la lista
+            var registros = RegistroCopia.ListadoCopias.Select(t => t.copia).ToList();
+            string jsonSalida = JsonConvert.SerializeObject(registros, Formatting.Indented);
+            File.WriteAllText(pathRegistroCopias, jsonSalida);
+
+            if(mostrarAviso)
+            {
+                MessageBox.Show("Registros eliminados correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

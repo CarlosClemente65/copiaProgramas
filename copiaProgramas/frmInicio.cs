@@ -12,14 +12,15 @@ using System.Security.Cryptography;
 using System.Linq;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using copiaProgramas.Metodos;
 
 namespace copiaProgramas
 {
     public partial class frmInicio : Form
     {
-        variables variable = new variables(); //Instanciacion de la clase variables para acceder a las variables de configuracion
-        Programas programa = new Programas(); //Instanciacion de la clase Programas
-        Ficheros fichero = new Ficheros(); //Instanciacion de la clase Ficheros para acceso a los ficheros de configuracion
+        Variables variable = GestorInstancias.variables; //Instanciacion de la clase variables para acceder a las variables de configuracion
+        Programas programa = GestorInstancias.Programas; //Instanciacion de la clase Programas
+        Ficheros fichero = GestorInstancias.Ficheros; //Instanciacion de la clase Ficheros para acceso a los ficheros de configuracion
         int resultadoCopia = 0;
         ListView ListaFicheros = null; //Lista de ficheros para la copia
         TabPage tabPI = new TabPage();
@@ -35,12 +36,10 @@ namespace copiaProgramas
         //Variables para controlar el registro de copias
         List<RegistroCopia.ProgramaCopiado> programasCopiados = new List<RegistroCopia.ProgramaCopiado>(); //Lista de programas copiados
         string TiempoTotalCopia = string.Empty; //Variable para el tiempo total de la copia
+        //int DiasCopias = 30; //Variable para el numero de dias que se guardan las copias en el registro
 
         //Diccionario para el control de los checkBox con los programas que permite vincular cada uno con su varible correspondiente y saber que programas copiar
         private Dictionary<CheckBox, string> checkBoxVariables = new Dictionary<CheckBox, string>();
-
-        //bool copiaMejorada = true; //Variable para controlar si se hace la copia mejorada o no
-
 
         public frmInicio()
         {
@@ -52,6 +51,9 @@ namespace copiaProgramas
             //Lee el fichero de configuracion para cargar las variables
             variable.CargarConfiguracion();
 
+            // Revisa la antiguedad de las copias guardadas en el registro y borra las que superen el numero de dias indicado en la variable 'DiasCopias'
+            RegistroCopia.BorrarCopiasAntiguas(variable.DiasCopias, passwordBorrado, PathRegistroCopias);
+
             //Rellena los textBox con los valores cargados en las variables desde el fichero de configuracion
             cbDestinoCopias.SelectedIndex = 0;
             actualizaListaFicheros(lstFicherosOrigen);
@@ -59,6 +61,7 @@ namespace copiaProgramas
             tabPI = tabControl1.TabPages["tabProgramasPi"];
             tabNopi = tabControl1.TabPages["tabProgramasnoPI"];
             cbCopiaMejorada.Checked = variable.copiaMejorada;
+            txtDiasCopias.Text = variable.DiasCopias.ToString();
             activarPestañas();
 
         }
@@ -1165,7 +1168,7 @@ namespace copiaProgramas
             }
             else //Si el campo esta activado, busca la propiedad de la variable que corresponde al nombre del campo, y guarda el texto en la propiedad de la variable, desactiva el campo de texto y controla la imagen del fondo del resto de botones
             {
-                var propiedad = typeof(variables).GetProperty(nombreVariable);
+                var propiedad = typeof(Variables).GetProperty(nombreVariable);
                 // Si la propiedad es del tipo WinSCP.Protocol, se convierte el texto
                 if(propiedad.PropertyType == typeof(WinSCP.Protocol))
                 {
@@ -1843,63 +1846,18 @@ namespace copiaProgramas
 
         #endregion
 
-        private void brnBorrarCopias_Click(object sender, EventArgs e)
+        private void btnBorrarCopias_Click(object sender, EventArgs e)
         {
             //Comprueba si hay alguna fecha seleccionada
             DateTime fechaInicioSeleccion = mcFiltroFecha.SelectionRange.Start.Date;
             DateTime fechaFinSeleccion = mcFiltroFecha.SelectionRange.End.Date;
 
-            //Filtra por la fecha seleccionada
-            var registrosSeleccionados = RegistroCopia.ListadoCopias
-                .Where(c => c.fecha.Date >= fechaInicioSeleccion && c.fecha.Date <= fechaFinSeleccion)
-                .ToList();
-
-            bool borrarPorFecha = registrosSeleccionados.Any();
-
-            // Confirmación previa al borrado
-            string rangoFechas = fechaFinSeleccion > fechaInicioSeleccion ? $"de los dias {fechaInicioSeleccion:dd.MM.yyyy} hasta {fechaFinSeleccion:dd.MM.yyyy}?" : $"del día {fechaInicioSeleccion:dd.MM.yyyy}?";
-            DialogResult confirmacion = MessageBox.Show(
-                borrarPorFecha
-                    ? $"¿Deseas eliminar {registrosSeleccionados.Count} registro(s) {rangoFechas}?"
-                    : "¿Deseas eliminar TODOS los registros?\nEsta acción requiere contraseña.",
-                "Confirmar eliminación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
-
-            if(confirmacion != DialogResult.Yes)
-                return;
-
-            if(borrarPorFecha)
-            {
-                // Eliminar solo los del día seleccionado
-                RegistroCopia.ListadoCopias = RegistroCopia.ListadoCopias
-                    .Where(r => r.fecha.Date < fechaInicioSeleccion || r.fecha.Date > fechaFinSeleccion)
-                    .ToList();
-            }
-            else
-            {
-                // Solicitar contraseña antes de eliminar todo
-                using(var formPwd = new frmPassword())
-                {
-                    if(formPwd.ShowDialog() != DialogResult.OK || formPwd.Contraseña != passwordBorrado)
-                    {
-                        MessageBox.Show("Contraseña incorrecta. Operación cancelada.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-                RegistroCopia.ListadoCopias.Clear();
-            }
-
-            //Guardar cambios y actualizar la lista
-            var registros = RegistroCopia.ListadoCopias.Select(t => t.copia).ToList();
-            string jsonSalida = JsonConvert.SerializeObject(registros, Formatting.Indented);
-            File.WriteAllText(PathRegistroCopias, jsonSalida);
-            MessageBox.Show("Registros eliminados correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Borrado de las copias del registro según las fechas seleccionadas
+            RegistroCopia.EliminarCopias(fechaInicioSeleccion, fechaFinSeleccion, passwordBorrado, PathRegistroCopias);
+            
+            // Acutaliza la lista de copias
             MostrarListaCopias(RegistroCopia.ListadoCopias);
         }
-
-
 
         private void cbCopiaMejorada_CheckedChanged(object sender, EventArgs e)
         {
@@ -1917,6 +1875,31 @@ namespace copiaProgramas
                 item.Checked = true;
                 // Llamamos al evento del botón directamente
                 btnCopiarCopias_Click(sender, e);
+            }
+        }
+
+        private void txtDiasCopias_Validated(object sender, EventArgs e)
+        {
+            if(int.TryParse(txtDiasCopias.Text, out int dias))
+            {
+               variable.DiasCopias = dias;
+            }
+            else
+            {
+                txtDiasCopias.Text = variable.DiasCopias.ToString();
+            }
+        }
+
+        private void txtDiasCopias_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                // Evita el sonido "ding" de Windows al pulsar Intro
+                e.SuppressKeyPress = true;
+
+                // Cambia el foco al siguiente control o al formulario
+                // Esto dispara automáticamente el evento Validated del TextBox
+                this.SelectNextControl((Control)sender, true, true, true, true);
             }
         }
     }

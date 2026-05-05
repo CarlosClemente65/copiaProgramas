@@ -78,6 +78,7 @@
     <Compile Include="frmPassword.Designer.cs">
       <DependentUpon>frmPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Metodos\GestorInstancias.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Programas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,7 +88,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RegistroCopia.cs" />
-    <Compile Include="variables.cs" />
+    <Compile Include="Variables.cs" />
     <EmbeddedResource Include="frmInicio.resx">
       <DependentUpon>frmInicio.cs</DependentUpon>
     </EmbeddedResource>

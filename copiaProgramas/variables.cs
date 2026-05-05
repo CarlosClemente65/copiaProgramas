@@ -1,14 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using WinSCP;
 
 namespace copiaProgramas
 {
-
-    public class variables
+    public class Variables
     {
         //Rutas
         public string rutaPi { get; set; }
@@ -16,7 +13,9 @@ namespace copiaProgramas
         public string rutaGestion { get; set; }
         public string rutaGasoleos { get; set; }
 
-        public bool copiaMejorada { get; set; }
+        public bool copiaMejorada { get; set; } // Indica si se utiliza el metodo de copia mejorada, para hacer una copia a local en vez de hacerla directa entre servidores
+
+        public int DiasCopias { get; set; } //Numero de dias que se mantienen las copias en el destino, pasado ese tiempo se eliminan para evitar ocupar espacio innecesario
 
         //Destinos
         public string destinoPi { get; set; }
@@ -33,7 +32,7 @@ namespace copiaProgramas
         public string HostKey { get; set; }
         public string PrivateKey { get; set; }
 
-        public variables()
+        public Variables()
         {
             /*Constructor de la clase que asigna los valores a las variables cuando se hace una instancia
              * Se cargan con estos valores por defecto para el caso de que se haya perdido el fichero de configuracion que se graba con el metodo 'GuardarConfiguracion'
@@ -45,6 +44,7 @@ namespace copiaProgramas
             rutaGestion = @"\\185.57.175.101\basprog_cyc\master9\EstandarEmpresa\";
             rutaGasoleos = @"\\185.57.175.101\basprog_cyc\master9\Medida\";
             copiaMejorada = true;
+            DiasCopias = 90;
 
             //Rutas destino por defecto
             destinoPi = @"/u/dspi/master/";
@@ -102,12 +102,12 @@ namespace copiaProgramas
                 JsonConvert.PopulateObject(jsonConfiguracion, this);
 
                 // Actualiza las variables después de cargar la configuración
-                ActualizaVariables(rutaPi, rutanoPi, rutaGestion, rutaGasoleos, copiaMejorada, destinoPi, destinonoPi, destinoLocal, destinoPasesPi, destinoPasesnoPi, Protocolo, HostName, UserName, HostKey, PrivateKey);
+                ActualizaVariables(rutaPi, rutanoPi, rutaGestion, rutaGasoleos, copiaMejorada, DiasCopias, destinoPi, destinonoPi, destinoLocal, destinoPasesPi, destinoPasesnoPi, Protocolo, HostName, UserName, HostKey, PrivateKey);
             }
 
         }
 
-        public void ActualizaVariables(string nuevaRutaPi, string nuevaRutanoPi, string nuevaRutaGestion, string nuevaRutaGasoleos, bool nuevaCopiaMejorada, string nuevoDestinoPi, string nuevoDestinonoPi, string nuevoDestinoLocal, string nuevoDestinoPasesPi, string nuevoDestinoPasesnoPi, WinSCP.Protocol _protocolo, string _hostName, string _userName, string _hostKey, string _privateKey)
+        public void ActualizaVariables(string nuevaRutaPi, string nuevaRutanoPi, string nuevaRutaGestion, string nuevaRutaGasoleos, bool nuevaCopiaMejorada, int nuevoDiasCopias, string nuevoDestinoPi, string nuevoDestinonoPi, string nuevoDestinoLocal, string nuevoDestinoPasesPi, string nuevoDestinoPasesnoPi, WinSCP.Protocol _protocolo, string _hostName, string _userName, string _hostKey, string _privateKey)
         {
             //Una vez leidas las variables del fichero de configuracion, se graban en las variables de la clase
             rutaPi = nuevaRutaPi;
@@ -115,6 +115,7 @@ namespace copiaProgramas
             rutaGestion = nuevaRutaGestion;
             rutaGasoleos = nuevaRutaGasoleos;
             copiaMejorada = nuevaCopiaMejorada;
+            DiasCopias = nuevoDiasCopias;
             destinoPi = nuevoDestinoPi;
             destinonoPi = nuevoDestinonoPi;
             destinoLocal = nuevoDestinoLocal;
