@@ -110,8 +110,16 @@ namespace copiaProgramas
             DateTime fechaInicio = DateTime.MinValue;
             DateTime fechaFin = DateTime.Now.AddDays(-diasCopias);
 
+            // Revisar la lista de copias para ver si hay alguna que caiga dentro del rango de fechas a eliminar
+            // Contamos cuántos registros caen en el rango
+            int registrosSeleccionados = RegistroCopia.ListadoCopias
+                .Count(c => c.fecha.Date >= fechaInicio && c.fecha.Date <= fechaFin);
+
             // Se llama al método de eliminación pasando el rango de fechas y la contraseña
-            EliminarCopias(fechaInicio, fechaFin, passwordBorrado, pathRegistroCopias, mostrarAviso: false);
+            if(registrosSeleccionados > 0)
+            {
+                EliminarCopias(fechaInicio, fechaFin, passwordBorrado, pathRegistroCopias, mostrarAviso: false);
+            }
         }
 
         public static void EliminarCopias(DateTime fechaInicio, DateTime fechaFin, string passwordBorrado, string pathRegistroCopias, bool mostrarAviso = true)

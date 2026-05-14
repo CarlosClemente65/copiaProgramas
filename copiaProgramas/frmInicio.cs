@@ -8,10 +8,7 @@ using System.Drawing;
 using System.Collections;
 using System.Diagnostics;
 using System.Text;
-using System.Security.Cryptography;
 using System.Linq;
-using Microsoft.Win32;
-using Newtonsoft.Json;
 using copiaProgramas.Metodos;
 
 namespace copiaProgramas
@@ -212,40 +209,13 @@ namespace copiaProgramas
             //Metodo para cargar en una lista los nombres de los ficheros del fichero de configuracion y mostrarlos en el ListView que se pase como parametro 
             ListaFicheros = nombreLista;
             ListaFicheros.Items.Clear(); //Limpia la lista de ficheros
-            foreach(var fichero in Ficheros.listaFicheros) //Recorre la lista de ficheros
-            {
-                string nombre = fichero.Nombre; //Asigna el nombre del fichero
-                string ruta = fichero.Ruta; //Asigna la ruta del fichero
-                string tipo = fichero.Tipo; //Asigna el tipo del fichero
-                string clase = fichero.Clase.ToString(); //Asigna la clase del fichero
-                ListViewItem item = new ListViewItem(nombre); //Crea un nuevo item en la lista
-                item.SubItems.Add(ruta); //Añade la ruta al item
-                item.SubItems.Add(tipo); //Añade el tipo al item
-                item.SubItems.Add(clase); //Añade la clase al item
-
-                ListViewGroup grupo = null; //Crea un nuevo grupo en la lista
-                foreach(ListViewGroup Grupos in ListaFicheros.Groups) //Crea los distintos grupos de la lista
-                {
-                    if(Grupos.Header == tipo)
-                    {
-                        grupo = Grupos;
-                        break;
-                    }
-                }
-
-                if(grupo == null)
-                {
-                    grupo = new ListViewGroup(tipo);
-                    ListaFicheros.Groups.Add(grupo);
-                }
-
-                item.Group = grupo; //Añade el nombre del grupo al item
-                ListaFicheros.Items.Add(item); //Añade el item a la lista
-            }
+            ListaFicheros = fichero.CargarListaFicheros(ListaFicheros);
 
             ListaFicheros.View = View.Details; //Muestra la lista en detalle
 
         }
+
+        
 
         //Metodo para lanzar la copia desde las pestañas de PI y noPI (ocultas por defecto)
         private async Task LanzaCopia(bool programa, string fichero, string titulo, string ruta, int pestaña)

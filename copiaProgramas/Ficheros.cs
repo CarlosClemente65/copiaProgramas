@@ -154,6 +154,41 @@ namespace copiaProgramas
             Valores.Add(nuevoValor);
         }
 
+        public ListView CargarListaFicheros(ListView _listaFicheros)
+        {
+            // Metodo para hacer una carga de la lista de ficheros en el ListView del formulario
+            ListView listaFicheros = _listaFicheros;
+            foreach(var fichero in Ficheros.listaFicheros) //Recorre la lista de ficheros
+            {
+                string nombre = fichero.Nombre; //Asigna el nombre del fichero
+                string ruta = fichero.Ruta; //Asigna la ruta del fichero
+                string tipo = fichero.Tipo; //Asigna el tipo del fichero
+                string clase = fichero.Clase.ToString(); //Asigna la clase del fichero
+                ListViewItem item = new ListViewItem(nombre); //Crea un nuevo item en la lista
+                item.SubItems.Add(ruta); //Añade la ruta al item
+                item.SubItems.Add(tipo); //Añade el tipo al item
+                item.SubItems.Add(clase); //Añade la clase al item
 
+                ListViewGroup grupo = null; //Crea un nuevo grupo en la lista
+                foreach(ListViewGroup Grupos in listaFicheros.Groups) //Crea los distintos grupos de la lista
+                {
+                    if(Grupos.Header == tipo)
+                    {
+                        grupo = Grupos;
+                        break;
+                    }
+                }
+
+                if(grupo == null)
+                {
+                    grupo = new ListViewGroup(tipo);
+                    listaFicheros.Groups.Add(grupo);
+                }
+
+                item.Group = grupo; //Añade el nombre del grupo al item
+                listaFicheros.Items.Add(item); //Añade el item a la lista
+            }
+            return listaFicheros;
+        }
     }
 }
