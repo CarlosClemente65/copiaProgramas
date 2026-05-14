@@ -46,6 +46,8 @@
             System.Windows.Forms.ListViewGroup listViewGroup14 = new System.Windows.Forms.ListViewGroup("Gasoleos", System.Windows.Forms.HorizontalAlignment.Left);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabConfiguracion = new System.Windows.Forms.TabPage();
+            this.txtDiasCopias = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
             this.cbCopiaMejorada = new System.Windows.Forms.CheckBox();
             this.btnGuardarConfiguracion = new System.Windows.Forms.Button();
             this.btnDestinoLocal = new System.Windows.Forms.Button();
@@ -273,6 +275,8 @@
             // tabConfiguracion
             // 
             this.tabConfiguracion.BackColor = System.Drawing.Color.Peru;
+            this.tabConfiguracion.Controls.Add(this.txtDiasCopias);
+            this.tabConfiguracion.Controls.Add(this.label41);
             this.tabConfiguracion.Controls.Add(this.cbCopiaMejorada);
             this.tabConfiguracion.Controls.Add(this.btnGuardarConfiguracion);
             this.tabConfiguracion.Controls.Add(this.btnDestinoLocal);
@@ -310,14 +314,34 @@
             this.tabConfiguracion.TabIndex = 5;
             this.tabConfiguracion.Text = "Configuracion rutas";
             // 
+            // txtDiasCopias
+            // 
+            this.txtDiasCopias.Location = new System.Drawing.Point(479, 310);
+            this.txtDiasCopias.Name = "txtDiasCopias";
+            this.txtDiasCopias.Size = new System.Drawing.Size(30, 22);
+            this.txtDiasCopias.TabIndex = 39;
+            this.txtDiasCopias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDiasCopias.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDiasCopias_KeyDown);
+            this.txtDiasCopias.Validated += new System.EventHandler(this.txtDiasCopias_Validated);
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(325, 313);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(150, 14);
+            this.label41.TabIndex = 38;
+            this.label41.Text = "Dias maximo de copias";
+            // 
             // cbCopiaMejorada
             // 
             this.cbCopiaMejorada.AutoSize = true;
-            this.cbCopiaMejorada.Location = new System.Drawing.Point(355, 298);
+            this.cbCopiaMejorada.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cbCopiaMejorada.Location = new System.Drawing.Point(325, 286);
             this.cbCopiaMejorada.Name = "cbCopiaMejorada";
-            this.cbCopiaMejorada.Size = new System.Drawing.Size(165, 18);
+            this.cbCopiaMejorada.Size = new System.Drawing.Size(177, 18);
             this.cbCopiaMejorada.TabIndex = 37;
-            this.cbCopiaMejorada.Text = "Copia intermedia local";
+            this.cbCopiaMejorada.Text = "Copia intermedia a local";
             this.cbCopiaMejorada.UseVisualStyleBackColor = true;
             this.cbCopiaMejorada.CheckedChanged += new System.EventHandler(this.cbCopiaMejorada_CheckedChanged);
             // 
@@ -351,7 +375,7 @@
             this.btnDestinoLocal.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDestinoLocal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDestinoLocal.ImageIndex = 0;
-            this.btnDestinoLocal.Location = new System.Drawing.Point(319, 298);
+            this.btnDestinoLocal.Location = new System.Drawing.Point(274, 297);
             this.btnDestinoLocal.Name = "btnDestinoLocal";
             this.btnDestinoLocal.Size = new System.Drawing.Size(22, 22);
             this.btnDestinoLocal.TabIndex = 26;
@@ -367,7 +391,7 @@
             this.txtDestinoLocal.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDestinoLocal.Location = new System.Drawing.Point(13, 298);
             this.txtDestinoLocal.Name = "txtDestinoLocal";
-            this.txtDestinoLocal.Size = new System.Drawing.Size(300, 22);
+            this.txtDestinoLocal.Size = new System.Drawing.Size(255, 22);
             this.txtDestinoLocal.TabIndex = 25;
             // 
             // txtDestinoPasesnoPi
@@ -1562,7 +1586,7 @@
             this.btnBorrarCopias.TabIndex = 7;
             this.btnBorrarCopias.Text = "Borrar registros";
             this.btnBorrarCopias.UseVisualStyleBackColor = true;
-            this.btnBorrarCopias.Click += new System.EventHandler(this.brnBorrarCopias_Click);
+            this.btnBorrarCopias.Click += new System.EventHandler(this.btnBorrarCopias_Click);
             // 
             // btnBorrarFiltro
             // 
@@ -2853,6 +2877,8 @@
         private System.Windows.Forms.Button btnBorrarFiltro;
         private System.Windows.Forms.Button btnBorrarCopias;
         private System.Windows.Forms.CheckBox cbCopiaMejorada;
+        private System.Windows.Forms.TextBox txtDiasCopias;
+        private System.Windows.Forms.Label label41;
     }
 }
 
